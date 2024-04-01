@@ -1,0 +1,44 @@
+package com.example.petwelfare.logic.network
+
+import com.example.petwelfare.logic.model.BaseResponse
+import com.example.petwelfare.logic.model.GetNewAccessTokenResponse
+import com.example.petwelfare.logic.model.LoginResponse
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Query
+
+interface BeginService {
+
+    @POST("/users/login/")
+    fun login(
+        @Query("mailbox") mailbox: String,
+        @Query("password") password: String
+    ): Call<LoginResponse>
+
+    @POST("/verifications/emails/")
+    fun getVerification(
+        @Query("mailbox") mailbox: String
+    ): Call<BaseResponse>
+
+    @POST("/users/register/")
+    fun register(
+        @Query("mailbox") mailbox: String,
+        @Query("password") password: String,
+        @Query("verification") verification: String
+    ): Call<BaseResponse>
+
+    @PUT("/users/changes/password/")
+    fun resetPassword(
+        @Query("mailbox") mailbox: String,
+        @Query("password") password: String,
+        @Query("verification") verification: String
+    ): Call<BaseResponse>
+
+    @GET("/users/refreshtoken")
+    fun refreshToken(
+        @Header("Authorization") Authorization: String
+    ): Call<GetNewAccessTokenResponse>
+}
