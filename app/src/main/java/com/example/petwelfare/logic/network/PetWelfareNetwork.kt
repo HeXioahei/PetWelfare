@@ -44,7 +44,7 @@ object PetWelfareNetwork {
     suspend fun exit(Authorization: String) = endService.exit(Authorization).await()
 
     // 个人页
-    suspend fun getUserInfo(id: Int, Authorization: String) = mineService
+    suspend fun getUserInfo(id: Long, Authorization: String) = mineService
         .getUserInfo(id, Authorization)
         .await()
 
@@ -79,15 +79,15 @@ object PetWelfareNetwork {
         .await()
 
     // 公开列表
-    suspend fun getMyArticles(id: Int, Authorization: String) = mineService
+    suspend fun getMyArticles(id: Long, Authorization: String) = mineService
         .getMyArticles(id, Authorization)
         .await()
 
-    suspend fun getMyLoss(id: Int, Authorization: String) = mineService
+    suspend fun getMyLoss(id: Long, Authorization: String) = mineService
         .getMyLoss(id, Authorization)
         .await()
 
-    suspend fun getMyStray(id: Int, Authorization: String) = mineService
+    suspend fun getMyStray(id: Long, Authorization: String) = mineService
         .getMyStray(id, Authorization)
         .await()
 

@@ -27,9 +27,9 @@ class MineActivity : AppCompatActivity() {
         // Use the 'by viewModels()' Kotlin property delegate
         // from the activity-ktx artifact
 
-        // 应用viewModel
+        // 应用 viewModel
         // 参看书中第623页
-        viewModel.user2.observe(this, Observer { result ->
+        viewModel.myDetailData.observe(this, Observer { result ->
             val user = result.getOrNull()
             if (user != null) {
                 // 进行页面呈现的变化

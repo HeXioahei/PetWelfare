@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
+import com.example.petwelfare.logic.model.AllData
 import com.example.petwelfare.logic.model.FileBuilder
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -30,6 +31,11 @@ class EditMyInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditMyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val username = AllData.userDetail.username
+        val address = AllData.userDetail.address
+        val telephone = AllData.userDetail.telephone
+        val personality = AllData.userDetail.personality
 
         // 修改头像
         val pickMedia =
@@ -54,6 +60,7 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改用户名
         binding.changeUsername.setOnClickListener {
+            showAlertDialog(username, "changeUsername")
 
         }
 
@@ -64,17 +71,17 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改地址
         binding.changeAddress.setOnClickListener {
-
+            showAlertDialog(address, "changeAddress")
         }
 
         // 修改电话
         binding.changeTelephone.setOnClickListener {
-
+            showAlertDialog(telephone, "changeTelephone")
         }
 
         // 修改个性签名
         binding.changePersonality.setOnClickListener {
-
+            showAlertDialog(personality, "changePersonality")
         }
     }
 
@@ -106,4 +113,5 @@ class EditMyInfoActivity : AppCompatActivity() {
         // 显示对话框
         alertDialogBuilder.show()
     }
+
 }

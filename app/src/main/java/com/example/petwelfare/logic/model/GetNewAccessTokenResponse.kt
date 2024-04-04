@@ -1,7 +1,7 @@
 package com.example.petwelfare.logic.model
 
 data class GetNewAccessTokenResponse (
-    val code: Long,
+    val code: Int,
     val data: AccessToken,
     val msg: String
 )

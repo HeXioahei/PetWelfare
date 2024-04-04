@@ -24,7 +24,7 @@ interface MineService {
 
     @GET("/users/information/")
     fun getUserInfo(
-        @Query("id") id: Int,
+        @Query("id") id: Long,
         @Header("Authorization") Authorization: String
     ): Call<GetUserDetailResponse>
 
@@ -66,19 +66,19 @@ interface MineService {
 
     @GET("/users/articles/")
     fun getMyArticles(
-        @Query("id") id: Int,
+        @Query("id") id: Long,
         @Header("Authorization") Authorization: String
     ): Call<GetArticlesResponse>
 
     @GET("/users/loss/")
     fun getMyLoss(
-        @Query("id") id: Int,
+        @Query("id") id: Long,
         @Header("Authorization") Authorization: String
     ): Call<GetLossResponse>
 
     @GET("/users/stray/")
     fun getMyStray(
-        @Query("id") id: Int,
+        @Query("id") id: Long,
         @Header("Authorization") Authorization: String
     ): Call<GetStrayResponse>
 

@@ -17,7 +17,7 @@ data class UserDetail(
     val fanNums: Int,
     val followNums: Int,
     val headImage: String,
-    val id: Int,
+    val id: Long,
     val integral: Int,
     val personality: String,
     val score: Int,
@@ -29,12 +29,12 @@ data class UserBrief(
     val headImage: String,
     val username: String,
     val personality: String,
-    val id: Int
+    val id: Long
 )
 
 data class UserMostBrief(
     val headImage: String,
     val username: String,
-    val id: Int
+    val id: Long
 )
 
