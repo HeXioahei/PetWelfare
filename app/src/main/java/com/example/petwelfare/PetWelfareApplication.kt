@@ -8,7 +8,7 @@ class PetWelfareApplication : Application() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
-        lateinit var token : String
+        lateinit var Authorization : String
     }
 
     override fun onCreate() {

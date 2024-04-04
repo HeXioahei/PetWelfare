@@ -6,4 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".ui.begin.RestorePsdActivity">
 
+    <EditText
+        android:id="@+id/mailboxInReset"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="请输入邮箱"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/verificationInReset"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="请输入验证码"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mailboxInReset" />
+
+    <EditText
+        android:id="@+id/psdInReset"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="请输入密码"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verificationInReset" />
+
+    <EditText
+        android:id="@+id/confirmPsdInReset"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="请确认密码"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/psdInReset" />
+
+    <ImageView
+        android:id="@+id/getVerificationBtn"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPsdInReset" />
+
+    <ImageView
+        android:id="@+id/resetBtn"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getVerificationBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

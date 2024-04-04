@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mine.EditMyInfoActivity">
+
+    <ImageView
+        android:id="@+id/changeHead"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/changeUsername"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/changePsd"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/changeAddress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/changeTelephone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/changePersonality"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,37 +155,37 @@ object PetWelfareNetwork {
         .addPets(name, sex, type, birthday, description, Authorization, headImage)
         .await()
 
-    suspend fun changeHead(
+    suspend fun changePetHead(
         petId: Int, headImage: MultipartBody.Part, Authorization: String
     ) = petsService
         .changeHead(petId, headImage, Authorization)
         .await()
 
-    suspend fun changeName(
+    suspend fun changePetName(
         petId: Int, name: String, Authorization: String
     ) = petsService
         .changeName(petId, name, Authorization)
         .await()
 
-    suspend fun changeSex(
+    suspend fun changePetSex(
         petId: Int, sex: String, Authorization: String
     ) = petsService
         .changeSex(petId, sex, Authorization)
         .await()
 
-    suspend fun changeType(
+    suspend fun changePetType(
         petId: Int, type: String, Authorization: String
     ) = petsService
         .changeType(petId, type, Authorization)
         .await()
 
-    suspend fun changeBirthday(
+    suspend fun changePetBirthday(
         petId: Int, birthday: String, Authorization: String
     ) = petsService
         .changeBirthday(petId, birthday, Authorization)
         .await()
 
-    suspend fun changeDescription(
+    suspend fun changePetDescription(
         petId: Int, description: String, Authorization: String
     ) = petsService
         .changeDescription(petId, description, Authorization)

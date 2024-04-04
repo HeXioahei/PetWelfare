@@ -6,19 +6,26 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.petwelfare.R
+import com.example.petwelfare.databinding.ActivityMineBinding
 
 class MineActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mine)
+        binding = ActivityMineBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 创建viewModel
         val viewModel: MineViewModel by viewModels()
         // 参考官方文档：
         // https://developer.android.google.cn/topic/libraries/architecture/viewmodel?hl=zh-cn
         // 需引入依赖：implementation("androidx.activity:activity-ktx:1.7.0")
+        // Create a ViewModel the first time the system calls an activity's onCreate() method.
+        // Re-created activities receive the same DiceRollViewModel instance created by the first activity.
+        // Use the 'by viewModels()' Kotlin property delegate
+        // from the activity-ktx artifact
 
         // 应用viewModel
         // 参看书中第623页
