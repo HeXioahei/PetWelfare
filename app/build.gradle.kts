@@ -66,6 +66,10 @@ dependencies {
     // recyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // 获取定位
+    implementation ("com.google.android.gms:play-services-location:21.0.1") // 使用最新的版本号
+    implementation ("com.guolindev.permissionx:permissionx:1.6.4")
+
     // 基础
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 
 object Repository {
 
-
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
         val result = try {
             val getUserDetailResponse = PetWelfareNetwork.getUserInfo(id, Authorization)
@@ -77,6 +76,21 @@ object Repository {
                 Result.success(talks)
             } else {
                 Result.failure(RuntimeException("response code is ${getTalksResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getLoss(address: String, Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getLossResponse = PetWelfareNetwork.getLoss(address, Authorization)
+            if (getLossResponse.code == 200) {
+                val loss = getLossResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getLossResponse.code}"))
             }
         } catch (e: Exception) {
             Result.failure(e)
