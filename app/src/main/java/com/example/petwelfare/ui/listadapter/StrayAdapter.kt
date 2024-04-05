@@ -1,22 +1,20 @@
-package com.example.petwelfare.ui.adapter
+package com.example.petwelfare.ui.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.databinding.ItemOrgBinding
 import com.example.petwelfare.databinding.ItemStrayBinding
-import com.example.petwelfare.logic.model.Org
 import com.example.petwelfare.logic.model.Stray
 
-class OrgsAdapter (private val list: MutableList<Org>) : RecyclerView.Adapter<OrgsAdapter.ViewHolder>() {
+class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter<StrayAdapter.ViewHolder>() {
 
-    inner class ViewHolder(binding: ItemOrgBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: ItemStrayBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding  = ItemOrgBinding.inflate(LayoutInflater.from(PetWelfareApplication.context), parent, false)
+        val binding  = ItemStrayBinding.inflate(LayoutInflater.from(PetWelfareApplication.context), parent, false)
         val viewHolder = ViewHolder(binding)
         return viewHolder
     }

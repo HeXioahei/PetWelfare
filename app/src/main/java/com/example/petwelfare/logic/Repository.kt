@@ -19,7 +19,7 @@ object Repository {
                 Result.failure(RuntimeException("response code is ${getUserDetailResponse.code}"))
             }
         } catch (e: Exception) {
-            Result.failure<UserDetail>(e)
+            Result.failure(e)
         }
         emit(result)
     }
@@ -34,7 +34,52 @@ object Repository {
                 Result.failure(RuntimeException("response code is ${getMyArticlesResponse.code}"))
             }
         } catch (e: Exception) {
-            Result.failure<Article>(e)
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getMyLoss(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getMyLossResponse = PetWelfareNetwork.getMyLoss(id, Authorization)
+            if (getMyLossResponse.code == 200) {
+                val loss = getMyLossResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getMyLossResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getMyStray(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getMyStrayResponse = PetWelfareNetwork.getMyStray(id, Authorization)
+            if (getMyStrayResponse.code == 200) {
+                val stray = getMyStrayResponse.data
+                Result.success(stray)
+            } else {
+                Result.failure(RuntimeException("response code is ${getMyStrayResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun receiveMessage(sendId: Long, receiveId: Long, Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getTalksResponse = PetWelfareNetwork.receiveMessage(sendId, receiveId, Authorization)
+            if (getTalksResponse.code == 200) {
+                val talks = getTalksResponse.data
+                Result.success(talks)
+            } else {
+                Result.failure(RuntimeException("response code is ${getTalksResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
         }
         emit(result)
     }

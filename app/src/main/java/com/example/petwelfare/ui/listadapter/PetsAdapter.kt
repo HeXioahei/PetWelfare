@@ -1,20 +1,20 @@
-package com.example.petwelfare.ui.adapter
+package com.example.petwelfare.ui.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.databinding.ItemUserBinding
-import com.example.petwelfare.logic.model.UserBrief
+import com.example.petwelfare.databinding.ItemPetBinding
+import com.example.petwelfare.logic.model.Pet
 
-class UsersAdapter (private val list: MutableList<UserBrief>) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+class PetsAdapter (private val list: MutableList<Pet>) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding  = ItemUserBinding.inflate(LayoutInflater.from(PetWelfareApplication.context), parent, false)
+        val binding  = ItemPetBinding.inflate(LayoutInflater.from(PetWelfareApplication.context), parent, false)
         val viewHolder = ViewHolder(binding)
         return viewHolder
     }

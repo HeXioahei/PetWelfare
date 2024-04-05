@@ -13,16 +13,16 @@ data class GetUserBriefResponse(
 )
 
 data class UserDetail(
-    val address: String,
-    val fanNums: Int,
-    val followNums: Int,
-    val headImage: String,
-    val id: Long,
-    val integral: Int,
-    val personality: String,
-    val score: Int,
-    val telephone: String,
-    val username: String
+    var address: String,
+    var fanNums: Int,
+    var followNums: Int,
+    var headImage: String,
+    var id: Long,
+    var integral: Int,
+    var personality: String,
+    var score: Int,
+    var telephone: String,
+    var username: String
 )
 
 data class UserBrief(

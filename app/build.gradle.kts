@@ -58,8 +58,13 @@ dependencies {
     // 圆形头像
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-
     implementation("com.google.android.material:material:1.9.0-beta01")
+
+    // 下拉刷新
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // recyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     // 基础
     implementation("androidx.core:core-ktx:1.9.0")

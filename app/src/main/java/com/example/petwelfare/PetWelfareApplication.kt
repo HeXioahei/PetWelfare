@@ -9,6 +9,7 @@ class PetWelfareApplication : Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         lateinit var Authorization : String
+        var userId: Long = 0
     }
 
     override fun onCreate() {

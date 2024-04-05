@@ -4,38 +4,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
 import com.example.petwelfare.logic.model.AllData
 import com.example.petwelfare.logic.model.FileBuilder
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class EditMyInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditMyInfoBinding
 
-    private val viewModel: EditMyInfoViewModel by viewModels()
+    private val viewModel1: EditMyInfoViewModel by viewModels()
+    private val viewModel2: MineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditMyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = AllData.userDetail.username
-        val address = AllData.userDetail.address
-        val telephone = AllData.userDetail.telephone
-        val personality = AllData.userDetail.personality
+        val username = viewModel2.myDetail.username
+        val address = viewModel2.myDetail.address
+        val telephone = viewModel2.myDetail.telephone
+        val personality = viewModel2.myDetail.personality
 
         // 修改头像
         val pickMedia =
@@ -47,7 +43,7 @@ class EditMyInfoActivity : AppCompatActivity() {
                     val requestBody = headImageFile?.asRequestBody("head_image".toMediaTypeOrNull())
                     if (requestBody != null) {
                         val multipartBody = MultipartBody.Part.createFormData("head_image", headImageFile.name, requestBody) // 这里的name（”head_image“）必须和接口文档里定义的参数名字一样
-                        viewModel.changeHead(multipartBody, PetWelfareApplication.Authorization)
+                        viewModel1.changeHead(multipartBody, PetWelfareApplication.Authorization)
                     }
 
                 } else {
@@ -61,7 +57,6 @@ class EditMyInfoActivity : AppCompatActivity() {
         // 修改用户名
         binding.changeUsername.setOnClickListener {
             showAlertDialog(username, "changeUsername")
-
         }
 
         // 修改密码
@@ -85,7 +80,7 @@ class EditMyInfoActivity : AppCompatActivity() {
         }
     }
 
-    fun showAlertDialog(initText: String, type: String) {
+    private fun showAlertDialog(initText: String, type: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
 
         // 创建一个 EditText 视图
@@ -99,10 +94,22 @@ class EditMyInfoActivity : AppCompatActivity() {
             val inputText = input.text.toString()
             val Authorization = PetWelfareApplication.Authorization
             when (type) {
-                "changeUsername" -> viewModel.changeUsername(inputText, Authorization)
-                "changeAddress" -> viewModel.changeAddress(inputText, Authorization)
-                "changeTelephone" -> viewModel.changeTelephone(inputText, Authorization)
-                "changePersonality" -> viewModel.changePersonality(inputText, Authorization)
+                "changeUsername" -> {
+                    viewModel1.changeUsername(inputText, Authorization)
+                    viewModel2.setUsername(inputText)
+                }
+                "changeAddress" -> {
+                    viewModel1.changeAddress(inputText, Authorization)
+                    viewModel2.setAddress(inputText)
+                }
+                "changeTelephone" -> {
+                    viewModel1.changeTelephone(inputText, Authorization)
+                    viewModel2.setTelephone(inputText)
+                }
+                "changePersonality" -> {
+                    viewModel1.changePersonality(inputText, Authorization)
+                    viewModel2.setPersonality(inputText)
+                }
             }
         }
         alertDialogBuilder.setNegativeButton("取消") { dialog, _ ->

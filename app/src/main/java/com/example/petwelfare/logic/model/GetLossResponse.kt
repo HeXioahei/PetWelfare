@@ -3,7 +3,7 @@ package com.example.petwelfare.logic.model
 data class GetLossResponse(
     val code: Int,
     val msg: String,
-    val data: Loss
+    val data: MutableList<Loss>
 )
 
 data class Loss(

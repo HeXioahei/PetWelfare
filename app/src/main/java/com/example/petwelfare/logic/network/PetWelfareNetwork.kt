@@ -127,8 +127,8 @@ object PetWelfareNetwork {
 
     // 私聊
     suspend fun sendMessage(
-        sendId: Int,
-        receiveId: Int,
+        sendId: Long,
+        receiveId: Long,
         message: String,
         time: String,
         Authorization: String
@@ -136,7 +136,7 @@ object PetWelfareNetwork {
         .sendMessage(sendId, receiveId, message, time, Authorization)
         .await()
 
-    suspend fun receiveMessage(sendId: Int, receiveId: Int, Authorization: String) = mineService
+    suspend fun receiveMessage(sendId: Long, receiveId: Long, Authorization: String) = mineService
         .receiveMessage(sendId, receiveId, Authorization)
         .await()
 

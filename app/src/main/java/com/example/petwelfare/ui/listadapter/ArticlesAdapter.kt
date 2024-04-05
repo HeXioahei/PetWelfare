@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.adapter
+package com.example.petwelfare.ui.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
+import com.example.petwelfare.logic.Repository
 
 class MineActivity : AppCompatActivity() {
 
@@ -29,15 +31,24 @@ class MineActivity : AppCompatActivity() {
 
         // 应用 viewModel
         // 参看书中第623页
-        viewModel.myDetailData.observe(this, Observer { result ->
+        viewModel.setUserId(PetWelfareApplication.userId)
+
+        // 当 myDetailData 中有任何数据变化时，就会回调传入的这个Observe接口中
+        viewModel.myDetailData.observe(this) { result ->
             val user = result.getOrNull()
             if (user != null) {
+                viewModel.myDetail = user
                 // 进行页面呈现的变化
                 // 比如用返回的数据来更改页面显示的用户名
             } else {
                 Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
-        })
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.myDetailData = Repository                      // 不确定此处是否有问题
+                .getUserInfo(PetWelfareApplication.userId, PetWelfareApplication.Authorization)
+        }
     }
 }

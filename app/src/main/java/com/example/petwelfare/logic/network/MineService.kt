@@ -133,8 +133,8 @@ interface MineService {
 
     @POST("/users/talk/sending/")
     fun sendMessage(
-        @Query("send_id") send_id: Int,
-        @Query("receive_id") receive_id: Int,
+        @Query("send_id") send_id: Long,
+        @Query("receive_id") receive_id: Long,
         @Query("message") message: String,
         @Query("time") time: String,
         @Header("Authorization") Authorization: String
@@ -142,8 +142,8 @@ interface MineService {
 
     @GET("/users/talk/receiving/")
     fun receiveMessage(
-        @Query("send_id") send_id: Int,
-        @Query("receive_id") receive_id: Int,
+        @Query("send_id") send_id: Long,
+        @Query("receive_id") receive_id: Long,
         @Header("Authorization") Authorization: String
     ): Call<GetTalksResponse>
 }

@@ -3,7 +3,7 @@ package com.example.petwelfare.logic.model
 data class GetStrayResponse(
     val code: Int,
     val msg: String,
-    val data: Stray
+    val data: MutableList<Stray>
 )
 
 data class Stray(
