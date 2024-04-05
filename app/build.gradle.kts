@@ -70,6 +70,11 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.0.1") // 使用最新的版本号
     implementation ("com.guolindev.permissionx:permissionx:1.6.4")
 
+    // 高德地图
+    implementation ("com.amap.api:search:5.0.0") // 高德地图搜索 SDK
+    implementation ("com.amap.api:maps:3.3.0") // 高德地图 SDK
+    implementation ("com.amap.api:location:3.3.0") // 高德定位 SDK
+
     // 基础
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
