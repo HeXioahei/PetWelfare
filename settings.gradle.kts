@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        // 添加高德SDK的Maven仓库地址
+        //maven ( "https://maven.amap.com/repo" )
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +12,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // 添加高德SDK的Maven仓库地址
+        //maven ( "https://maven.amap.com/repo" )
     }
 }
 

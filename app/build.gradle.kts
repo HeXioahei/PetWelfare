@@ -49,8 +49,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     implementation("androidx.activity:activity-ktx:1.7.0")
     // 内部储存
@@ -72,7 +72,7 @@ dependencies {
 
     // 高德地图
     implementation ("com.amap.api:search:5.0.0") // 高德地图搜索 SDK
-    implementation ("com.amap.api:maps:3.3.0") // 高德地图 SDK
+    //implementation ("com.amap.api:maps:3.3.0") // 高德地图 SDK
     implementation ("com.amap.api:location:3.3.0") // 高德定位 SDK
 
     // 基础

@@ -26,6 +26,8 @@
         android:id="@+id/toLoginBtn"
         android:layout_width="90dp"
         android:layout_height="45dp"
+        android:text="登录"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -34,6 +36,8 @@
         android:id="@+id/toRegisterBtn"
         android:layout_width="90dp"
         android:layout_height="45dp"
+        android:text="注册"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -46,8 +50,10 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
