@@ -31,7 +31,7 @@ class MineActivity : AppCompatActivity() {
 
         // 应用 viewModel
         // 参看书中第623页
-        viewModel.setUserId(PetWelfareApplication.userId)
+        viewModel.setUserId(Repository.userId)
 
         // 当 myDetailData 中有任何数据变化时，就会回调传入的这个Observe接口中
         viewModel.myDetailData.observe(this) { result ->
@@ -48,7 +48,7 @@ class MineActivity : AppCompatActivity() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.myDetailData = Repository                      // 不确定此处是否有问题
-                .getUserInfo(PetWelfareApplication.userId, PetWelfareApplication.Authorization)
+                .getUserInfo(Repository.userId, Repository.Authorization)
         }
     }
 }

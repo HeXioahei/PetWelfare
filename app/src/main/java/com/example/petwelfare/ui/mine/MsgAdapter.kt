@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemMsgLeftBinding
 import com.example.petwelfare.databinding.ItemMsgRightBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Msg
 
 class MsgAdapter(private val msgList: MutableList<Msg>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -21,7 +22,7 @@ class MsgAdapter(private val msgList: MutableList<Msg>) : RecyclerView.Adapter<R
 
     override fun getItemViewType(position: Int): Int {
         val msg = msgList[position]
-        return if (msg.id == PetWelfareApplication.userId) {
+        return if (msg.id == Repository.userId) {
             Msg.TYPE_SENT
         } else {
             Msg.TYPE_RECEIVE

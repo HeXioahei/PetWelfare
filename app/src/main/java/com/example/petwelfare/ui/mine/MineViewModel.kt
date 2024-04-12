@@ -18,7 +18,7 @@ class MineViewModel : ViewModel() {
     // 若上述参数比如id变化，则会自动调用下用这个方法，进行网络请求（已经封装好在Repository类中了，
     // 获取新的数据对象， 并将新获得的数据对象转化为当前的观察对象
     var myDetailData = infoLiveData.switchMap { data ->
-        Repository.getUserInfo(data.id, PetWelfareApplication.Authorization)
+        Repository.getUserInfo(data.id, Repository.Authorization)
     }
 
     // 可参考官方网站：

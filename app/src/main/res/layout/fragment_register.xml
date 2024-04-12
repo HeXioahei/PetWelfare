@@ -3,41 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerMailbox"
         android:layout_width="match_parent"
         android:layout_height="55dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPsd"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPsdConfirm"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/verification"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/registerPsdConfirm"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/getVerificationBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -45,8 +50,8 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <ImageView
-        android:id="@+id/loginBtn"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/registerBtn"
         android:layout_width="200dp"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"

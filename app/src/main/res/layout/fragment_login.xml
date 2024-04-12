@@ -5,23 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginMailbox"
         android:layout_width="300dp"
         android:layout_height="55dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginPassword"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/loginBtn"
         android:layout_width="200dp"
         android:layout_height="60dp"
@@ -29,7 +31,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/toRestorePsd"
         android:layout_width="100dp"
         android:layout_height="30dp"
         app:layout_constraintEnd_toEndOf="parent"

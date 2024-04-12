@@ -6,4 +6,14 @@
     </style>
 
     <style name="Theme.PetWelfare" parent="Base.Theme.PetWelfare" />
+
+    <style name="CircleShapeAppearance" parent="">
+        <item name="shapeAppearanceOverlay">@style/CircleShapeAppearanceOverlay</item>
+    </style>
+
+    <style name="CircleShapeAppearanceOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- 这将确保角落的半径为宽度的50%，从而形成圆形 -->
+    </style>
+
 </resources>

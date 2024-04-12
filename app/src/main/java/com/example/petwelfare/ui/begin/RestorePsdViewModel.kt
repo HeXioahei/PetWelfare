@@ -15,23 +15,26 @@ class RestorePsdViewModel : ViewModel() {
         runBlocking {
             coroutineScope {
                 launch {
-                    val code = PetWelfareNetwork.getVerification(mailbox2).code
+                    val code = PetWelfareNetwork.getVerification("pwd", mailbox2).code
                     if (code == 200) {
                         Log.d("SendMailbox", "success")
+                        Toast.makeText(PetWelfareApplication.context, "请求已发送", Toast.LENGTH_SHORT).show()
                     } else {
                         Log.d("SendMailbox", "failure")
+                        Toast.makeText(PetWelfareApplication.context, "请求发送失败", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
 
-    fun resetPsd(mailbox2: String, verification: String, psd: String, confirmPsd: String){
+    fun resetPsd(mailbox2: String, verification: String, psd: String, confirmPsd: String) : Int {
+        var code = 0
         if (psd == confirmPsd) {
             runBlocking {
-                coroutineScope {
+                //coroutineScope {
                     launch {
-                        val code = PetWelfareNetwork.resetPassword(mailbox2, verification, psd).code
+                        code = PetWelfareNetwork.resetPassword(mailbox2, verification, psd).code
                         if (code == 200) {
                             Log.d("resetPsd", "success")
                             Toast.makeText(PetWelfareApplication.context, "重置成功", Toast.LENGTH_SHORT).show()
@@ -40,10 +43,12 @@ class RestorePsdViewModel : ViewModel() {
                             Toast.makeText(PetWelfareApplication.context, "重置失败", Toast.LENGTH_SHORT).show()
                         }
                     }
-                }
+                //}
             }
+            return code
         } else {
             Toast.makeText(PetWelfareApplication.context, "密码不一致，请重新确认密码", Toast.LENGTH_SHORT).show()
+            return code
         }
     }
 }

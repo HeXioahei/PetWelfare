@@ -17,8 +17,8 @@ import com.example.petwelfare.logic.model.UserDetail
 object MineDao {
 
     val Context.dataStore1: DataStore<Preferences> by preferencesDataStore(name = "user_info")
-    val Context.dataStore2: DataStore<Preferences> by preferencesDataStore(name = "token")
-    val Context.dataStore3: DataStore<Preferences> by preferencesDataStore(name = "user_mailbox")
+    private val Context.dataStore2: DataStore<Preferences> by preferencesDataStore(name = "token")
+    private val Context.dataStore3: DataStore<Preferences> by preferencesDataStore(name = "user_mailbox")
 
     // 必须放在顶部
 
@@ -33,9 +33,9 @@ object MineDao {
 //    val keyTelephone = stringPreferencesKey("telephone")
 //    val keyPersonality = stringPreferencesKey("personality")
 //    val keyHeadImage = stringPreferencesKey("headImage")
-    val keyAccessToken = stringPreferencesKey("accessToken")
-    val keyRefreshToken = stringPreferencesKey("refreshToken")
-    val keyMailbox = stringPreferencesKey("mailbox")
+    private val keyAccessToken = stringPreferencesKey("accessToken")
+    private val keyRefreshToken = stringPreferencesKey("refreshToken")
+    private val keyMailbox = stringPreferencesKey("mailbox")
 
 //    suspend fun saveUser(user: UserDetail) {
 //        PetWelfareApplication.context.dataStore1.edit {
@@ -43,16 +43,16 @@ object MineDao {
 //        }
 //    }
 
-    suspend fun saveMailbox(maibox: String) {
+    suspend fun saveMailbox(mailbox: String) {
         PetWelfareApplication.context.dataStore3.edit {
-            it[keyMailbox] = maibox
+            it[keyMailbox] = mailbox
         }
     }
 
-    suspend fun saveToken(token: Token) {
+    suspend fun saveToken(accessToken: String, refreshToken: String) {
         PetWelfareApplication.context.dataStore2.edit {
-            it[keyAccessToken] = token.access_token
-            it[keyRefreshToken] = token.refresh_token
+            it[keyAccessToken] = accessToken
+            it[keyRefreshToken] = refreshToken
         }
     }
 }

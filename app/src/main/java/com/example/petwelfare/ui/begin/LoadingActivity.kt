@@ -3,10 +3,12 @@ package com.example.petwelfare.ui.begin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.petwelfare.R
+import com.example.petwelfare.logic.Repository
 
-class RegisterActivity : AppCompatActivity() {
+class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_loading)
+
     }
 }

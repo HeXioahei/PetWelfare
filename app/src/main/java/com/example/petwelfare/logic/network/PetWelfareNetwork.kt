@@ -1,5 +1,7 @@
 package com.example.petwelfare.logic.network
 
+import android.util.Log
+import android.widget.Toast
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,8 +26,8 @@ object PetWelfareNetwork {
         .login(mailbox, password)
         .await()
 
-    suspend fun getVerification(mailbox: String) = beginService
-        .getVerification(mailbox)
+    suspend fun getVerification(verifyType: String, mailbox: String) = beginService
+        .getVerification(verifyType, mailbox)
         .await()
 
     suspend fun register(mailbox: String, password: String, verification: String) = beginService
@@ -349,5 +351,7 @@ object PetWelfareNetwork {
             })
         }
     }
+
+
 
 }

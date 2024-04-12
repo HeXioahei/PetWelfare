@@ -19,7 +19,7 @@ class LossViewModel : ViewModel() {
     var lossList: MutableList<Loss> = mutableListOf()
 
     val lossListData = addressLiveData.switchMap { data ->
-        Repository.getLoss(data, PetWelfareApplication.Authorization)
+        Repository.getLoss(data, Repository.Authorization)
     }
 
     fun setAddressLiveData(address: String) {

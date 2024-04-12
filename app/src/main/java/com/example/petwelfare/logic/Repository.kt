@@ -8,6 +8,11 @@ import kotlinx.coroutines.Dispatchers
 
 object Repository {
 
+    var Authorization : String = ""
+    var userId: Long = 0
+    var refreshToken : String = ""
+    lateinit var userDetail: UserDetail
+
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
         val result = try {
             val getUserDetailResponse = PetWelfareNetwork.getUserInfo(id, Authorization)

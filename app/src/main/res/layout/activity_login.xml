@@ -49,7 +49,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.fragment.app.FragmentContainerView
+    <com.google.android.material.carousel.MaskableFrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

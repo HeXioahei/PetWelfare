@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.AllData
 import com.example.petwelfare.logic.model.FileBuilder
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -43,7 +44,7 @@ class EditMyInfoActivity : AppCompatActivity() {
                     val requestBody = headImageFile?.asRequestBody("head_image".toMediaTypeOrNull())
                     if (requestBody != null) {
                         val multipartBody = MultipartBody.Part.createFormData("head_image", headImageFile.name, requestBody) // 这里的name（”head_image“）必须和接口文档里定义的参数名字一样
-                        viewModel1.changeHead(multipartBody, PetWelfareApplication.Authorization)
+                        viewModel1.changeHead(multipartBody, Repository.Authorization)
                     }
 
                 } else {
@@ -92,7 +93,7 @@ class EditMyInfoActivity : AppCompatActivity() {
         // 设置对话框的按钮
         alertDialogBuilder.setPositiveButton("确定") { _, _ ->
             val inputText = input.text.toString()
-            val Authorization = PetWelfareApplication.Authorization
+            val Authorization = Repository.Authorization
             when (type) {
                 "changeUsername" -> {
                     viewModel1.changeUsername(inputText, Authorization)
