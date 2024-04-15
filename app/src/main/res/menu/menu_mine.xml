@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mine"
+        android:title="我的"/>
+
+    <item
+        android:id="@+id/pet"
+        android:title="宠物屋"/>
+
+    <item
+        android:id="@+id/collection"
+        android:title="收藏"/>
+
+    <item
+        android:id="@+id/likes"
+        android:title="点赞"/>
+
+</menu>

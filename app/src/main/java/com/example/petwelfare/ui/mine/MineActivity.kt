@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MineActivity : AppCompatActivity() {
 
@@ -18,6 +22,18 @@ class MineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 设置底部总导航栏
+        val navigationView: BottomNavigationView = binding.bottomNavigationView as BottomNavigationView
+        // 1、先拿 NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // 2、再通过 navHostFragment 来拿 NavController
+        val navController: NavController = navHostFragment.navController
+        // 3、然后将 navigationView 和 navController 绑定
+        navigationView.setupWithNavController(navController)
+        // 将 item 背景色调为透明
+        navigationView.itemIconTintList = null
 
         // 创建viewModel
         val viewModel: MineViewModel by viewModels()
@@ -50,5 +66,7 @@ class MineActivity : AppCompatActivity() {
             viewModel.myDetailData = Repository                      // 不确定此处是否有问题
                 .getUserInfo(Repository.userId, Repository.Authorization)
         }
+
+
     }
 }

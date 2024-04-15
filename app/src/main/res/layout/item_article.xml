@@ -1,8 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="300dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/headImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircleShapeAppearance"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/headImage"
+        app:layout_constraintTop_toTopOf="@+id/headImage"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/ArticleText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@+id/headImage"
+        android:paddingHorizontal="20dp"
+        android:layout_marginTop="15dp"
+        android:text="这是推文的文本内容"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ArticleText">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/picture1"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/picture2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/picture3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="20dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/hitIron"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat4"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutCompat3">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/collectIron"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/likeIron"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

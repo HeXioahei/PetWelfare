@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_mine"
+    app:startDestination="@layout/fragment_item_mine">
+
+    <fragment
+        android:id="@+id/mine"
+        android:name="com.example.petwelfare.ui.mine.item.ItemMineFragment"
+        tools:layout="@layout/fragment_item_mine"/>
+
+    <fragment
+        android:id="@+id/pet"
+        android:name="com.example.petwelfare.ui.mine.item.ItemPetFragment"
+        tools:layout="@layout/fragment_item_pet"/>
+
+    <fragment
+        android:id="@+id/collecion"
+        android:name="com.example.petwelfare.ui.mine.item.ItemCollectionFragment"
+        tools:layout="@layout/fragment_item_collection"/>
+
+    <fragment
+        android:id="@+id/like"
+        android:name="com.example.petwelfare.ui.mine.item.ItemLikesFragment"
+        tools:layout="@layout/fragment_item_likes"/>
+
+
+</navigation>
