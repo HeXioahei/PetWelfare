@@ -33,7 +33,7 @@ class MineActivity : AppCompatActivity() {
         // 3、然后将 navigationView 和 navController 绑定
         navigationView.setupWithNavController(navController)
         // 将 item 背景色调为透明
-        navigationView.itemIconTintList = null
+        //navigationView.itemIconTintList = null
 
         // 创建viewModel
         val viewModel: MineViewModel by viewModels()

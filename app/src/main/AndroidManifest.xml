@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-<!--    进行网络请求的权限-->
+    <!-- 进行网络请求的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-<!--    进行相册访问的权限-->
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 进行相册访问的权限 -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -16,15 +15,12 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-<!--    获取定位信息的权限-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- 获取定位信息的权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
-
-
 
     <application
         android:name=".PetWelfareApplication"
@@ -38,12 +34,24 @@
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="" />
 
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="">
-        </meta-data>
+        <service android:name="com.amap.api.location.APSService" />
 
-        <service android:name="com.amap.api.location.APSService">
-        </service>
+        <activity
+            android:name=".ui.mine.pet.EditPetInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.pet.PetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.FollowsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mine.FansActivity"
+            android:exported="false" />
 
         <activity
             android:name=".ui.loss.LossDetailActivity"
@@ -74,9 +82,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.begin.RestorePsdActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.begin.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.begin.LoginActivity"
