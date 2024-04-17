@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.mine
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
@@ -22,6 +27,8 @@ class MineActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ActivityCollector.addActivity(this)
 
         // 设置底部总导航栏
         val navigationView: BottomNavigationView = binding.bottomNavigationView as BottomNavigationView
@@ -55,18 +62,45 @@ class MineActivity : AppCompatActivity() {
             if (user != null) {
                 viewModel.myDetail = user
                 // 进行页面呈现的变化
-                // 比如用返回的数据来更改页面显示的用户名
+
+                // 设置头像
+                val myHeadImageString = viewModel.myDetail.headImage
+                val glideUrl = GlideUrl(
+                    myHeadImageString,
+                    LazyHeaders.Builder()
+                        .addHeader("Authorization", Repository.Authorization)
+                        .build()
+                )
+                binding.headImage?.let { Glide.with(this).load(glideUrl).into(it) }
+                // 设置其他信息
+                binding.username?.text = viewModel.myDetail.username
+                binding.address?.text = viewModel.myDetail.address
+                binding.personality?.text = viewModel.myDetail.personality
+                binding.fansNum?.text = viewModel.myDetail.fanNums.toString()
+                binding.followsNum?.text = viewModel.myDetail.followNums.toString()
+                binding.integralsNum?.text = viewModel.myDetail.integral.toString()
+                binding.telephone?.text = viewModel.myDetail.telephone
+
             } else {
                 Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
         }
 
+        // 下拉刷新，更新用户信息
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.myDetailData = Repository                      // 不确定此处是否有问题
                 .getUserInfo(Repository.userId, Repository.Authorization)
         }
 
+        binding.edit?.setOnClickListener {
+            val intent = Intent(this, EditMyInfoActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
     }
 }

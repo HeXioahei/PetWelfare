@@ -12,6 +12,7 @@ object Repository {
     var userId: Long = 0
     var refreshToken : String = ""
     lateinit var userDetail: UserDetail
+    var mailbox : String = ""
 
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
         val result = try {

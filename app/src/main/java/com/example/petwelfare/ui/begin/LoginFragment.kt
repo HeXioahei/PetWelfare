@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.petwelfare.databinding.FragmentLoginBinding
+import com.example.petwelfare.logic.Repository
 
 class LoginFragment(private val activity: LoginActivity) : Fragment() {
 
@@ -27,6 +28,7 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
             val psd = binding.loginPassword.text.toString()
             val code = viewModel.login(mailbox, psd)
             if (code == 200) {
+                Repository.mailbox = mailbox
                 activity.toMainActivity()
             }
         }

@@ -1,7 +1,9 @@
 package com.example.petwelfare.ui.mine
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch

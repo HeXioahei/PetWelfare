@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.mine
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +9,15 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
+import com.example.petwelfare.databinding.DialogRestorePsdBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.AllData
 import com.example.petwelfare.logic.model.FileBuilder
+import com.example.petwelfare.ui.begin.RestorePsdActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -28,6 +33,8 @@ class EditMyInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditMyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ActivityCollector.addActivity(this)
 
         val username = viewModel2.myDetail.username
         val address = viewModel2.myDetail.address
@@ -62,7 +69,8 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改密码
         binding.changePsd.setOnClickListener {
-
+            val intent = Intent(this, RestorePsdActivity::class.java)
+            startActivity(intent)
         }
 
         // 修改地址
@@ -99,14 +107,17 @@ class EditMyInfoActivity : AppCompatActivity() {
                     viewModel1.changeUsername(inputText, Authorization)
                     viewModel2.setUsername(inputText)
                 }
+
                 "changeAddress" -> {
                     viewModel1.changeAddress(inputText, Authorization)
                     viewModel2.setAddress(inputText)
                 }
+
                 "changeTelephone" -> {
                     viewModel1.changeTelephone(inputText, Authorization)
                     viewModel2.setTelephone(inputText)
                 }
+
                 "changePersonality" -> {
                     viewModel1.changePersonality(inputText, Authorization)
                     viewModel2.setPersonality(inputText)
@@ -120,6 +131,11 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 显示对话框
         alertDialogBuilder.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
     }
 
 }

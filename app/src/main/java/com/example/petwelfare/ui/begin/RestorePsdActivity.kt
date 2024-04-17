@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityRestorePsdBinding
 import com.example.petwelfare.databinding.DialogRestorePsdBinding
@@ -19,6 +20,8 @@ class RestorePsdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRestorePsdBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ActivityCollector.addActivity(this)
 
         val viewModel: RestorePsdViewModel by viewModels()
 
@@ -45,7 +48,8 @@ class RestorePsdActivity : AppCompatActivity() {
                         confirmPsdInReset
                     )
                     if (code == 200) {
-                        finish()
+                        Toast.makeText(this, "重置成功", Toast.LENGTH_SHORT).show()
+                        ActivityCollector.removeActivityAfterLogin()
                     }
                 }
                 binding2.cancelBtn.setOnClickListener {
@@ -56,5 +60,10 @@ class RestorePsdActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
     }
 }

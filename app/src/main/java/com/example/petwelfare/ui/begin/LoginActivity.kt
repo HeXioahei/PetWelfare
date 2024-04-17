@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityLoginBinding
 import com.example.petwelfare.ui.MainActivity
@@ -23,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ActivityCollector.addActivity(this)
 
         replaceFragment("login")
 
@@ -48,5 +51,10 @@ class LoginActivity : AppCompatActivity() {
     fun toMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
     }
 }

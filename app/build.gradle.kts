@@ -81,6 +81,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 //                  androidx.navigation:navigation-ui-ktx:版本号
 
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
     // 基础
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
