@@ -1,12 +1,12 @@
-package com.example.petwelfare.ui.loss
+package com.example.petwelfare.ui.itemdetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.petwelfare.R
 
-class LossDetailActivity : AppCompatActivity() {
+class StrayDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_loss_detail)
+        setContentView(R.layout.activity_stray_detail)
     }
 }

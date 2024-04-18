@@ -15,7 +15,6 @@
         app:shapeAppearanceOverlay="@style/CircleShapeAppearance" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/findAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -25,12 +24,13 @@
         android:layout_marginStart="15dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/finderMessage"
+            android:id="@+id/findAddress"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="发现地点：福州大学通判小区" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/finderMessage"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="发现者寄语：" />

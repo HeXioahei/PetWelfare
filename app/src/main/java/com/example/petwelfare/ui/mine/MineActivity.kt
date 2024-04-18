@@ -93,6 +93,7 @@ class MineActivity : AppCompatActivity() {
                 .getUserInfo(Repository.userId, Repository.Authorization)
         }
 
+        // 跳转到编辑页
         binding.edit?.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)

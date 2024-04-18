@@ -14,7 +14,7 @@ data class Stray(
     val collectNums: Int,
     val commentsNums: Int,
     val description: String,
-    val photos: String,
+    val photos: MutableList<String>,
 
     // 发布时间
     val time: String,

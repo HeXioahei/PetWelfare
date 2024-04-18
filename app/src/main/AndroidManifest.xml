@@ -41,6 +41,18 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
+            android:name=".ui.itemdetail.OrgDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itemdetail.StrayDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itemdetail.LossDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itemdetail.ArticleDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mine.pet.EditPetInfoActivity"
             android:exported="false" />
         <activity
@@ -51,10 +63,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.mine.FansActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ui.loss.LossDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.mine.TalkActivity"
