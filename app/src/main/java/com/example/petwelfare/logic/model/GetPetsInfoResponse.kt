@@ -7,7 +7,7 @@ data class GetPetsInfoResponse(
 )
 
 data class Pets(
-    val pets: List<Pet>
+    val pets: MutableList<Pet>
 )
 
 data class Pet(

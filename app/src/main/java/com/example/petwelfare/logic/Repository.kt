@@ -103,4 +103,109 @@ object Repository {
         }
         emit(result)
     }
+
+    fun getCollectLoss(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getLossResponse = PetWelfareNetwork.getCollectLoss(Authorization)
+            if (getLossResponse.code == 200) {
+                val loss = getLossResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getLossResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getCollectArticles(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getArticlesResponse = PetWelfareNetwork.getCollectArticles(Authorization)
+            if (getArticlesResponse.code == 200) {
+                val loss = getArticlesResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getArticlesResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getCollectStary(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getStrayResponse = PetWelfareNetwork.getCollectStary(Authorization)
+            if (getStrayResponse.code == 200) {
+                val loss = getStrayResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getStrayResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getCollectOrgs(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getOrgsResponse = PetWelfareNetwork.getCollectOrgs(Authorization)
+            if (getOrgsResponse.code == 200) {
+                val loss = getOrgsResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getOrgsResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getPetsInfo(ownerId : Long) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getPetsInfoResponse = PetWelfareNetwork.getPetsInfo(ownerId)
+            if (getPetsInfoResponse.code == 200) {
+                val loss = getPetsInfoResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getPetsInfoResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getFans(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getUserBriefResponse = PetWelfareNetwork.getFans(Authorization)
+            if (getUserBriefResponse.code == 200) {
+                val loss = getUserBriefResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getUserBriefResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun getFollows(Authorization: String) = liveData(Dispatchers.IO) {
+        val result = try {
+            val getUserBriefResponse = PetWelfareNetwork.getFollows(Authorization)
+            if (getUserBriefResponse.code == 200) {
+                val loss = getUserBriefResponse.data
+                Result.success(loss)
+            } else {
+                Result.failure(RuntimeException("response code is ${getUserBriefResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
 }

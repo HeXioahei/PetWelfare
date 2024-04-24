@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.mine
+package com.example.petwelfare.ui.mine.edit
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,14 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
-import com.example.petwelfare.databinding.DialogRestorePsdBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.AllData
 import com.example.petwelfare.logic.model.FileBuilder
 import com.example.petwelfare.ui.begin.RestorePsdActivity
+import com.example.petwelfare.ui.mine.MineViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

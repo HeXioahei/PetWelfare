@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -13,10 +12,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.ui.mine.edit.EditMyInfoActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MineActivity : AppCompatActivity() {
@@ -98,6 +97,7 @@ class MineActivity : AppCompatActivity() {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onDestroy() {

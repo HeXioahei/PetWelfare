@@ -17,7 +17,7 @@ interface PetsService {
 
     @GET("/pets/information/")
     fun getPetsInfo(
-        @Query("owner_id") ownerId: Int
+        @Query("owner_id") ownerId: Long
     ): Call<GetPetsInfoResponse>
 
     @POST("/pets/register/")

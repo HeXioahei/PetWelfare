@@ -143,7 +143,7 @@ object PetWelfareNetwork {
         .await()
 
     // 宠物页
-    suspend fun getPetsInfo(ownerId: Int) = petsService.getPetsInfo(ownerId).await()
+    suspend fun getPetsInfo(ownerId: Long) = petsService.getPetsInfo(ownerId).await()
 
     suspend fun addPets(
         name: String,

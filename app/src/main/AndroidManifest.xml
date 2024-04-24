@@ -59,16 +59,16 @@
             android:name=".ui.mine.pet.PetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.FollowsActivity"
+            android:name=".ui.mine.users.FollowsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.FansActivity"
+            android:name=".ui.mine.users.FansActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.TalkActivity"
+            android:name=".ui.mine.talk.TalkActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.EditMyInfoActivity"
+            android:name=".ui.mine.edit.EditMyInfoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.stray.StrayActivity"

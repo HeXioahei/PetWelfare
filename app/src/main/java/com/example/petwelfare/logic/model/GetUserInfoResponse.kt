@@ -9,7 +9,7 @@ data class GetUserDetailResponse(
 data class GetUserBriefResponse(
     val code: Int,
     val msg: String,
-    val data: UserBrief
+    val data: MutableList<UserBrief>
 )
 
 data class UserDetail(
@@ -26,15 +26,15 @@ data class UserDetail(
 )
 
 data class UserBrief(
-    val headImage: String,
-    val username: String,
-    val personality: String,
-    val id: Long
+    var headImage: String,
+    var username: String,
+    var personality: String,
+    var id: Long
 )
 
 data class UserMostBrief(
-    val headImage: String,
-    val username: String,
-    val id: Long
+    var headImage: String,
+    var username: String,
+    var id: Long
 )
 

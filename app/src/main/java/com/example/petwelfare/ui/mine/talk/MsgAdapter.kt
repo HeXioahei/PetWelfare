@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.mine
+package com.example.petwelfare.ui.mine.talk
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

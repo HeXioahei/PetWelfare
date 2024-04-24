@@ -1,14 +1,12 @@
-package com.example.petwelfare.ui.mine
+package com.example.petwelfare.ui.mine.talk
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ActivityTalkBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Msg
 import com.example.petwelfare.logic.model.TimeBuilder
-import com.example.petwelfare.logic.network.PetWelfareNetwork
 
 class TalkActivity : AppCompatActivity() {
 

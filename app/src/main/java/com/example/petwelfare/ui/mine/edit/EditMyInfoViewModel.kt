@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.mine
+package com.example.petwelfare.ui.mine.edit
 
 import android.util.Log
 import android.widget.Toast
