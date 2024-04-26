@@ -35,6 +35,7 @@
                 android:layout_marginTop="85dp"
                 android:layout_marginStart="25dp"
                 android:elevation="2dp"
+                android:background="@drawable/img_headimage"
                 app:shapeAppearanceOverlay="@style/CircleShapeAppearance"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +54,7 @@
                     android:id="@+id/edit"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:background="@drawable/btn_edit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

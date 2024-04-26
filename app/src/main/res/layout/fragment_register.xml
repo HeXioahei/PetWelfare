@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="#00000000">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerMailbox"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:shadowColor="@color/myShadow"
+        android:background="@drawable/bg_input"
+        android:hint="  邮箱"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -20,6 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
+        android:background="@drawable/bg_input"
+        android:hint="  密码"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
@@ -29,6 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
+        android:background="@drawable/bg_input"
+        android:hint="  确认密码"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
@@ -38,22 +45,33 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
+        android:background="@drawable/bg_input"
+        android:hint="  验证码"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/registerPsdConfirm"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/getVerificationBtn"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:background="@drawable/bg_get_veri"
+        android:text="获取验证码"
+        android:textSize="19sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/registerBtn"
         android:layout_width="200dp"
         android:layout_height="60dp"
+        android:background="@drawable/bg_btn"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="注   册"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />

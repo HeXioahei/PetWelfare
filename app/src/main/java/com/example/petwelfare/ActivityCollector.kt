@@ -7,7 +7,9 @@ object ActivityCollector {
     private val activities = ArrayList<Activity> ()
 
     fun addActivity(activity: Activity) {
-        activities.add(activity)
+        if(!activities.contains(activity)) {
+            activities.add(activity)
+        }
     }
 
     fun removeActivity(activity: Activity) {

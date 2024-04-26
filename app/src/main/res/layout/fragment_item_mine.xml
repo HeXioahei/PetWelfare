@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="日常分享"
+            android:background="@drawable/bg_cursor"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -27,6 +28,7 @@
             android:layout_height="match_parent"
             android:text="我的走失宠物"
             android:gravity="center"
+            android:background="@drawable/bg_cursor"
             app:layout_constraintStart_toEndOf="@+id/article"
             app:layout_constraintEnd_toStartOf="@id/stray" />
 
@@ -37,6 +39,7 @@
             android:layout_height="match_parent"
             android:text="我发现的流浪动物"
             android:gravity="center"
+            android:background="@drawable/bg_cursor"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

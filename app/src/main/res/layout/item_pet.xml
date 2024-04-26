@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="20dp"
+    android:id="@+id/petItem"
+    android:background="@drawable/bg_item_pet">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/petHeadImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:background="@drawable/img_headimage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

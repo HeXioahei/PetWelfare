@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mine.pet.EditPetInfoActivity">
+    tools:context=".ui.mine.pet.EditPetInfoActivity"
+    android:background="@drawable/bg_whole">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,8 +22,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/returnBtn"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/btn_return_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="20dp"
@@ -32,6 +34,7 @@
             android:id="@+id/petHeadImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:background="@drawable/img_headimage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/returnBtn" />
@@ -58,7 +61,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/changeSex"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="@drawable/bg_edit_item">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView"
@@ -82,8 +86,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp"
+                    android:background="@drawable/btn_goto"
                     android:layout_marginEnd="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +99,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/changeBirthday"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="@drawable/bg_edit_item">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView2"
@@ -118,8 +124,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp"
+                    android:background="@drawable/btn_goto"
                     android:layout_marginEnd="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +137,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/changeType"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="@drawable/bg_edit_item">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView3"
@@ -154,8 +162,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp"
+                    android:background="@drawable/btn_goto"
                     android:layout_marginEnd="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -166,7 +175,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/changeDescription"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="@drawable/bg_edit_item">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/materialTextView4"
@@ -180,7 +190,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/telephone"
+                    android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="超级可爱"
@@ -190,8 +200,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
+                    android:layout_width="7dp"
+                    android:layout_height="13dp"
+                    android:background="@drawable/btn_goto"
                     android:layout_marginEnd="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

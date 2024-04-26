@@ -10,6 +10,7 @@
         android:id="@+id/headImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:background="@drawable/img_headimage"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,19 +49,22 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/picture1"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:background="@drawable/img_photo"/>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/picture2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            android:background="@drawable/img_photo" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/picture3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            android:background="@drawable/img_photo" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -79,7 +83,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/hitIron"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:background="@drawable/img_unliked" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -92,7 +97,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/collectIron"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:background="@drawable/img_unliked" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -105,7 +111,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/likeIron"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:background="@drawable/img_unliked"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

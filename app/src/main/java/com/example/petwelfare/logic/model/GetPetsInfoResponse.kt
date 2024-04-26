@@ -11,26 +11,26 @@ data class Pets(
 )
 
 data class Pet(
-    val birthday: String,
+    var birthday: String,
 
     /**
      * 其他描述
      */
-    val description: String,
-    val head_image: String,
+    var description: String,
+    var head_image: String,
 
-    val name: String,
+    var name: String,
 
     /**
      * 在该用户的宠物列表中的id
      */
-    val pet_id: Int,
+    var pet_id: Int,
 
     /**
      * 照片墙照片
      */
-    val photos: List<String>,
+    var photos: ArrayList<String>,
 
-    val sex: String,
-    val type: String
+    var sex: String,
+    var type: String
 )
