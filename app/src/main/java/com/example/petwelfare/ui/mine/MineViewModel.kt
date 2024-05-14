@@ -13,7 +13,8 @@ class MineViewModel : ViewModel() {
 
     private val infoLiveData = MutableLiveData<UserDetail>()   //进行网络请求时需要传入的参数
 
-    lateinit var myDetail: UserDetail
+//    lateinit var myDetail: UserDetail
+    var myDetail: UserDetail = UserDetail()
 
     // 若上述参数比如id变化，则会自动调用下用这个方法，进行网络请求（已经封装好在Repository类中了，
     // 获取新的数据对象， 并将新获得的数据对象转化为当前的观察对象

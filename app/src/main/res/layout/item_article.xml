@@ -15,7 +15,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/CircleShapeAppearance"/>
+        app:shapeAppearanceOverlay="@style/CircleShapeAppearanceOverlay"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/username"
@@ -50,7 +50,8 @@
             android:id="@+id/picture1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/img_photo"/>
+            android:background="@drawable/img_photo"
+            />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/picture2"

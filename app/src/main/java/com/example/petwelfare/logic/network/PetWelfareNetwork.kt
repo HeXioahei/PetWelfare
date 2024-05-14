@@ -2,6 +2,7 @@ package com.example.petwelfare.logic.network
 
 import android.util.Log
 import android.widget.Toast
+import kotlinx.coroutines.CoroutineScope
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,15 +25,15 @@ object PetWelfareNetwork {
     // 开始页
     suspend fun login(mailbox: String, password: String) = beginService
         .login(mailbox, password)
-        .await()
+        //.await()
 
     suspend fun getVerification(verifyType: String, mailbox: String) = beginService
         .getVerification(verifyType, mailbox)
-        .await()
+        //.await()
 
     suspend fun register(mailbox: String, password: String, verification: String) = beginService
         .register(mailbox, password, verification)
-        .await()
+        //.await()
 
     suspend fun resetPassword(mailbox: String, password: String, verification: String) = beginService
         .resetPassword(mailbox, password, verification)
@@ -337,18 +338,23 @@ object PetWelfareNetwork {
         .await()
 
     private suspend fun <T> Call<T>.await(): T {
+        Log.d("aaaaa","aaaaa")
         return suspendCoroutine { continuation ->
+            Log.d("aa","aa")
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
+                    Log.d("response", "response")
                     val body = response.body()
                     if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(RuntimeException("response body is null"))
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {
+                    Log.d("aaaaaa","aaaaaa")
                     continuation.resumeWithException(t)
                 }
             })
+            Log.d("aaa","aaa")
         }
     }
 

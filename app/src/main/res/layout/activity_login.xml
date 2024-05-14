@@ -30,6 +30,7 @@
         android:layout_height="45dp"
         android:text="登录"
         android:textSize="30sp"
+        android:gravity="center"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -40,6 +41,7 @@
         android:layout_height="45dp"
         android:text="注册"
         android:textSize="30sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline" />

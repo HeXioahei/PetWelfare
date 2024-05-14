@@ -47,17 +47,17 @@ class ArticlesAdapter(private val list: MutableList<Article>, private val activi
             .addHeader("Authorization", Repository.Authorization)
             .build()
         val myHeadImageString = item.user.headImage
-        val pictureString1 = item.media[0]
-        val pictureString2 = item.media[1]
-        val pictureString3 = item.media[2]
-        val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
-        val pictureGlideUrl1 = GlideUrl(pictureString1, lazyHeaders)
-        val pictureGlideUrl2 = GlideUrl(pictureString2, lazyHeaders)
-        val pictureGlideUrl3 = GlideUrl(pictureString3, lazyHeaders)
-        holder.headImage.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
-        holder.picture1.let { Glide.with(activity).load(pictureGlideUrl1).into(it) }
-        holder.picture2.let { Glide.with(activity).load(pictureGlideUrl2).into(it) }
-        holder.picture3.let { Glide.with(activity).load(pictureGlideUrl3).into(it) }
+//        val pictureString1 = item.media[0]
+//        val pictureString2 = item.media[1]
+//        val pictureString3 = item.media[2]
+//        val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
+//        val pictureGlideUrl1 = GlideUrl(pictureString1, lazyHeaders)
+//        val pictureGlideUrl2 = GlideUrl(pictureString2, lazyHeaders)
+//        val pictureGlideUrl3 = GlideUrl(pictureString3, lazyHeaders)
+//        holder.headImage.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
+//        holder.picture1.let { Glide.with(activity).load(pictureGlideUrl1).into(it) }
+//        holder.picture2.let { Glide.with(activity).load(pictureGlideUrl2).into(it) }
+//        holder.picture3.let { Glide.with(activity).load(pictureGlideUrl3).into(it) }
         // 设置其他
         holder.username.text = item.user.username
         holder.articleText.text = item.text

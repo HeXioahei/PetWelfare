@@ -23,18 +23,24 @@ data class UserDetail(
     var score: Int,
     var telephone: String,
     var username: String
-)
+) {
+    constructor() : this("", 0, 0, "", 0L, 0, "", 0, "", "")
+}
 
 data class UserBrief(
     var headImage: String,
     var username: String,
     var personality: String,
     var id: Long
-)
+) {
+    constructor() : this("", "", "", 0L)
+}
 
 data class UserMostBrief(
     var headImage: String,
     var username: String,
     var id: Long
-)
+) {
+    constructor() : this("", "", 0L)
+}
 

@@ -34,6 +34,10 @@ class EditPetInfoActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
+        binding.returnBtn.setOnClickListener {
+            finish()
+        }
+
         binding.petName.text = viewModel.petInfo.name
         binding.sex.text = viewModel.petInfo.sex
         binding.type.text = viewModel.petInfo.type

@@ -16,7 +16,6 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.mine.edit.EditMyInfoActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MineActivity : AppCompatActivity() {
 
@@ -29,8 +28,17 @@ class MineActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
+        // 设置其他信息
+        binding.username.text = "aaaaaaaaa"
+        binding.address.text = "aaaaaaaaa"
+        binding.personality.text = "aaaaaaaaa"
+        binding.fansNum.text = "aaaaaaaaa"
+        binding.followsNum.text = "aaaaaaaaa"
+        binding.integralsNum.text = "aaaaaaaaa"
+        binding.telephone.text = "aaaaaaaaa"
+
         // 设置底部总导航栏
-        val navigationView: BottomNavigationView = binding.bottomNavigationView as BottomNavigationView
+        val navigationView = binding.navigationView
         // 1、先拿 NavHostFragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -40,6 +48,9 @@ class MineActivity : AppCompatActivity() {
         navigationView.setupWithNavController(navController)
         // 将 item 背景色调为透明
         //navigationView.itemIconTintList = null
+
+
+
 
         // 创建viewModel
         val viewModel: MineViewModel by viewModels()
@@ -70,15 +81,15 @@ class MineActivity : AppCompatActivity() {
                         .addHeader("Authorization", Repository.Authorization)
                         .build()
                 )
-                binding.headImage?.let { Glide.with(this).load(glideUrl).into(it) }
+                binding.headImage.let { Glide.with(this).load(glideUrl).into(it) }
                 // 设置其他信息
-                binding.username?.text = viewModel.myDetail.username
-                binding.address?.text = viewModel.myDetail.address
-                binding.personality?.text = viewModel.myDetail.personality
-                binding.fansNum?.text = viewModel.myDetail.fanNums.toString()
-                binding.followsNum?.text = viewModel.myDetail.followNums.toString()
-                binding.integralsNum?.text = viewModel.myDetail.integral.toString()
-                binding.telephone?.text = viewModel.myDetail.telephone
+                binding.username.text = viewModel.myDetail.username
+                binding.address.text = viewModel.myDetail.address
+                binding.personality.text = viewModel.myDetail.personality
+                binding.fansNum.text = viewModel.myDetail.fanNums.toString()
+                binding.followsNum.text = viewModel.myDetail.followNums.toString()
+                binding.integralsNum.text = viewModel.myDetail.integral.toString()
+                binding.telephone.text = viewModel.myDetail.telephone
 
             } else {
                 Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
@@ -93,7 +104,7 @@ class MineActivity : AppCompatActivity() {
         }
 
         // 跳转到编辑页
-        binding.edit?.setOnClickListener {
+        binding.edit.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
         }

@@ -1,6 +1,8 @@
 package com.example.petwelfare.logic.model
 
 data class BaseResponse(
-    val code: Int,
-    val msg: String
-)
+    var code: Int,
+    var msg: String
+) {
+    //constructor() : this(0, "")
+}

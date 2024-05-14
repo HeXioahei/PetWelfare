@@ -33,11 +33,18 @@ class PetActivity : AppCompatActivity() {
         viewModel.petInfo.head_image = intent.getStringExtra("head_image") as String
         viewModel.petInfo.photos = intent.getStringArrayListExtra("photos") as ArrayList<String>
 
-        binding.petName.text = viewModel.petInfo.name
-        binding.sex.text = viewModel.petInfo.sex
-        binding.type.text = viewModel.petInfo.type
-        binding.birthday.text = viewModel.petInfo.birthday
-        binding.description.text = viewModel.petInfo.description
+//        binding.petName.text = viewModel.petInfo.name
+//        binding.sex.text = viewModel.petInfo.sex
+//        binding.type.text = viewModel.petInfo.type
+//        binding.birthday.text = viewModel.petInfo.birthday
+//        binding.description.text = viewModel.petInfo.description
+
+        binding.petName.text = "aaaa"
+        binding.sex.text = "aaaa"
+        binding.type.text = "aaaa"
+        binding.birthday.text = "aaaa"
+        binding.description.text = "aaaa"
+
 
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)

@@ -14,23 +14,23 @@ import retrofit2.http.Query
 interface BeginService {
 
     @POST("/users/login/")
-    fun login(
+    suspend fun login(
         @Query("mailbox") mailbox: String,
         @Query("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @POST("/verifications/emails/{verify_type}")
-    fun getVerification(
+    suspend fun getVerification(
         @Path("verify_type") verify_type: String,
         @Query("mailbox") mailbox: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @POST("/users/register/")
-    fun register(
+    suspend fun register(
         @Query("mailbox") mailbox: String,
         @Query("password") password: String,
         @Query("verification") verification: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @PUT("/users/changes/password/")
     fun resetPassword(

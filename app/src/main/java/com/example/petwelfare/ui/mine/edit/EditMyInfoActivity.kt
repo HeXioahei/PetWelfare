@@ -38,6 +38,10 @@ class EditMyInfoActivity : AppCompatActivity() {
         val telephone = viewModel2.myDetail.telephone
         val personality = viewModel2.myDetail.personality
 
+        binding.returnBtn.setOnClickListener {
+            finish()
+        }
+
         // 修改头像
         val pickMedia =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

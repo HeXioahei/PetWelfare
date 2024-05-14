@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/returnBtn"
             android:layout_width="10dp"
             android:layout_height="17dp"
             android:layout_marginStart="10dp"

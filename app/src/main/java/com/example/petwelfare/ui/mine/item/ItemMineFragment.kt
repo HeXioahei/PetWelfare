@@ -59,6 +59,10 @@ class ItemMineFragment : Fragment() {
         val layoutInflater = LinearLayoutManager(activity)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
 
+        val myArticleAdapter0 = ArticlesAdapter(viewModel.myArticles, activity)
+        binding.itemMineRecyclerView.adapter = myArticleAdapter0
+        binding.itemMineRecyclerView.layoutManager = layoutInflater
+
         binding.article.setOnClickListener {
             cursorMove(binding.article)
             val myArticleAdapter = ArticlesAdapter(viewModel.myArticles, activity)

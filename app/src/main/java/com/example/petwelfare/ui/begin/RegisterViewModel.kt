@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.logic.network.PetWelfareNetwork
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -12,9 +13,12 @@ import kotlinx.coroutines.runBlocking
 class RegisterViewModel : ViewModel() {
 
     fun sendMailbox(mailbox2: String) {
+        Log.d("sendMailbox","sendMailbox")
         runBlocking {
+            Log.d("sendMailbox","sendMailbox")
             coroutineScope {
                 launch {
+                    Log.d("sendMailbox","sendMailbox")
                     val code = PetWelfareNetwork.getVerification("register", mailbox2).code
                     if (code == 200) {
                         Log.d("SendMailbox", "success")

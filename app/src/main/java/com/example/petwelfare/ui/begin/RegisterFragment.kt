@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.begin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,9 @@ class RegisterFragment(private val activity: LoginActivity) : Fragment() {
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
 
         binding.getVerificationBtn.setOnClickListener {
+            Log.d("dianji1","dianji1")
             viewModel.sendMailbox(binding.registerMailbox.text.toString())
+            Log.d("dianji","dianji")
         }
         binding.registerBtn.setOnClickListener {
             val mailbox = binding.registerMailbox.text.toString()

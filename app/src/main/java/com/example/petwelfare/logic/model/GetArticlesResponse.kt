@@ -18,4 +18,8 @@ data class Article(
     val media: MutableList<String>,
     val text: String,
     val time: String
-)
+) {
+    constructor() : this(
+        UserMostBrief(), 0,0,0,0,0,0,0, mutableListOf(), "aa", "aa"
+    )
+}

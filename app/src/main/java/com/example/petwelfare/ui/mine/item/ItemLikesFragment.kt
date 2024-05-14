@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentItemLikesBinding
@@ -18,8 +19,7 @@ import com.example.petwelfare.ui.mine.MineViewModel
 
 class ItemLikesFragment : Fragment() {
 
-    private lateinit var viewModel: ItemLikesViewModel
-    private lateinit var viewModel2: MineViewModel
+
     private lateinit var binding : FragmentItemLikesBinding
 
     override fun onCreateView(
@@ -29,6 +29,9 @@ class ItemLikesFragment : Fragment() {
         binding = FragmentItemLikesBinding.inflate(inflater, container, false)
 
         val activity = activity as MineActivity
+
+        val viewModel: ItemLikesViewModel by viewModels()
+        val viewModel2: MineViewModel by viewModels()
 
         /**
          *

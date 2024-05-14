@@ -3,25 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_mine"
-    app:startDestination="@layout/fragment_item_mine">
+    app:startDestination="@id/mine">
 
     <fragment
         android:id="@+id/mine"
         android:name="com.example.petwelfare.ui.mine.item.ItemMineFragment"
-        tools:layout="@layout/fragment_item_mine"/>
+        tools:layout="@layout/fragment_item_mine">
+        <action
+            android:id="@+id/action_mine_to_pet"
+            app:destination="@id/pet" />
+    </fragment>
 
     <fragment
         android:id="@+id/pet"
         android:name="com.example.petwelfare.ui.mine.item.ItemPetFragment"
-        tools:layout="@layout/fragment_item_pet"/>
+        tools:layout="@layout/fragment_item_pet">
+        <action
+            android:id="@+id/action_pet_to_collection"
+            app:destination="@id/collection" />
+    </fragment>
 
     <fragment
-        android:id="@+id/collecion"
+        android:id="@+id/collection"
         android:name="com.example.petwelfare.ui.mine.item.ItemCollectionFragment"
-        tools:layout="@layout/fragment_item_collection"/>
+        tools:layout="@layout/fragment_item_collection">
+        <action
+            android:id="@+id/action_collection_to_likes"
+            app:destination="@id/likes" />
+    </fragment>
 
     <fragment
-        android:id="@+id/like"
+        android:id="@+id/likes"
         android:name="com.example.petwelfare.ui.mine.item.ItemLikesFragment"
         tools:layout="@layout/fragment_item_likes"/>
 

@@ -25,6 +25,10 @@ class RestorePsdActivity : AppCompatActivity() {
 
         val viewModel: RestorePsdViewModel by viewModels()
 
+        binding.returnBtn.setOnClickListener {
+            finish()
+        }
+
         binding.getVerificationBtn.setOnClickListener {
             viewModel.sendMailbox(binding.mailboxInReset.text.toString())
         }

@@ -14,7 +14,7 @@ import okhttp3.MultipartBody
 
 class PetViewModel : ViewModel() {
 
-    lateinit var petInfo : Pet
+    var petInfo : Pet = Pet()
 
     fun changeHead(petId: Int, headImage: MultipartBody.Part, Authorization: String) {
         runBlocking {

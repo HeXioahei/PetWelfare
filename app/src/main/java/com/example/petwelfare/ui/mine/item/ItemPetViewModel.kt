@@ -12,7 +12,7 @@ class ItemPetViewModel : ViewModel() {
 
     private val listLiveData = MutableLiveData<UserMostBrief>()
 
-    lateinit var petList : Pets
+    var petList : Pets = Pets(mutableListOf(Pet()))
 
     var petListData = listLiveData.switchMap { data->
         Repository.getPetsInfo(data.id)

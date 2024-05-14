@@ -13,7 +13,7 @@ class ItemLikesViewModel : ViewModel() {
 
     private val listLiveData = MutableLiveData<UserMostBrief>()
 
-    lateinit var likesArticle : MutableList<Article>
+    var likesArticle : MutableList<Article>  = mutableListOf(Article())
 
 //    var likesArticleData = listLiveData.switchMap { data->
 //        Repository.getMyStray(data.id, Repository.Authorization)

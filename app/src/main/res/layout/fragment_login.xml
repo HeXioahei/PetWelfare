@@ -10,7 +10,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginMailbox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
@@ -21,7 +21,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginPassword"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"

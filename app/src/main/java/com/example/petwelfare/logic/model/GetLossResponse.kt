@@ -30,5 +30,10 @@ data class Loss(
 
     // 发布者
     val user: UserMostBrief
-)
+) {
+    constructor() : this(
+        "aa", 0, 0, 0, "aa", "aa", 0,
+        "aa", "aa", listOf(), "aa", "aa", "aa", UserMostBrief()
+    )
+}
 

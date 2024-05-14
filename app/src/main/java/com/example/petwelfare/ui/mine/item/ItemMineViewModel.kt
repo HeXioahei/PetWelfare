@@ -13,9 +13,12 @@ class ItemMineViewModel : ViewModel() {
 
     private val listLiveData = MutableLiveData<UserMostBrief>()
 
-    lateinit var myArticles : MutableList<Article>
-    lateinit var myLoss : MutableList<Loss>
-    lateinit var myStray : MutableList<Stray>
+//    lateinit var myArticles : MutableList<Article>
+    var myArticles : MutableList<Article> = mutableListOf(Article(), Article(), Article(), Article(), Article())
+//    lateinit var myLoss : MutableList<Loss>
+    var myLoss : MutableList<Loss> = mutableListOf(Loss())
+//    lateinit var myStray : MutableList<Stray>
+    var myStray : MutableList<Stray> = mutableListOf(Stray())
 
     var myArticlesData = listLiveData.switchMap { data->
         Repository.getMyArticles(data.id, Repository.Authorization)

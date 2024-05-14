@@ -21,4 +21,9 @@ data class Stray(
 
     // 发布者
     val user: UserMostBrief
-)
+) {
+    constructor() : this(
+        "aa", 0, 0, 0,
+        "aa", mutableListOf(), "aa", UserMostBrief()
+    )
+}

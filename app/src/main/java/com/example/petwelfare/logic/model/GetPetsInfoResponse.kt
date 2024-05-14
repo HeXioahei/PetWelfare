@@ -8,7 +8,9 @@ data class GetPetsInfoResponse(
 
 data class Pets(
     val pets: MutableList<Pet>
-)
+) {
+    constructor() : this(mutableListOf())
+}
 
 data class Pet(
     var birthday: String,
@@ -33,4 +35,9 @@ data class Pet(
 
     var sex: String,
     var type: String
-)
+) {
+    constructor() : this(
+        "aa", "aa", "aa", "aa",
+        0, arrayListOf(), "aa", "aa"
+    )
+}

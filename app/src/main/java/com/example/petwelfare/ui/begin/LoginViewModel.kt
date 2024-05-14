@@ -19,8 +19,10 @@ class LoginViewModel : ViewModel() {
         runBlocking {
             coroutineScope {
                 launch {
+                    Log.d("aaa","aaa")
                     val response = PetWelfareNetwork.login(mailbox, psd)
                     code = response.code
+                    Log.d("aaaa","aaaa")
                     if (code == 200) {
                         Log.d("login", "success")
                         Toast.makeText(PetWelfareApplication.context, "登录成功", Toast.LENGTH_SHORT).show()
