@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.mine.item
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import com.example.petwelfare.databinding.FragmentItemPetBinding
 import com.example.petwelfare.ui.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.listadapter.PetsAdapter
 import com.example.petwelfare.ui.mine.MineActivity
+import com.example.petwelfare.ui.mine.pet.AddPetActivity
+import com.example.petwelfare.ui.mine.pet.EditPetInfoActivity
 
 class ItemPetFragment : Fragment() {
 
@@ -42,6 +45,11 @@ class ItemPetFragment : Fragment() {
         val petAdapter = PetsAdapter(viewModel.petList.pets, activity)
         binding.petRecyclerView.adapter = petAdapter
         binding.petRecyclerView.layoutManager = layoutInflater
+
+        binding.addPet.setOnClickListener {
+            val intent = Intent(activity, AddPetActivity::class.java)
+
+        }
 
         return binding.root
     }

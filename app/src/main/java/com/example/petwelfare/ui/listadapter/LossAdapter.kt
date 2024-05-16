@@ -35,12 +35,12 @@ class LossAdapter(private val list: MutableList<Loss>, private val activity: Act
         val item = list[position]
         //...进行数据的处理与呈现
         // 设置头像
-        val lazyHeaders = LazyHeaders.Builder()
-            .addHeader("Authorization", Repository.Authorization)
-            .build()
-        val headImageString = item.photos[0]
-        val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
-        holder.headImageInLoss.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
+//        val lazyHeaders = LazyHeaders.Builder()
+//            .addHeader("Authorization", Repository.Authorization)
+//            .build()
+//        val headImageString = item.photos[0]
+//        val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
+//        holder.headImageInLoss.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
         // 设置其他
         holder.addressLoss.text = item.address
         holder.nameLoss.text = item.name

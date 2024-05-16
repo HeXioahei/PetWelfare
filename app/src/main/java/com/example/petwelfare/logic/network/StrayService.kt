@@ -32,13 +32,13 @@ interface StrayService {
 
     @Multipart
     @POST("/stray/")
-    fun sendStray(
+    suspend fun sendStray(
         @Query("address") address: String,
         @Query("time") time: String,
         @Query("description") description: String,
         @Header("Authorization") Authorization: String,
         @Part photo_list: List<MultipartBody.Part>
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @GET("/stray/{id}/comments/")
     fun getComments(

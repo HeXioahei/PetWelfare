@@ -1,7 +1,7 @@
 package com.example.petwelfare.logic
 
+import android.util.Log
 import androidx.lifecycle.liveData
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.Dispatchers
@@ -9,15 +9,17 @@ import kotlinx.coroutines.Dispatchers
 object Repository {
 
     var Authorization : String = ""
-    var userId: Long = 0
+    var myId: Long = 0
     var refreshToken : String = ""
-    lateinit var userDetail: UserDetail
+    var userDetail: UserDetail = UserDetail()
     var mailbox : String = ""
 
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
+        Log.d("getUserInfo", "going")
         val result = try {
             val getUserDetailResponse = PetWelfareNetwork.getUserInfo(id, Authorization)
             if (getUserDetailResponse.code == 200) {
+                Log.d("getUserInfo", "success")
                 val user = getUserDetailResponse.data
                 Result.success(user)
             } else {

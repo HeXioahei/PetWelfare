@@ -3,6 +3,7 @@ package com.example.petwelfare.ui.mine
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.NavController
@@ -29,13 +30,13 @@ class MineActivity : AppCompatActivity() {
         ActivityCollector.addActivity(this)
 
         // 设置其他信息
-        binding.username.text = "aaaaaaaaa"
-        binding.address.text = "aaaaaaaaa"
-        binding.personality.text = "aaaaaaaaa"
-        binding.fansNum.text = "aaaaaaaaa"
-        binding.followsNum.text = "aaaaaaaaa"
-        binding.integralsNum.text = "aaaaaaaaa"
-        binding.telephone.text = "aaaaaaaaa"
+//        binding.username.text = "aaaaaaaaa"
+//        binding.address.text = "aaaaaaaaa"
+//        binding.personality.text = "aaaaaaaaa"
+//        binding.fansNum.text = "aaaaaaaaa"
+//        binding.followsNum.text = "aaaaaaaaa"
+//        binding.integralsNum.text = "aaaaaaaaa"
+//        binding.telephone.text = "aaaaaaaaa"
 
         // 设置底部总导航栏
         val navigationView = binding.navigationView
@@ -64,10 +65,11 @@ class MineActivity : AppCompatActivity() {
 
         // 应用 viewModel
         // 参看书中第623页
-        viewModel.setUserId(Repository.userId)
+        viewModel.setUserId(Repository.myId)
 
         // 当 myDetailData 中有任何数据变化时，就会回调传入的这个Observe接口中
         viewModel.myDetailData.observe(this) { result ->
+            Log.d("getUserInfo", "going2")
             val user = result.getOrNull()
             if (user != null) {
                 viewModel.myDetail = user
@@ -91,6 +93,9 @@ class MineActivity : AppCompatActivity() {
                 binding.integralsNum.text = viewModel.myDetail.integral.toString()
                 binding.telephone.text = viewModel.myDetail.telephone
 
+                binding.swipeRefresh.isRefreshing = false
+                //Toast.makeText(this, "刷新完毕", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
@@ -99,8 +104,9 @@ class MineActivity : AppCompatActivity() {
 
         // 下拉刷新，更新用户信息
         binding.swipeRefresh.setOnRefreshListener {
+            Log.d("swipeRefresh", "doing")
             viewModel.myDetailData = Repository                      // 不确定此处是否有问题
-                .getUserInfo(Repository.userId, Repository.Authorization)
+                .getUserInfo(Repository.myId, Repository.Authorization)    // 可以确定了，此处有问题，不能这样来调用getUserInfo()，只能通过InfoLiveData的改变
         }
 
         // 跳转到编辑页

@@ -25,6 +25,7 @@ class RegisterFragment(private val activity: LoginActivity) : Fragment() {
             viewModel.sendMailbox(binding.registerMailbox.text.toString())
             Log.d("dianji","dianji")
         }
+
         binding.registerBtn.setOnClickListener {
             val mailbox = binding.registerMailbox.text.toString()
             val psd = binding.registerPsd.text.toString()

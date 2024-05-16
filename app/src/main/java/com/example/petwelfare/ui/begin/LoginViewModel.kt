@@ -26,17 +26,19 @@ class LoginViewModel : ViewModel() {
                     if (code == 200) {
                         Log.d("login", "success")
                         Toast.makeText(PetWelfareApplication.context, "登录成功", Toast.LENGTH_SHORT).show()
+                        val accessToken = response.data.access_token
+                        Log.d("accessToken", accessToken)
+                        val refreshToken = response.data.refresh_token
+                        Repository.Authorization = accessToken
+                        Repository.myId = response.data.id
+                        Repository.refreshToken = refreshToken
+                        MineDao.saveMailbox(mailbox)
+                        MineDao.saveToken(accessToken, refreshToken)
+
                     } else {
                         Log.d("login", "failure")
                         Toast.makeText(PetWelfareApplication.context, "登陆失败", Toast.LENGTH_SHORT).show()
                     }
-                    val accessToken = response.data.accessToken
-                    val refreshToken = response.data.refreshToken
-                    Repository.Authorization = accessToken
-                    Repository.userId = response.data.id
-                    Repository.refreshToken = refreshToken
-                    MineDao.saveMailbox(mailbox)
-                    MineDao.saveToken(accessToken, refreshToken)
                 }
             }
         }

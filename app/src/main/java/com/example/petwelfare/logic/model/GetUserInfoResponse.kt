@@ -24,7 +24,9 @@ data class UserDetail(
     var telephone: String,
     var username: String
 ) {
-    constructor() : this("", 0, 0, "", 0L, 0, "", 0, "", "")
+    constructor() : this(
+        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa"
+    )
 }
 
 data class UserBrief(
@@ -33,7 +35,7 @@ data class UserBrief(
     var personality: String,
     var id: Long
 ) {
-    constructor() : this("", "", "", 0L)
+    constructor() : this("aa", "aa", "aa", 0L)
 }
 
 data class UserMostBrief(
@@ -41,6 +43,6 @@ data class UserMostBrief(
     var username: String,
     var id: Long
 ) {
-    constructor() : this("", "", 0L)
+    constructor() : this("aa", "aa", 0L)
 }
 

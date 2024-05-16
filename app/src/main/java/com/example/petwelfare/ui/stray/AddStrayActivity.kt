@@ -1,41 +1,46 @@
-package com.example.petwelfare.ui.loss
+package com.example.petwelfare.ui.stray
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
 import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.databinding.ActivityLossBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.example.petwelfare.R
+import com.example.petwelfare.databinding.ActivityAddStrayBinding
+import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.TimeBuilder
 
-// （妙啊）高德开放平台关于获取定位信息的官方文档：https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation
-
-class LossActivity : AppCompatActivity(), AMapLocationListener {
-
-    private lateinit var binding : ActivityLossBinding
+class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
 
     private lateinit var locationClient: AMapLocationClient
 
-    private val viewModel: LossViewModel by viewModels()
+    private lateinit var binding : ActivityAddStrayBinding
+
+    //private val viewModel : AddStrayViewModel by viewModels()
+
+    private var address = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        binding = ActivityLossBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        enableEdgeToEdge()
         ActivityCollector.addActivity(this)
+
+        binding = ActivityAddStrayBinding.inflate(layoutInflater)
+
+        val viewModel : AddStrayViewModel by viewModels()
+
+        setContentView(binding.root)
 
         // 初始化定位客户端
         locationClient = AMapLocationClient(this)
@@ -47,30 +52,38 @@ class LossActivity : AppCompatActivity(), AMapLocationListener {
         option.isNeedAddress = true // 返回定位地址信息
         option.isLocationCacheEnable = true // 是否使用缓存定位，默认为true
         option.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy // 设置定位模式为高精度模式
-        locationClient.setLocationOption(option)
+        //启动定位
+        binding.getAddress.setOnClickListener {
+            locationClient.setLocationOption(option)
+        }
+
+        binding.publishBtn.setOnClickListener {
+            val code = viewModel.sendStray(
+                binding.address.text.toString(),
+                TimeBuilder.getNowTime(),
+                binding.description.text.toString(),
+                Repository.Authorization,
+                listOf()
+            )
+            if(code == 200) {
+                Toast.makeText(this,"发布成功", Toast.LENGTH_SHORT).show()
+                Log.d("publishStray", "success")
+            } else {
+                Toast.makeText(this,"发布失败", Toast.LENGTH_SHORT).show()
+                Log.d("publishStray", "failed")
+            }
+        }
 
         // 判断是否具有定位权限
         if(ContextCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED) {
+            ) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
         } else {
             locationClient.startLocation()
         }
-
-        viewModel.lossListData.observe(this) { result ->
-            val lossList = result.getOrNull()
-            if (lossList != null) {
-                viewModel.lossList = lossList
-                // 传入recyclerView的adapter进行呈现
-            } else {
-                Toast.makeText(this, "未能获取信息", Toast.LENGTH_SHORT).show()
-                result.exceptionOrNull()?.printStackTrace()
-            }
-        }
-
     }
 
     override fun onRequestPermissionsResult(
@@ -102,9 +115,9 @@ class LossActivity : AppCompatActivity(), AMapLocationListener {
 //                amapLocation.getDistrict();//城区信息
 //                amapLocation.getStreet();//街道信息
 //                amapLocation.getStreetNum();//街道门牌号信息
-                val address = amapLocation.province + amapLocation.city + amapLocation.district +
+                address = amapLocation.province + amapLocation.city + amapLocation.district +
                         amapLocation.street + amapLocation.streetNum
-                viewModel.setAddressLiveData(address)
+                binding.address.setText(address)
             }else {
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError","location Error, ErrCode:"

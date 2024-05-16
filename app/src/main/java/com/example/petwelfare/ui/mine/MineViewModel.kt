@@ -11,7 +11,7 @@ class MineViewModel : ViewModel() {
 
     /*这里的写法和列表页的写法有些不同，到时候测试的时候看看哪种比较好*/
 
-    private val infoLiveData = MutableLiveData<UserDetail>()   //进行网络请求时需要传入的参数
+    private val infoLiveData = MutableLiveData<UserDetail>(UserDetail())   //进行网络请求时需要传入的参数
 
 //    lateinit var myDetail: UserDetail
     var myDetail: UserDetail = UserDetail()

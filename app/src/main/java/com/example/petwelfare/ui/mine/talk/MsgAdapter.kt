@@ -22,7 +22,7 @@ class MsgAdapter(private val msgList: MutableList<Msg>) : RecyclerView.Adapter<R
 
     override fun getItemViewType(position: Int): Int {
         val msg = msgList[position]
-        return if (msg.id == Repository.userId) {
+        return if (msg.id == Repository.myId) {
             Msg.TYPE_SENT
         } else {
             Msg.TYPE_RECEIVE

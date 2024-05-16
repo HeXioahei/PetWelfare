@@ -27,7 +27,7 @@ class TalkActivity : AppCompatActivity() {
             val content = binding.edit.text.toString()
             val time = TimeBuilder.getNowTime()   // 这样设置
             if (content.isNotEmpty()) {
-                val msg = Msg(Repository.userId, content, time)
+                val msg = Msg(Repository.myId, content, time)
                 msgList.add(msg)
                 adapter?.notifyItemInserted(msgList.size - 1)
                 binding.recyclerView.scrollToPosition(msgList.size - 1)

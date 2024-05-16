@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -105,8 +106,14 @@ class EditMyInfoActivity : AppCompatActivity() {
             val Authorization = Repository.Authorization
             when (type) {
                 "changeUsername" -> {
-                    viewModel1.changeUsername(inputText, Authorization)
-                    viewModel2.setUsername(inputText)
+                    val code = viewModel1.changeUsername(inputText, Authorization)
+                    if (code == 200) {
+                        Toast.makeText(this,"修改成功", Toast.LENGTH_SHORT).show()
+                        viewModel2.setUsername(inputText)
+                    } else {
+                        Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show()
+                    }
+
                 }
 
                 "changeAddress" -> {

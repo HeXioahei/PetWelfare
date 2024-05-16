@@ -63,6 +63,11 @@ class ItemCollectionFragment : Fragment() {
 
         val layoutInflater = LinearLayoutManager(activity)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
+        val collectArticleAdapter0 = ArticlesAdapter(viewModel.collectArticles, activity)
+        binding.collectionRecyclerView.adapter = collectArticleAdapter0
+        binding.collectionRecyclerView.layoutManager = layoutInflater
+
+
 
         binding.article.setOnClickListener {
             cursorMove(binding.article)

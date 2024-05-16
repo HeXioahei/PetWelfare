@@ -31,7 +31,7 @@ interface LossService {
 
     @Multipart
     @POST("/loss/")
-    fun sendLoss(
+    suspend fun sendLoss(
         @Query("name") name: String,
         @Query("sex") sex: String,
         @Query("type") type: String,
@@ -42,7 +42,7 @@ interface LossService {
         @Query("description") description: String,
         @Header("Authorization") Authorization: String,
         @Part photo_list: List<MultipartBody.Part>
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @GET("/loss/{id}/comments/")
     fun getComments(

@@ -12,10 +12,10 @@ import com.example.petwelfare.logic.model.UserMostBrief
 
 class ItemCollectionViewModel : ViewModel() {
 
-    var collectArticles : MutableList<Article> = mutableListOf()
-    var collectLoss : MutableList<Loss> = mutableListOf()
-    var collectStray : MutableList<Stray> = mutableListOf()
-    var collectOrg : MutableList<Org> = mutableListOf()
+    var collectArticles : MutableList<Article> = mutableListOf(Article())
+    var collectLoss : MutableList<Loss> = mutableListOf(Loss())
+    var collectStray : MutableList<Stray> = mutableListOf(Stray())
+    var collectOrg : MutableList<Org> = mutableListOf(Org())
 
     var collectArticlesData = Repository.getCollectArticles(Repository.Authorization)
 

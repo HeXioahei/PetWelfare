@@ -30,12 +30,12 @@ interface ArticleService {
 
     @Multipart
     @POST("/articles/")
-    fun writeArticle(
+    suspend fun writeArticle(
         @Query("time") time: String,
         @Query("text") text: String,
         @Header("Authorization") Authorization: String,
         @Part photo_list: List<MultipartBody.Part>
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @GET("/articles/{id}/comments/")
     fun getComments(

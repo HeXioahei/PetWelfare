@@ -49,7 +49,7 @@ object PetWelfareNetwork {
     // 个人页
     suspend fun getUserInfo(id: Long, Authorization: String) = mineService
         .getUserInfo(id, Authorization)
-        .await()
+        //.await()
 
     suspend fun follow(id: String, Authorization: String) = mineService
         .follow(id, Authorization)
@@ -110,23 +110,23 @@ object PetWelfareNetwork {
     // 修改个人资料
     suspend fun changeHead(headImage: MultipartBody.Part, Authorization: String) = mineService
         .changeHead(headImage, Authorization)
-        .await()
+        //.await()
 
     suspend fun changeUsername(username: String, Authorization: String) = mineService
         .changeUsername(username, Authorization)
-        .await()
+        //.await()
 
     suspend fun changeAddress(address: String, Authorization: String) = mineService
         .changeAddress(address, Authorization)
-        .await()
+        //.await()
 
     suspend fun changeTelephone(telephone: String, Authorization: String) = mineService
         .changeTelephone(telephone, Authorization)
-        .await()
+        //.await()
 
     suspend fun changePersonality(personality: String, Authorization: String) = mineService
         .changePersonality(personality, Authorization)
-        .await()
+        //.await()
 
     // 私聊
     suspend fun sendMessage(
@@ -211,7 +211,7 @@ object PetWelfareNetwork {
         time: String, text: String, Authorization: String, photo_list: List<MultipartBody.Part>
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
-        .await()
+        //.await()
 
     suspend fun getCommentsInArticles(id: String) = articlesService
         .getComments(id)
@@ -259,7 +259,7 @@ object PetWelfareNetwork {
         .sendLoss(
             name, sex, type, address, contact, lostTime, sendTime, description, Authorization, photo_list
         )
-        .await()
+        //.await()
 
     suspend fun getCommentsInLoss(id: String) = lossService
         .getComments(id)
@@ -294,7 +294,7 @@ object PetWelfareNetwork {
         .sendStray(
             address, time, description, Authorization, photo_list
         )
-        .await()
+        //.await()
 
     suspend fun adopt(id: String, Authorization: String) = strayService
         .adopt(id, Authorization)

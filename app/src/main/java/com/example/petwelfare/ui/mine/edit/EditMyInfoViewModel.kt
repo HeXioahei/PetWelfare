@@ -26,11 +26,12 @@ class EditMyInfoViewModel : ViewModel() {
         }
     }
 
-    fun changeUsername(username: String, Authorization: String) {
+    fun changeUsername(username: String, Authorization: String) :Int {
+        var code = 0
         runBlocking {
             coroutineScope {
                 launch {
-                    val code = PetWelfareNetwork.changeUsername(username, Authorization).code
+                    code = PetWelfareNetwork.changeUsername(username, Authorization).code
                     if (code == 200) {
                         Log.d("changeUsername", "success")
                     } else {
@@ -39,6 +40,7 @@ class EditMyInfoViewModel : ViewModel() {
                 }
             }
         }
+        return code
     }
 
     fun changeAddress(address: String, Authorization: String) {

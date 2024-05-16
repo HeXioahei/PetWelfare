@@ -10,6 +10,7 @@ import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityLoginBinding
 import com.example.petwelfare.ui.MainActivity
+import com.example.petwelfare.ui.mine.MineActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -49,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun toMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MineActivity::class.java)
         startActivity(intent)
     }
 

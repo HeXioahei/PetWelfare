@@ -8,16 +8,27 @@
     android:padding="20dp"
     android:background="#00000000">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/loginMailbox"
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:shadowColor="@color/myShadow"
-        android:background="@drawable/bg_input"
-        android:hint="   邮箱"
+        android:layout_height="wrap_content"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginMailbox"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/bg_input"
+            android:hint="邮箱"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginPassword"
@@ -25,7 +36,8 @@
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
-        android:hint="   密码"
+        android:paddingHorizontal="20dp"
+        android:hint="密码"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />

@@ -23,10 +23,10 @@ import retrofit2.http.Query
 interface MineService {
 
     @GET("/users/information/")
-    fun getUserInfo(
+    suspend fun getUserInfo(
         @Query("id") id: Long,
         @Header("Authorization") Authorization: String
-    ): Call<GetUserDetailResponse>
+    ): GetUserDetailResponse
 
     @PUT("/users/{id}/follows/")
     fun follow(
@@ -102,34 +102,34 @@ interface MineService {
 
     @Multipart
     @PUT("/users/changes/head/")
-    fun changeHead(
+    suspend fun changeHead(
         @Part headImage: MultipartBody.Part,
         @Header("Authorization") Authorization: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @PUT("/users/changes/username/")
-    fun changeUsername(
+    suspend fun changeUsername(
         @Query("username") username: String,
         @Header("Authorization") Authorization: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @PUT("/users/changes/address/")
-    fun changeAddress(
+    suspend fun changeAddress(
         @Query("address") address: String,
         @Header("Authorization") Authorization: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @PUT("/users/changes/telephone/")
-    fun changeTelephone(
+    suspend fun changeTelephone(
         @Query("telephone") telephone: String,
         @Header("Authorization") Authorization: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @PUT("/users/changes/personality/")
-    fun changePersonality(
+    suspend fun changePersonality(
         @Query("personality") personality: String,
         @Header("Authorization") Authorization: String
-    ): Call<BaseResponse>
+    ): BaseResponse
 
     @POST("/users/talk/sending/")
     fun sendMessage(

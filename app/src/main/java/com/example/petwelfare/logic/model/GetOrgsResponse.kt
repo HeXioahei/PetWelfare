@@ -13,4 +13,8 @@ data class Org(
     val description: String,
     val headImage: String,
     val orgName: String
-)
+) {
+    constructor() : this(
+        0, 0, "aa", "aa", "aa", "aa"
+    )
+}
