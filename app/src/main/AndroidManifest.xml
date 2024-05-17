@@ -34,10 +34,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31" >
-        <activity
-            android:name=".ui.MainActivity2"
-            android:exported="false"
-            android:label="@string/title_activity_main2" />
+
         <activity
             android:name=".ui.articles.AddArticlesActivity"
             android:exported="false" />
@@ -66,9 +63,9 @@
         <activity
             android:name=".ui.itemdetail.LossDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.itemdetail.ArticleDetailActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.itemdetail.ArticleDetailActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.mine.pet.EditPetInfoActivity"
             android:exported="false" />
@@ -111,8 +108,18 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.begin.LoginActivity"-->
+<!--            android:exported="true" >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
         <activity
-            android:name=".ui.begin.LoginActivity"
+            android:name=".ui.itemdetail.ArticleDetailActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

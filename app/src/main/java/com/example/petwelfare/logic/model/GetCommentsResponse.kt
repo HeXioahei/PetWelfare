@@ -10,7 +10,7 @@ data class Comments(
     /**
      * 用户在总用户列表中的id
      */
-    val aid: Int,
+    val aid: Long,
 
     /**
      * 评论在父评论中的id
@@ -22,7 +22,12 @@ data class Comments(
     val kidComments: MutableList<KidComment>,
     val time: String,
     val username: String
-)
+) {
+    constructor() : this(
+        0L,0, "aa","aa",
+        mutableListOf(KidComment(), KidComment(), KidComment(),KidComment(),KidComment()),"aa","aa"
+    )
+}
 
 data class KidComment(
     /**
@@ -34,4 +39,8 @@ data class KidComment(
     val headImage: String,
     val time: String,
     val username: String
-)
+) {
+    constructor():this(
+        0,"aa","aa","aa","aa"
+    )
+}
