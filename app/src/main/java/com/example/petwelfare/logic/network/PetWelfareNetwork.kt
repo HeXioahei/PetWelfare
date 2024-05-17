@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -208,7 +209,7 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeArticle(
-        time: String, text: String, Authorization: String, photo_list: List<MultipartBody.Part>
+        time: String, text: String, Authorization: String, photo_list: Map<String, RequestBody>
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
         //.await()

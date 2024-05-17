@@ -9,10 +9,11 @@
     android:background="#00000000">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardElevation="3dp"
         app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
@@ -21,12 +22,37 @@
             android:id="@+id/loginMailbox"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:paddingHorizontal="20dp"
             android:background="@drawable/bg_input"
-            android:hint="邮箱"/>
+            android:hint="邮箱"
+            android:paddingHorizontal="20dp" />
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/inputMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/showMenuBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_mune"
+        android:elevation="5dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2" />
 
 
 
@@ -41,6 +67,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/showPsdBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_show_psd"
+        android:elevation="5dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/loginPassword"
+        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
+        app:layout_constraintTop_toTopOf="@+id/loginPassword" />
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/loginBtn"
