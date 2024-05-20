@@ -7,46 +7,133 @@
     android:padding="20dp"
     android:background="#00000000">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:elevation="1dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/img_mailbox"
+        app:layout_constraintBottom_toBottomOf="@+id/registerMailbox"
+        app:layout_constraintStart_toStartOf="@+id/registerMailbox"
+        app:layout_constraintTop_toTopOf="@+id/registerMailbox" />
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerMailbox"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
-        android:hint="  邮箱"
+        android:paddingHorizontal="40dp"
+        android:hint="邮箱"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/showMenuBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_menu"
+        android:elevation="1dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/registerMailbox"
+        app:layout_constraintEnd_toEndOf="@+id/registerMailbox"
+        app:layout_constraintTop_toTopOf="@+id/registerMailbox" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dropdown_menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="30dp"
+        android:elevation="2dp"
+        android:background="@drawable/bg_drop_menu"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/registerMailbox"
+        tools:layout_editor_absoluteX="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dropdown_menu"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="30dp"
+            android:layout_height="wrap_content"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:elevation="1dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/img_psd"
+        app:layout_constraintBottom_toBottomOf="@+id/registerPsd"
+        app:layout_constraintStart_toStartOf="@+id/registerPsd"
+        app:layout_constraintTop_toTopOf="@+id/registerPsd" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPsd"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
-        android:hint="  密码"
+        android:paddingHorizontal="40dp"
+        android:hint="密码"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/showPsdBtn1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_show_psd"
+        android:elevation="5dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/registerPsd"
+        app:layout_constraintEnd_toEndOf="@+id/registerPsd"
+        app:layout_constraintTop_toTopOf="@+id/registerPsd" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:elevation="1dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/img_confirm_psd"
+        app:layout_constraintBottom_toBottomOf="@+id/registerPsdConfirm"
+        app:layout_constraintStart_toStartOf="@+id/registerPsdConfirm"
+        app:layout_constraintTop_toTopOf="@+id/registerPsdConfirm" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/registerPsdConfirm"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
-        android:hint="  确认密码"
+        android:paddingHorizontal="40dp"
+        android:hint="确认密码"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/showPsdBtn2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_show_psd"
+        android:elevation="5dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/registerPsdConfirm"
+        app:layout_constraintEnd_toEndOf="@+id/registerPsdConfirm"
+        app:layout_constraintTop_toTopOf="@+id/registerPsdConfirm" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/verification"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:shadowColor="@color/myShadow"
-        android:background="@drawable/bg_input"
-        android:hint="  验证码"
+        android:background="@drawable/bg_input_verification"
+        android:paddingHorizontal="20dp"
+        android:hint="验证码"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/registerPsdConfirm"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
@@ -63,15 +150,11 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/registerBtn"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="60dp"
-        android:background="@drawable/bg_btn"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:text="注   册"
+        android:background="@drawable/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />

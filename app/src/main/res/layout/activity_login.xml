@@ -35,6 +35,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/loginCursor"
+        android:layout_width="80dp"
+        android:layout_height="5dp"
+        android:elevation="1dp"
+        android:background="@drawable/img_cursor"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/toLoginBtn"
+        app:layout_constraintEnd_toEndOf="@+id/toLoginBtn"
+        app:layout_constraintStart_toStartOf="@+id/toLoginBtn"/>
+
     <TextView
         android:id="@+id/toRegisterBtn"
         android:layout_width="90dp"
@@ -45,6 +56,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/registerCursor"
+        android:layout_width="80dp"
+        android:layout_height="5dp"
+        android:elevation="1dp"
+        android:background="@drawable/img_cursor"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/toRegisterBtn"
+        app:layout_constraintEnd_toEndOf="@+id/toRegisterBtn"
+        app:layout_constraintStart_toStartOf="@+id/toRegisterBtn"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -57,7 +79,6 @@
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

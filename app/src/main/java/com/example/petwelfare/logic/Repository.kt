@@ -14,6 +14,23 @@ object Repository {
     var userDetail: UserDetail = UserDetail()
     var mailbox : String = ""
 
+    fun login(mailbox: String, password: String) = liveData(Dispatchers.IO) {
+        Log.d("login", "going")
+        val result = try {
+            val loginResponse = PetWelfareNetwork.login(mailbox, password)
+            if (loginResponse.code == 200) {
+                Log.d("login", "success")
+                val loginData = loginResponse.data
+                Result.success(loginData)
+            } else {
+                Result.failure(RuntimeException("response code is ${loginResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
         Log.d("getUserInfo", "going")
         val result = try {
