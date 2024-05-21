@@ -20,24 +20,24 @@ interface BeginService {
     ): Call<LoginResponse>
 
     @POST("/verifications/emails/{verify_type}")
-    suspend fun getVerification(
+    fun getVerification(
         @Path("verify_type") verify_type: String,
         @Query("mailbox") mailbox: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @POST("/users/register/")
-    suspend fun register(
+    fun register(
         @Query("mailbox") mailbox: String,
         @Query("password") password: String,
         @Query("verification") verification: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @PUT("/users/changes/password/")
-    suspend fun resetPassword(
+    fun resetPassword(
         @Query("mailbox") mailbox: String,
         @Query("password") password: String,
         @Query("verification") verification: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @GET("/users/refreshtoken")
     fun refreshToken(

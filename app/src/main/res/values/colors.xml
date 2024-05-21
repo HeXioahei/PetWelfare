@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="myShadow">#FFBAA99E</color>
     <color name="gray">#FFBBAAAA</color>
+    <color name="active">#AE8556</color>
 </resources>

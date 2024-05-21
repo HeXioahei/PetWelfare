@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityLoginBinding
-import com.example.petwelfare.ui.MainActivity
 import com.example.petwelfare.ui.mine.MineActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -50,12 +49,12 @@ class LoginActivity : AppCompatActivity() {
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
         // 添加fragment
         if (type == "login") {
-            transaction.replace(R.id.fragment, loginFragment)
+            transaction.replace(R.id.fragmentLogin, loginFragment)
             binding.loginCursor.visibility = View.VISIBLE
             binding.registerCursor.visibility = View.INVISIBLE
         }
         else {
-            transaction.replace(R.id.fragment, registerFragment)
+            transaction.replace(R.id.fragmentLogin, registerFragment)
             binding.loginCursor.visibility = View.INVISIBLE
             binding.registerCursor.visibility = View.VISIBLE
         }

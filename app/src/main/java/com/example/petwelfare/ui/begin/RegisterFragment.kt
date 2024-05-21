@@ -1,10 +1,7 @@
 package com.example.petwelfare.ui.begin
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
-import android.opengl.Visibility
 import android.os.Bundle
-import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +16,6 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentRegisterBinding
 import com.example.petwelfare.logic.model.MailboxList
 import com.example.petwelfare.ui.listadapter.MailboxAdapter
-import java.lang.reflect.Type
 
 class RegisterFragment(private val activity: LoginActivity) : Fragment() {
 
@@ -30,37 +26,48 @@ class RegisterFragment(private val activity: LoginActivity) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
 
         // 获取验证码
         binding.getVerificationBtn.setOnClickListener {
-            Log.d("dianji1","dianji1")
-            val code = viewModel.sendMailbox(binding.registerMailbox.text.toString())
-            if (code == 200) {
+            viewModel.getVerification(binding.registerMailbox.text.toString())
+        }
+        viewModel.getVerificationResponseCode.observe(activity) { result->
+            Log.d("getVerificationResponseCode",result.toString())
+            if (result == 200) {
+                Log.d("getVerification", "success")
                 binding.getVerificationBtn.text = "已发送请求"
                 binding.getVerificationBtn.setTextColor(resources.getColor(R.color.gray))
-                Log.d("SendMailbox", "success")
                 Toast.makeText(PetWelfareApplication.context, "请求已发送", Toast.LENGTH_SHORT).show()
             } else {
-                Log.d("SendMailbox", "failure")
-                Toast.makeText(PetWelfareApplication.context, "请求发送失败", Toast.LENGTH_SHORT).show()
+                Log.d("getVerification", "failure")
+                Toast.makeText(PetWelfareApplication.context, "请求失败", Toast.LENGTH_SHORT).show()
             }
-            Log.d("dianji","dianji")
         }
+
 
         // 注册
         binding.registerBtn.setOnClickListener {
             val mailbox = binding.registerMailbox.text.toString()
             val psd = binding.registerPsd.text.toString()
             val verification = binding.verification.text.toString()
-            val code = viewModel.register(mailbox, psd, verification)
-            if (code == 200) {
+            viewModel.register(mailbox, psd, verification)
+        }
+        viewModel.registerResponseCode.observe(activity) { result ->
+            Log.d("registerResponseCode",result.toString())
+            if (result == 200) {
+                Log.d("register", "success")
+                Toast.makeText(PetWelfareApplication.context, "注册成功", Toast.LENGTH_SHORT).show()
                 binding.registerMailbox.setText("")
                 binding.registerPsd.setText("")
                 binding.registerPsdConfirm.setText("")
                 binding.verification.setText("")
                 activity.replaceFragment("login")
+            } else {
+                Log.d("register", "failure")
+                Toast.makeText(PetWelfareApplication.context, "注册失败", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -2,12 +2,18 @@ package com.example.petwelfare.logic.network
 
 import android.util.Log
 import android.widget.Toast
+import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.logic.model.ErrorResponse
+import com.example.petwelfare.utils.MyCallBack
+import com.example.petwelfare.utils.MyResponse
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.TypeVariable
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -30,15 +36,15 @@ object PetWelfareNetwork {
 
     suspend fun getVerification(verifyType: String, mailbox: String) = beginService
         .getVerification(verifyType, mailbox)
-        //.await()
+        .await()
 
     suspend fun register(mailbox: String, password: String, verification: String) = beginService
         .register(mailbox, password, verification)
-        //.await()
+        .await()
 
     suspend fun resetPassword(mailbox: String, password: String, verification: String) = beginService
         .resetPassword(mailbox, password, verification)
-        //.await()
+        .await()
 
     suspend fun refreshToken(Authorization: String) = beginService
         .refreshToken(Authorization)
@@ -339,44 +345,34 @@ object PetWelfareNetwork {
         .await()
 
     private suspend fun <T> Call<T>.await(): T {
-        Log.d("aaaaa","aaaaa")
+        Log.d("goRequest","yes")
         return suspendCoroutine { continuation ->
-            Log.d("aa","aa")
+            Log.d("enterCoroutine","yes")
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
-                    Log.d("response", "response")
+                    Log.d("response", "success")
                     val body = response.body()
-                    if (body != null) continuation.resume(body)
-                    else continuation.resumeWithException(RuntimeException("response body is null"))
+                    val errorBodyString = response.errorBody()?.string()   // 是string()，而不是toString()
+                    val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
+                    Log.d("response.body()", response.body().toString())
+                    Log.d("response.errorBody()", response.errorBody().toString())
+                    Log.d("code", response.code().toString())
+                    Log.d("errorResponse.msg", errorResponse.msg)
+
+                    if (body != null) {
+                        continuation.resume(body)
+                    }
+                    else {
+                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
+                        //continuation.resumeWithException(RuntimeException("response body is null"))
+                    }
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {
-                    Log.d("aaaaaa","aaaaaa")
+                    Log.d("response","failure")
                     continuation.resumeWithException(t)
                 }
             })
-            Log.d("aaa","aaa")
-        }
-    }
-
-    private suspend fun <T> Call<T>.await2(): T {
-        Log.d("aaaaa","aaaaa")
-        return suspendCoroutine { continuation ->
-            Log.d("aa","aa")
-            enqueue(object : Callback<T> {
-                override fun onResponse(call: Call<T>, response: Response<T>) {
-                    Log.d("response", "response")
-                    val body = response.body()
-                    if (body != null) continuation.resume(body)
-                    else continuation.resumeWithException(RuntimeException("response body is null"))
-                }
-
-                override fun onFailure(call: Call<T>, t: Throwable) {
-                    Log.d("aaaaaa","aaaaaa")
-                    continuation.resumeWithException(t)
-                }
-            })
-            Log.d("aaa","aaa")
         }
     }
 

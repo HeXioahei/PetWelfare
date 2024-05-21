@@ -1,10 +1,13 @@
 package com.example.petwelfare
 
 import android.app.Activity
+import com.example.petwelfare.ui.MainActivity
 import com.example.petwelfare.ui.begin.LoginActivity
 
 object ActivityCollector {
     private val activities = ArrayList<Activity> ()
+
+    var mainActivity = MainActivity()
 
     fun addActivity(activity: Activity) {
         if(!activities.contains(activity)) {

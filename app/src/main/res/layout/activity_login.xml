@@ -76,7 +76,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <com.google.android.material.carousel.MaskableFrameLayout
-        android:id="@+id/fragment"
+        android:id="@+id/fragmentLogin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
