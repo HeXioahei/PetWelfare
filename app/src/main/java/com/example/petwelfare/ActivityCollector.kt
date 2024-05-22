@@ -3,11 +3,13 @@ package com.example.petwelfare
 import android.app.Activity
 import com.example.petwelfare.ui.MainActivity
 import com.example.petwelfare.ui.begin.LoginActivity
+import com.example.petwelfare.ui.mine.MineActivity
 
 object ActivityCollector {
     private val activities = ArrayList<Activity> ()
 
     var mainActivity = MainActivity()
+    var mineActivity = MineActivity()
 
     fun addActivity(activity: Activity) {
         if(!activities.contains(activity)) {

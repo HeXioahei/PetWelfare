@@ -11,13 +11,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentItemSquareBinding
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.MainActivity
 import com.example.petwelfare.ui.listadapter.ArticlesAdapter
 
-class ItemSquareFragment(val activity: MainActivity) : Fragment() {
+class ItemSquareFragment : Fragment() {
+
+    private val mainActivity = ActivityCollector.mainActivity
 
     private lateinit var binding: FragmentItemSquareBinding
     private var articlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(), Article())
@@ -29,9 +32,9 @@ class ItemSquareFragment(val activity: MainActivity) : Fragment() {
 
         val viewModel: ItemSquareViewModel by viewModels()
 
-        val articlesAdapter = ArticlesAdapter(articlesList, activity)
+        val articlesAdapter = ArticlesAdapter(articlesList, mainActivity)
         binding.articlesList.adapter = articlesAdapter
-        val layoutManager = LinearLayoutManager(activity)
+        val layoutManager = LinearLayoutManager(mainActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.articlesList.layoutManager = layoutManager
 
@@ -42,7 +45,7 @@ class ItemSquareFragment(val activity: MainActivity) : Fragment() {
             }
         }
 
-        viewModel.articlesResponse.observe(activity) { result->
+        viewModel.articlesResponse.observe(mainActivity) { result->
             Log.d("articlesResponse", "articlesResponse")
             if (result == null) {
                 binding.swipeRefresh.isRefreshing = false

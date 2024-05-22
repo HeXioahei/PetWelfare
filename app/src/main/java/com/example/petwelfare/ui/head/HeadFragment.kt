@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui
+package com.example.petwelfare.ui.head
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,17 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentHeadBinding
-import com.example.petwelfare.ui.head.ItemDiscussFragment
-import com.example.petwelfare.ui.head.ItemFollowFragment
-import com.example.petwelfare.ui.head.ItemNearFragment
-import com.example.petwelfare.ui.head.ItemCommunityFragment
-import com.example.petwelfare.ui.head.ItemSquareFragment
 import com.example.petwelfare.ui.navadapter.HeadNavAdapter
 import com.example.petwelfare.ui.viewpageradapter.HeadFragmentStateAdapter
 
@@ -26,11 +19,11 @@ class HeadFragment : Fragment() {
 
     private val navItemList = listOf("广场", "关注", "社区", "讨论", "附近")
     private val viewPagerList: List<Fragment> = listOf(
-        ItemSquareFragment(ActivityCollector.mainActivity),
-        ItemFollowFragment(ActivityCollector.mainActivity),
-        ItemCommunityFragment(ActivityCollector.mainActivity),
-        ItemDiscussFragment(ActivityCollector.mainActivity),
-        ItemNearFragment(ActivityCollector.mainActivity)
+        ItemSquareFragment(),
+        ItemFollowFragment(),
+        ItemCommunityFragment(),
+        ItemDiscussFragment(),
+        ItemNearFragment()
     )
 
     companion object {

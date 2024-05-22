@@ -1,23 +1,24 @@
-package com.example.petwelfare.ui.head
+package com.example.petwelfare.ui.discovery
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
+import com.example.petwelfare.databinding.FragmentItemAdoptionBinding
 import com.example.petwelfare.ui.MainActivity
 
-class ItemCommunityFragment : Fragment() {
 
-    private val mainActivity = ActivityCollector.mainActivity
+class ItemAdoptionFragment : Fragment() {
+
+    private lateinit var binding : FragmentItemAdoptionBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_community, container, false)
+    ): View {
+        binding = FragmentItemAdoptionBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

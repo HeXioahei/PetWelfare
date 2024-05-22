@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -17,10 +19,20 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.mine.edit.EditMyInfoActivity
+import com.example.petwelfare.ui.mine.item.ItemCollectionFragment
+import com.example.petwelfare.ui.mine.item.ItemLikesFragment
+import com.example.petwelfare.ui.mine.item.ItemMineFragment
+import com.example.petwelfare.ui.mine.item.ItemPetFragment
 
 class MineActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMineBinding
+
+    private val fragmentManager = supportFragmentManager
+    private val itemMineFragment = ItemMineFragment()
+    private val itemCollectionFragment = ItemCollectionFragment()
+    private val itemPetFragment = ItemPetFragment()
+    private val itemLikesFragment = ItemLikesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +40,7 @@ class MineActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ActivityCollector.addActivity(this)
+        ActivityCollector.mineActivity = this
 
         // 设置其他信息
 //        binding.username.text = "aaaaaaaaa"
@@ -37,21 +50,6 @@ class MineActivity : AppCompatActivity() {
 //        binding.followsNum.text = "aaaaaaaaa"
 //        binding.integralsNum.text = "aaaaaaaaa"
 //        binding.telephone.text = "aaaaaaaaa"
-
-        // 设置底部总导航栏
-        val navigationView = binding.navigationView
-        // 1、先拿 NavHostFragment
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        // 2、再通过 navHostFragment 来拿 NavController
-        val navController: NavController = navHostFragment.navController
-        // 3、然后将 navigationView 和 navController 绑定
-        navigationView.setupWithNavController(navController)
-        // 将 item 背景色调为透明
-        //navigationView.itemIconTintList = null
-
-
-
 
         // 创建viewModel
         val viewModel: MineViewModel by viewModels()
@@ -115,6 +113,48 @@ class MineActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        binding.itemMine.setOnClickListener {
+            replaceFragment("mine")
+        }
+        binding.itemPet.setOnClickListener {
+            replaceFragment("pet")
+        }
+        binding.itemCollection.setOnClickListener {
+            replaceFragment("collection")
+        }
+        binding.itemLike.setOnClickListener {
+            replaceFragment("like")
+        }
+
+
+
+    }
+
+    // 更换fragment
+    private fun replaceFragment(type: String) {
+        // 创建FragmentTransaction实例
+        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+        // 添加fragment
+        when (type) {
+            "mine" -> {
+                transaction.replace(R.id.fragment_container_me, itemMineFragment)
+            }
+
+            "pet" -> {
+                transaction.replace(R.id.fragment_container_me, itemPetFragment)
+            }
+
+            "collection" -> {
+                transaction.replace(R.id.fragment_container_me, itemCollectionFragment)
+            }
+
+            "like" -> {
+                transaction.replace(R.id.fragment_container_me, itemLikesFragment)
+            }
+        }
+        // 提交事务
+        transaction.commit()
     }
 
     override fun onDestroy() {

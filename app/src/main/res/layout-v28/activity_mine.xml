@@ -6,36 +6,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.mine.MineActivity"
-    android:elevation="0dp">
+    tools:context=".ui.mine.MineActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="1dp">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/shapeableImageView2"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="100dp"
-                android:elevation="3dp"
-                android:layout_marginHorizontal="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                 />
+                android:background="@drawable/img_me_decorate"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/headImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="85dp"
-                android:layout_marginStart="35dp"
+                android:layout_marginTop="155dp"
+                android:layout_marginStart="25dp"
                 android:elevation="4dp"
                 android:background="@drawable/img_headimage"
                 app:shapeAppearanceOverlay="@style/CircleShapeAppearanceOverlay"
@@ -43,12 +36,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoCard"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="100dp"
-                android:elevation="3dp"
+                android:layout_marginTop="180dp"
                 android:padding="10dp"
-                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_me_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -114,6 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="90dp"
                     android:orientation="vertical"
+                    android:elevation="1dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
@@ -143,10 +137,12 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="60dp"
-                    android:layout_height="80dp"
+                    android:id="@+id/linearLayoutCompat7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edit">
 
@@ -154,51 +150,91 @@
                         android:id="@+id/integralsNum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="720"
                         android:layout_gravity="center"
-                        android:textSize="30sp"/>
+                        android:text="720"
+                        android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/integrals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="积分"
                         android:layout_gravity="center"
-                        android:textSize="18sp"/>
+                        android:text="积分"
+                        android:textSize="15sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/img_paw_big"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/img_paw_small"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/navigationView"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/shapeableImageView2"
-                app:menu="@menu/menu_mine"
-                app:itemTextColor="@color/black"
-                app:itemTextAppearanceActive="@color/black"
-                app:labelVisibilityMode="labeled"/>
+                android:layout_height="40dp"
+                app:layout_constraintTop_toBottomOf="@id/infoCard">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/item_mine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="推文"
+                    app:layout_constraintEnd_toStartOf="@+id/item_pet"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/item_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="宠物屋"
+                    app:layout_constraintEnd_toStartOf="@+id/item_collection"
+                    app:layout_constraintStart_toEndOf="@+id/item_mine" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/item_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="收藏"
+                    app:layout_constraintEnd_toStartOf="@+id/item_like"
+                    app:layout_constraintStart_toEndOf="@+id/item_pet" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/item_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="点赞"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/item_collection" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.carousel.MaskableFrameLayout
+                android:id="@+id/fragment_container_me"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="20dp"
-                android:elevation="5dp"
-                app:defaultNavHost="true"
-                app:layout_constraintTop_toBottomOf="@id/navigationView"
-                app:navGraph="@navigation/navigation_mine" />
+                android:layout_height="700dp"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout8" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

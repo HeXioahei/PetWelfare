@@ -17,8 +17,14 @@ import com.example.petwelfare.ui.mine.MineViewModel
 
 class ItemMineFragment : Fragment() {
 
+
+
     private lateinit var binding : FragmentItemMineBinding
-    private lateinit var navList: MutableList<View>
+//    private lateinit var navList: MutableList<View>
+
+    companion object{
+        var viewPagerCurrentPosition = 0
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,74 +32,74 @@ class ItemMineFragment : Fragment() {
     ): View {
         binding = FragmentItemMineBinding.inflate(inflater, container, false)
 
-        navList = mutableListOf(binding.article, binding.loss, binding.stray)
-
-        val activity = activity as MineActivity
-
-        val viewModel: ItemMineViewModel by viewModels()
-        val viewModel2: MineViewModel by viewModels()
-
-        viewModel.setId(viewModel2.myDetail.id)
-
-        viewModel.myArticlesData.observe(activity) { result->
-            val list = result.getOrNull()
-            if (list != null) {
-                viewModel.myArticles = list
-            }
-        }
-
-        viewModel.myLossData.observe(activity) { result->
-            val list = result.getOrNull()
-            if (list != null) {
-                viewModel.myLoss = list
-            }
-        }
-
-        viewModel.myStrayData.observe(activity) { result->
-            val list = result.getOrNull()
-            if (list != null) {
-                viewModel.myStray = list
-            }
-        }
-
-        val layoutInflater = LinearLayoutManager(activity)
-        layoutInflater.orientation = LinearLayoutManager.VERTICAL
-
-        val myArticleAdapter0 = ArticlesAdapter(viewModel.myArticles, activity)
-        binding.itemMineRecyclerView.adapter = myArticleAdapter0
-        binding.itemMineRecyclerView.layoutManager = layoutInflater
-
-        binding.article.setOnClickListener {
-            cursorMove(binding.article)
-            val myArticleAdapter = ArticlesAdapter(viewModel.myArticles, activity)
-            binding.itemMineRecyclerView.adapter = myArticleAdapter
-            binding.itemMineRecyclerView.layoutManager = layoutInflater
-        }
-
-        binding.loss.setOnClickListener {
-            cursorMove(binding.loss)
-            val myLossAdapter = LossAdapter(viewModel.myLoss, activity)
-            binding.itemMineRecyclerView.adapter = myLossAdapter
-            binding.itemMineRecyclerView.layoutManager = layoutInflater
-        }
-
-        binding.stray.setOnClickListener {
-            cursorMove(binding.stray)
-            val myStrayAdapter = StrayAdapter(viewModel.myStray, activity)
-            binding.itemMineRecyclerView.adapter = myStrayAdapter
-            binding.itemMineRecyclerView.layoutManager = layoutInflater
-        }
+//        navList = mutableListOf(binding.article, binding.loss, binding.stray)
+//
+//        val activity = activity as MineActivity
+//
+//        val viewModel: ItemMineViewModel by viewModels()
+//        val viewModel2: MineViewModel by viewModels()
+//
+//        viewModel.setId(viewModel2.myDetail.id)
+//
+//        viewModel.myArticlesData.observe(activity) { result->
+//            val list = result.getOrNull()
+//            if (list != null) {
+//                viewModel.myArticles = list
+//            }
+//        }
+//
+//        viewModel.myLossData.observe(activity) { result->
+//            val list = result.getOrNull()
+//            if (list != null) {
+//                viewModel.myLoss = list
+//            }
+//        }
+//
+//        viewModel.myStrayData.observe(activity) { result->
+//            val list = result.getOrNull()
+//            if (list != null) {
+//                viewModel.myStray = list
+//            }
+//        }
+//
+//        val layoutInflater = LinearLayoutManager(activity)
+//        layoutInflater.orientation = LinearLayoutManager.VERTICAL
+//
+//        val myArticleAdapter0 = ArticlesAdapter(viewModel.myArticles, activity)
+//        binding.itemMineRecyclerView.adapter = myArticleAdapter0
+//        binding.itemMineRecyclerView.layoutManager = layoutInflater
+//
+//        binding.article.setOnClickListener {
+//            cursorMove(binding.article)
+//            val myArticleAdapter = ArticlesAdapter(viewModel.myArticles, activity)
+//            binding.itemMineRecyclerView.adapter = myArticleAdapter
+//            binding.itemMineRecyclerView.layoutManager = layoutInflater
+//        }
+//
+//        binding.loss.setOnClickListener {
+//            cursorMove(binding.loss)
+//            val myLossAdapter = LossAdapter(viewModel.myLoss, activity)
+//            binding.itemMineRecyclerView.adapter = myLossAdapter
+//            binding.itemMineRecyclerView.layoutManager = layoutInflater
+//        }
+//
+//        binding.stray.setOnClickListener {
+//            cursorMove(binding.stray)
+//            val myStrayAdapter = StrayAdapter(viewModel.myStray, activity)
+//            binding.itemMineRecyclerView.adapter = myStrayAdapter
+//            binding.itemMineRecyclerView.layoutManager = layoutInflater
+//        }
 
         return binding.root
     }
 
-    private fun cursorMove(view: View) {
-        for (view2 in navList) {
-            if (view2.background.isVisible) {
-                view2.background.setVisible(false, true)
-            }
-        }
-        view.background.setVisible(true, true)
-    }
+//    private fun cursorMove(view: View) {
+//        for (view2 in navList) {
+//            if (view2.background.isVisible) {
+//                view2.background.setVisible(false, true)
+//            }
+//        }
+//        view.background.setVisible(true, true)
+//    }
 
 }

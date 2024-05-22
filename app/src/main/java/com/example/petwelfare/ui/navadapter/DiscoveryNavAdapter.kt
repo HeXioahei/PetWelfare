@@ -1,26 +1,25 @@
 package com.example.petwelfare.ui.navadapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.databinding.ItemNavHeadBinding
-import com.example.petwelfare.ui.head.HeadFragment
+import com.example.petwelfare.databinding.ItemNavCommonBinding
+import com.example.petwelfare.ui.discovery.DiscoveryFragment
 
-class HeadNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<HeadNavAdapter.MyViewHolder>() {
+class DiscoveryNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<DiscoveryNavAdapter.MyViewHolder>() {
 
-    inner class MyViewHolder(binding: ItemNavHeadBinding) : ViewHolder(binding.root) {
+    inner class MyViewHolder(binding: ItemNavCommonBinding) : RecyclerView.ViewHolder(binding.root) {
         val item = binding.navItem
         val itemText = binding.navItemText
         val itemCursor = binding.navItemCursor
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemNavHeadBinding.inflate(
+        val binding = ItemNavCommonBinding.inflate(
             LayoutInflater.from(PetWelfareApplication.context),
             parent,
             false
@@ -37,17 +36,16 @@ class HeadNavAdapter(private val list: List<String>, private val viewPager: View
         holder.item.setOnClickListener {
             // 导航栏 item 被点击时，光标跟着变化，ViewPager2 的 item 也跟着变化
             viewPager.currentItem = holder.bindingAdapterPosition
-            HeadFragment.viewPagerCurrentPosition = position
+            DiscoveryFragment.viewPagerCurrentPosition = position
             notifyDataSetChanged()
         }
         // 设置光标和背景的变化
-        val currentPosition = HeadFragment.viewPagerCurrentPosition
-
+        val currentPosition = DiscoveryFragment.viewPagerCurrentPosition
         if (currentPosition == position) {
-            holder.itemCursor.visibility = View.VISIBLE
             holder.itemText.paint.isFakeBoldText = true
+            holder.itemText.setTextColor(Color.BLACK)
         } else {
-            holder.itemCursor.visibility = View.INVISIBLE
+            holder.itemText.setTextColor(Color.GRAY)
             holder.itemText.paint.isFakeBoldText = false
         }
     }

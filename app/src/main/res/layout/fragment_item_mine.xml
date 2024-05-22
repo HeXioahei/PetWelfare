@@ -3,51 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.mine.item.ItemMineFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraintLayout2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/article"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="日常分享"
-            android:background="@drawable/bg_cursor"
-            app:layout_constraintStart_toStartOf="parent" />
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/article"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:text="日常分享"-->
+<!--            android:background="@drawable/bg_cursor"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/loss"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="我的走失宠物"
-            android:gravity="center"
-            android:background="@drawable/bg_cursor"
-            app:layout_constraintStart_toEndOf="@+id/article"
-            app:layout_constraintEnd_toStartOf="@id/stray" />
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/loss"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="我的走失宠物"-->
+<!--            android:gravity="center"-->
+<!--            android:background="@drawable/bg_cursor"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/article"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/stray" />-->
 
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/stray"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="我发现的流浪动物"
-            android:gravity="center"
-            android:background="@drawable/bg_cursor"
-            app:layout_constraintEnd_toEndOf="parent" />
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/stray"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="我发现的流浪动物"-->
+<!--            android:gravity="center"-->
+<!--            android:background="@drawable/bg_cursor"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/item_mine_recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_mine_recyclerView"
+        android:id="@+id/navBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

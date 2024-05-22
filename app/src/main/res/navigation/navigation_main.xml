@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/head"
-        android:name="com.example.petwelfare.ui.HeadFragment"
+        android:name="com.example.petwelfare.ui.head.HeadFragment"
         tools:layout="@layout/fragment_head">
         <action
             android:id="@+id/action_head_to_discovery"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/discovery"
-        android:name="com.example.petwelfare.ui.DiscoveryFragment"
+        android:name="com.example.petwelfare.ui.discovery.DiscoveryFragment"
         tools:layout="@layout/fragment_discovery">
         <action
             android:id="@+id/action_discovery_to_blank"
