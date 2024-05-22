@@ -46,5 +46,4 @@
         android:name="com.example.petwelfare.ui.MeFragment"
         tools:layout="@layout/fragment_me"/>
 
-
 </navigation>

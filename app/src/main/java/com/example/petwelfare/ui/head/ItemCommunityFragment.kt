@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import com.example.petwelfare.R
 import com.example.petwelfare.ui.MainActivity
 
-class ItemRecommendFragment(activity: MainActivity) : Fragment() {
+class ItemCommunityFragment(activity: MainActivity) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_recommend, container, false)
+        return inflater.inflate(R.layout.fragment_item_community, container, false)
     }
 }

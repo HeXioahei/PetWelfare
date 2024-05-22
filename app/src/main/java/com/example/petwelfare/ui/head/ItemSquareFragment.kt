@@ -15,7 +15,7 @@ class ItemSquareFragment(activity: MainActivity) : Fragment() {
     private lateinit var binding: FragmentItemSquareBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         binding = FragmentItemSquareBinding.inflate(inflater, container, false)
         return binding.root
     }
