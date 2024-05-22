@@ -356,14 +356,13 @@ object PetWelfareNetwork {
                     val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
                     Log.d("response.body()", response.body().toString())
                     Log.d("response.errorBody()", response.errorBody().toString())
-                    Log.d("code", response.code().toString())
-                    Log.d("errorResponse.msg", errorResponse.msg)
-
+                    //Log.d("code", response.code().toString())
+                    //Log.d("errorResponse.msg", errorResponse.msg)
                     if (body != null) {
                         continuation.resume(body)
                     }
                     else {
-                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
                         //continuation.resumeWithException(RuntimeException("response body is null"))
                     }
                 }
