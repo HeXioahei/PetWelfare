@@ -19,7 +19,7 @@ class AddLossActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAddLossBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
 
         ActivityCollector.addActivity(this)
 

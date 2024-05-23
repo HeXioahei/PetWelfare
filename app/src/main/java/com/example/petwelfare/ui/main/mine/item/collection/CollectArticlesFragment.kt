@@ -32,7 +32,7 @@ class CollectArticlesFragment : Fragment() {
         val viewModel : ItemCollectionViewModel by viewModels()
 
         // 获取列表
-        viewModel.getCollectArticles()
+        //viewModel.getCollectArticles()
 
         val collectArticlesAdapter = ArticlesAdapter(collectArticlesList, mineActivity)
         binding.collectArticles.adapter = collectArticlesAdapter

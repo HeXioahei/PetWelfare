@@ -35,12 +35,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="371ba8c8f83c3fb86a0426d8640bd0bb" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name=".ui.main.AddActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.main.mine.pet.PetListActivity"
             android:exported="false" />
-         <activity
-         android:name=".ui.item.articles.AddArticlesActivity"
-         android:exported="false" />
+        <activity
+            android:name=".ui.item.articles.AddArticlesActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.item.loss.AddLossActivity"
             android:exported="false" />
@@ -51,12 +61,6 @@
             android:name=".ui.main.mine.pet.AddPetActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="371ba8c8f83c3fb86a0426d8640bd0bb" />
-
-        <service android:name="com.amap.api.location.APSService" />
-
         <activity
             android:name=".ui.item.itemdetail.OrgDetailActivity"
             android:exported="false" />
@@ -66,9 +70,9 @@
         <activity
             android:name=".ui.item.itemdetail.LossDetailActivity"
             android:exported="false" />
-         <activity
-             android:name=".ui.item.itemdetail.ArticleDetailActivity"
-             android:exported="false" />
+        <activity
+            android:name=".ui.item.itemdetail.ArticleDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.main.mine.pet.EditPetInfoActivity"
             android:exported="false" />
@@ -107,18 +111,17 @@
             android:exported="false" />
         <activity
             android:name=".ui.begin.RestorePsdActivity"
-            android:exported="false" />
-<!--         <activity -->
-<!--             android:name=".ui.MainActivity" -->
-<!--             android:exported="false" /> -->
-<!--        <activity -->
-<!--             android:name=".ui.begin.LoginActivity" -->
-<!--             android:exported="true" > -->
-<!--             <intent-filter> -->
-<!--                <action android:name="android.intent.action.MAIN" /> -->
-<!--                <category android:name="android.intent.category.LAUNCHER" /> -->
-<!--             </intent-filter> -->
-<!--        </activity> -->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".ui.MainActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".ui.begin.LoginActivity" -->
+        <!-- android:exported="true" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">

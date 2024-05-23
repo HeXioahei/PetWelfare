@@ -42,7 +42,7 @@ class AddArticlesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()   // 使其紧贴着手机最上面
 
         ActivityCollector.addActivity(this)
 

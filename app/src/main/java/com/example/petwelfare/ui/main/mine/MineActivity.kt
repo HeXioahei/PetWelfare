@@ -4,13 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
@@ -19,8 +15,8 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.main.mine.edit.EditMyInfoActivity
-import com.example.petwelfare.ui.main.mine.item.ItemLikesFragment
-import com.example.petwelfare.ui.main.mine.item.ItemPetFragment
+import com.example.petwelfare.ui.main.mine.item.like.ItemLikesFragment
+import com.example.petwelfare.ui.main.mine.item.pet.ItemPetFragment
 import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
 import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
 
@@ -52,7 +48,7 @@ class MineActivity : AppCompatActivity() {
 //        binding.telephone.text = "aaaaaaaaa"
 
         // 创建viewModel
-        val viewModel: com.example.petwelfare.ui.main.mine.MineViewModel by viewModels()
+        val viewModel: MineViewModel by viewModels()
         // 参考官方文档：
         // https://developer.android.google.cn/topic/libraries/architecture/viewmodel?hl=zh-cn
         // 需引入依赖：implementation("androidx.activity:activity-ktx:1.7.0")
@@ -126,8 +122,6 @@ class MineActivity : AppCompatActivity() {
         binding.itemLike.setOnClickListener {
             replaceFragment("like")
         }
-
-
 
     }
 

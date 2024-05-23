@@ -34,7 +34,7 @@ class CollectLossFragment : Fragment() {
         val viewModel : ItemCollectionViewModel by viewModels()
 
         // 获取列表
-        viewModel.getCollectLoss()
+        //viewModel.getCollectLoss()
 
         val collectLossAdapter = LossAdapter(collectLossList, mineActivity)
         binding.collectLoss.adapter = collectLossAdapter

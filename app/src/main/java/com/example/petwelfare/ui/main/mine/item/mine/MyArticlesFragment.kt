@@ -18,8 +18,6 @@ import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 class MyArticlesFragment : Fragment() {
 
     private lateinit var binding : FragmentMyArticlesBinding
-    private var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
-    private val mineActivity = ActivityCollector.mineActivity
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -29,6 +27,10 @@ class MyArticlesFragment : Fragment() {
         binding = FragmentMyArticlesBinding.inflate(inflater, container,false)
 
         val viewModel : ItemMineViewModel by viewModels()
+
+        var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
+        val mineActivity = ActivityCollector.mineActivity
+
 
         // 获取列表
         viewModel.getMyArticles()

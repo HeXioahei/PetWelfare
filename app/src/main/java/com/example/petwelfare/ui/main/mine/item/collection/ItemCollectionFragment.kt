@@ -30,14 +30,14 @@ class ItemCollectionFragment : Fragment() {
     private lateinit var binding : FragmentItemCollectionBinding
     //private lateinit var navList: MutableList<View>
 
-    private val mineActivity = ActivityCollector.mineActivity
+//    private val mineActivity = ActivityCollector.mineActivity
 
-    private val navItemList = listOf("日常分享", "走失动物", "流浪动物")
-    private val viewPagerList: List<Fragment> = listOf(
-        CollectArticlesFragment(),
-        CollectLossFragment(),
-        CollectStrayFragment()
-    )
+//    private val navItemList = listOf("日常分享", "走失动物", "流浪动物")
+//    private val viewPagerList: List<Fragment> = listOf(
+//        CollectArticlesFragment(),
+//        CollectLossFragment(),
+//        CollectStrayFragment()
+//    )
 
     companion object {
         var viewPagerCurrentPosition = 0
@@ -118,6 +118,16 @@ class ItemCollectionFragment : Fragment() {
 //            binding.collectionRecyclerView.adapter = collectOrgAdapter
 //            binding.collectionRecyclerView.layoutManager = layoutInflater
 //        }
+
+        val mineActivity = ActivityCollector.mineActivity
+
+        val navItemList = listOf("日常分享", "走失动物", "流浪动物")
+
+        val viewPagerList: List<Fragment> = listOf(
+            CollectArticlesFragment(),
+            CollectLossFragment(),
+            CollectStrayFragment()
+        )
 
         val navAdapter = CollectionNavAdapter(navItemList, binding.viewPager)
         binding.navBar.adapter = navAdapter

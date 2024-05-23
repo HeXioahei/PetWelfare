@@ -3,72 +3,267 @@
     android:id="@+id/swipeRefresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mine.pet.PetActivity"
     android:background="@drawable/bg_whole">
 
-    <androidx.core.widget.NestedScrollView
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/edit"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/btn_edit"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginTop="20dp"/>-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/returnBtn"-->
+<!--                android:layout_width="32dp"-->
+<!--                android:layout_height="32dp"-->
+<!--                android:background="@drawable/btn_return_black"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="20dp" />-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/petHeadImage"-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:background="@drawable/img_headimage"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/returnBtn" />-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/petName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="名字"-->
+<!--                android:textSize="25sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/petHeadImage"-->
+<!--                android:layout_marginTop="5dp"/>-->
+
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/linearLayoutCompat6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/petName">-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/bg_edit_item">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/materialTextView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:text="性别："-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/sex"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="雌"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/materialTextView"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/bg_edit_item">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/materialTextView2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:text="生日："-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/birthday"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="2024/01/02"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/materialTextView2"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/bg_edit_item">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/materialTextView3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:text="种类："-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/type"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="中华田园猫"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/materialTextView3"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/bg_edit_item">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/materialTextView4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="20dp"-->
+<!--                        android:text="介绍："-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/description"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="超级可爱"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/materialTextView4"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/materialTextView6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="照片墙"-->
+<!--                android:textSize="30sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat6" />-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/materialTextView6"-->
+<!--                tools:layout_editor_absoluteX="0dp"-->
+<!--                android:layout_marginTop="10dp"/>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/returnBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/btn_return_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/edit"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/btn_edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"/>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/returnBtn"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/btn_return_black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp" />
+            android:id="@+id/constraintLayout9"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:background="@drawable/bg_pet_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/petHeadImage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/img_headimage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/returnBtn" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/petName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="#ffffff"
                 android:text="名字"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/petHeadImage"
-                android:layout_marginTop="5dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/petHeadImage" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutCompat6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/petName">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_edit_item">
+                    android:layout_height="40dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/materialTextView"
@@ -76,7 +271,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:text="性别："
-                        android:textSize="20sp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +282,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="雌"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/materialTextView"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -95,8 +291,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_edit_item">
+                    android:layout_height="40dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/materialTextView2"
@@ -104,7 +299,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:text="生日："
-                        android:textSize="20sp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -114,7 +310,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2024/01/02"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/materialTextView2"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -123,8 +319,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_edit_item">
+                    android:layout_height="40dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/materialTextView3"
@@ -132,7 +327,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:text="种类："
-                        android:textSize="20sp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -142,7 +338,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="中华田园猫"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/materialTextView3"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -151,17 +347,17 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_edit_item">
+                    android:layout_height="100dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/materialTextView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
                         android:text="介绍："
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textColor="@color/text_gray"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -169,9 +365,9 @@
                         android:id="@+id/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="超级可爱"
-                        android:textSize="17sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="5dp"
+                        android:text="超级可爱\n很可爱\n真的可爱"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/materialTextView4"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -179,28 +375,31 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/materialTextView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="照片墙"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat6" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView6"
-                tools:layout_editor_absoluteX="0dp"
-                android:layout_marginTop="10dp"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:text="照片墙"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/picture_container"
+            android:layout_width="320dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_picture_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,5 +1,9 @@
 package com.example.petwelfare.logic.model
 
+import android.os.Parcel
+import android.os.Parcelable
+import java.io.Serializable
+
 data class GetPetsInfoResponse(
     val code: Int,
     val msg: String,
@@ -35,7 +39,8 @@ data class Pet(
 
     var sex: String,
     var type: String
-) {
+) : Serializable {
+
     constructor() : this(
         "aa", "aa", "aa", "aa",
         0, arrayListOf(), "aa", "aa"

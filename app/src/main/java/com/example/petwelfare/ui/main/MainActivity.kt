@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
         navigationView.setupWithNavController(navController)
         // 将 item 背景色调为透明
         //navigationView.itemIconTintList = null
+
+        binding.toWriteBtn.setOnClickListener {
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

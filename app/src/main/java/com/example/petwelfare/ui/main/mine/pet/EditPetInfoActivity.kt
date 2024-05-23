@@ -38,11 +38,11 @@ class EditPetInfoActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.petName.text = viewModel.petInfo.name
-        binding.sex.text = viewModel.petInfo.sex
-        binding.type.text = viewModel.petInfo.type
-        binding.birthday.text = viewModel.petInfo.birthday
-        binding.description.text = viewModel.petInfo.description
+        binding.petName.setText(viewModel.petInfo.name)
+        binding.sex.setText(viewModel.petInfo.sex)
+        binding.type.setText(viewModel.petInfo.type)
+        binding.birthday.setText(viewModel.petInfo.birthday)
+        binding.description.setText(viewModel.petInfo.description)
 
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
@@ -75,22 +75,22 @@ class EditPetInfoActivity : AppCompatActivity() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        // 修改信息
-        binding.petName.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.name, "changePetName")
-        }
-        binding.changeSex.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.sex, "changeSex")
-        }
-        binding.changeBirthday.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.birthday, "changeBirthday")
-        }
-        binding.changeType.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.type, "changeType")
-        }
-        binding.changeDescription.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.description, "changeDescription")
-        }
+//        // 修改信息
+//        binding.petName.setOnClickListener {
+//            showAlertDialog(viewModel.petInfo.name, "changePetName")
+//        }
+//        binding.changeSex.setOnClickListener {
+//            showAlertDialog(viewModel.petInfo.sex, "changeSex")
+//        }
+//        binding.changeBirthday.setOnClickListener {
+//            showAlertDialog(viewModel.petInfo.birthday, "changeBirthday")
+//        }
+//        binding.changeType.setOnClickListener {
+//            showAlertDialog(viewModel.petInfo.type, "changeType")
+//        }
+//        binding.changeDescription.setOnClickListener {
+//            showAlertDialog(viewModel.petInfo.description, "changeDescription")
+//        }
     }
 
     private fun showAlertDialog(initText: String, type: String) {

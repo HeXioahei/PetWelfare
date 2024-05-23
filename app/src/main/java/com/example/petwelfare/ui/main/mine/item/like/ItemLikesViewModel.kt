@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.main.mine.item
+package com.example.petwelfare.ui.main.mine.item.like
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

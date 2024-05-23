@@ -33,7 +33,7 @@ class CollectStrayFragment : Fragment() {
         val viewModel : ItemCollectionViewModel by viewModels()
 
         // 获取列表
-        viewModel.getCollectStary()
+        //viewModel.getCollectStary()
 
         val collectStrayAdapter = StrayAdapter(collectStrayList, mineActivity)
         binding.collectStray.adapter = collectStrayAdapter

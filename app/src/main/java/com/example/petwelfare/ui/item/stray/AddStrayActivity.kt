@@ -33,7 +33,7 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         ActivityCollector.addActivity(this)
 
         binding = ActivityAddStrayBinding.inflate(layoutInflater)
