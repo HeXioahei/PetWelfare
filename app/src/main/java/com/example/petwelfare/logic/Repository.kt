@@ -11,7 +11,7 @@ object Repository {
     var Authorization : String = ""
     var myId: Long = 0
     var refreshToken : String = ""
-    var userDetail: UserDetail = UserDetail()
+    var myDetail: UserDetail = UserDetail()
     var mailbox : String = ""
 
     fun login(mailbox: String, password: String) = liveData(Dispatchers.IO) {

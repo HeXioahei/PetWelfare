@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/head"
-        android:name="com.example.petwelfare.ui.head.HeadFragment"
+        android:name="com.example.petwelfare.ui.main.head.HeadFragment"
         tools:layout="@layout/fragment_head">
         <action
             android:id="@+id/action_head_to_discovery"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/discovery"
-        android:name="com.example.petwelfare.ui.discovery.DiscoveryFragment"
+        android:name="com.example.petwelfare.ui.main.discovery.DiscoveryFragment"
         tools:layout="@layout/fragment_discovery">
         <action
             android:id="@+id/action_discovery_to_blank"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/message"
-        android:name="com.example.petwelfare.ui.MessageFragment"
+        android:name="com.example.petwelfare.ui.main.message.MessageFragment"
         tools:layout="@layout/fragment_message">
         <action
             android:id="@+id/action_message_to_me"
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/me"
-        android:name="com.example.petwelfare.ui.MeFragment"
+        android:name="com.example.petwelfare.ui.main.mine.MeFragment"
         tools:layout="@layout/fragment_me"/>
 
 </navigation>

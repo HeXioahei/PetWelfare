@@ -353,7 +353,7 @@ object PetWelfareNetwork {
                     Log.d("response", "success")
                     val body = response.body()
                     val errorBodyString = response.errorBody()?.string()   // 是string()，而不是toString()
-                    val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
+                    //val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
                     Log.d("response.body()", response.body().toString())
                     Log.d("response.errorBody()", response.errorBody().toString())
                     //Log.d("code", response.code().toString())

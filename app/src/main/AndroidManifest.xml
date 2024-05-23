@@ -36,19 +36,19 @@
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
         <activity
-            android:name=".ui.mine.pet.PetListActivity"
+            android:name=".ui.main.mine.pet.PetListActivity"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".ui.articles.AddArticlesActivity" -->
-        <!-- android:exported="false" /> -->
+         <activity
+         android:name=".ui.item.articles.AddArticlesActivity"
+         android:exported="false" />
         <activity
-            android:name=".ui.loss.AddLossActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.stray.AddStrayActivity"
+            android:name=".ui.item.loss.AddLossActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.pet.AddPetActivity"
+            android:name=".ui.item.stray.AddStrayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.mine.pet.AddPetActivity"
             android:exported="false" />
 
         <meta-data
@@ -58,67 +58,69 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".ui.itemdetail.OrgDetailActivity"
+            android:name=".ui.item.itemdetail.OrgDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.itemdetail.StrayDetailActivity"
+            android:name=".ui.item.itemdetail.StrayDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.itemdetail.LossDetailActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ui.itemdetail.ArticleDetailActivity" -->
-        <!-- android:exported="false" /> -->
+            android:name=".ui.item.itemdetail.LossDetailActivity"
+            android:exported="false" />
+         <activity
+             android:name=".ui.item.itemdetail.ArticleDetailActivity"
+             android:exported="false" />
         <activity
-            android:name=".ui.mine.pet.EditPetInfoActivity"
+            android:name=".ui.main.mine.pet.EditPetInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.pet.PetActivity"
+            android:name=".ui.main.mine.pet.PetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.users.FollowsActivity"
+            android:name=".ui.main.mine.users.FollowsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.users.FansActivity"
+            android:name=".ui.main.mine.users.FansActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.talk.TalkActivity"
+            android:name=".ui.main.mine.talk.TalkActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.edit.EditMyInfoActivity"
+            android:name=".ui.main.mine.edit.EditMyInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stray.StrayActivity"
+            android:name=".ui.item.stray.StrayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.orgnization.OrgActivity"
+            android:name=".ui.item.orgnization.OrgActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.list.MyStrayActivity"
+            android:name=".ui.main.mine.list.MyStrayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.list.MyLossActivity"
+            android:name=".ui.main.mine.list.MyLossActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.list.MyArticlesActivity"
+            android:name=".ui.main.mine.list.MyArticlesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mine.MineActivity"
+            android:name=".ui.main.mine.MineActivity"
             android:exported="false" />
         <activity
             android:name=".ui.begin.RestorePsdActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ui.MainActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.begin.LoginActivity" -->
-        <!-- android:exported="true" > -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:exported="false" />
+<!--         <activity -->
+<!--             android:name=".ui.MainActivity" -->
+<!--             android:exported="false" /> -->
+<!--        <activity -->
+<!--             android:name=".ui.begin.LoginActivity" -->
+<!--             android:exported="true" > -->
+<!--             <intent-filter> -->
+<!--                <action android:name="android.intent.action.MAIN" /> -->
+<!--                <category android:name="android.intent.category.LAUNCHER" /> -->
+<!--             </intent-filter> -->
+<!--        </activity> -->
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

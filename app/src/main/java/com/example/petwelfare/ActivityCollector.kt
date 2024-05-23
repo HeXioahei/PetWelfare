@@ -1,9 +1,9 @@
 package com.example.petwelfare
 
 import android.app.Activity
-import com.example.petwelfare.ui.MainActivity
+import com.example.petwelfare.ui.main.MainActivity
 import com.example.petwelfare.ui.begin.LoginActivity
-import com.example.petwelfare.ui.mine.MineActivity
+import com.example.petwelfare.ui.main.mine.MineActivity
 
 object ActivityCollector {
     private val activities = ArrayList<Activity> ()

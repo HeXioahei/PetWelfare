@@ -18,7 +18,7 @@ import com.example.petwelfare.databinding.FragmentLoginBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.dao.MineDao
 import com.example.petwelfare.logic.model.MailboxList
-import com.example.petwelfare.ui.listadapter.MailboxAdapter
+import com.example.petwelfare.ui.adapter.listadapter.MailboxAdapter
 
 @Suppress("DEPRECATION")
 class LoginFragment(private val activity: LoginActivity) : Fragment() {

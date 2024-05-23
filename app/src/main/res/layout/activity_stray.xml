@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.stray.StrayActivity">
+    tools:context=".ui.item.stray.StrayActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

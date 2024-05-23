@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_item"
     android:layout_width="60dp"
-    android:layout_height="35dp">
+    android:layout_height="35dp"
+    android:layout_marginHorizontal="10dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nav_item_text"
