@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityFansBinding
+import com.example.petwelfare.logic.model.UserBrief
 import com.example.petwelfare.ui.adapter.listadapter.UsersAdapter
 
 class FansActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityFansBinding
+    private lateinit var binding : ActivityFansBinding
+    private var fansList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(),UserBrief())
+    private var friendsList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(),UserBrief())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +26,27 @@ class FansActivity : AppCompatActivity() {
 
         val viewModel : FansViewModel by viewModels()
 
-        viewModel.fansData.observe(this) { result->
-            val list = result.getOrNull()
-            if (list != null) {
-                viewModel.fans = list
-            }
+        viewModel.getFans()
+
+        viewModel.fansList.observe(this) { result->
+            fansList = result.data
         }
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val fansAdapter = UsersAdapter(fansList, this)
+        val friendsAdapter = UsersAdapter(friendsList, this)
 
-        val fansAdapter = UsersAdapter(viewModel.fans, this)
-        binding.fansList.adapter = fansAdapter
-        binding.fansList.layoutManager = layoutManager
+        binding.recyclerView.adapter = fansAdapter
+        binding.recyclerView.layoutManager = layoutManager
+
+        binding.fans.setOnClickListener {
+            binding.recyclerView.adapter = fansAdapter
+        }
+
+        binding.fans.setOnClickListener {
+            binding.recyclerView.adapter = friendsAdapter
+        }
 
         binding.returnBtn.setOnClickListener {
             finish()

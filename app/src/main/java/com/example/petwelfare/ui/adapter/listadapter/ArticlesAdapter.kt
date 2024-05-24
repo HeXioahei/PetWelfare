@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
 
-class ArticlesAdapter(private val list: MutableList<Article>, private val activity: Activity) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
+class ArticlesAdapter(private val list: MutableList<Article>, private val context: Context) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -74,8 +75,8 @@ class ArticlesAdapter(private val list: MutableList<Article>, private val activi
         }
         // 点击跳转到具体页
         holder.article.setOnClickListener {
-            val intent = Intent(activity, ArticleDetailActivity::class.java)
-            activity.startActivity(intent)
+            val intent = Intent(context, ArticleDetailActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }

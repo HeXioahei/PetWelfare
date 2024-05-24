@@ -17,7 +17,7 @@ import com.example.petwelfare.ui.adapter.listadapter.PetsAdapter
 import com.example.petwelfare.ui.main.mine.pet.PetListActivity
 import java.util.ArrayList
 
-class ItemPetFragment : Fragment() {
+open class ItemPetFragment(private val userId : Long) : Fragment() {
 
     private lateinit var binding : FragmentItemPetBinding
 //    private var myPetList : MutableList<Pet> = mutableListOf(Pet(), Pet(), Pet(), Pet(), Pet(), Pet())
@@ -31,7 +31,7 @@ class ItemPetFragment : Fragment() {
 
         val viewModel: ItemPetViewModel by viewModels()
 
-        viewModel.getMyPets()
+        viewModel.getMyPets(userId)
 
         val mineActivity = ActivityCollector.mineActivity
 

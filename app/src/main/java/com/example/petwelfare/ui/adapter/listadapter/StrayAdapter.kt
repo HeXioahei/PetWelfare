@@ -1,6 +1,8 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,14 +13,17 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemStrayBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Stray
+import com.example.petwelfare.ui.item.itemdetail.LossDetailActivity
+import com.example.petwelfare.ui.item.itemdetail.StrayDetailActivity
 
-class StrayAdapter (private val list: MutableList<Stray>, private val activity: Activity) : RecyclerView.Adapter<StrayAdapter.ViewHolder>() {
+class StrayAdapter (private val list: MutableList<Stray>, private val context: Context) : RecyclerView.Adapter<StrayAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemStrayBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
         val headImageInStray = binding.headImageInStray
         val findAddress = binding.findAddress
         val finderMessage = binding.finderMessage
+        val stray = binding.stray
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,5 +49,10 @@ class StrayAdapter (private val list: MutableList<Stray>, private val activity: 
         holder.finderMessage.text = item.description
         // 还有收藏图标的设置
         // 。。。。。。
+
+        holder.stray.setOnClickListener {
+            val intent = Intent(context, StrayDetailActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }

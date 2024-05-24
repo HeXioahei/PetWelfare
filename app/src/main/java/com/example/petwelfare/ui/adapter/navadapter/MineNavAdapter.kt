@@ -3,6 +3,7 @@ package com.example.petwelfare.ui.adapter.navadapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -45,9 +46,11 @@ class MineNavAdapter(private val list: List<String>, private val viewPager: View
         if (currentPosition == position) {
             holder.itemText.paint.isFakeBoldText = true
             holder.itemText.setTextColor(Color.BLACK)
+            holder.itemCursor.visibility = View.VISIBLE
         } else {
             holder.itemText.setTextColor(Color.GRAY)
             holder.itemText.paint.isFakeBoldText = false
+            holder.itemCursor.visibility = View.INVISIBLE
         }
     }
 

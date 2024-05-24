@@ -1,6 +1,8 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +13,17 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemLossBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Loss
+import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
+import com.example.petwelfare.ui.item.itemdetail.LossDetailActivity
 import okio.blackholeSink
 
-class LossAdapter(private val list: MutableList<Loss>, private val activity: Activity) : RecyclerView.Adapter<LossAdapter.ViewHolder>() {
+class LossAdapter(private val list: MutableList<Loss>, private val context: Context) : RecyclerView.Adapter<LossAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemLossBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
-        val headImageInLoss = binding.headImageInLoss
-        val nameLoss = binding.nameLoss
-        val addressLoss = binding.addressLoss
-        val ownerMessage = binding.ownerMessage
+        val nameLoss = binding.name
+        val addressLoss = binding.address
+        val loss = binding.loss
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,8 +47,13 @@ class LossAdapter(private val list: MutableList<Loss>, private val activity: Act
         // 设置其他
         holder.addressLoss.text = item.address
         holder.nameLoss.text = item.name
-        holder.ownerMessage.text = item.description
         // 还有收藏图标的设置
         // 。。。。。。
+
+        // 点击跳转到具体页
+        holder.loss.setOnClickListener {
+            val intent = Intent(context, LossDetailActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }

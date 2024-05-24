@@ -19,6 +19,8 @@ import com.example.petwelfare.ui.main.mine.item.like.ItemLikesFragment
 import com.example.petwelfare.ui.main.mine.item.pet.ItemPetFragment
 import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
 import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
+import com.example.petwelfare.ui.main.mine.users.FansActivity
+import com.example.petwelfare.ui.main.mine.users.FollowsActivity
 
 class MineActivity : AppCompatActivity() {
 
@@ -27,7 +29,7 @@ class MineActivity : AppCompatActivity() {
     private val fragmentManager = supportFragmentManager
     private val itemMineFragment = ItemMineFragment()
     private val itemCollectionFragment = ItemCollectionFragment()
-    private val itemPetFragment = ItemPetFragment()
+    private val itemPetFragment = ItemPetFragment(Repository.myId)
     private val itemLikesFragment = ItemLikesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,6 +111,15 @@ class MineActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.fans.setOnClickListener {
+            val intent = Intent(this, FansActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.follows.setOnClickListener {
+            val intent = Intent(this, FollowsActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.itemMine.setOnClickListener {
             replaceFragment("mine")

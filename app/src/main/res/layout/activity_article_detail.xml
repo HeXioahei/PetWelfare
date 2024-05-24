@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_head_bar">
+        android:background="@color/add_head_bar">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/returnBtn"
-            android:layout_width="10dp"
-            android:layout_height="17dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/btn_return_white"
+            android:background="@drawable/btn_return_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,23 +36,32 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="2024/01/04"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_gray"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView4"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="用户名"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="30dp"/>
+            app:layout_constraintTop_toTopOf="@+id/circleImageView" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/publishBtn"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:background="@drawable/img_unfollowed"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/btn_to_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="20dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,7 +74,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,17 +82,52 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/articleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="正文"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="正文\naa\naa\naa\naa\naa\naa\naa\naa\naa\naa\naa\naa\naa"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/articleText">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/picture1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/img_photo" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/picture2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/img_photo" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/picture3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/img_photo" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="100dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView"
@@ -113,36 +157,30 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/to_write_comments"
             android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="5dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/bg_input_comments"
+            android:hint="发表评论"
+            android:paddingHorizontal="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/bg_input_comments"
-                android:hint="发表评论"
-                android:paddingHorizontal="20dp" />
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/to_write_comments"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/likeBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/img_unliked" />
 
@@ -155,8 +193,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/toCommentsBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/btn_to_comments" />
@@ -170,8 +208,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/collectBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/img_uncollected" />
@@ -184,7 +222,6 @@
                 android:text="20" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

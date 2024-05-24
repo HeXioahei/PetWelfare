@@ -18,7 +18,7 @@ import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 
 
-class MyStrayFragment : Fragment() {
+open class MyStrayFragment(private val userId: Long) : Fragment() {
 
     private lateinit var binding : FragmentMyStrayBinding
     private var myStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
@@ -35,7 +35,7 @@ class MyStrayFragment : Fragment() {
         val viewModel : ItemMineViewModel by viewModels()
 
         // 获取列表
-        viewModel.getMyStray()
+        viewModel.getMyStray(userId)
 
         val myStrayAdapter = StrayAdapter(myStrayList, mineActivity)
         binding.myStray.adapter = myStrayAdapter

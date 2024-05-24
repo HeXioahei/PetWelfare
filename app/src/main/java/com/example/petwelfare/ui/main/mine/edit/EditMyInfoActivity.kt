@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
+import com.example.petwelfare.databinding.DialogEditInfoBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.FileBuilder
 import com.example.petwelfare.ui.begin.RestorePsdActivity
@@ -94,15 +95,13 @@ class EditMyInfoActivity : AppCompatActivity() {
     private fun showAlertDialog(initText: String, type: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
 
-        // 创建一个 EditText 视图
-        val input = EditText(this)
-        input.setText(initText)
-        //input.setBackgroundResource(R.drawable.bg_input)
-        alertDialogBuilder.setView(input)
+        val binding : DialogEditInfoBinding = DialogEditInfoBinding.inflate(layoutInflater)
+        alertDialogBuilder.setView(binding.root)
 
-        // 设置对话框的按钮
-        alertDialogBuilder.setPositiveButton("确定") { _, _ ->
-            val inputText = input.text.toString()
+        binding.appCompatEditText.setText(initText)
+
+        binding.changeBtn.setOnClickListener {
+            val inputText = binding.appCompatEditText.toString()
             val Authorization = Repository.Authorization
             when (type) {
                 "changeUsername" -> {
@@ -113,7 +112,6 @@ class EditMyInfoActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show()
                     }
-
                 }
 
                 "changeAddress" -> {
@@ -131,10 +129,8 @@ class EditMyInfoActivity : AppCompatActivity() {
                     viewModel2.setPersonality(inputText)
                 }
             }
-        }
-        alertDialogBuilder.setNegativeButton("取消") { dialog, _ ->
-            // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑
-            dialog.dismiss()
+
+            alertDialogBuilder.setCancelable(true)
         }
 
         // 显示对话框

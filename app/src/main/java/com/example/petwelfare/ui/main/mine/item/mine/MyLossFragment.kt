@@ -20,7 +20,7 @@ import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
 
 
-class MyLossFragment : Fragment() {
+open class MyLossFragment(private val userId: Long) : Fragment() {
 
     private lateinit var binding : FragmentMyLossBinding
 
@@ -38,7 +38,7 @@ class MyLossFragment : Fragment() {
         val viewModel : ItemMineViewModel by viewModels()
 
         // 获取列表
-        viewModel.getMyLoss()
+        viewModel.getMyLoss(userId)
 
         val myLossAdapter = LossAdapter(myLossList, mineActivity)
         binding.myLoss.adapter = myLossAdapter

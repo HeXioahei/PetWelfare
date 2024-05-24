@@ -3,7 +3,7 @@ package com.example.petwelfare.logic.model
 data class GetCommentsResponse(
     val code: Int,
     val msg: String,
-    val data: Comments
+    val data: MutableList<Comments>
 )
 
 data class Comments(

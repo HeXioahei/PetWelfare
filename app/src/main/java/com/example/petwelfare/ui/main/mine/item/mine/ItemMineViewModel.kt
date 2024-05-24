@@ -52,21 +52,21 @@ class ItemMineViewModel : ViewModel() {
     private val _myStray = MutableLiveData<GetStrayResponse>()
     val myStray : LiveData<GetStrayResponse>  = _myStray
 
-    fun getMyArticles() {
+    fun getMyArticles(id: Long) {
         viewModelScope.launch {
-            _myArticles.value = PetWelfareNetwork.getMyArticles(Repository.myId, Repository.Authorization)
+            _myArticles.value = PetWelfareNetwork.getMyArticles(id, Repository.Authorization)
         }
     }
 
-    fun getMyLoss() {
+    fun getMyLoss(id: Long) {
         viewModelScope.launch {
-            _myLoss.value = PetWelfareNetwork.getMyLoss(Repository.myId, Repository.Authorization)
+            _myLoss.value = PetWelfareNetwork.getMyLoss(id, Repository.Authorization)
         }
     }
 
-    fun getMyStray() {
+    fun getMyStray(id: Long) {
         viewModelScope.launch {
-            _myStray.value = PetWelfareNetwork.getMyStray(Repository.myId, Repository.Authorization)
+            _myStray.value = PetWelfareNetwork.getMyStray(id, Repository.Authorization)
         }
     }
 

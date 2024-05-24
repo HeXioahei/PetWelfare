@@ -19,6 +19,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/toSearchBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -39,7 +40,9 @@
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="中国福建省福州市鼓楼区五凤街道福州大学"/>
+                android:layout_marginStart="20dp"
+                android:ellipsize="end"
+                android:text="中国福建省福州市鼓楼区五凤街道福州大学" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

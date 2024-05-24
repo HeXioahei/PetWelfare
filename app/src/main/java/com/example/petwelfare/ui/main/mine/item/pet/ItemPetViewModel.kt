@@ -18,9 +18,9 @@ class ItemPetViewModel : ViewModel() {
     private val _myPet = MutableLiveData<GetPetsInfoResponse>()
     val myPet: LiveData<GetPetsInfoResponse> = _myPet
 
-    fun getMyPets() {
+    fun getMyPets(id: Long) {
         viewModelScope.launch {
-            _myPet.value = PetWelfareNetwork.getPetsInfo(Repository.myId)
+            _myPet.value = PetWelfareNetwork.getPetsInfo(id)
         }
     }
 }

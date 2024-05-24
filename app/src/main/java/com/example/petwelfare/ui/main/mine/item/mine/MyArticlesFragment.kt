@@ -15,7 +15,7 @@ import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 
 
-class MyArticlesFragment : Fragment() {
+open class MyArticlesFragment(private val userId: Long) : Fragment() {
 
     private lateinit var binding : FragmentMyArticlesBinding
 
@@ -33,7 +33,7 @@ class MyArticlesFragment : Fragment() {
 
 
         // 获取列表
-        viewModel.getMyArticles()
+        viewModel.getMyArticles(userId)
 
         val myArticlesAdapter = ArticlesAdapter(myArticlesList, mineActivity)
         binding.myArticles.adapter = myArticlesAdapter

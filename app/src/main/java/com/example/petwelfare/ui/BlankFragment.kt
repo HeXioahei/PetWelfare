@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
+import com.example.petwelfare.ui.main.mine.item.mine.MyArticlesFragment
 
-class BlankFragment : Fragment() {
+class BlankFragment() : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_blank, container, false)
     }

@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentItemMineBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.BlankFragment
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
@@ -120,9 +121,9 @@ class ItemMineFragment : Fragment() {
 
         val viewPagerList: List<Fragment> = listOf(
             BlankFragment(),
-            MyArticlesFragment(),
-            MyLossFragment(),
-            MyStrayFragment(),
+            MyArticlesFragment(Repository.myId),
+            MyLossFragment(Repository.myId),
+            MyStrayFragment(Repository.myId),
             BlankFragment()
         )
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mine.edit.EditMyInfoActivity"
     android:background="@drawable/bg_whole">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -21,6 +20,7 @@
         android:id="@+id/changeHead"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/img_headimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
