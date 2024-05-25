@@ -104,7 +104,7 @@ class RestorePsdActivity : AppCompatActivity() {
                 200 -> {
                     Log.d("resetPsd", "success")
                     Toast.makeText(PetWelfareApplication.context, "修改密码成功", Toast.LENGTH_SHORT).show()
-                    finish()
+                    ActivityCollector.removeActivityUntilLogin()
                 }
                 else -> {
                     Log.d("resetPsd", "failure")

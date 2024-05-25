@@ -28,7 +28,7 @@ class PetListActivity : AppCompatActivity() {
 
         val viewModel : PetListViewModel by viewModels()
 
-        val petAdapter = PetsAdapter(myPetList, this)
+        val petAdapter = PetsAdapter(myPetList, this, 2)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(this)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
@@ -38,11 +38,13 @@ class PetListActivity : AppCompatActivity() {
             finish()
         }
 
+        // 添加宠物
         binding.addPetBtn.setOnClickListener {
             val intent = Intent(this, AddPetActivity::class.java)
             startActivity(intent)
         }
 
+        // 手动刷新
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.getMyPetList()
             viewModel.delayAction {
@@ -50,6 +52,7 @@ class PetListActivity : AppCompatActivity() {
             }
         }
 
+        // 更新宠物列表
         viewModel.myPetList.observe(this) { result->
             myPetList = result.data.pets
             Repository.myPetList = myPetList

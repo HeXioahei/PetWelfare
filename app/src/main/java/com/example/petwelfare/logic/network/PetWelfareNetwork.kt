@@ -218,7 +218,7 @@ object PetWelfareNetwork {
         time: String, text: String, Authorization: String, photo_list: Map<String, RequestBody>
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
-        //.await()
+        .await()
 
     suspend fun getCommentsInArticles(id: String) = articlesService
         .getComments(id)
@@ -352,17 +352,18 @@ object PetWelfareNetwork {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     Log.d("response", "success")
                     val body = response.body()
-                    val errorBodyString = response.errorBody()?.string()   // 是string()，而不是toString()
-                    //val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
-                    Log.d("response.body()", response.body().toString())
-                    Log.d("response.errorBody()", response.errorBody().toString())
-                    //Log.d("code", response.code().toString())
-                    //Log.d("errorResponse.msg", errorResponse.msg)
+                    Log.d("body", body.toString())
+                    val errorBody = response.errorBody()
                     if (body != null) {
                         continuation.resume(body)
-                    }
-                    else {
-                        //Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
+                    } else {
+                        val errorBodyString = errorBody?.string()   // 是string()，而不是toString()
+                        val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
+                        Log.d("response.body()", response.body().toString())
+                        Log.d("response.errorBody()", response.errorBody().toString())
+                        Log.d("code", response.code().toString())
+                        Log.d("errorResponse.msg", errorResponse.msg)
+                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
                         //continuation.resumeWithException(RuntimeException("response body is null"))
                     }
                 }

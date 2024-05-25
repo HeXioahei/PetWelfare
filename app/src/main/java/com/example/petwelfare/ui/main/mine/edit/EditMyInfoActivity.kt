@@ -10,6 +10,9 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
 import com.example.petwelfare.databinding.DialogEditInfoBinding
@@ -26,7 +29,7 @@ class EditMyInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditMyInfoBinding
 
     private val viewModel1: EditMyInfoViewModel by viewModels()
-    private val viewModel2: MineViewModel by viewModels()
+//    private val viewModel2: MineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +38,24 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        val username = viewModel2.myDetail.username
-        val address = viewModel2.myDetail.address
-        val telephone = viewModel2.myDetail.telephone
-        val personality = viewModel2.myDetail.personality
+//        val username = viewModel2.myDetail.username
+//        val address = viewModel2.myDetail.address
+//        val telephone = viewModel2.myDetail.telephone
+//        val personality = viewModel2.myDetail.personality
+
+        val headImageString = intent.getStringExtra("headImage").toString()
+        val username = intent.getStringExtra("username").toString()
+        val address = intent.getStringExtra("address").toString()
+        val telephone = intent.getStringExtra("telephone").toString()
+        val personality = intent.getStringExtra("personality").toString()
+
+        val glideUrl = GlideUrl(
+            headImageString,
+            LazyHeaders.Builder()
+                .addHeader("Authorization", Repository.Authorization)
+                .build()
+        )
+        binding.changeHead.let { Glide.with(this).load(glideUrl).into(it) }
 
         binding.returnBtn.setOnClickListener {
             finish()
@@ -90,6 +107,18 @@ class EditMyInfoActivity : AppCompatActivity() {
         binding.changePersonality.setOnClickListener {
             showAlertDialog(personality, "changePersonality")
         }
+
+        viewModel1.changeResponse.observe(this) { result->
+            if (result.code == 200) {
+                Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
+            } else if (result.code != 0) {
+                Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show()
+            }
+            viewModel1.resetChangeResponse(0, "") // 以便下一次再进行修改的网络请求
+        }
+
+
+
     }
 
     private fun showAlertDialog(initText: String, type: String) {
@@ -105,28 +134,28 @@ class EditMyInfoActivity : AppCompatActivity() {
             val Authorization = Repository.Authorization
             when (type) {
                 "changeUsername" -> {
-                    val code = viewModel1.changeUsername(inputText, Authorization)
-                    if (code == 200) {
-                        Toast.makeText(this,"修改成功", Toast.LENGTH_SHORT).show()
-                        viewModel2.setUsername(inputText)
-                    } else {
-                        Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show()
-                    }
+                    viewModel1.changeUsername(inputText, Authorization)
+//                    if (code == 200) {
+//                        Toast.makeText(this,"修改成功", Toast.LENGTH_SHORT).show()
+//                        viewModel2.setUsername(inputText)
+//                    } else {
+//                        Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show()
+//                    }
                 }
 
                 "changeAddress" -> {
                     viewModel1.changeAddress(inputText, Authorization)
-                    viewModel2.setAddress(inputText)
+//                    viewModel2.setAddress(inputText)
                 }
 
                 "changeTelephone" -> {
                     viewModel1.changeTelephone(inputText, Authorization)
-                    viewModel2.setTelephone(inputText)
+//                    viewModel2.setTelephone(inputText)
                 }
 
                 "changePersonality" -> {
                     viewModel1.changePersonality(inputText, Authorization)
-                    viewModel2.setPersonality(inputText)
+//                    viewModel2.setPersonality(inputText)
                 }
             }
 

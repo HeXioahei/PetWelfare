@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.GetArticlesResponse
@@ -18,13 +19,15 @@ class ItemSquareViewModel : ViewModel() {
 
     fun getArticles() {
         viewModelScope.launch {
-            _articlesResponse.value = PetWelfareNetwork.getArticles(0, Repository.Authorization)
+            Log.d("www", "www")
+            _articlesResponse.value = PetWelfareNetwork.getArticles(1, Repository.Authorization)
+            Log.d("eee", "eee")
         }
     }
 
     fun delayAction(action: ()->Unit) {
         viewModelScope.launch {
-            delay(2000)
+            delay(5000)
             action.invoke()
         }
     }

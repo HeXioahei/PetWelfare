@@ -43,7 +43,7 @@ open class ItemPetFragment(private val userId : Long) : Fragment() {
             Repository.myPetList = myPetList
         }
 
-        val petAdapter = PetsAdapter(myPetList, mineActivity)
+        val petAdapter = PetsAdapter(myPetList, mineActivity, 1)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(mineActivity)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL

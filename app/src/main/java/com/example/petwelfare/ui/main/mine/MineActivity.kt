@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
@@ -59,56 +58,99 @@ class MineActivity : AppCompatActivity() {
         // Use the 'by viewModels()' Kotlin property delegate
         // from the activity-ktx artifact
 
-        // 应用 viewModel
-        // 参看书中第623页
-        viewModel.setUserId(Repository.myId)
+//        // 应用 viewModel
+//        // 参看书中第623页
+//        viewModel.setUserId(Repository.myId)
+//
+//        // 当 myDetailData 中有任何数据变化时，就会回调传入的这个Observe接口中
+//        viewModel.myDetailData.observe(this) { result ->
+//            Log.d("getUserInfo", "going2")
+//            val user = result.getOrNull()
+//            if (user != null) {
+//                viewModel.myDetail = user
+//                // 进行页面呈现的变化
+//
+//                // 设置头像
+//                val myHeadImageString = viewModel.myDetail.headImage
+//                val glideUrl = GlideUrl(
+//                    myHeadImageString,
+//                    LazyHeaders.Builder()
+//                        .addHeader("Authorization", Repository.Authorization)
+//                        .build()
+//                )
+//                binding.headImage.let { Glide.with(this).load(glideUrl).into(it) }
+//                // 设置其他信息
+//                binding.username.text = viewModel.myDetail.username
+//                binding.address.text = viewModel.myDetail.address
+//                binding.personality.text = viewModel.myDetail.personality
+//                binding.fansNum.text = viewModel.myDetail.fanNums.toString()
+//                binding.followsNum.text = viewModel.myDetail.followNums.toString()
+//                binding.integralsNum.text = viewModel.myDetail.integral.toString()
+//                binding.telephone.text = viewModel.myDetail.telephone
+//
+//                binding.swipeRefresh.isRefreshing = false
+//                //Toast.makeText(this, "刷新完毕", Toast.LENGTH_SHORT).show()
+//
+//            } else {
+//                Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
+//                result.exceptionOrNull()?.printStackTrace()
+//            }
+//        }
+//
+//        // 下拉刷新，更新用户信息
+//        binding.swipeRefresh.setOnRefreshListener {
+//            Log.d("swipeRefresh", "doing")
+//            viewModel.myDetailData = Repository                      // 不确定此处是否有问题
+//                .getUserInfo(Repository.myId, Repository.Authorization)    // 可以确定了，此处有问题，不能这样来调用getUserInfo()，只能通过InfoLiveData的改变
+//        }
 
-        // 当 myDetailData 中有任何数据变化时，就会回调传入的这个Observe接口中
-        viewModel.myDetailData.observe(this) { result ->
-            Log.d("getUserInfo", "going2")
-            val user = result.getOrNull()
-            if (user != null) {
-                viewModel.myDetail = user
-                // 进行页面呈现的变化
-
-                // 设置头像
-                val myHeadImageString = viewModel.myDetail.headImage
-                val glideUrl = GlideUrl(
-                    myHeadImageString,
-                    LazyHeaders.Builder()
-                        .addHeader("Authorization", Repository.Authorization)
-                        .build()
-                )
-                binding.headImage.let { Glide.with(this).load(glideUrl).into(it) }
-                // 设置其他信息
-                binding.username.text = viewModel.myDetail.username
-                binding.address.text = viewModel.myDetail.address
-                binding.personality.text = viewModel.myDetail.personality
-                binding.fansNum.text = viewModel.myDetail.fanNums.toString()
-                binding.followsNum.text = viewModel.myDetail.followNums.toString()
-                binding.integralsNum.text = viewModel.myDetail.integral.toString()
-                binding.telephone.text = viewModel.myDetail.telephone
-
-                binding.swipeRefresh.isRefreshing = false
-                //Toast.makeText(this, "刷新完毕", Toast.LENGTH_SHORT).show()
-
-            } else {
-                Toast.makeText(this, "未能获取用户信息", Toast.LENGTH_SHORT).show()
-                result.exceptionOrNull()?.printStackTrace()
+        // 缓冲并获取信息 / 手动刷新
+        binding.swipeRefresh.isRefreshing = true
+        binding.swipeRefresh.setOnRefreshListener {
+            // 获取信息
+            viewModel.getUserDetail(Repository.myId)
+            viewModel.delayAction {
+                binding.swipeRefresh.isRefreshing = false  // 过久未响应，自动结束缓冲
             }
         }
 
-        // 下拉刷新，更新用户信息
-        binding.swipeRefresh.setOnRefreshListener {
-            Log.d("swipeRefresh", "doing")
-            viewModel.myDetailData = Repository                      // 不确定此处是否有问题
-                .getUserInfo(Repository.myId, Repository.Authorization)    // 可以确定了，此处有问题，不能这样来调用getUserInfo()，只能通过InfoLiveData的改变
+        var myHeadImageString = ""
+
+        // 显示信息
+        viewModel.userDetail.observe(this) { result->
+
+            Log.d("userDetail", result.toString())
+            binding.username.text = result.username
+            binding.address.text = result.address
+            binding.personality.text = result.personality
+            binding.fansNum.text = result.fanNums.toString()
+            binding.followsNum.text = result.followNums.toString()
+            binding.integralsNum.text = result.integral.toString()
+            binding.telephone.text = result.telephone
+
+            // 设置头像
+            myHeadImageString = result.headImage
+            val glideUrl = GlideUrl(
+                myHeadImageString,
+                LazyHeaders.Builder()
+                    .addHeader("Authorization", Repository.Authorization)
+                    .build()
+            )
+            binding.headImage.let { Glide.with(this).load(glideUrl).into(it) }
+
+            // 结束缓冲
+            binding.swipeRefresh.isRefreshing = false
         }
 
         // 跳转到编辑页
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
+            intent.putExtra("headImage", myHeadImageString)
+            intent.putExtra("username", binding.username.text.toString())
+            intent.putExtra("address", binding.address.text.toString())
+            intent.putExtra("personality", binding.personality.text.toString())
+            intent.putExtra("telephone", binding.telephone.text.toString())
         }
 
         binding.fans.setOnClickListener {

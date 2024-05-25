@@ -23,7 +23,7 @@ object ActivityCollector {
         activities.remove(activity)
     }
 
-    fun removeActivityAfterLogin() {
+    fun removeActivityUntilLogin() {
         var flag = 0
         for (activity2 in activities) {
             if (flag == 1) {

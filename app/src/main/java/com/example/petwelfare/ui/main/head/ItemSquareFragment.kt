@@ -14,7 +14,7 @@ import com.example.petwelfare.databinding.FragmentItemSquareBinding
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 
-class ItemSquareFragment : Fragment() {
+open class ItemSquareFragment : Fragment() {
 
     private val mainActivity = ActivityCollector.mainActivity
 
@@ -34,6 +34,10 @@ class ItemSquareFragment : Fragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.articlesList.layoutManager = layoutManager
 
+        // 一开始先获取列表数据
+        viewModel.getArticles()
+
+        // 启动刷新，进行网络请求获取列表数据
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.getArticles()
             viewModel.delayAction {
@@ -41,6 +45,7 @@ class ItemSquareFragment : Fragment() {
             }
         }
 
+        // 响应返回的数据，进行页面显示的更新
         viewModel.articlesResponse.observe(mainActivity) { result->
             Log.d("articlesResponse", "articlesResponse")
             if (result == null) {

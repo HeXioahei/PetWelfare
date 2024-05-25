@@ -26,6 +26,7 @@ import com.example.petwelfare.databinding.ActivityAddArticlesBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.FileBuilder
 import com.example.petwelfare.logic.model.TimeBuilder
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -76,15 +77,28 @@ class AddArticlesActivity : AppCompatActivity() {
 
             for (i in 0 until photosList.size) {
                 val file = FileBuilder.getImageFileFromUri(this, photosList[i]) as File
-                fileMap["file${i+1}"] = file.asRequestBody("file${i+1}".toMediaTypeOrNull())
+                fileMap["file${i+1}"] = file.asRequestBody("photo_list".toMediaType())
+//                fileMap["photo_list"] = file.asRequestBody("photo_list".toMediaType())
             }
 
-            val code = viewModel.writeArticle(
+//            // 将 file 封装为 Body
+//            val file = FileBuilder.getImageFileFromUri(this, photosList[0]) as File
+//            val requestBody = file.asRequestBody("photo_list".toMediaTypeOrNull())
+//            val multipartBody = MultipartBody.Part
+//                .createFormData("photo_list", file.name, requestBody)
+
+            viewModel.writeArticle(
                 TimeBuilder.getNowTime(),
                 binding.content.text.toString(),
                 Repository.Authorization,
                 fileMap
             )
+
+        }
+
+        viewModel.addArticlesResponse.observe(this) { result->
+            Log.d("addArticlesResponse", result.toString())
+            val code = result.code
             if(code == 200) {
                 Toast.makeText(this,"发布成功", Toast.LENGTH_SHORT).show()
                 Log.d("publishArticle", "success")
