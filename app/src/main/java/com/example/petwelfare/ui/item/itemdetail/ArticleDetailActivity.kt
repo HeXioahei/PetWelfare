@@ -17,6 +17,10 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityArticleDetailBinding
 import com.example.petwelfare.databinding.ItemCommentsParentBinding
@@ -32,10 +36,10 @@ import kotlinx.coroutines.launch
 class ArticleDetailActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityArticleDetailBinding
-    private var comments : MutableList<Comments> = mutableListOf(Comments(),Comments(),Comments(),Comments())
+//    private var comments : MutableList<Comments> = mutableListOf(Comments(),Comments(),Comments(),Comments())
 
     private val viewModel : ArticleDetailViewModel by viewModels()
-    private var articleId = "-1"
+//    private var articleId = "-1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +48,33 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        articleId = intent.getIntExtra("articleId", -1).toString()
+        viewModel.article.id = intent.getIntExtra("articleId", -1)
+        viewModel.article.user.username = intent.getStringExtra("username").toString()
+        viewModel.article.user.headImage = intent.getStringExtra("headImage").toString()
+        viewModel.article.user.id = intent.getLongExtra("userId", -1L)
+        viewModel.article.text = intent.getStringExtra("text").toString()
+        viewModel.article.time = intent.getStringExtra("time").toString()
+        viewModel.article.collectNums = intent.getIntExtra("collectNums", -1)
+        viewModel.article.collectStatus = intent.getIntExtra("collectStatus", -1)
+        viewModel.article.likeNums = intent.getIntExtra("likeNums", -1)
+        viewModel.article.likeStatus = intent.getIntExtra("likeStatus", -1)
 
-        viewModel.getCommentsInArticle(articleId)
+        binding.username.text = viewModel.article.user.username
+        binding.articleText.text = viewModel.article.text
+        binding.time.text = viewModel.article.time
+
+        val myHeadImageString = viewModel.article.user.headImage
+        val headImageGlideUrl = GlideUrl(myHeadImageString, Repository.lazyHeaders)
+        binding.userHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
+
+        binding.collectCount.text = viewModel.article.collectNums.toString()
+        binding.likeCount.text = viewModel.article.likeNums.toString()
+
+        viewModel.getCommentsInArticle(viewModel.article.id.toString())
 
         viewModel.commentsInArticle.observe(this) { result->
-            comments = result.data
+            viewModel.comments = result.data
+            onCreateParentCommentsList(viewModel.comments)
         }
 
         // 写父评论
@@ -57,7 +82,6 @@ class ArticleDetailActivity : AppCompatActivity() {
             writeComments(0, 1)
         }
 
-        onCreateParentCommentsList(comments)
     }
 
     // 创建父评论
@@ -113,7 +137,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             val view = layoutInflater.inflate(R.layout.item_comments_kid, null, false)
             val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
             headImage.setOnClickListener {
-                val intent = Intent(this, com.example.petwelfare.ui.main.mine.MineActivity::class.java)
+                val intent = Intent(this, MineActivity::class.java)
                 startActivity(intent)
             }
             val username: TextView = view.findViewById(R.id.usernameInParentComment)
@@ -138,7 +162,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             val content = input.text.toString()
             val time = TimeBuilder.getNowTime()
             //进行网络请求
-            viewModel.writeComments(articleId, content, time, lastId, level)
+            viewModel.writeComments(viewModel.article.id.toString(), content, time, lastId, level)
         }
         alertDialogBuilder.setNegativeButton("取消") { dialog, _ ->
             // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑

@@ -15,16 +15,14 @@ import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
 
-class ArticlesAdapter(private val list: MutableList<Article>, private val context: Context) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
+class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
         val headImage = binding.headImage
         val username = binding.username
         val articleText = binding.articleText
-        val picture1 = binding.picture1
-        val picture2 = binding.picture2
-        val picture3 = binding.picture3
+        val photosContainer = listOf(binding.picture1, binding.picture2, binding.picture3)
         val hitIron = binding.hitIron
         val collectIron = binding.collectIron
         val likeIron = binding.likeIron
@@ -48,17 +46,21 @@ class ArticlesAdapter(private val list: MutableList<Article>, private val contex
             .addHeader("Authorization", Repository.Authorization)
             .build()
         val myHeadImageString = item.user.headImage
+        val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
+        holder.headImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
 //        val pictureString1 = item.media[0]
 //        val pictureString2 = item.media[1]
 //        val pictureString3 = item.media[2]
-//        val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
 //        val pictureGlideUrl1 = GlideUrl(pictureString1, lazyHeaders)
 //        val pictureGlideUrl2 = GlideUrl(pictureString2, lazyHeaders)
 //        val pictureGlideUrl3 = GlideUrl(pictureString3, lazyHeaders)
-//        holder.headImage.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
-//        holder.picture1.let { Glide.with(activity).load(pictureGlideUrl1).into(it) }
-//        holder.picture2.let { Glide.with(activity).load(pictureGlideUrl2).into(it) }
-//        holder.picture3.let { Glide.with(activity).load(pictureGlideUrl3).into(it) }
+//        holder.picture1.let { Glide.with(context).load(pictureGlideUrl1).into(it) }
+//        holder.picture2.let { Glide.with(context).load(pictureGlideUrl2).into(it) }
+//        holder.picture3.let { Glide.with(context).load(pictureGlideUrl3).into(it) }
+        for (i in 0 until item.media.size) {
+            val photoGlideUrl = GlideUrl(item.media[i])
+            holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
+        }
         // 设置其他
         holder.username.text = item.user.username
         holder.articleText.text = item.text
@@ -75,8 +77,25 @@ class ArticlesAdapter(private val list: MutableList<Article>, private val contex
         }
         // 点击跳转到具体页
         holder.article.setOnClickListener {
-            val intent = Intent(context, ArticleDetailActivity::class.java)
-            context.startActivity(intent)
+            val intent = Intent(PetWelfareApplication.context, ArticleDetailActivity::class.java)
+
+            intent.putExtra("username", item.user.username)
+            intent.putExtra("userId", item.user.id)
+            intent.putExtra("headImage", item.user.headImage)
+            intent.putExtra("text", item.text)
+            intent.putExtra("time", item.time)
+            intent.putExtra("likeNums", item.likeNums)
+            intent.putExtra("likeStatus", item.likeStatus)
+            intent.putExtra("collectNums", item.collectNums)
+            intent.putExtra("collectStatus", item.collectStatus)
+            intent.putExtra("articleId", item.id)
+
+            // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            PetWelfareApplication.context.startActivity(intent)
+
         }
     }
 }

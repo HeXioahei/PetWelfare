@@ -35,7 +35,7 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
         // 获取列表
         viewModel.getMyArticles(userId)
 
-        val myArticlesAdapter = ArticlesAdapter(myArticlesList, mineActivity)
+        val myArticlesAdapter = ArticlesAdapter(myArticlesList)
         binding.myArticles.adapter = myArticlesAdapter
         val layoutManager = LinearLayoutManager(mineActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

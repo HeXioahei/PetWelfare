@@ -34,7 +34,7 @@ class CollectArticlesFragment : Fragment() {
         // 获取列表
         //viewModel.getCollectArticles()
 
-        val collectArticlesAdapter = ArticlesAdapter(collectArticlesList, mineActivity)
+        val collectArticlesAdapter = ArticlesAdapter(collectArticlesList)
         binding.collectArticles.adapter = collectArticlesAdapter
         val layoutManager = LinearLayoutManager(mineActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

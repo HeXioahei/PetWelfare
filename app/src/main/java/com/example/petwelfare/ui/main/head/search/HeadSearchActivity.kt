@@ -31,7 +31,7 @@ class HeadSearchActivity : AppCompatActivity() {
             val keywords = binding.searchBar.text.toString()
             if (keywords != "") {
                 val viewPagerList = mutableListOf(
-                    SearchSquareFragment(keywords, this),
+                    SearchSquareFragment(keywords),
                     BlankFragment(),
                     BlankFragment(),
                     BlankFragment(),

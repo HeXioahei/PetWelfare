@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentLoginBinding
@@ -50,6 +51,9 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
                 Toast.makeText(PetWelfareApplication.context, "登录成功", Toast.LENGTH_SHORT).show()
                 Log.d("accessToken", result.data.access_token)
                 Repository.Authorization = result.data.access_token
+                Repository.lazyHeaders = LazyHeaders.Builder()
+                    .addHeader("Authorization", result.data.access_token)
+                    .build()
                 Repository.myId = result.data.id
                 Repository.refreshToken = result.data.refresh_token
                 Repository.mailbox = binding.loginMailbox.toString()

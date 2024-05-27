@@ -95,11 +95,12 @@
         app:layout_constraintTop_toTopOf="@+id/loginPassword" />
 
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/loginBtn"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:background="@drawable/btn_login"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />

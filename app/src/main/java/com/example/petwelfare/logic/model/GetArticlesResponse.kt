@@ -7,19 +7,19 @@ data class GetArticlesResponse(
 )
 
 data class Article(
-    val user: UserMostBrief,
-    val collectNums: Int,
-    val collectStatus: Int,
-    val commentNums: Int,
-    val hitNums: Int,
-    val id: Int,
-    val likeNums: Int,
-    val likeStatus: Int,
-    val media: MutableList<String>,
-    val text: String,
-    val time: String
+    var user: UserMostBrief,
+    var collectNums: Int,
+    var collectStatus: Int,
+    var commentNums: Int,
+    var hitNums: Int,
+    var id: Int,
+    var likeNums: Int,
+    var likeStatus: Int,
+    var media: MutableList<String>,
+    var text: String,
+    var time: String
 ) {
     constructor() : this(
-        UserMostBrief(), 0,0,0,0,0,0,0, mutableListOf(), "aa", "aa"
+        UserMostBrief(), 0,0,0,0,0,0,0, mutableListOf("aa", "aa", "aa"), "aa", "aa"
     )
 }

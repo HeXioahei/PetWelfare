@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.GetCommentsResponse
@@ -11,6 +12,9 @@ import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
 class ArticleDetailViewModel : ViewModel() {
+
+    var article = Article()
+    var comments : MutableList<Comments> = mutableListOf()
 
     private val _commentsInArticle = MutableLiveData<GetCommentsResponse>()
     val commentsInArticle : LiveData<GetCommentsResponse> = _commentsInArticle

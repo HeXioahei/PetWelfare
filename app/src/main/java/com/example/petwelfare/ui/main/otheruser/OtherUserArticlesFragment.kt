@@ -41,7 +41,7 @@ class OtherUserArticlesFragment(private val userId: Long) : Fragment() {
         // 获取列表
         viewModel.getMmyArticles(userId)
 
-        val mmyArticlesAdapter = ArticlesAdapter(mmyArticlesList, otherUserActivity)
+        val mmyArticlesAdapter = ArticlesAdapter(mmyArticlesList)
         binding.mmyArticles.adapter = mmyArticlesAdapter
         val layoutManager = LinearLayoutManager(otherUserActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

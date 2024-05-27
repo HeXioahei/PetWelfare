@@ -28,32 +28,34 @@ open class ItemSquareFragment : Fragment() {
 
         val viewModel: ItemSquareViewModel by viewModels()
 
-        val articlesAdapter = ArticlesAdapter(articlesList, mainActivity)
+        val articlesAdapter = ArticlesAdapter(articlesList)
         binding.articlesList.adapter = articlesAdapter
         val layoutManager = LinearLayoutManager(mainActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.articlesList.layoutManager = layoutManager
 
+        var order = 1
         // 一开始先获取列表数据
-        viewModel.getArticles()
+        viewModel.getArticles(order)
+        binding.swipeRefresh.isRefreshing = true
 
         // 启动刷新，进行网络请求获取列表数据
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getArticles()
+            viewModel.getArticles(order)
             viewModel.delayAction {
                 binding.swipeRefresh.isRefreshing = false
             }
         }
 
         // 响应返回的数据，进行页面显示的更新
-        viewModel.articlesResponse.observe(mainActivity) { result->
+        viewModel.articlesResponse.observe(this.viewLifecycleOwner) { result->
             Log.d("articlesResponse", "articlesResponse")
-            if (result == null) {
-                binding.swipeRefresh.isRefreshing = false
-            }
+            binding.swipeRefresh.isRefreshing = false
             articlesList.clear()
-            articlesList = result.data
+            articlesList.addAll(result.data)
+            Log.d("articlesList", articlesList.toString())
             articlesAdapter.notifyDataSetChanged()
+            order++
         }
 
         return binding.root

@@ -45,7 +45,7 @@ class ItemLikesFragment : Fragment() {
         val layoutInflater = LinearLayoutManager(activity)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
 
-        val likesAdapter = ArticlesAdapter(viewModel.likesArticle, activity)
+        val likesAdapter = ArticlesAdapter(viewModel.likesArticle)
         binding.likesRecyclerView.adapter = likesAdapter
         binding.likesRecyclerView.layoutManager = layoutInflater
 

@@ -14,7 +14,7 @@ import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.main.head.ItemSquareFragment
 
-class SearchSquareFragment(private val keywords: String, val activity: HeadSearchActivity) : Fragment() {
+class SearchSquareFragment(private val keywords: String) : Fragment() {
 
     private lateinit var binding : FragmentSearchSquareBinding
     private var searchArticlesList : MutableList<Article> = mutableListOf()
@@ -29,15 +29,15 @@ class SearchSquareFragment(private val keywords: String, val activity: HeadSearc
 
         viewModel.searchArticles(keywords)
 
-        viewModel.searchArticlesResponse.observe(activity) { result->
+        viewModel.searchArticlesResponse.observe(this.viewLifecycleOwner) { result->
             Log.d("searchArticlesResponse", result.toString())
             searchArticlesList = result.data
             binding.progressBar.visibility = View.INVISIBLE
         }
 
-        val articlesAdapter = ArticlesAdapter(searchArticlesList, activity)
+        val articlesAdapter = ArticlesAdapter(searchArticlesList)
         binding.articlesList.adapter = articlesAdapter
-        val layoutManager = LinearLayoutManager(activity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.articlesList.layoutManager = layoutManager
 

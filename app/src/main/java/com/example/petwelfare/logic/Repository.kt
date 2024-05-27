@@ -1,7 +1,10 @@
 package com.example.petwelfare.logic
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.logic.model.Pet
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
@@ -15,6 +18,26 @@ object Repository {
     var myDetail: UserDetail = UserDetail()
     var mailbox : String = ""
     var myPetList : MutableList<Pet> = mutableListOf()
+    var lazyHeaders: LazyHeaders = LazyHeaders.Builder()
+        .addHeader("Authorization", Authorization)
+        .build()
+
+    fun getArticles(order: Int, Authorization: String) = liveData(Dispatchers.IO) {
+        Log.d("getArticles", "going")
+        val result = try {
+            val  getArticlesResponse = PetWelfareNetwork.getArticles(order, Authorization)
+            if (getArticlesResponse.code == 200) {
+                Log.d("getUserInfo", "success")
+                val articles = getArticlesResponse.data
+                Result.success(articles)
+            } else {
+                Result.failure(RuntimeException("response code is ${getArticlesResponse.code}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+        emit(result)
+    }
 
     fun getUserInfo(id: Long, Authorization: String) = liveData(Dispatchers.IO) {
         Log.d("getUserInfo", "going")
