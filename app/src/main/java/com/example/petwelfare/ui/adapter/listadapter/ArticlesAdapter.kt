@@ -10,21 +10,26 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemArticleBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
+import java.util.ArrayList
 
 class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
+        val followIron = binding.followBtn
         val headImage = binding.headImage
         val username = binding.username
+        val time = binding.time
         val articleText = binding.articleText
         val photosContainer = listOf(binding.picture1, binding.picture2, binding.picture3)
-        val hitIron = binding.hitIron
         val collectIron = binding.collectIron
+        val collectCount = binding.collectCount
+        val likeCount = binding.likeCount
         val likeIron = binding.likeIron
         val article = binding.article
     }
@@ -62,19 +67,27 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
             holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
         }
         // 设置其他
+        if (item.user.followStatus == 0) {
+            holder.followIron.setBackgroundResource(R.drawable.img_unfollowed_2)
+        } else {
+            holder.followIron.setBackgroundResource(R.drawable.img_followed)
+        }
         holder.username.text = item.user.username
+        holder.time.text = item.time
         holder.articleText.text = item.text
         // 设置点赞和收藏的图标
         if (item.likeStatus == 1) {
-
+            holder.likeIron.setBackgroundResource(R.drawable.img_liked)
         } else {
-
+            holder.likeIron.setBackgroundResource(R.drawable.img_unliked_2)
         }
         if (item.collectStatus == 1) {
-
+            holder.collectIron.setBackgroundResource(R.drawable.img_collected_3)
         } else {
-
+            holder.collectIron.setBackgroundResource(R.drawable.img_uncollected_3)
         }
+        holder.collectCount.text = item.collectNums.toString()
+        holder.likeCount.text = item.likeNums.toString()
         // 点击跳转到具体页
         holder.article.setOnClickListener {
             val intent = Intent(PetWelfareApplication.context, ArticleDetailActivity::class.java)
@@ -82,13 +95,16 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
             intent.putExtra("username", item.user.username)
             intent.putExtra("userId", item.user.id)
             intent.putExtra("headImage", item.user.headImage)
+            intent.putExtra("followStatus", item.user.followStatus)
             intent.putExtra("text", item.text)
             intent.putExtra("time", item.time)
+            intent.putExtra("commentsNums", item.commentNums)
             intent.putExtra("likeNums", item.likeNums)
             intent.putExtra("likeStatus", item.likeStatus)
             intent.putExtra("collectNums", item.collectNums)
             intent.putExtra("collectStatus", item.collectStatus)
             intent.putExtra("articleId", item.id)
+            intent.putStringArrayListExtra("photos", item.media as ArrayList<String>)
 
             // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志
             if (PetWelfareApplication.context !is Activity) {

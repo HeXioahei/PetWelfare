@@ -9,7 +9,7 @@ data class GetUserDetailResponse(
 data class GetUserBriefResponse(
     val code: Int,
     val msg: String,
-    val data: MutableList<UserBrief>
+    val data: UserBrief
 )
 
 data class UserDetail(
@@ -22,10 +22,11 @@ data class UserDetail(
     var personality: String,
     var score: Int,
     var telephone: String,
-    var username: String
+    var username: String,
+    var followStatus: Int
 ) {
     constructor() : this(
-        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa"
+        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa", 0
     )
 }
 
@@ -33,16 +34,18 @@ data class UserBrief(
     var headImage: String,
     var username: String,
     var personality: String,
+    var followStatus: Int,
     var id: Long
 ) {
-    constructor() : this("aa", "aa", "aa", 0L)
+    constructor() : this("aa", "aa", "aa", 0, 0L)
 }
 
 data class UserMostBrief(
     var headImage: String,
     var username: String,
+    var followStatus: Int,
     var id: Long
 ) {
-    constructor() : this("aa", "aa", 0L)
+    constructor() : this("aa", "aa", 0, 0L)
 }
 

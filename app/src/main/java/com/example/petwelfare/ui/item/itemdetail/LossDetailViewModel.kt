@@ -5,11 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.model.BaseResponse
+import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.GetCommentsResponse
+import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
 class LossDetailViewModel : ViewModel() {
+
+    var loss = Loss()
+    var comments = mutableListOf<Comments>()
 
     private val _commentsInLoss = MutableLiveData<GetCommentsResponse>()
     val commentsInLoss : LiveData<GetCommentsResponse> = _commentsInLoss

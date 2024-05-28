@@ -10,17 +10,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemNavCommonBinding
 import com.example.petwelfare.databinding.ItemViewpagerBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.navadapter.CollectionNavAdapter
 import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
 
-class ViewPagerAdapter(private val list: List<Fragment>, private val activity: AppCompatActivity) : RecyclerView.Adapter<ViewPagerAdapter.MyViewHolder>() {
+class ViewPagerAdapter(private val list: List<String>) : RecyclerView.Adapter<ViewPagerAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: ItemViewpagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val viewPager = binding.viewPager
+        val photo = binding.photo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -37,9 +40,7 @@ class ViewPagerAdapter(private val list: List<Fragment>, private val activity: A
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list[position]
-        val fragmentManager = activity.supportFragmentManager
-        val traction = fragmentManager.beginTransaction()
-        traction.add(holder.viewPager.id, item)
-        traction.commit()
+        val photoGlideUrl = GlideUrl(item, Repository.lazyHeaders)
+        holder.photo.let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
     }
 }

@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/headImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
@@ -34,24 +34,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="2024/01/04"
             android:layout_marginTop="10dp"
             android:textColor="@color/text_gray"
-            app:layout_constraintStart_toStartOf="@+id/appCompatTextView4"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView4"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="用户名"
             android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+            app:layout_constraintStart_toEndOf="@+id/headImage"
+            app:layout_constraintTop_toTopOf="@+id/headImage" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/publishBtn"
@@ -77,6 +78,12 @@
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/photosContainer"
+                android:layout_width="280dp"
+                android:layout_height="250dp"
+                android:background="@drawable/img_photo"
+                android:layout_gravity="center_horizontal"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -204,7 +211,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/articleText"
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -213,38 +220,38 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linearLayoutCompat2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/articleText">
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/linearLayoutCompat2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/articleText">-->
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/picture1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/img_photo" />
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:id="@+id/picture1"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:background="@drawable/img_photo" />-->
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/picture2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/img_photo" />
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:id="@+id/picture2"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:background="@drawable/img_photo" />-->
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/picture3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/img_photo" />
+<!--                <com.google.android.material.imageview.ShapeableImageView-->
+<!--                    android:id="@+id/picture3"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:background="@drawable/img_photo" />-->
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -277,6 +284,7 @@
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/detail_bottom_bar"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -304,7 +312,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/img_unliked" />
+                android:background="@drawable/img_unliked_2" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/likeCount"

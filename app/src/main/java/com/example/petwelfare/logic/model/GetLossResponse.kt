@@ -8,32 +8,32 @@ data class GetLossResponse(
 
 data class Loss(
     // 走失地点
-    val address: String,
-    val collectNums: Int,
-    val collectStatus: Int,
-    val commentNums: Int,
-    val contract: String,
-    val description: String,
-    val id: Int,
+    var address: String,
+    var collectNums: Int,
+    var collectStatus: Int,
+    var commentNums: Int,
+    var contact: String,
+    var description: String,
+    var id: Int,
 
     // 走失时间
-    val lostTime: String,
+    var lostTime: String,
 
-    val name: String,
-    val photos: List<String>,
+    var name: String,
+    var photos: List<String>,
 
     // 发布时间
-    val sendTime: String,
+    var sendTime: String,
 
-    val sex: String,
-    val type: String,
+    var sex: Int,
+    var type: String,
 
     // 发布者
-    val user: UserMostBrief
+    var user: UserMostBrief
 ) {
     constructor() : this(
         "aa", 0, 0, 0, "aa", "aa", 0,
-        "aa", "aa", listOf(), "aa", "aa", "aa", UserMostBrief()
+        "aa", "aa", listOf(" ", " ", " "), "aa", 0, "aa", UserMostBrief()
     )
 }
 

@@ -3,35 +3,22 @@ package com.example.petwelfare.ui.item.itemdetail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AlertDialogLayout
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.LazyHeaders
-import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityArticleDetailBinding
-import com.example.petwelfare.databinding.ItemCommentsParentBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.KidComment
 import com.example.petwelfare.logic.model.TimeBuilder
-import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.main.mine.MineActivity
-import kotlinx.coroutines.launch
 
 class ArticleDetailActivity : AppCompatActivity() {
 
@@ -48,6 +35,7 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        // 将页面数据存进viewModel
         viewModel.article.id = intent.getIntExtra("articleId", -1)
         viewModel.article.user.username = intent.getStringExtra("username").toString()
         viewModel.article.user.headImage = intent.getStringExtra("headImage").toString()
@@ -58,17 +46,28 @@ class ArticleDetailActivity : AppCompatActivity() {
         viewModel.article.collectStatus = intent.getIntExtra("collectStatus", -1)
         viewModel.article.likeNums = intent.getIntExtra("likeNums", -1)
         viewModel.article.likeStatus = intent.getIntExtra("likeStatus", -1)
+        viewModel.article.commentNums = intent.getIntExtra("commentNums", -1)
 
+        // 呈现数据
         binding.username.text = viewModel.article.user.username
         binding.articleText.text = viewModel.article.text
         binding.time.text = viewModel.article.time
-
         val myHeadImageString = viewModel.article.user.headImage
         val headImageGlideUrl = GlideUrl(myHeadImageString, Repository.lazyHeaders)
         binding.userHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
-
         binding.collectCount.text = viewModel.article.collectNums.toString()
         binding.likeCount.text = viewModel.article.likeNums.toString()
+        if (viewModel.article.collectStatus == 0) {
+            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected)
+        } else {
+            binding.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
+        }
+        if (viewModel.article.likeStatus == 0) {
+            binding.likeBtn.setBackgroundResource(R.drawable.img_unliked)
+        } else {
+            binding.likeBtn.setBackgroundResource(R.drawable.img_liked)
+        }
+        binding.commentsCount.text = viewModel.article.commentNums.toString()
 
         viewModel.getCommentsInArticle(viewModel.article.id.toString())
 
@@ -155,7 +154,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         val alertDialogBuilder = AlertDialog.Builder(this)
         val input = EditText(this)
         input.hint = "请输入评论"
-        //input.setBackgroundResource(R.drawable.bg_input)
+//        input.setBackgroundResource(R.drawable.bg_input)
         alertDialogBuilder.setView(input)
 
         alertDialogBuilder.setPositiveButton("发表") { _, _ ->

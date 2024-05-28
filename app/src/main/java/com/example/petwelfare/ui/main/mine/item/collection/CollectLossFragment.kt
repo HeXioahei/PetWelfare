@@ -36,7 +36,7 @@ class CollectLossFragment : Fragment() {
         // 获取列表
         //viewModel.getCollectLoss()
 
-        val collectLossAdapter = LossAdapter(collectLossList, mineActivity)
+        val collectLossAdapter = LossAdapter(collectLossList)
         binding.collectLoss.adapter = collectLossAdapter
         val layoutManager = LinearLayoutManager(mineActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

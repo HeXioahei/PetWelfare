@@ -42,7 +42,7 @@ class OtherUserLossFragment(val userId: Long) : Fragment() {
         // 获取列表
         viewModel.getMmyLoss(userId)
 
-        val mmyLossAdapter = LossAdapter(mmyLossList, otherUserActivity)
+        val mmyLossAdapter = LossAdapter(mmyLossList)
         binding.recyclerView.adapter = mmyLossAdapter
         val layoutManager = LinearLayoutManager(otherUserActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

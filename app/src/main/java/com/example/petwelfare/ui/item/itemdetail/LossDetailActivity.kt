@@ -10,24 +10,29 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
-import com.example.petwelfare.databinding.ActivityArticleDetailBinding
 import com.example.petwelfare.databinding.ActivityLossDetailBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.KidComment
 import com.example.petwelfare.logic.model.TimeBuilder
+import com.example.petwelfare.ui.adapter.viewpageradapter.ViewPagerAdapter
 import com.example.petwelfare.ui.main.mine.MineActivity
 
 class LossDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLossDetailBinding
-    private var comments : MutableList<Comments> = mutableListOf(
-        Comments(),
-        Comments(),
-        Comments(),
-        Comments()
-    )
+//    private var comments : MutableList<Comments> = mutableListOf(
+//        Comments(),
+//        Comments(),
+//        Comments(),
+//        Comments()
+//    )
     private val viewModel : LossDetailViewModel by viewModels()
-    private var lossId = "-1"
+//    private var lossId = "-1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +41,51 @@ class LossDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        lossId = intent.getIntExtra("lossId", -1).toString()
+        viewModel.loss.id = intent.getIntExtra("lossId", -1)
+        viewModel.loss.name = intent.getStringExtra("name").toString()
+        viewModel.loss.type = intent.getStringExtra("type").toString()
+        viewModel.loss.address = intent.getStringExtra("address").toString()
+        viewModel.loss.lostTime = intent.getStringExtra("lostTime").toString()
+        viewModel.loss.sex = intent.getIntExtra("sex", 0)
+        viewModel.loss.contact = intent.getStringExtra("contact").toString()
 
-        viewModel.getCommentsInLoss(lossId)
+        viewModel.loss.user.username = intent.getStringExtra("username").toString()
+        viewModel.loss.user.id = intent.getLongExtra("userId", -1L)
+        viewModel.loss.user.headImage = intent.getStringExtra("headImage").toString()
+        viewModel.loss.sendTime = intent.getStringExtra("time").toString()
+
+        viewModel.loss.commentNums = intent.getIntExtra("commentNums", 0)
+        viewModel.loss.collectNums = intent.getIntExtra("collectNums", 0)
+        viewModel.loss.collectStatus = intent.getIntExtra("collectStatus", 0)
+
+        binding.username.text = viewModel.loss.user.username
+        val userHeadImageGlideUrl = GlideUrl(viewModel.loss.user.headImage, Repository.lazyHeaders)
+        binding.headImage.let { Glide.with(PetWelfareApplication.context).load(userHeadImageGlideUrl).into(it) }
+        binding.time.text = viewModel.loss.sendTime
+
+        binding.name.text = viewModel.loss.name
+        if (viewModel.loss.sex == 0) {
+            binding.sex.setBackgroundResource(R.drawable.img_sex_male)
+        } else {
+            binding.sex.setBackgroundResource(R.drawable.img_sex_male)  // 这里到时候得改
+        }
+        binding.type.text = viewModel.loss.type
+        binding.address.text = viewModel.loss.address
+        binding.lossTime.text = viewModel.loss.lostTime
+        binding.contact.text = viewModel.loss.contact
+        binding.description.text = viewModel.loss.description
+
+        // 呈现照片
+        val viewPagerAdapter = ViewPagerAdapter(viewModel.loss.photos)
+        binding.photosContainer.adapter = viewPagerAdapter
+
+
+        // 获取评论列表
+        viewModel.getCommentsInLoss(viewModel.loss.id.toString())
 
         viewModel.commentsInLoss.observe(this) { result->
-            comments = result.data
+            viewModel.comments = result.data
+            onCreateParentCommentsList(viewModel.comments)
         }
 
         // 写父评论
@@ -49,7 +93,6 @@ class LossDetailActivity : AppCompatActivity() {
             writeComments(0, 1)
         }
 
-        onCreateParentCommentsList(comments)
     }
 
     // 创建父评论
@@ -156,7 +199,7 @@ class LossDetailActivity : AppCompatActivity() {
             val time = TimeBuilder.getNowTime()
             val content = input.text.toString()
             //进行网络请求
-            viewModel.writeComments(lossId, content, time, lastId, level)
+            viewModel.writeComments(viewModel.loss.id.toString(), content, time, lastId, level)
         }
         alertDialogBuilder.setNegativeButton("取消") { dialog, _ ->
             // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑

@@ -40,7 +40,7 @@ open class MyLossFragment(private val userId: Long) : Fragment() {
         // 获取列表
         viewModel.getMyLoss(userId)
 
-        val myLossAdapter = LossAdapter(myLossList, mineActivity)
+        val myLossAdapter = LossAdapter(myLossList)
         binding.myLoss.adapter = myLossAdapter
         val layoutManager = LinearLayoutManager(mineActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

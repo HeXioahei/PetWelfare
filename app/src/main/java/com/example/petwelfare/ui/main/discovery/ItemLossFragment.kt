@@ -31,7 +31,7 @@ class ItemLossFragment : Fragment() {
 
         val viewModel : DiscoveryViewModel by viewModels()
 
-        val lossAdapter = LossAdapter(lossList, mainActivity)
+        val lossAdapter = LossAdapter(lossList)
         binding.lossList.adapter = lossAdapter
         val layoutManager = LinearLayoutManager(mainActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
