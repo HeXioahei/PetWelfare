@@ -44,7 +44,7 @@ class OtherUserStrayFragment(val userId: Long) : MyStrayFragment(userId) {
         // 获取列表
         viewModel.getMmyStray(userId)
 
-        val mmyArticlesAdapter = StrayAdapter(mmyStrayList, otherUserActivity)
+        val mmyArticlesAdapter = StrayAdapter(mmyStrayList)
         binding.recyclerView.adapter = mmyArticlesAdapter
         val layoutManager = LinearLayoutManager(otherUserActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

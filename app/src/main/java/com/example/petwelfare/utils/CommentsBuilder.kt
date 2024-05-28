@@ -43,7 +43,7 @@ object CommentsBuilder {
             expendBtn.setOnClickListener {
 //                kidComment.layoutParams.height += 50
 //                binding.commentsList.requestLayout()
-                addKidComment(kidComment,item.kidComments,index, context, layoutInflater)
+                addKidComment(kidComment,item.kid_comments,index, context, layoutInflater)
                 index += 2
             }
 

@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.GetOrgsResponse
-import com.example.petwelfare.logic.model.GetUserBriefResponse
-import com.example.petwelfare.logic.model.UserBrief
+import com.example.petwelfare.logic.model.GetUserBriefListResponse
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
@@ -17,8 +16,8 @@ class FollowsViewModel : ViewModel() {
 //
 //    var followsData = Repository.getFollows(Repository.Authorization)
 
-    private val _followsList = MutableLiveData<GetUserBriefResponse>()
-    val followsList : LiveData<GetUserBriefResponse> = _followsList
+    private val _followsList = MutableLiveData<GetUserBriefListResponse>()
+    val followsList : LiveData<GetUserBriefListResponse> = _followsList
 
     private val _collectOrgsList = MutableLiveData<GetOrgsResponse>()
     val collectOrgsList : LiveData<GetOrgsResponse> = _collectOrgsList

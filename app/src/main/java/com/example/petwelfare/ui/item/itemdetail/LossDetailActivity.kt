@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.example.petwelfare.PetWelfareApplication
@@ -22,6 +21,7 @@ import com.example.petwelfare.logic.model.KidComment
 import com.example.petwelfare.logic.model.TimeBuilder
 import com.example.petwelfare.ui.adapter.viewpageradapter.ViewPagerAdapter
 import com.example.petwelfare.ui.main.mine.MineActivity
+import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 class LossDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLossDetailBinding
@@ -45,23 +45,23 @@ class LossDetailActivity : AppCompatActivity() {
         viewModel.loss.name = intent.getStringExtra("name").toString()
         viewModel.loss.type = intent.getStringExtra("type").toString()
         viewModel.loss.address = intent.getStringExtra("address").toString()
-        viewModel.loss.lostTime = intent.getStringExtra("lostTime").toString()
+        viewModel.loss.lost_time = intent.getStringExtra("lostTime").toString()
         viewModel.loss.sex = intent.getIntExtra("sex", 0)
         viewModel.loss.contact = intent.getStringExtra("contact").toString()
 
         viewModel.loss.user.username = intent.getStringExtra("username").toString()
         viewModel.loss.user.id = intent.getLongExtra("userId", -1L)
-        viewModel.loss.user.headImage = intent.getStringExtra("headImage").toString()
-        viewModel.loss.sendTime = intent.getStringExtra("time").toString()
+        viewModel.loss.user.head_image = intent.getStringExtra("headImage").toString()
+        viewModel.loss.send_time = intent.getStringExtra("time").toString()
 
-        viewModel.loss.commentNums = intent.getIntExtra("commentNums", 0)
-        viewModel.loss.collectNums = intent.getIntExtra("collectNums", 0)
-        viewModel.loss.collectStatus = intent.getIntExtra("collectStatus", 0)
+        viewModel.loss.collect_nums = intent.getIntExtra("collectNums", 0)
+        viewModel.loss.collect_status = intent.getIntExtra("collectStatus", 0)
+        viewModel.loss.comment_nums = intent.getIntExtra("commentNums", 0)
 
         binding.username.text = viewModel.loss.user.username
-        val userHeadImageGlideUrl = GlideUrl(viewModel.loss.user.headImage, Repository.lazyHeaders)
+        val userHeadImageGlideUrl = GlideUrl(viewModel.loss.user.head_image, Repository.lazyHeaders)
         binding.headImage.let { Glide.with(PetWelfareApplication.context).load(userHeadImageGlideUrl).into(it) }
-        binding.time.text = viewModel.loss.sendTime
+        binding.time.text = viewModel.loss.send_time
 
         binding.name.text = viewModel.loss.name
         if (viewModel.loss.sex == 0) {
@@ -71,9 +71,17 @@ class LossDetailActivity : AppCompatActivity() {
         }
         binding.type.text = viewModel.loss.type
         binding.address.text = viewModel.loss.address
-        binding.lossTime.text = viewModel.loss.lostTime
+        binding.lossTime.text = viewModel.loss.lost_time
         binding.contact.text = viewModel.loss.contact
         binding.description.text = viewModel.loss.description
+
+        if (viewModel.loss.collect_status == 0) {
+            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
+        } else {
+            binding.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
+        }
+        binding.collectCount.text = viewModel.loss.collect_nums.toString()
+        binding.commentsCount.text = viewModel.loss.comment_nums.toString()
 
         // 呈现照片
         val viewPagerAdapter = ViewPagerAdapter(viewModel.loss.photos)
@@ -83,6 +91,7 @@ class LossDetailActivity : AppCompatActivity() {
         // 获取评论列表
         viewModel.getCommentsInLoss(viewModel.loss.id.toString())
 
+        // 响应评论数据并呈现
         viewModel.commentsInLoss.observe(this) { result->
             viewModel.comments = result.data
             onCreateParentCommentsList(viewModel.comments)
@@ -91,6 +100,56 @@ class LossDetailActivity : AppCompatActivity() {
         // 写父评论
         binding.toWriteComments.setOnClickListener {
             writeComments(0, 1)
+        }
+
+        // 完成评论的发表，重新获取评论列表
+        viewModel.writeCommentsResponse.observe(this) {
+            viewModel.getCommentsInLoss(viewModel.loss.id.toString())
+            viewModel.loss.comment_nums++
+            binding.commentsCount.text = viewModel.loss.comment_nums.toString()
+        }
+
+        // 收藏
+        binding.collectBtn.setOnClickListener {
+            viewModel.collect(viewModel.loss.id.toString())
+        }
+
+        // 响应收藏
+        viewModel.collectResponse.observe(this) {
+            viewModel.loss.collect_status = viewModel.loss.collect_status xor 1
+            if (viewModel.loss.collect_status == 0) {
+                binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected)
+                viewModel.loss.collect_nums--
+            } else {
+                binding.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
+                viewModel.loss.collect_nums++
+            }
+            binding.collectCount.text = viewModel.loss.collect_nums.toString()
+        }
+
+        // 点击用户头像，进入用户详情页
+        binding.headImage.setOnClickListener {
+            val intent = Intent(this, OtherUserDetailActivity::class.java)
+            intent.putExtra("userId", viewModel.loss.user.id)
+            startActivity(intent)
+        }
+
+        // 关注
+        binding.followBtn.setOnClickListener {
+            viewModel.follow(viewModel.loss.user.id.toString())
+        }
+        viewModel.followResponse.observe(this) {
+            viewModel.loss.user.follow_status = viewModel.loss.user.follow_status xor 1
+            if (viewModel.loss.user.follow_status == 0) {
+                binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
+            } else {
+                binding.collectBtn.setBackgroundResource(R.drawable.img_followed)
+            }
+        }
+
+        // 返回
+        binding.returnBtn.setOnClickListener {
+            finish()
         }
 
     }
@@ -104,8 +163,11 @@ class LossDetailActivity : AppCompatActivity() {
                 writeComments(item.cid, 2)
             }
             val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
+            val glideUrl = GlideUrl(item.head_image, Repository.lazyHeaders)
+            headImage.let { Glide.with(this).load(glideUrl).into(it) }
             headImage.setOnClickListener {
-                val intent = Intent(this, MineActivity::class.java)
+                val intent = Intent(this, OtherUserDetailActivity::class.java)
+                intent.putExtra("userId", item.aid)
                 startActivity(intent)
             }
             val username : TextView = view.findViewById(R.id.usernameInParentComment)
@@ -122,7 +184,7 @@ class LossDetailActivity : AppCompatActivity() {
             expendBtn.setOnClickListener {
 //                kidComment.layoutParams.height += 50
 //                binding.commentsList.requestLayout()
-                addKidComment(kidComment,item.kidComments,index)
+                addKidComment(kidComment,item.kid_comments,index)
                 index += 2
             }
 
@@ -153,8 +215,11 @@ class LossDetailActivity : AppCompatActivity() {
             val item = list[index + i]
             val view = layoutInflater.inflate(R.layout.item_comments_kid, null, false)
             val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
+            val glideUrl = GlideUrl(item.head_image, Repository.lazyHeaders)
+            headImage.let { Glide.with(this).load(glideUrl).into(it) }
             headImage.setOnClickListener {
-                val intent = Intent(this, MineActivity::class.java)
+                val intent = Intent(this, OtherUserDetailActivity::class.java)
+                intent.putExtra("userId", item.aid)
                 startActivity(intent)
             }
             val username: TextView = view.findViewById(R.id.usernameInParentComment)

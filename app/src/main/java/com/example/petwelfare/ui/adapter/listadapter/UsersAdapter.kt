@@ -39,7 +39,7 @@ class UsersAdapter (private val list: MutableList<UserBrief>, private val contex
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        val headImageString = item.headImage
+        val headImageString = item.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         holder.headImage.let { Glide.with(context).load(headImageGlideUrl).into(it) }
         holder.personality.text = item.personality

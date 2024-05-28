@@ -33,7 +33,7 @@ class ItemStrayFragment : Fragment() {
 
         val viewModel : DiscoveryViewModel by viewModels()
 
-        val strayAdapter = StrayAdapter(strayList, mainActivity)
+        val strayAdapter = StrayAdapter(strayList)
         binding.strayList.adapter = strayAdapter
         val layoutManager = LinearLayoutManager(mainActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

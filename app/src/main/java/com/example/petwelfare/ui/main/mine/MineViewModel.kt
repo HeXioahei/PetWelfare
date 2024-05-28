@@ -3,9 +3,7 @@ package com.example.petwelfare.ui.main.mine
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
-import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
@@ -14,12 +12,14 @@ import kotlinx.coroutines.launch
 
 class MineViewModel : ViewModel() {
 
-    private val _userDetail = MutableLiveData<UserDetail>()
-    val userDetail : LiveData<UserDetail> = _userDetail
+    var userDetail = UserDetail()
+
+    private val _userDetailLiveData = MutableLiveData<UserDetail>()
+    val userDetailLiveData : LiveData<UserDetail> = _userDetailLiveData
 
     fun getUserDetail(userId: Long) {
         viewModelScope.launch {
-            _userDetail.value = PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data
+            _userDetailLiveData.value = PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data.author
         }
     }
 

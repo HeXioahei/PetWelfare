@@ -106,6 +106,9 @@ class MineActivity : AppCompatActivity() {
 
         // 缓冲并获取信息 / 手动刷新
         binding.swipeRefresh.isRefreshing = true
+        viewModel.delayAction {
+            binding.swipeRefresh.isRefreshing = false  // 过久未响应，自动结束缓冲
+        }
         binding.swipeRefresh.setOnRefreshListener {
             // 获取信息
             viewModel.getUserDetail(Repository.myId)
@@ -114,24 +117,23 @@ class MineActivity : AppCompatActivity() {
             }
         }
 
-        var myHeadImageString = ""
-
         // 显示信息
-        viewModel.userDetail.observe(this) { result->
+        viewModel.userDetailLiveData.observe(this) { result->
+
+            viewModel.userDetail = result
 
             Log.d("userDetail", result.toString())
-            binding.username.text = result.username
-            binding.address.text = result.address
-            binding.personality.text = result.personality
-            binding.fansNum.text = result.fanNums.toString()
-            binding.followsNum.text = result.followNums.toString()
-            binding.integralsNum.text = result.integral.toString()
-            binding.telephone.text = result.telephone
+            binding.username.text = viewModel.userDetail.username
+            binding.address.text = viewModel.userDetail.address
+            binding.personality.text = viewModel.userDetail.personality
+            binding.fansNum.text = viewModel.userDetail.fan_nums.toString()
+            binding.followsNum.text = viewModel.userDetail.follow_nums.toString()
+            binding.integralsNum.text = viewModel.userDetail.integral.toString()
+            binding.telephone.text = viewModel.userDetail.telephone
 
             // 设置头像
-            myHeadImageString = result.headImage
             val glideUrl = GlideUrl(
-                myHeadImageString,
+                viewModel.userDetail.head_image,
                 LazyHeaders.Builder()
                     .addHeader("Authorization", Repository.Authorization)
                     .build()
@@ -146,11 +148,11 @@ class MineActivity : AppCompatActivity() {
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
-            intent.putExtra("headImage", myHeadImageString)
-            intent.putExtra("username", binding.username.text.toString())
-            intent.putExtra("address", binding.address.text.toString())
-            intent.putExtra("personality", binding.personality.text.toString())
-            intent.putExtra("telephone", binding.telephone.text.toString())
+            intent.putExtra("headImage", viewModel.userDetail.head_image)
+            intent.putExtra("username", viewModel.userDetail.username)
+            intent.putExtra("address", viewModel.userDetail.address)
+            intent.putExtra("personality", viewModel.userDetail.personality)
+            intent.putExtra("telephone", viewModel.userDetail.telephone)
         }
 
         binding.fans.setOnClickListener {

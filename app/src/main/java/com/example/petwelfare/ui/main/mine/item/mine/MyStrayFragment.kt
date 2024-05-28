@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentMyStrayBinding
 import com.example.petwelfare.logic.Repository
@@ -37,13 +38,13 @@ open class MyStrayFragment(private val userId: Long) : Fragment() {
         // 获取列表
         viewModel.getMyStray(userId)
 
-        val myStrayAdapter = StrayAdapter(myStrayList, mineActivity)
+        val myStrayAdapter = StrayAdapter(myStrayList)
         binding.myStray.adapter = myStrayAdapter
-        val layoutManager = LinearLayoutManager(mineActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myStray.layoutManager = layoutManager
 
-        viewModel.myStray.observe(mineActivity) { result->
+        viewModel.myStray.observe(viewLifecycleOwner) { result->
             myStrayList = result.data
             myStrayAdapter.notifyDataSetChanged()
         }

@@ -1,7 +1,6 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -31,6 +30,7 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
         val collectCount = binding.collectCount
         val likeCount = binding.likeCount
         val likeIron = binding.likeIron
+        val commentsCount = binding.commentsNums
         val article = binding.article
     }
 
@@ -50,7 +50,7 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        val myHeadImageString = item.user.headImage
+        val myHeadImageString = item.user.head_image
         val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
         holder.headImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
 //        val pictureString1 = item.media[0]
@@ -67,7 +67,7 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
             holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
         }
         // 设置其他
-        if (item.user.followStatus == 0) {
+        if (item.user.follow_status == 0) {
             holder.followIron.setBackgroundResource(R.drawable.img_unfollowed_2)
         } else {
             holder.followIron.setBackgroundResource(R.drawable.img_followed)
@@ -76,33 +76,34 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
         holder.time.text = item.time
         holder.articleText.text = item.text
         // 设置点赞和收藏的图标
-        if (item.likeStatus == 1) {
+        if (item.like_status == 1) {
             holder.likeIron.setBackgroundResource(R.drawable.img_liked)
         } else {
             holder.likeIron.setBackgroundResource(R.drawable.img_unliked_2)
         }
-        if (item.collectStatus == 1) {
+        if (item.collect_status == 1) {
             holder.collectIron.setBackgroundResource(R.drawable.img_collected_3)
         } else {
             holder.collectIron.setBackgroundResource(R.drawable.img_uncollected_3)
         }
-        holder.collectCount.text = item.collectNums.toString()
-        holder.likeCount.text = item.likeNums.toString()
+        holder.collectCount.text = item.collect_nums.toString()
+        holder.likeCount.text = item.like_nums.toString()
+        holder.commentsCount.text = item.comment_nums.toString()
         // 点击跳转到具体页
         holder.article.setOnClickListener {
             val intent = Intent(PetWelfareApplication.context, ArticleDetailActivity::class.java)
 
             intent.putExtra("username", item.user.username)
             intent.putExtra("userId", item.user.id)
-            intent.putExtra("headImage", item.user.headImage)
-            intent.putExtra("followStatus", item.user.followStatus)
+            intent.putExtra("headImage", item.user.head_image)
+            intent.putExtra("followStatus", item.user.follow_status)
             intent.putExtra("text", item.text)
             intent.putExtra("time", item.time)
-            intent.putExtra("commentsNums", item.commentNums)
-            intent.putExtra("likeNums", item.likeNums)
-            intent.putExtra("likeStatus", item.likeStatus)
-            intent.putExtra("collectNums", item.collectNums)
-            intent.putExtra("collectStatus", item.collectStatus)
+            intent.putExtra("commentsNums", item.comment_nums)
+            intent.putExtra("likeNums", item.like_nums)
+            intent.putExtra("likeStatus", item.like_status)
+            intent.putExtra("collectNums", item.collect_nums)
+            intent.putExtra("collectStatus", item.collect_status)
             intent.putExtra("articleId", item.id)
             intent.putStringArrayListExtra("photos", item.media as ArrayList<String>)
 

@@ -6,7 +6,7 @@ import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetOrgsResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
 import com.example.petwelfare.logic.model.GetTalksResponse
-import com.example.petwelfare.logic.model.GetUserBriefResponse
+import com.example.petwelfare.logic.model.GetUserBriefListResponse
 import com.example.petwelfare.logic.model.GetUserDetailResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -23,10 +23,10 @@ import retrofit2.http.Query
 interface MineService {
 
     @GET("/users/information/")
-    suspend fun getUserInfo(
+    fun getUserInfo(
         @Query("id") id: Long,
         @Header("Authorization") Authorization: String
-    ): GetUserDetailResponse
+    ): Call<GetUserDetailResponse>
 
     @PUT("/users/{id}/follows/")
     fun follow(
@@ -37,12 +37,12 @@ interface MineService {
     @GET("/users/follows/")
     fun getFollows(
         @Header("Authorization") Authorization: String
-    ): Call<GetUserBriefResponse>
+    ): Call<GetUserBriefListResponse>
 
     @GET("/users/fans/")
     fun getFans(
         @Header("Authorization") Authorization: String
-    ): Call<GetUserBriefResponse>
+    ): Call<GetUserBriefListResponse>
 
     @GET("/users/collections/loss/")
     fun getCollectLoss(
@@ -102,34 +102,34 @@ interface MineService {
 
     @Multipart
     @PUT("/users/changes/head/")
-    suspend fun changeHead(
+    fun changeHead(
         @Part headImage: MultipartBody.Part,
         @Header("Authorization") Authorization: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @PUT("/users/changes/username/")
-    suspend fun changeUsername(
+    fun changeUsername(
         @Query("username") username: String,
         @Header("Authorization") Authorization: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @PUT("/users/changes/address/")
-    suspend fun changeAddress(
+    fun changeAddress(
         @Query("address") address: String,
         @Header("Authorization") Authorization: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @PUT("/users/changes/telephone/")
-    suspend fun changeTelephone(
+    fun changeTelephone(
         @Query("telephone") telephone: String,
         @Header("Authorization") Authorization: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @PUT("/users/changes/personality/")
-    suspend fun changePersonality(
+    fun changePersonality(
         @Query("personality") personality: String,
         @Header("Authorization") Authorization: String
-    ): BaseResponse
+    ): Call<BaseResponse>
 
     @POST("/users/talk/sending/")
     fun sendMessage(

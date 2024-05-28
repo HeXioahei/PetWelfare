@@ -8,22 +8,22 @@ data class GetStrayResponse(
 
 data class Stray(
     // 发现地址
-    val address: String,
-
-    val collcetStatus: Int,
-    val collectNums: Int,
-    val commentsNums: Int,
-    val description: String,
-    val photos: MutableList<String>,
+    var address: String,
+    var id: Int,
+    var collect_status: Int,
+    var collect_nums: Int,
+    var comments_nums: Int,
+    var description: String,
+    var photos: MutableList<String>,
 
     // 发布时间
-    val time: String,
+    var time: String,
 
     // 发布者
-    val user: UserMostBrief
+    var user: UserMostBrief
 ) {
     constructor() : this(
-        "aa", 0, 0, 0,
+        "aa", 0, 0, 0, 0,
         "aa", mutableListOf(), "aa", UserMostBrief()
     )
 }

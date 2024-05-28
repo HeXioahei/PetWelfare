@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.main.mine.item.mine
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentMyArticlesBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
@@ -29,7 +31,6 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
         val viewModel : ItemMineViewModel by viewModels()
 
         var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
-        val mineActivity = ActivityCollector.mineActivity
 
 
         // 获取列表
@@ -37,11 +38,12 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
 
         val myArticlesAdapter = ArticlesAdapter(myArticlesList)
         binding.myArticles.adapter = myArticlesAdapter
-        val layoutManager = LinearLayoutManager(mineActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myArticles.layoutManager = layoutManager
 
-        viewModel.myArticles.observe(mineActivity) { result->
+        viewModel.myArticles.observe(viewLifecycleOwner) { result->
+            Log.d("getMyArticles2", "getMyArticles2")
             myArticlesList = result.data
             myArticlesAdapter.notifyDataSetChanged()
         }

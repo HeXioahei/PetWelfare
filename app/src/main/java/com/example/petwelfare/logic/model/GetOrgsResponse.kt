@@ -7,12 +7,12 @@ data class GetOrgsResponse(
 )
 
 data class Org(
-    val collectNums: Int,
-    val collectStatus: Int,
+    val collect_nums: Int,
+    val collect_status: Int,
     val contact: String,
     val description: String,
-    val headImage: String,
-    val orgName: String
+    val head_image: String,
+    val org_name: String
 ) {
     constructor() : this(
         0, 0, "aa", "aa", "aa", "aa"

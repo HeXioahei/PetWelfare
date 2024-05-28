@@ -13,7 +13,6 @@ import com.example.petwelfare.databinding.ItemLossBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.ui.item.itemdetail.LossDetailActivity
-import okio.blackholeSink
 import java.util.ArrayList
 
 class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<LossAdapter.ViewHolder>() {
@@ -47,23 +46,25 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
         val item = list[position]
         //...进行数据的处理与呈现
         holder.username.text = item.user.username
-        val userHeadImageGlideUrl = GlideUrl(item.user.headImage, Repository.lazyHeaders)
+        val userHeadImageGlideUrl = GlideUrl(item.user.head_image, Repository.lazyHeaders)
         holder.userHeadImage.let { Glide.with(PetWelfareApplication.context).load(userHeadImageGlideUrl).into(it) }
         // 设置其他
-        val photoGlideUrl = GlideUrl(item.photos[0], Repository.lazyHeaders)
-        holder.photoContainer.let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
+        if (item.photos.isNotEmpty()) {
+            val photoGlideUrl = GlideUrl(item.photos[0], Repository.lazyHeaders)
+            holder.photoContainer.let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
+        }
         holder.address.text = item.address
         holder.petName.text = item.name
-        holder.lossTime.text = item.lostTime
+        holder.lossTime.text = item.lost_time
         holder.contact.text = item.contact
-        holder.sendTime.text = item.sendTime
-        if (item.collectStatus == 0) {
+        holder.sendTime.text = item.send_time
+        if (item.collect_status == 0) {
             holder.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
         } else {
             holder.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
         }
-        holder.collectCount.text = item.collectNums.toString()
-        holder.commentsCount.text = item.commentNums.toString()
+        holder.collectCount.text = item.collect_nums.toString()
+        holder.commentsCount.text = item.comment_nums.toString()
 
         // 点击跳转到具体页
         holder.loss.setOnClickListener {
@@ -71,19 +72,19 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
             intent.putStringArrayListExtra("photos", item.photos as ArrayList<String>)
             intent.putExtra("username", item.user.username)
             intent.putExtra("userId", item.user.id)
-            intent.putExtra("headImage", item.user.headImage)
-            intent.putExtra("time", item.sendTime)
+            intent.putExtra("headImage", item.user.head_image)
+            intent.putExtra("time", item.send_time)
 
             intent.putExtra("description", item.description)
             intent.putExtra("sex", item.sex)
             intent.putExtra("address", item.address)
             intent.putExtra("name", item.name)
-            intent.putExtra("lostTime", item.lostTime)
+            intent.putExtra("lostTime", item.lost_time)
             intent.putExtra("contract", item.contact)
 
-            intent.putExtra("commentNums", item.commentNums)
-            intent.putExtra("collectNums", item.collectNums)
-            intent.putExtra("collectStatus", item.collectStatus)
+            intent.putExtra("commentNums", item.comment_nums)
+            intent.putExtra("collectNums", item.collect_nums)
+            intent.putExtra("collectStatus", item.collect_status)
             intent.putExtra("lossId", item.id)
 
             // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志

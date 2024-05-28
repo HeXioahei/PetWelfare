@@ -38,19 +38,19 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-//        val username = viewModel2.myDetail.username
-//        val address = viewModel2.myDetail.address
-//        val telephone = viewModel2.myDetail.telephone
-//        val personality = viewModel2.myDetail.personality
+        viewModel1.editInfo.head_image = intent.getStringExtra("headImage").toString()
+        viewModel1.editInfo.username = intent.getStringExtra("username").toString()
+        viewModel1.editInfo.address = intent.getStringExtra("address").toString()
+        viewModel1.editInfo.telephone = intent.getStringExtra("telephone").toString()
+        viewModel1.editInfo.personality = intent.getStringExtra("personality").toString()
 
-        val headImageString = intent.getStringExtra("headImage").toString()
-        val username = intent.getStringExtra("username").toString()
-        val address = intent.getStringExtra("address").toString()
-        val telephone = intent.getStringExtra("telephone").toString()
-        val personality = intent.getStringExtra("personality").toString()
+        binding.username.text = viewModel1.editInfo.username
+        binding.personality.text = viewModel1.editInfo.personality
+        binding.address.text = viewModel1.editInfo.address
+        binding.telephone.text = viewModel1.editInfo.telephone
 
         val glideUrl = GlideUrl(
-            headImageString,
+            viewModel1.editInfo.head_image,
             LazyHeaders.Builder()
                 .addHeader("Authorization", Repository.Authorization)
                 .build()
@@ -84,7 +84,7 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改用户名
         binding.changeUsername.setOnClickListener {
-            showAlertDialog(username, "changeUsername")
+            showAlertDialog(viewModel1.editInfo.username, "changeUsername")
         }
 
         // 修改密码
@@ -95,17 +95,17 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改地址
         binding.changeAddress.setOnClickListener {
-            showAlertDialog(address, "changeAddress")
+            showAlertDialog(viewModel1.editInfo.address, "changeAddress")
         }
 
         // 修改电话
         binding.changeTelephone.setOnClickListener {
-            showAlertDialog(telephone, "changeTelephone")
+            showAlertDialog(viewModel1.editInfo.telephone, "changeTelephone")
         }
 
         // 修改个性签名
         binding.changePersonality.setOnClickListener {
-            showAlertDialog(personality, "changePersonality")
+            showAlertDialog(viewModel1.editInfo.personality, "changePersonality")
         }
 
         viewModel1.changeResponse.observe(this) { result->
@@ -114,7 +114,7 @@ class EditMyInfoActivity : AppCompatActivity() {
             } else if (result.code != 0) {
                 Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show()
             }
-            viewModel1.resetChangeResponse(0, "") // 以便下一次再进行修改的网络请求
+            // viewModel1.resetChangeResponse(0, "") // 以便下一次再进行修改的网络请求
         }
 
 

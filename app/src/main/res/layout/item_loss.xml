@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="20dp"
     android:background="#ffffff"
     android:id="@+id/loss">
 
@@ -15,46 +17,6 @@
         android:scaleType="center"
         android:layout_marginHorizontal="10dp"
         app:layout_constraintTop_toTopOf="parent" />
-
-<!--    <com.google.android.material.imageview.ShapeableImageView-->
-<!--        android:id="@+id/headImageInLoss"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:background="@drawable/img_headimage"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:shapeAppearanceOverlay="@style/CircleShapeAppearance" />-->
-
-<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/headImageInLoss"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:layout_marginStart="15dp">-->
-
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/nameLoss"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:text="名字：小白" />-->
-
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/addressLoss"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:text="走失地点：福州大学通判小区" />-->
-
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/ownerMessage"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:text="主人寄语：" />-->
-
-<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat9"

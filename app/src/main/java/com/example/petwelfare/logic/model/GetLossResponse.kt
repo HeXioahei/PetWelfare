@@ -9,21 +9,21 @@ data class GetLossResponse(
 data class Loss(
     // 走失地点
     var address: String,
-    var collectNums: Int,
-    var collectStatus: Int,
-    var commentNums: Int,
+    var collect_nums: Int,
+    var collect_status: Int,
+    var comment_nums: Int,
     var contact: String,
     var description: String,
     var id: Int,
 
     // 走失时间
-    var lostTime: String,
+    var lost_time: String,
 
     var name: String,
     var photos: List<String>,
 
     // 发布时间
-    var sendTime: String,
+    var send_time: String,
 
     var sex: Int,
     var type: String,

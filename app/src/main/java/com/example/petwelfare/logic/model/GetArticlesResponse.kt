@@ -8,13 +8,13 @@ data class GetArticlesResponse(
 
 data class Article(
     var user: UserMostBrief,
-    var collectNums: Int,
-    var collectStatus: Int,
-    var commentNums: Int,
-    var hitNums: Int,
+    var collect_nums: Int,
+    var collect_status: Int,
+    var comment_nums: Int,
+    var hit_nums: Int,
     var id: Int,
-    var likeNums: Int,
-    var likeStatus: Int,
+    var like_nums: Int,
+    var like_status: Int,
     var media: MutableList<String>,
     var text: String,
     var time: String

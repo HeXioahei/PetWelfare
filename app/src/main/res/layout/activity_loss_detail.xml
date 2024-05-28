@@ -55,10 +55,11 @@
             app:layout_constraintTop_toTopOf="@+id/headImage" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/publishBtn"
-            android:layout_width="24dp"
+            android:id="@+id/followBtn"
+            android:layout_width="48dp"
             android:layout_height="24dp"
-            android:background="@drawable/btn_to_menu"
+            android:background="@drawable/img_unfollowed"
+            android:foreground="@drawable/ripple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -287,14 +288,16 @@
         android:background="@color/detail_bottom_bar"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/to_write_comments"
             android:layout_width="200dp"
             android:layout_height="36dp"
             android:layout_marginTop="8dp"
             android:layout_marginStart="5dp"
             android:background="@drawable/bg_input_comments"
-            android:hint="发表评论"
+            android:text="发表评论"
+            android:textColor="@color/gray"
+            android:gravity="center_vertical"
             android:paddingHorizontal="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -302,24 +305,24 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/to_write_comments"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/likeBtn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/img_unliked_2" />
+            <!--            <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                android:id="@+id/likeBtn"-->
+            <!--                android:layout_width="24dp"-->
+            <!--                android:layout_height="24dp"-->
+            <!--                android:layout_gravity="center_vertical"-->
+            <!--                android:background="@drawable/img_unliked_2" />-->
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/likeCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="20" />
+            <!--            <com.google.android.material.textview.MaterialTextView-->
+            <!--                android:id="@+id/likeCount"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center_vertical"-->
+            <!--                android:text="20" />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/toCommentsBtn"

@@ -46,8 +46,8 @@ class MsgAdapter(private val msgList: MutableList<Msg>) : RecyclerView.Adapter<R
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val msg = msgList[position]
         when(holder) {
-            is LeftViewHolder -> holder.leftMsg.text = msg.messgae
-            is RightViewHolder -> holder.rightMsg.text = msg.messgae
+            is LeftViewHolder -> holder.leftMsg.text = msg.message
+            is RightViewHolder -> holder.rightMsg.text = msg.message
             else -> throw IllegalArgumentException()
         }
     }

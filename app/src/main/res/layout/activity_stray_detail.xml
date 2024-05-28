@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/headImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
@@ -34,30 +34,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/send_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="2024/01/04"
             android:layout_marginTop="10dp"
             android:textColor="@color/text_gray"
-            app:layout_constraintStart_toStartOf="@+id/appCompatTextView4"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView4"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="用户名"
             android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+            app:layout_constraintStart_toEndOf="@+id/headImage"
+            app:layout_constraintTop_toTopOf="@+id/headImage" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/publishBtn"
-            android:layout_width="24dp"
+            android:id="@+id/followBtn"
+            android:layout_width="48dp"
             android:layout_height="24dp"
-            android:background="@drawable/btn_to_menu"
+            android:background="@drawable/img_unfollowed_2"
+            android:foreground="@drawable/ripple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -76,6 +78,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/photosContainer"
+                android:layout_width="280dp"
+                android:layout_height="250dp"
+                android:background="@drawable/img_photo"
+                android:layout_gravity="center_horizontal"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -127,29 +136,10 @@
                             android:textColor="@color/text_gray" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/loss_time"
+                            android:id="@+id/find_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="2024-5-5   20: 60" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="联系电话："
-                            android:textColor="@color/text_gray" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/contact"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="12345678901"/>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -162,7 +152,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/articleText"
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -252,24 +242,10 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/to_write_comments"
             app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/likeBtn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/img_unliked_2" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/likeCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="20" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/toCommentsBtn"

@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.item.mine
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -54,7 +55,9 @@ class ItemMineViewModel : ViewModel() {
 
     fun getMyArticles(id: Long) {
         viewModelScope.launch {
+            Log.d("getMyArticles", "getMyArticles")
             _myArticles.value = PetWelfareNetwork.getMyArticles(id, Repository.Authorization)
+            Log.d("getMyArticles", "${PetWelfareNetwork.getMyArticles(id, Repository.Authorization)}")
         }
     }
 

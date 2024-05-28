@@ -37,12 +37,12 @@ class OrgsAdapter (private val list: MutableList<Org>, private val activity: Act
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        val headImageString = item.headImage
+        val headImageString = item.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         holder.headImage.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
         // 设置其他
         holder.contact.text = item.contact
         holder.description.text = item.description
-        holder.name.text = item.orgName
+        holder.name.text = item.org_name
     }
 }

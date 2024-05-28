@@ -55,10 +55,11 @@
             app:layout_constraintTop_toTopOf="@+id/userHeadImage" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/publishBtn"
-            android:layout_width="24dp"
+            android:id="@+id/followBtn"
+            android:layout_width="48dp"
             android:layout_height="24dp"
-            android:background="@drawable/btn_to_menu"
+            android:background="@drawable/img_unfollowed_2"
+            android:foreground="@drawable/ripple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -107,6 +108,7 @@
                     android:id="@+id/picture1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/img_photo" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -114,6 +116,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="10dp"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/img_photo" />
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -121,6 +124,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="10dp"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/img_photo" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -158,14 +162,16 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/to_write_comments"
             android:layout_width="200dp"
             android:layout_height="36dp"
             android:layout_marginTop="8dp"
             android:layout_marginStart="5dp"
             android:background="@drawable/bg_input_comments"
-            android:hint="发表评论"
+            android:text="发表评论"
+            android:textColor="@color/gray"
+            android:gravity="center_vertical"
             android:paddingHorizontal="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

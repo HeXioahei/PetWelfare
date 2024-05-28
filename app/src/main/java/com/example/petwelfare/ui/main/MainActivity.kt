@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         // 3、然后将 navigationView 和 navController 绑定
         navigationView.setupWithNavController(navController)
         // 将 item 背景色调为透明
-        //navigationView.itemIconTintList = null
+        navigationView.itemIconTintList = null
 
         binding.toWriteBtn.setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)

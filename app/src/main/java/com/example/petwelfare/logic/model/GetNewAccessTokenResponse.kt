@@ -7,5 +7,5 @@ data class GetNewAccessTokenResponse (
 )
 
 data class AccessToken (
-    val accessToken: String
+    val access_token: String
 )

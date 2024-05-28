@@ -8,5 +8,5 @@
     <color name="text_gray">#767676</color>
     <color name="add_bottom_bar">#F7F2EA</color>
     <color name="add_head_bar">#FCFBF9</color>
-    <color name="detail_bottom_bar">##FFF8EC</color>
+    <color name="detail_bottom_bar">#FFF8EC</color>
 </resources>

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentMyArticlesBinding
 import com.example.petwelfare.databinding.FragmentMyLossBinding
@@ -42,11 +43,11 @@ open class MyLossFragment(private val userId: Long) : Fragment() {
 
         val myLossAdapter = LossAdapter(myLossList)
         binding.myLoss.adapter = myLossAdapter
-        val layoutManager = LinearLayoutManager(mineActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myLoss.layoutManager = layoutManager
 
-        viewModel.myLoss.observe(mineActivity) { result->
+        viewModel.myLoss.observe(viewLifecycleOwner) { result->
             myLossList = result.data
             myLossAdapter.notifyDataSetChanged()
         }

@@ -18,8 +18,8 @@ data class Comments(
     val cid: Int,
 
     val comment: String,
-    val headImage: String,
-    val kidComments: MutableList<KidComment>,
+    val head_image: String,
+    val kid_comments: MutableList<KidComment>,
     val time: String,
     val username: String
 ) {
@@ -36,11 +36,12 @@ data class KidComment(
     val cid: Int,
 
     val comment: String,
-    val headImage: String,
+    val head_image: String,
     val time: String,
-    val username: String
+    val username: String,
+    val aid: Long
 ) {
     constructor():this(
-        0,"aa","aa","aa","aa"
+        0,"aa","aa","aa","aa", -1L
     )
 }

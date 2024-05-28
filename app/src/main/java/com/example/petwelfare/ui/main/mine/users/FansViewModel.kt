@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.GetUserBriefResponse
-import com.example.petwelfare.logic.model.UserBrief
-import com.example.petwelfare.logic.model.UserMostBrief
+import com.example.petwelfare.logic.model.GetUserBriefListResponse
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
@@ -17,8 +15,8 @@ class FansViewModel : ViewModel() {
 //
 //    var fansData = Repository.getFans(Repository.Authorization)
 
-    private val _fansList = MutableLiveData<GetUserBriefResponse>()
-    val fansList : LiveData<GetUserBriefResponse> = _fansList
+    private val _fansList = MutableLiveData<GetUserBriefListResponse>()
+    val fansList : LiveData<GetUserBriefListResponse> = _fansList
 
     fun getFans() {
         viewModelScope.launch {

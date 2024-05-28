@@ -15,7 +15,7 @@ data class Msg (
     val id: Long,
 
     // 信息内容
-    val messgae: String,
+    val message: String,
 
     // 该条信息的时间
     val time: String

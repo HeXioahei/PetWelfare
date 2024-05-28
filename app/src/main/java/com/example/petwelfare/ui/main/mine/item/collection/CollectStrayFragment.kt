@@ -35,7 +35,7 @@ class CollectStrayFragment : Fragment() {
         // 获取列表
         //viewModel.getCollectStary()
 
-        val collectStrayAdapter = StrayAdapter(collectStrayList, mineActivity)
+        val collectStrayAdapter = StrayAdapter(collectStrayList)
         binding.collectStray.adapter = collectStrayAdapter
         val layoutManager = LinearLayoutManager(mineActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

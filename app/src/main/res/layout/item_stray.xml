@@ -2,45 +2,181 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="20dp"
-    android:background="@drawable/bg_item_others"
     android:id="@+id/stray">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/headImageInStray"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/img_headimage"
-        android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/CircleShapeAppearance" />
+<!--    <com.google.android.material.imageview.ShapeableImageView-->
+<!--        android:id="@+id/headImageInStray"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:background="@drawable/img_headimage"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:shapeAppearanceOverlay="@style/CircleShapeAppearance" />-->
+
+<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/headImageInStray"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginStart="15dp">-->
+
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/findAddress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:text="发现地点：福州大学通判小区" />-->
+
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/finderMessage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:text="发现者寄语：" />-->
+
+<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/photoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/img_photo"
+        android:scaleType="center"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayoutCompat9"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/headImageInStray"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="15dp">
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photoContainer">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/findAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="发现地点：福州大学通判小区" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/finderMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="发现者寄语：" />
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现地点："
+                android:textColor="@color/text_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="饭都花园" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现时间："
+                android:textColor="@color/text_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/find_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2024-5-5   20: 60" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userHeadImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/img_headimage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="用户名"
+            app:layout_constraintStart_toEndOf="@+id/userHeadImage"
+            app:layout_constraintTop_toTopOf="@+id/userHeadImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/send_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:text="2024-5-1"
+            app:layout_constraintStart_toEndOf="@+id/userHeadImage"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/commentsBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/img_to_comments_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/commentsCount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/commentsCount"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="20"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/collectBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/collectBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/img_uncollected_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/collectCount"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="20"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
