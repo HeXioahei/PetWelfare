@@ -48,7 +48,7 @@
         android:layout_marginHorizontal="30dp"
         android:elevation="2dp"
         android:background="@drawable/bg_drop_menu"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/loginMailbox"
         tools:layout_editor_absoluteX="20dp">
 

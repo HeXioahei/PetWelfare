@@ -14,6 +14,7 @@ import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityEditPetInfoBinding
+import com.example.petwelfare.databinding.DialogEditInfoBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.FileBuilder
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -96,15 +97,20 @@ class EditPetInfoActivity : AppCompatActivity() {
     private fun showAlertDialog(initText: String, type: String) {
         val alertDialogBuilder = AlertDialog.Builder(this)
 
-        // 创建一个 EditText 视图
-        val input = EditText(this)
-        input.setText(initText)
-        //input.setBackgroundResource(R.drawable.bg_input)
-        alertDialogBuilder.setView(input)
+//        // 创建一个 EditText 视图
+//        val input = EditText(this)
+//        input.setText(initText)
+//        input.setBackgroundResource(R.drawable.bg_input)
+//        alertDialogBuilder.setView(input)
+
+        val binding : DialogEditInfoBinding = DialogEditInfoBinding.inflate(layoutInflater)
+        alertDialogBuilder.setView(binding.root)
+
+        binding.appCompatEditText.setText(initText)
 
         // 设置对话框的按钮
         alertDialogBuilder.setPositiveButton("确定") { _, _ ->
-            val inputText = input.text.toString()
+            val inputText = binding.appCompatEditText.text.toString()
             val Authorization = Repository.Authorization
             when (type) {
                 "changePetname" -> {

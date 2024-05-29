@@ -27,22 +27,23 @@ class MineViewModel : ViewModel() {
     var userDetail = UserDetail()
 
     private val _userDetailLiveData = MutableLiveData<UserDetail>()
-    val userDetailLiveData : LiveData<UserDetail> = _userDetailLiveData
+    val userDetailLiveData: LiveData<UserDetail> = _userDetailLiveData
 
     fun getUserDetail(userId: Long) {
         viewModelScope.launch {
-            _userDetailLiveData.value = PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data.author
+            _userDetailLiveData.value =
+                PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data.author
         }
     }
 
-    fun delayAction(action: ()->Unit) {
+    fun delayAction(action: () -> Unit) {
         viewModelScope.launch {
             delay(5000)
             action.invoke()
         }
     }
 
-
+}
 
 
 //    /*这里的写法和列表页的写法有些不同，到时候测试的时候看看哪种比较好*/
@@ -78,4 +79,3 @@ class MineViewModel : ViewModel() {
 //    fun setPersonality(personality2: String) {
 //        infoLiveData.value?.personality = personality2
 //    }
-}

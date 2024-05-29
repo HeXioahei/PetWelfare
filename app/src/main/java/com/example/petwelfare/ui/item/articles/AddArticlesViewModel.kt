@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.item.articles
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class AddArticlesViewModel : ViewModel() {
+
+    var photosList = mutableListOf<@JvmSuppressWildcards Uri>()
 
     private val _addArticlesResponse = MutableLiveData<BaseResponse>()
     val addArticlesResponse : LiveData<BaseResponse> = _addArticlesResponse

@@ -115,17 +115,14 @@ class AddArticlesActivity : AppCompatActivity() {
     }
 
     private fun addPicture(uris: List<@JvmSuppressWildcards Uri>) {
+        val length = binding.photosContainer.horizontalFadingEdgeLength
         for (uri in uris) {
             if(photosList.size == 3) {
                 Toast.makeText(this,"最多只能选择三个图像哦", Toast.LENGTH_SHORT).show()
                 return
             }
             val imageView = AppCompatImageView(this)
-            val imageViewParams = LinearLayout.LayoutParams(
-                190,190
-            ).apply {
-                marginStart = 20
-            }
+            val imageViewParams = LinearLayout.LayoutParams(250,250).apply { marginStart = 20 }
             imageView.setOnLongClickListener{
                 removePhoto(imageView)
                 true
