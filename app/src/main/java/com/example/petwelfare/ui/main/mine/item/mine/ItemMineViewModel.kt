@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.main.mine.item.mine
 
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,34 +16,22 @@ import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.logic.model.Stray
 import com.example.petwelfare.logic.model.UserMostBrief
 import com.example.petwelfare.logic.network.PetWelfareNetwork
+import com.example.petwelfare.ui.BlankFragment
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ItemMineViewModel : ViewModel() {
 
-    //private val listLiveData = MutableLiveData<UserMostBrief>()
+    var viewPagerList: List<Fragment> = listOf(
+        MyArticlesFragment(Repository.myId),
+        MyLossFragment(Repository.myId),
+        MyStrayFragment(Repository.myId),
+        BlankFragment()
+    )
 
-////    lateinit var myArticles : MutableList<Article>
-//    var myArticles : MutableList<Article> = mutableListOf(Article(), Article(), Article(), Article(), Article())
-////    lateinit var myLoss : MutableList<Loss>
-//    var myLoss : MutableList<Loss> = mutableListOf(Loss())
-////    lateinit var myStray : MutableList<Stray>
-//    var myStray : MutableList<Stray> = mutableListOf(Stray())
-//
-//    var myArticlesData = listLiveData.switchMap { data->
-//        Repository.getMyArticles(data.id, Repository.Authorization)
-//    }
-//
-//    var myLossData = listLiveData.switchMap { data->
-//        Repository.getMyLoss(data.id, Repository.Authorization)
-//    }
-//
-//    var myStrayData = listLiveData.switchMap { data->
-//        Repository.getMyStray(data.id, Repository.Authorization)
-//    }
-//
-//    fun setId (id2 : Long) {
-//        listLiveData.value?.id = id2
-//    }
+    var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
+    var myLossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss())
+    var myStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
 
     private val _myArticles = MutableLiveData<GetArticlesResponse>()
     val myArticles : LiveData<GetArticlesResponse> = _myArticles
@@ -73,4 +62,10 @@ class ItemMineViewModel : ViewModel() {
         }
     }
 
+    fun delayAction(action: ()->Unit) {
+        viewModelScope.launch {
+            delay(5000)
+            action.invoke()
+        }
+    }
 }

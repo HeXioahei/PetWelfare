@@ -23,6 +23,16 @@
                 android:background="@drawable/img_me_decorate"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/returnBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/btn_return_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/headImage"
                 android:layout_width="80dp"
@@ -38,7 +48,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/infoCard"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="180dp"
                 android:padding="10dp"
                 android:background="@drawable/bg_me_info"
@@ -104,35 +114,76 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="90dp"
-                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:elevation="1dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView3"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-                    android:layout_marginTop="10dp">
+                    app:layout_constraintVertical_bias="0.0">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/personality"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:text="个性签名：" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:text="地址：" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:text="个性签名："
+                            android:textColor="@color/text_gray" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/telephone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:text="电话：" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/personality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还没有个性签名~" />
 
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="地址："
+                            android:textColor="@color/text_gray" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="翻斗大街翻斗花园" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="电话："
+                            android:textColor="@color/text_gray" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/telephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="1314520" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -140,7 +191,7 @@
                     android:id="@+id/linearLayoutCompat7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -174,6 +225,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView3"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
@@ -198,6 +250,16 @@
                     app:layout_constraintEnd_toStartOf="@+id/item_pet"
                     app:layout_constraintStart_toStartOf="parent" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/item_mine_cursor"
+                    android:layout_width="35dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/img_cursor"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_mine"
+                    app:layout_constraintEnd_toEndOf="@+id/item_mine"
+                    app:layout_constraintStart_toStartOf="@+id/item_mine" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_pet"
                     android:layout_width="wrap_content"
@@ -206,6 +268,16 @@
                     android:text="宠物屋"
                     app:layout_constraintEnd_toStartOf="@+id/item_collection"
                     app:layout_constraintStart_toEndOf="@+id/item_mine" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/item_pet_cursor"
+                    android:layout_width="35dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/img_cursor"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_pet"
+                    app:layout_constraintEnd_toEndOf="@+id/item_pet"
+                    app:layout_constraintStart_toStartOf="@+id/item_pet" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_collection"
@@ -216,6 +288,16 @@
                     app:layout_constraintEnd_toStartOf="@+id/item_like"
                     app:layout_constraintStart_toEndOf="@+id/item_pet" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/item_collection_cursor"
+                    android:layout_width="35dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/img_cursor"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_collection"
+                    app:layout_constraintEnd_toEndOf="@+id/item_collection"
+                    app:layout_constraintStart_toStartOf="@+id/item_collection" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/item_like"
                     android:layout_width="wrap_content"
@@ -224,6 +306,16 @@
                     android:text="点赞"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/item_collection" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/item_like_cursor"
+                    android:layout_width="35dp"
+                    android:layout_height="5dp"
+                    android:background="@drawable/img_cursor"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_like"
+                    app:layout_constraintEnd_toEndOf="@+id/item_like"
+                    app:layout_constraintStart_toStartOf="@+id/item_like" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

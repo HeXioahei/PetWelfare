@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 
 class ItemPetViewModel : ViewModel() {
 
+    var myPetList : MutableList<Pet> = mutableListOf(Pet(), Pet(), Pet(), Pet(), Pet(), Pet())
+
     private val _myPet = MutableLiveData<GetPetsInfoResponse>()
     val myPet: LiveData<GetPetsInfoResponse> = _myPet
 

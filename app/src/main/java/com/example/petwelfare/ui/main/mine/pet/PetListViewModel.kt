@@ -12,12 +12,15 @@ import kotlinx.coroutines.launch
 
 class PetListViewModel : ViewModel() {
 
-    private val _myPetList = MutableLiveData<GetPetsInfoResponse>()
-    val myPetList : LiveData<GetPetsInfoResponse> = _myPetList
+
+    var myPetList = Repository.myPetList
+
+    private val _myPetListLiveData = MutableLiveData<GetPetsInfoResponse>()
+    val myPetListLiveData : LiveData<GetPetsInfoResponse> = _myPetListLiveData
 
     fun getMyPetList() {
         viewModelScope.launch {
-            _myPetList.value = PetWelfareNetwork.getPetsInfo(Repository.myId)
+            _myPetListLiveData.value = PetWelfareNetwork.getPetsInfo(Repository.myId)
         }
     }
 

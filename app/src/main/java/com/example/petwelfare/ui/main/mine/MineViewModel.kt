@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine
 
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,10 +8,21 @@ import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
+import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
+import com.example.petwelfare.ui.main.mine.item.like.ItemLikesFragment
+import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
+import com.example.petwelfare.ui.main.mine.item.pet.ItemPetFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MineViewModel : ViewModel() {
+
+    var cursorList = listOf<AppCompatImageView>()
+
+    val itemMineFragment = ItemMineFragment()
+    val itemCollectionFragment = ItemCollectionFragment()
+    val itemPetFragment = ItemPetFragment(Repository.myId)
+    val itemLikesFragment = ItemLikesFragment()
 
     var userDetail = UserDetail()
 

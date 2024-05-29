@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentCollectLossBinding
 import com.example.petwelfare.databinding.FragmentMyLossBinding
 import com.example.petwelfare.logic.Repository
@@ -20,10 +21,6 @@ class CollectLossFragment : Fragment() {
 
     private lateinit var binding : FragmentCollectLossBinding
 
-    private var collectLossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss())
-    private val mineActivity = ActivityCollector.mineActivity
-
-
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,16 +31,17 @@ class CollectLossFragment : Fragment() {
         val viewModel : ItemCollectionViewModel by viewModels()
 
         // 获取列表
-        //viewModel.getCollectLoss()
+        viewModel.getCollectLoss()
 
-        val collectLossAdapter = LossAdapter(collectLossList)
+        val collectLossAdapter = LossAdapter(viewModel.collectLossList)
         binding.collectLoss.adapter = collectLossAdapter
-        val layoutManager = LinearLayoutManager(mineActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.collectLoss.layoutManager = layoutManager
 
-        viewModel.collectLoss.observe(mineActivity) { result->
-            collectLossList = result.data
+        viewModel.collectLoss.observe(viewLifecycleOwner) { result->
+            viewModel.collectLossList.clear()
+            viewModel.collectLossList.addAll(result.data)
             collectLossAdapter.notifyDataSetChanged()
         }
 

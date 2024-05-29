@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.item.pet
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentItemPetBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Pet
@@ -20,8 +23,6 @@ import java.util.ArrayList
 open class ItemPetFragment(private val userId : Long) : Fragment() {
 
     private lateinit var binding : FragmentItemPetBinding
-//    private var myPetList : MutableList<Pet> = mutableListOf(Pet(), Pet(), Pet(), Pet(), Pet(), Pet())
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,24 +34,24 @@ open class ItemPetFragment(private val userId : Long) : Fragment() {
 
         viewModel.getMyPets(userId)
 
-        val mineActivity = ActivityCollector.mineActivity
-
-        var myPetList : MutableList<Pet> = mutableListOf(Pet(), Pet(), Pet(), Pet(), Pet(), Pet())
-
-
-        viewModel.myPet.observe(mineActivity) { result->
-            myPetList = result.data.pets
-            Repository.myPetList = myPetList
+        viewModel.myPet.observe(viewLifecycleOwner) { result->
+            viewModel.myPetList.clear()
+            viewModel.myPetList.addAll(result.data.pets)
+            Repository.myPetList = viewModel.myPetList
         }
 
-        val petAdapter = PetsAdapter(myPetList, mineActivity, 1)
+        val petAdapter = PetsAdapter(viewModel.myPetList, activity as LifecycleOwner, 1)
         binding.petRecyclerView.adapter = petAdapter
-        val layoutInflater = LinearLayoutManager(mineActivity)
+        val layoutInflater = LinearLayoutManager(PetWelfareApplication.context)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
         binding.petRecyclerView.layoutManager = layoutInflater
 
         binding.toPetListBtn.setOnClickListener {
-            val intent = Intent(mineActivity, PetListActivity::class.java)
+            val intent = Intent(PetWelfareApplication.context, PetListActivity::class.java)
+            // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
             startActivity(intent)
         }
 

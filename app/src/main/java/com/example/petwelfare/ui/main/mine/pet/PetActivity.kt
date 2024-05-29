@@ -15,6 +15,8 @@ class PetActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPetBinding
 
+    val viewModel : PetViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPetBinding.inflate(layoutInflater)
@@ -22,9 +24,8 @@ class PetActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        val viewModel : PetViewModel by viewModels()
-
         viewModel.petInfo.pet_id = intent.getIntExtra("pet_id", 0)
+
         viewModel.petInfo.name = intent.getStringExtra("name") as String
         viewModel.petInfo.sex = intent.getStringExtra("sex") as String
         viewModel.petInfo.birthday = intent.getStringExtra("birthday") as String
@@ -33,24 +34,17 @@ class PetActivity : AppCompatActivity() {
         viewModel.petInfo.head_image = intent.getStringExtra("head_image") as String
         viewModel.petInfo.photos = intent.getStringArrayListExtra("photos") as ArrayList<String>
 
-//        binding.petName.text = viewModel.petInfo.name
-//        binding.sex.text = viewModel.petInfo.sex
-//        binding.type.text = viewModel.petInfo.type
-//        binding.birthday.text = viewModel.petInfo.birthday
-//        binding.description.text = viewModel.petInfo.description
-
-        binding.petName.text = "aaaa"
-        binding.sex.text = "aaaa"
-        binding.type.text = "aaaa"
-        binding.birthday.text = "aaaa"
-        binding.description.text = "aaaa"
-
+        binding.petName.text = viewModel.petInfo.name
+        binding.sex.text = viewModel.petInfo.sex
+        binding.type.text = viewModel.petInfo.type
+        binding.birthday.text = viewModel.petInfo.birthday
+        binding.description.text = viewModel.petInfo.description
 
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        val headImageString = viewModel.petInfo.head_image
-        val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
+        var headImageString = viewModel.petInfo.head_image
+        var headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         binding.petHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
 
         // 照片墙
@@ -64,7 +58,18 @@ class PetActivity : AppCompatActivity() {
 
         // 下拉刷新
         binding.swipeRefresh.setOnRefreshListener {
-            recreate()
+            binding.petName.text = viewModel.petInfo.name
+            binding.sex.text = viewModel.petInfo.sex
+            binding.type.text = viewModel.petInfo.type
+            binding.birthday.text = viewModel.petInfo.birthday
+            binding.description.text = viewModel.petInfo.description
+
+            headImageString = viewModel.petInfo.head_image
+            headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
+            binding.petHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
+
+            // 照片墙
+            /*                   */
         }
 
         // 编辑

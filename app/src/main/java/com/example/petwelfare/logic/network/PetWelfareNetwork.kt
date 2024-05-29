@@ -1,19 +1,11 @@
 package com.example.petwelfare.logic.network
 
 import android.util.Log
-import android.widget.Toast
-import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.logic.model.ErrorResponse
-import com.example.petwelfare.utils.MyCallBack
-import com.example.petwelfare.utils.MyResponse
-import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.reflect.TypeVariable
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -80,7 +72,7 @@ object PetWelfareNetwork {
         .getCollectLoss(Authorization)
         .await()
 
-    suspend fun getCollectStary(Authorization: String) = mineService
+    suspend fun getCollectStray(Authorization: String) = mineService
         .getCollectStray(Authorization)
         .await()
 

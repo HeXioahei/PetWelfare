@@ -75,22 +75,22 @@ class EditPetInfoActivity : AppCompatActivity() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-//        // 修改信息
-//        binding.petName.setOnClickListener {
-//            showAlertDialog(viewModel.petInfo.name, "changePetName")
-//        }
-//        binding.changeSex.setOnClickListener {
-//            showAlertDialog(viewModel.petInfo.sex, "changeSex")
-//        }
-//        binding.changeBirthday.setOnClickListener {
-//            showAlertDialog(viewModel.petInfo.birthday, "changeBirthday")
-//        }
-//        binding.changeType.setOnClickListener {
-//            showAlertDialog(viewModel.petInfo.type, "changeType")
-//        }
-//        binding.changeDescription.setOnClickListener {
-//            showAlertDialog(viewModel.petInfo.description, "changeDescription")
-//        }
+        // 修改信息
+        binding.petName.setOnClickListener {
+            showAlertDialog(viewModel.petInfo.name, "changePetName")
+        }
+        binding.sex.setOnClickListener {
+            showAlertDialog(viewModel.petInfo.sex, "changeSex")
+        }
+        binding.birthday.setOnClickListener {
+            showAlertDialog(viewModel.petInfo.birthday, "changeBirthday")
+        }
+        binding.type.setOnClickListener {
+            showAlertDialog(viewModel.petInfo.type, "changeType")
+        }
+        binding.description.setOnClickListener {
+            showAlertDialog(viewModel.petInfo.description, "changeDescription")
+        }
     }
 
     private fun showAlertDialog(initText: String, type: String) {

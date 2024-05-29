@@ -1,8 +1,6 @@
 package com.example.petwelfare.logic
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.logic.model.Pet
@@ -163,7 +161,7 @@ object Repository {
 
     fun getCollectStary(Authorization: String) = liveData(Dispatchers.IO) {
         val result = try {
-            val getStrayResponse = PetWelfareNetwork.getCollectStary(Authorization)
+            val getStrayResponse = PetWelfareNetwork.getCollectStray(Authorization)
             if (getStrayResponse.code == 200) {
                 val loss = getStrayResponse.data
                 Result.success(loss)

@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.main.mine.item.mine
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,7 @@ import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 open class MyStrayFragment(private val userId: Long) : Fragment() {
 
     private lateinit var binding : FragmentMyStrayBinding
-    private var myStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
+//    private var myStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
     private val mineActivity = ActivityCollector.mineActivity
 
 
@@ -36,17 +37,32 @@ open class MyStrayFragment(private val userId: Long) : Fragment() {
         val viewModel : ItemMineViewModel by viewModels()
 
         // 获取列表
+        binding.swipeRefresh.isRefreshing = true
         viewModel.getMyStray(userId)
+        viewModel.delayAction {
+            binding.swipeRefresh.isRefreshing = false
+        }
 
-        val myStrayAdapter = StrayAdapter(myStrayList)
+        // 刷新
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getMyStray(userId)
+            viewModel.delayAction {
+                binding.swipeRefresh.isRefreshing = false
+            }
+        }
+
+        val myStrayAdapter = StrayAdapter(viewModel.myStrayList)
         binding.myStray.adapter = myStrayAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myStray.layoutManager = layoutManager
 
         viewModel.myStray.observe(viewLifecycleOwner) { result->
-            myStrayList = result.data
+            Log.d("myStray2", "myStray2")
+            viewModel.myStrayList.clear()
+            viewModel.myStrayList.addAll(result.data)
             myStrayAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         return binding.root

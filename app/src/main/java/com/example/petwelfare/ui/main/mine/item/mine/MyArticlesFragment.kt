@@ -30,13 +30,25 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
 
         val viewModel : ItemMineViewModel by viewModels()
 
-        var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
+//        var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
 
 
         // 获取列表
+        binding.swipeRefresh.isRefreshing = true
         viewModel.getMyArticles(userId)
+        viewModel.delayAction {
+            binding.swipeRefresh.isRefreshing = false
+        }
 
-        val myArticlesAdapter = ArticlesAdapter(myArticlesList)
+        // 刷新
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getMyArticles(userId)
+            viewModel.delayAction {
+                binding.swipeRefresh.isRefreshing = false
+            }
+        }
+
+        val myArticlesAdapter = ArticlesAdapter(viewModel.myArticlesList)
         binding.myArticles.adapter = myArticlesAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -44,8 +56,10 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
 
         viewModel.myArticles.observe(viewLifecycleOwner) { result->
             Log.d("getMyArticles2", "getMyArticles2")
-            myArticlesList = result.data
+            viewModel.myArticlesList.clear()
+            viewModel.myArticlesList.addAll(result.data)
             myArticlesAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         return binding.root

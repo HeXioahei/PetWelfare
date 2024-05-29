@@ -2,14 +2,10 @@ package com.example.petwelfare.ui.main.mine.pet
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityPetListBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.listadapter.PetsAdapter
@@ -17,7 +13,8 @@ import com.example.petwelfare.ui.adapter.listadapter.PetsAdapter
 class PetListActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityPetListBinding
-    private var myPetList = Repository.myPetList
+
+    val viewModel : PetListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +23,7 @@ class PetListActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        val viewModel : PetListViewModel by viewModels()
-
-        val petAdapter = PetsAdapter(myPetList, this, 2)
+        val petAdapter = PetsAdapter(viewModel.myPetList, this, 2)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(this)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
@@ -53,9 +48,10 @@ class PetListActivity : AppCompatActivity() {
         }
 
         // 更新宠物列表
-        viewModel.myPetList.observe(this) { result->
-            myPetList = result.data.pets
-            Repository.myPetList = myPetList
+        viewModel.myPetListLiveData.observe(this) { result->
+            viewModel.myPetList.clear()
+            viewModel.myPetList.addAll(result.data.pets)
+            Repository.myPetList = viewModel.myPetList
             binding.swipeRefresh.isRefreshing = false
         }
 

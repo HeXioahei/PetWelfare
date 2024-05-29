@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentCollectStrayBinding
 import com.example.petwelfare.databinding.FragmentMyStrayBinding
 import com.example.petwelfare.logic.Repository
@@ -19,9 +20,6 @@ import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 class CollectStrayFragment : Fragment() {
 
     private lateinit var binding : FragmentCollectStrayBinding
-    private var collectStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
-    private val mineActivity = ActivityCollector.mineActivity
-
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -33,16 +31,17 @@ class CollectStrayFragment : Fragment() {
         val viewModel : ItemCollectionViewModel by viewModels()
 
         // 获取列表
-        //viewModel.getCollectStary()
+        viewModel.getCollectStray()
 
-        val collectStrayAdapter = StrayAdapter(collectStrayList)
+        val collectStrayAdapter = StrayAdapter(viewModel.collectStrayList)
         binding.collectStray.adapter = collectStrayAdapter
-        val layoutManager = LinearLayoutManager(mineActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.collectStray.layoutManager = layoutManager
 
-        viewModel.collectStray.observe(mineActivity) { result->
-            collectStrayList = result.data
+        viewModel.collectStray.observe(viewLifecycleOwner) { result->
+            viewModel.collectStrayList.clear()
+            viewModel.collectStrayList.addAll(result.data)
             collectStrayAdapter.notifyDataSetChanged()
         }
 

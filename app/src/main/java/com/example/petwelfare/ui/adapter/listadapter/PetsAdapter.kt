@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -24,8 +26,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
-class PetsAdapter (private val list: MutableList<Pet>, val activity: AppCompatActivity, val type: Int) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
+class PetsAdapter (private val list: MutableList<Pet>, private val lifecycleOwner: LifecycleOwner, val type: Int) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -48,7 +51,7 @@ class PetsAdapter (private val list: MutableList<Pet>, val activity: AppCompatAc
 
         // 传递给详情页
         holder.petItem.setOnClickListener {
-            val intent = Intent(activity, PetActivity::class.java)
+            val intent = Intent(PetWelfareApplication.context, PetActivity::class.java)
             intent.putExtra("pet_id", item.pet_id)
             intent.putExtra("birthday", item.birthday)
             intent.putExtra("head_image", item.head_image)
@@ -57,7 +60,11 @@ class PetsAdapter (private val list: MutableList<Pet>, val activity: AppCompatAc
             intent.putExtra("type", item.type)
             intent.putExtra("description", item.description)
             intent.putStringArrayListExtra("photos", item.photos)
-            activity.startActivity(intent)
+            // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            PetWelfareApplication.context.startActivity(intent)
         }
 
         // 看是否为管理页的列表，来决定是否要有删除键
@@ -67,14 +74,15 @@ class PetsAdapter (private val list: MutableList<Pet>, val activity: AppCompatAc
         holder.deleteBtn.setOnClickListener {
             val _delPetResponse = MutableLiveData<BaseResponse>()
             val delPetResponse : LiveData<BaseResponse> = _delPetResponse
+            val a = CoroutineScope(Dispatchers.Main)
             CoroutineScope(Dispatchers.Main).launch {
                 _delPetResponse.value = PetWelfareNetwork.delPet(item.pet_id.toString(), Repository.Authorization)
             }
-            delPetResponse.observe(activity) { result->
+            delPetResponse.observe(lifecycleOwner) { result->
                 if (result.code == 200) {
-                    Toast.makeText(activity, "删除成功", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(PetWelfareApplication.context, "删除成功", Toast.LENGTH_SHORT).show()
                 } else if (result.code != 0) {
-                    Toast.makeText(activity, "删除失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(PetWelfareApplication.context, "删除失败", Toast.LENGTH_SHORT).show()
                 }
                 _delPetResponse.value = BaseResponse(0, "") // 以便下一次再进行删除的网络请求
             }
@@ -86,7 +94,7 @@ class PetsAdapter (private val list: MutableList<Pet>, val activity: AppCompatAc
             .build()
         val headImageString = item.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
-        holder.headImage.let { Glide.with(activity).load(headImageGlideUrl).into(it) }
+        holder.headImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
         holder.name.text = item.name
     }
 }
