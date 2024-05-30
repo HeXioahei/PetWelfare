@@ -18,7 +18,7 @@ object TimeBuilder {
         LocalDateTime.now().hour.apply { hour2 = if (this < 9) "0$this" else this.toString() }
         LocalDateTime.now().minute.apply { minute2 = if (this < 9) "0$this" else this.toString() }
         LocalDateTime.now().second.apply { second2 = if (this < 9) "0$this" else this.toString() }
-        return "$year2-$month2-$day2    $hour2: $minute2: $second2"
+        return "$year2-$month2-$day2   $hour2: $minute2: $second2"
     }
 
 }

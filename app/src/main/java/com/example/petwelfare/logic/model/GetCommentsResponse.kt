@@ -10,7 +10,7 @@ data class Comments(
     /**
      * 用户在总用户列表中的id
      */
-    val aid: Long,
+    val id: Long,
 
     /**
      * 评论在父评论中的id

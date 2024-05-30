@@ -1,11 +1,13 @@
 package com.example.petwelfare.logic.network
 
+import android.util.Log
 import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.model.GetCommentsResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -39,7 +41,8 @@ interface ArticleService {
         @Header("Authorization") Authorization: String,
 //        @PartMap photo_list: MutableMap<String, RequestBody>
 //        @Part photo_list: MultipartBody.Part
-        @Part photo_list: MutableList<MultipartBody.Part>
+//        @Part photo_list: MutableList<MultipartBody.Part>
+        @Part("photo_list") photo_list : MultipartBody
     ): Call<BaseResponse>
 
     @GET("/articles/{id}/comments/")

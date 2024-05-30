@@ -1,6 +1,8 @@
 package com.example.petwelfare.logic.network
 
 import android.util.Log
+import android.widget.Toast
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.logic.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MultipartBody
@@ -209,7 +211,7 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeArticle(
-        time: String, text: String, Authorization: String, photo_list: MutableList<MultipartBody.Part>
+        time: String, text: String, Authorization: String, photo_list: MultipartBody
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
         .await()
@@ -357,7 +359,7 @@ object PetWelfareNetwork {
                         Log.d("response.errorBody()", response.errorBody().toString())
                         Log.d("code", response.code().toString())
                         Log.d("errorResponse.msg", errorResponse.msg)
-//                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
                         //continuation.resumeWithException(RuntimeException("response body is null"))
                     }
                 }

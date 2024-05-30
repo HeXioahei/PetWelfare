@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.item.articles
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +21,8 @@ class AddArticlesViewModel : ViewModel() {
     private val _addArticlesResponse = MutableLiveData<BaseResponse>()
     val addArticlesResponse : LiveData<BaseResponse> = _addArticlesResponse
 
-    fun writeArticle(time: String, text: String, Authorization: String, photo_list: MutableList<MultipartBody.Part>) {
+    fun writeArticle(time: String, text: String, Authorization: String, photo_list: MultipartBody) {
+        Log.d("photo_list", photo_list.toString())
         viewModelScope.launch {
             _addArticlesResponse.value = PetWelfareNetwork.writeArticle(time, text, Authorization, photo_list)
         }

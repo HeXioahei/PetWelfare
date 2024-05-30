@@ -78,17 +78,27 @@ class AddArticlesActivity : AppCompatActivity() {
 
         binding.publishBtn.setOnClickListener {
 
+            val builder = MultipartBody.Builder()
+            builder.setType(MultipartBody.FORM)
+
             for (i in 0 until photosList.size) {
+                Log.d("i", i.toString())
+                Log.d("uri", photosList[i].toString())
                 val file = FileBuilder.getImageFileFromUri(this, photosList[i]) as File
 //                val requestBody = RequestBody.Companion.create("image/jpeg".toMediaType(), file)
-                val requestBody = file.asRequestBody("$i/jpeg".toMediaType())
-                val multipartBody = MultipartBody.Part.createFormData("photo_list", file.name, requestBody)
-                fileList.add(multipartBody)
+                val requestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                builder.addFormDataPart("photo_list", file.name, requestBody)
+//                Log.d("requestBody", requestBody.toString())
+//                val multipartBody = MultipartBody.Part.createFormData("photo_list", file.name, requestBody)
+//                Log.d("multipartBody", multipartBody.toString())
+//                fileList.add(multipartBody)
 //                fileMap["file${i+1}"] = multipartBody
 //                requestBodyList.add(requestBody)
 //                fileMap["file${i+1}"] = file.asRequestBody("image/jpeg".toMediaType())
 //                fileMap["photo_list"] = file.asRequestBody("photo_list".toMediaType())
             }
+
+            val multipartBody = builder.build()
 
 //            val multipartBody = MultipartBody.Part
 //                .createFormData("photo_list", file.name, requestBodyList)
@@ -99,12 +109,14 @@ class AddArticlesActivity : AppCompatActivity() {
 //            val multipartBody = MultipartBody.Part
 //                .createFormData("photo_list", file.name, requestBody)
 
+            Log.d("fileList", fileList.toString())
             Log.d("photoList", photosList.toString())
+            Log.d("time", TimeBuilder.getNowTime())
             viewModel.writeArticle(
                 TimeBuilder.getNowTime(),
                 binding.content.text.toString(),
                 Repository.Authorization,
-                fileList
+                multipartBody
             )
 
         }

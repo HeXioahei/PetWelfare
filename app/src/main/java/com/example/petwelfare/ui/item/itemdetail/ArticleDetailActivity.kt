@@ -18,7 +18,6 @@ import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.KidComment
 import com.example.petwelfare.logic.model.TimeBuilder
-import com.example.petwelfare.ui.main.mine.MineActivity
 import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 class ArticleDetailActivity : AppCompatActivity() {
@@ -177,7 +176,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             headImage.let { Glide.with(this).load(glideUrl).into(it) }
             headImage.setOnClickListener {
                 val intent = Intent(this, OtherUserDetailActivity::class.java)
-                intent.putExtra("userId", item.aid)
+                intent.putExtra("userId", item.id)
                 startActivity(intent)
             }
             val username : TextView = view.findViewById(R.id.usernameInParentComment)
