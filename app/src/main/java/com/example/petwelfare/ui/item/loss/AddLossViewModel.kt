@@ -26,7 +26,7 @@ class AddLossViewModel : ViewModel() {
         sendTime: String,
         description: String,
         Authorization: String,
-        photo_list: List<MultipartBody.Part>
+        photo_list: MutableList<MultipartBody.Part>
     ) {
         viewModelScope.launch {
             _sendLossResponse.value = PetWelfareNetwork.sendLoss(

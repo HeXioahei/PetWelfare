@@ -1,26 +1,24 @@
 package com.example.petwelfare.logic.model
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
 object TimeBuilder {
     fun getNowTime(): String {
 
-        var month2 = "0"
-        var day2 = "0"
-        var hour2 = "0"
-        var minute2 = "0"
-        var second2 = "0"
+        var year2: String
+        var month2: String
+        var day2: String
+        var hour2: String
+        var minute2: String
+        var second2: String
 
-        val year = LocalDateTime.now().year
-        val month = LocalDateTime.now().monthValue.apply { if (this < 9 ) month2 = "0$this" }
-        val day = LocalDateTime.now().dayOfMonth.apply { if (this < 9 ) day2 = "0$this" }
-        val hour = LocalDateTime.now().hour.apply { if (this < 9 ) hour2 = "0$this" }
-        val minute = LocalDateTime.now().minute.apply { if (this < 9 ) minute2 = "0$this" }
-        val second = LocalDateTime.now().second.apply { if (this < 9 ) second2 = "0$this" }
-        val time = "$year-$month2-$day2    $hour2: $minute2: $second2"
-        return time
+        LocalDateTime.now().year.apply { year2 = this.toString() }
+        LocalDateTime.now().monthValue.apply { month2 = if (this < 9) "0$this" else this.toString()}
+        LocalDateTime.now().dayOfMonth.apply { day2 = if (this < 9) "0$this}" else this.toString() }
+        LocalDateTime.now().hour.apply { hour2 = if (this < 9) "0$this" else this.toString() }
+        LocalDateTime.now().minute.apply { minute2 = if (this < 9) "0$this" else this.toString() }
+        LocalDateTime.now().second.apply { second2 = if (this < 9) "0$this" else this.toString() }
+        return "$year2-$month2-$day2    $hour2: $minute2: $second2"
     }
 
 }

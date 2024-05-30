@@ -1,6 +1,8 @@
 package com.example.petwelfare.logic.network
 
 import android.util.Log
+import com.example.petwelfare.logic.model.ErrorResponse
+import com.google.gson.Gson
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -207,7 +209,7 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeArticle(
-        time: String, text: String, Authorization: String, photo_list: Map<String, RequestBody>
+        time: String, text: String, Authorization: String, photo_list: MutableList<MultipartBody.Part>
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
         .await()
@@ -253,7 +255,7 @@ object PetWelfareNetwork {
         sendTime: String,
         description: String,
         Authorization: String,
-        photo_list: List<MultipartBody.Part>
+        photo_list: MutableList<MultipartBody.Part>
     ) = lossService
         .sendLoss(
             name, sex, type, address, contact, lostTime, sendTime, description, Authorization, photo_list
@@ -288,7 +290,7 @@ object PetWelfareNetwork {
         time: String,
         description: String,
         Authorization: String,
-        photo_list: List<MultipartBody.Part>
+        photo_list: MutableList<MultipartBody.Part>
     ) = strayService
         .sendStray(
             address, time, description, Authorization, photo_list
@@ -350,11 +352,11 @@ object PetWelfareNetwork {
                         continuation.resume(body)
                     } else {
                         val errorBodyString = errorBody?.string()   // 是string()，而不是toString()
-//                        val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
+                        val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
                         Log.d("response.body()", response.body().toString())
                         Log.d("response.errorBody()", response.errorBody().toString())
                         Log.d("code", response.code().toString())
-//                        Log.d("errorResponse.msg", errorResponse.msg)
+                        Log.d("errorResponse.msg", errorResponse.msg)
 //                        Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
                         //continuation.resumeWithException(RuntimeException("response body is null"))
                     }

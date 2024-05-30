@@ -20,7 +20,12 @@ import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityAddLossBinding
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.FileBuilder
 import com.example.petwelfare.logic.model.TimeBuilder
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.sql.Time
 import java.time.LocalDateTime
 
@@ -64,12 +69,12 @@ class AddLossActivity : AppCompatActivity() {
         binding.timeContainer.visibility = View.GONE
         binding.lossTime.setOnClickListener {
             binding.timeContainer.visibility = View.VISIBLE
-            var year = LocalDateTime.now().year
-            var month = LocalDateTime.now().monthValue
-            var day = LocalDateTime.now().dayOfMonth
-            var hour = LocalDateTime.now().hour
-            var minute = LocalDateTime.now().minute
-            var second = LocalDateTime.now().second
+            val year = LocalDateTime.now().year
+            val month = LocalDateTime.now().monthValue
+            val day = LocalDateTime.now().dayOfMonth
+            val hour = LocalDateTime.now().hour
+            val minute = LocalDateTime.now().minute
+            val second = LocalDateTime.now().second
             binding.year.setText(year.toString())
             binding.month.setText(month.toString())
             binding.day.setText(day.toString())
@@ -78,18 +83,19 @@ class AddLossActivity : AppCompatActivity() {
             binding.second.setText(second.toString())
 
             binding.confirmButton.setOnClickListener {
-                var month2 = "0"
-                var day2 = "0"
-                var hour2 = "0"
-                var minute2 = "0"
-                var second2 = "0"
-                year = binding.year.text.toString().toInt()
-                month = binding.month.text.toString().toInt().apply { if (this < 9 ) month2 = "0$this" }
-                day = binding.day.text.toString().toInt().apply { if (this < 9 ) day2 = "0$this" }
-                hour = binding.hour.text.toString().toInt().apply { if (this < 9 ) hour2 = "0$this" }
-                minute = binding.minute.text.toString().toInt().apply { if (this < 9 ) minute2 = "0$this" }
-                second = binding.second.text.toString().toInt().apply { if (this < 9 ) second2 = "0$this" }
-                val time = "$year-$month2-$day2    $hour2: $minute2: $second2"
+                var year2: String
+                var month2: String
+                var day2: String
+                var hour2: String
+                var minute2: String
+                var second2: String
+                binding.year.text.toString().toInt().apply { year2 = this.toString() }
+                binding.month.text.toString().toInt().apply { month2 = if (this < 9) "0$this}" else this.toString() }
+                binding.day.text.toString().toInt().apply { day2 = if (this < 9) "0$this}" else this.toString() }
+                binding.hour.text.toString().toInt().apply { hour2 = if (this < 9) "0$this}" else this.toString() }
+                binding.minute.text.toString().toInt().apply { minute2 = if (this < 9) "0$this}" else this.toString() }
+                binding.second.text.toString().toInt().apply { second2 = if (this < 9) "0$this}" else this.toString() }
+                val time = "$year2-$month2-$day2    $hour2: $minute2: $second2"
                 binding.lossTime.text = time
                 binding.timeContainer.visibility = View.GONE
             }
@@ -108,6 +114,15 @@ class AddLossActivity : AppCompatActivity() {
         }
 
         binding.publishBtn.setOnClickListener {
+
+            val fileList = mutableListOf<MultipartBody.Part>()
+            for (i in 0 until photosList.size) {
+                val file = FileBuilder.getImageFileFromUri(this, photosList[i]) as File
+                val requestBody = file.asRequestBody("medias/jpeg".toMediaType())
+                val multipartBody = MultipartBody.Part.createFormData("photo_list", file.name, requestBody)
+                fileList.add(multipartBody)
+            }
+
             viewModel.sendLoss(
                 binding.name.text.toString(),
                 binding.sex.text.toString(),
@@ -118,16 +133,8 @@ class AddLossActivity : AppCompatActivity() {
                 TimeBuilder.getNowTime(),
                 binding.description.text.toString(),
                 Repository.Authorization,
-                listOf()
+                fileList
             )
-//            if (code == 200) {
-//                Toast.makeText(this,"发表成功",Toast.LENGTH_SHORT).show()
-//                Log.d("publishLoss", "success")
-//            } else {
-//                Toast.makeText(this,"发表失败",Toast.LENGTH_SHORT).show()
-//                Log.d("publishLoss", "failed")
-//
-//            }
         }
 
         viewModel.sendLossResponse.observe(this) {

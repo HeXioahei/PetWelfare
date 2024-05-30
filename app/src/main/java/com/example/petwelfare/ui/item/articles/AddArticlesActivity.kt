@@ -26,6 +26,7 @@ import com.example.petwelfare.databinding.ActivityAddArticlesBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.FileBuilder
 import com.example.petwelfare.logic.model.TimeBuilder
+import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -53,7 +54,9 @@ class AddArticlesActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val fileMap = mutableMapOf<String, RequestBody>()
+//        val fileMap = mutableMapOf<String, MultipartBody.Part>()
+//        val requestBodyList = mutableListOf<RequestBody>()
+        val fileList = mutableListOf<MultipartBody.Part>()
 
         val pickMedia =
             registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(3)) { uris ->
@@ -77,9 +80,18 @@ class AddArticlesActivity : AppCompatActivity() {
 
             for (i in 0 until photosList.size) {
                 val file = FileBuilder.getImageFileFromUri(this, photosList[i]) as File
-                fileMap["file${i+1}"] = file.asRequestBody("photo_list".toMediaType())
+//                val requestBody = RequestBody.Companion.create("image/jpeg".toMediaType(), file)
+                val requestBody = file.asRequestBody("$i/jpeg".toMediaType())
+                val multipartBody = MultipartBody.Part.createFormData("photo_list", file.name, requestBody)
+                fileList.add(multipartBody)
+//                fileMap["file${i+1}"] = multipartBody
+//                requestBodyList.add(requestBody)
+//                fileMap["file${i+1}"] = file.asRequestBody("image/jpeg".toMediaType())
 //                fileMap["photo_list"] = file.asRequestBody("photo_list".toMediaType())
             }
+
+//            val multipartBody = MultipartBody.Part
+//                .createFormData("photo_list", file.name, requestBodyList)
 
 //            // 将 file 封装为 Body
 //            val file = FileBuilder.getImageFileFromUri(this, photosList[0]) as File
@@ -87,11 +99,12 @@ class AddArticlesActivity : AppCompatActivity() {
 //            val multipartBody = MultipartBody.Part
 //                .createFormData("photo_list", file.name, requestBody)
 
+            Log.d("photoList", photosList.toString())
             viewModel.writeArticle(
                 TimeBuilder.getNowTime(),
                 binding.content.text.toString(),
                 Repository.Authorization,
-                fileMap
+                fileList
             )
 
         }
@@ -102,6 +115,7 @@ class AddArticlesActivity : AppCompatActivity() {
             if(code == 200) {
                 Toast.makeText(this,"发布成功", Toast.LENGTH_SHORT).show()
                 Log.d("publishArticle", "success")
+                finish()
             } else {
                 Toast.makeText(this,"发布失败", Toast.LENGTH_SHORT).show()
                 Log.d("publishArticle", "failed")

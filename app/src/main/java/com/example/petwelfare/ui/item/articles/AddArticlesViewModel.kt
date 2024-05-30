@@ -20,7 +20,7 @@ class AddArticlesViewModel : ViewModel() {
     private val _addArticlesResponse = MutableLiveData<BaseResponse>()
     val addArticlesResponse : LiveData<BaseResponse> = _addArticlesResponse
 
-    fun writeArticle(time: String, text: String, Authorization: String, photo_list: Map<String, RequestBody>) {
+    fun writeArticle(time: String, text: String, Authorization: String, photo_list: MutableList<MultipartBody.Part>) {
         viewModelScope.launch {
             _addArticlesResponse.value = PetWelfareNetwork.writeArticle(time, text, Authorization, photo_list)
         }
