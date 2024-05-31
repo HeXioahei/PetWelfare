@@ -87,6 +87,8 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         option.isNeedAddress = true // 返回定位地址信息
         option.isLocationCacheEnable = true // 是否使用缓存定位，默认为true
         option.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy // 设置定位模式为高精度模式
+        option.isNeedAddress = true  //设置是否返回地址信息（默认返回地址信息
+        option.interval = 5000
         locationClient.setLocationOption(option)
 
         // 一开始进入页面就获取地址
@@ -179,6 +181,8 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
                         + amapLocation.errorInfo
                 )
             }
+
+            locationClient.stopLocation()
         }
     }
 

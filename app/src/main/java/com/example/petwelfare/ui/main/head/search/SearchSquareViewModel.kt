@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchSquareViewModel : ViewModel() {
+
+    var searchArticlesList : MutableList<Article> = mutableListOf(Article(), Article())
 
     private val _searchArticlesResponse = MutableLiveData<GetArticlesResponse>()
     val searchArticlesResponse: LiveData<GetArticlesResponse> = _searchArticlesResponse

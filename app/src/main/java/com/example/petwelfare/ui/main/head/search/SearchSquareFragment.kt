@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.head.search
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,8 +18,9 @@ import com.example.petwelfare.ui.main.head.ItemSquareFragment
 class SearchSquareFragment(private val keywords: String) : Fragment() {
 
     private lateinit var binding : FragmentSearchSquareBinding
-    private var searchArticlesList : MutableList<Article> = mutableListOf()
+//    private var searchArticlesList : MutableList<Article> = mutableListOf()
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,17 +31,19 @@ class SearchSquareFragment(private val keywords: String) : Fragment() {
 
         viewModel.searchArticles(keywords)
 
-        viewModel.searchArticlesResponse.observe(this.viewLifecycleOwner) { result->
-            Log.d("searchArticlesResponse", result.toString())
-            searchArticlesList = result.data
-            binding.progressBar.visibility = View.INVISIBLE
-        }
-
-        val articlesAdapter = ArticlesAdapter(searchArticlesList)
+        val articlesAdapter = ArticlesAdapter(viewModel.searchArticlesList)
         binding.articlesList.adapter = articlesAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.articlesList.layoutManager = layoutManager
+
+        viewModel.searchArticlesResponse.observe(this.viewLifecycleOwner) { result->
+            Log.d("searchArticlesResponse", result.toString())
+            viewModel.searchArticlesList.clear()
+            viewModel.searchArticlesList.addAll(result.data)
+            articlesAdapter.notifyDataSetChanged()
+            binding.progressBar.visibility = View.INVISIBLE
+        }
 
         return binding.root
     }

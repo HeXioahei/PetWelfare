@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.item.pet
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -24,6 +25,7 @@ open class ItemPetFragment(private val userId : Long) : Fragment() {
 
     private lateinit var binding : FragmentItemPetBinding
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -32,19 +34,21 @@ open class ItemPetFragment(private val userId : Long) : Fragment() {
 
         val viewModel: ItemPetViewModel by viewModels()
 
-        viewModel.getMyPets(userId)
-
-        viewModel.myPet.observe(viewLifecycleOwner) { result->
-            viewModel.myPetList.clear()
-            viewModel.myPetList.addAll(result.data.pets)
-            Repository.myPetList = viewModel.myPetList
-        }
-
         val petAdapter = PetsAdapter(viewModel.myPetList, activity as LifecycleOwner, 1)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(PetWelfareApplication.context)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
         binding.petRecyclerView.layoutManager = layoutInflater
+
+        viewModel.getMyPets(userId)
+
+        viewModel.myPet.observe(viewLifecycleOwner) { result->
+            viewModel.myPetList.clear()
+            viewModel.myPetList.addAll(result.data.pets)
+            petAdapter.notifyDataSetChanged()
+            Repository.myPetList = viewModel.myPetList
+        }
+
 
         binding.toPetListBtn.setOnClickListener {
             val intent = Intent(PetWelfareApplication.context, PetListActivity::class.java)

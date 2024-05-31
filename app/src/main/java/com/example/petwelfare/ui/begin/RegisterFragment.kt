@@ -97,7 +97,7 @@ class RegisterFragment(private val activity: LoginActivity) : Fragment() {
         // 选择邮箱类型
         binding.showMenuBtn.setOnClickListener {
             if (binding.dropdownMenuContainer.visibility == View.INVISIBLE) {
-                binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_up_menu)
+                binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_menu)
                 binding.dropdownMenuContainer.visibility = View.VISIBLE
             } else {
                 binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_menu)

@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.main.head
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentHeadBinding
 import com.example.petwelfare.ui.adapter.navadapter.HeadNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.HeadFragmentStateAdapter
+import com.example.petwelfare.ui.main.head.search.HeadSearchActivity
 
 class HeadFragment : Fragment() {
 
@@ -58,7 +60,11 @@ class HeadFragment : Fragment() {
 
         // 搜索
         binding.toSearchBtn.setOnClickListener {
-
+            val intent = Intent(PetWelfareApplication.context, HeadSearchActivity::class.java)
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            PetWelfareApplication.context.startActivity(intent)
         }
 
         return binding.root

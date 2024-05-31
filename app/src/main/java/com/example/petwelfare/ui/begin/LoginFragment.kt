@@ -17,7 +17,6 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentLoginBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.dao.MineDao
 import com.example.petwelfare.logic.model.MailboxList
 import com.example.petwelfare.ui.adapter.listadapter.MailboxAdapter
 
@@ -89,7 +88,7 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
         // 选择邮箱类型
         binding.showMenuBtn.setOnClickListener {
             if (binding.dropdownMenuContainer.visibility == View.INVISIBLE) {
-                binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_up_menu)
+                binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_menu)
                 binding.dropdownMenuContainer.visibility = View.VISIBLE
             } else {
                 binding.showMenuBtn.background = resources.getDrawable(R.drawable.btn_menu)

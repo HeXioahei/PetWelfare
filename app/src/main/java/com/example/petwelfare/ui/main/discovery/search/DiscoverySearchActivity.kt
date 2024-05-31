@@ -1,31 +1,36 @@
-package com.example.petwelfare.ui.main.head.search
+package com.example.petwelfare.ui.main.discovery.search
 
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.R
+import com.example.petwelfare.databinding.ActivityDiscoverySearchBinding
 import com.example.petwelfare.databinding.ActivityHeadSearchBinding
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.BlankFragment
 import com.example.petwelfare.ui.adapter.navadapter.HeadNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.CommonFragmentStateAdapter
+import com.example.petwelfare.ui.main.head.search.HeadSearchViewModel
+import com.example.petwelfare.ui.main.head.search.SearchSquareFragment
 
-class HeadSearchActivity : AppCompatActivity() {
+class DiscoverySearchActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityHeadSearchBinding
+    private lateinit var binding : ActivityDiscoverySearchBinding
 
     private val viewModel : HeadSearchViewModel by viewModels()
-    private val navItemList = listOf("广场", "关注", "社区", "讨论", "附近")
+    private val navItemList = listOf("走失", "流浪", "寄养", "收养", "救助站")
 
     companion object {
         var viewPagerCurrentPosition = 0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHeadSearchBinding.inflate(layoutInflater)
+        binding = ActivityDiscoverySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ActivityCollector.addActivity(this)
@@ -38,8 +43,8 @@ class HeadSearchActivity : AppCompatActivity() {
             val keywords = binding.searchBar.text.toString()
             if (keywords != "") {
                 val viewPagerList = mutableListOf(
-                    SearchSquareFragment(keywords),
-                    BlankFragment(),
+                    SearchLossFragment(keywords),
+                    SearchStrayFragment(keywords),
                     BlankFragment(),
                     BlankFragment(),
                     BlankFragment()
