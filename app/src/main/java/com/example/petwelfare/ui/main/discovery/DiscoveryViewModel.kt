@@ -1,21 +1,41 @@
 package com.example.petwelfare.ui.main.discovery
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.GetAddressResponse
 import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetOrgsResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
+import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DiscoveryViewModel : ViewModel() {
 
-    private val _address = MutableLiveData<String>()
-    val address : LiveData<String> = _address
+    val viewPagerList: List<Fragment> = listOf(
+        ItemLossFragment(),
+        ItemStrayFragment(),
+        ItemAdoptionFragment(),
+        ItemFosterFragment(),
+        ItemRescueFragment()
+    )
+
+
+    var lossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss(), Loss())
+
+
+    var address = "中国"
+
+    private val _addressDefaultLiveData = MutableLiveData<GetAddressResponse>()
+    val addressDefaultLiveData : LiveData<GetAddressResponse> = _addressDefaultLiveData
+
+    private val _addressLiveData = MutableLiveData<String>()
+    val addressLiveData : LiveData<String> = _addressLiveData
 
     private val _lossResponse = MutableLiveData<GetLossResponse>()
     val lossResponse: LiveData<GetLossResponse> = _lossResponse
@@ -27,7 +47,13 @@ class DiscoveryViewModel : ViewModel() {
     val orgsResponse: LiveData<GetOrgsResponse> = _orgsResponse
 
     fun changeAddress(address2: String) {
-        _address.value = address2
+        _addressLiveData.value = address2
+    }
+
+    fun getAddressDefault() {
+        viewModelScope.launch {
+            _addressDefaultLiveData.value = PetWelfareNetwork.getAddressDefault()
+        }
     }
 
     fun getLoss(address: String) {

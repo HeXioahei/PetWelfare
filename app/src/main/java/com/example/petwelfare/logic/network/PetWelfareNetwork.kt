@@ -24,6 +24,9 @@ object PetWelfareNetwork {
     private val orgsService = ServiceCreator.create(OrgsService::class.java)
     private val endService = ServiceCreator.create(EndService::class.java)
     private val petsService = ServiceCreator.create(PetsService::class.java)
+    private val addressService = ServiceCreator.create(AddressService::class.java)
+
+    suspend fun getAddressDefault() = addressService.getAddressDefault().await()
 
     // 开始页
     suspend fun login(mailbox: String, password: String) = beginService
@@ -211,7 +214,7 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeArticle(
-        time: String, text: String, Authorization: String, photo_list: MultipartBody
+        time: String, text: String, Authorization: String, photo_list: List<MultipartBody.Part>
     ) = articlesService
         .writeArticle(time, text, Authorization, photo_list)
         .await()
@@ -257,7 +260,7 @@ object PetWelfareNetwork {
         sendTime: String,
         description: String,
         Authorization: String,
-        photo_list: MutableList<MultipartBody.Part>
+        photo_list: List<MultipartBody.Part>
     ) = lossService
         .sendLoss(
             name, sex, type, address, contact, lostTime, sendTime, description, Authorization, photo_list
@@ -292,7 +295,7 @@ object PetWelfareNetwork {
         time: String,
         description: String,
         Authorization: String,
-        photo_list: MutableList<MultipartBody.Part>
+        photo_list: List<MultipartBody.Part>
     ) = strayService
         .sendStray(
             address, time, description, Authorization, photo_list

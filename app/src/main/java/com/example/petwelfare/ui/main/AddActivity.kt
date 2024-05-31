@@ -25,6 +25,10 @@ class AddActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
+        binding.returnBtn.setOnClickListener {
+            finish()
+        }
+
         binding.article.setOnClickListener {
             val intent = Intent(this, AddArticlesActivity::class.java)
             startActivity(intent)

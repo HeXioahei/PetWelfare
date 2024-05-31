@@ -67,7 +67,7 @@ class EditMyInfoActivity : AppCompatActivity() {
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: $uri")
 
-                    val headImageFile = FileBuilder.getImageFileFromUri(this, uri)
+                    val headImageFile = FileBuilder.getImageFileFromUri(this, uri, 0)
                     val requestBody = headImageFile?.asRequestBody("head_image".toMediaTypeOrNull())
                     if (requestBody != null) {
                         val multipartBody = MultipartBody.Part.createFormData("head_image", headImageFile.name, requestBody) // 这里的name（”head_image“）必须和接口文档里定义的参数名字一样

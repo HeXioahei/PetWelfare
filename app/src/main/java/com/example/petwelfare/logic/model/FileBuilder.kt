@@ -13,16 +13,16 @@ import java.io.OutputStream
 object FileBuilder {
 
     //@RequiresApi(Build.VERSION_CODES.Q)
-    fun getImageFileFromUri(context: Context, imageUri: Uri): File? {
+    fun getImageFileFromUri(context: Context, imageUri: Uri, number: Int): File? {
         // 检查Android版本，对于Android 10及以上版本，使用新的 MediaStore API
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            getImageFileFromUriAboveQ(context, imageUri)
+            getImageFileFromUriAboveQ(context, imageUri, number)
         } else {
-            getImageFileFromUriUnderQ(context, imageUri)
+            getImageFileFromUriUnderQ(context, imageUri, number)
         }
     }
 
-    private fun getImageFileFromUriAboveQ(context: Context, imageUri: Uri): File? {
+    private fun getImageFileFromUriAboveQ(context: Context, imageUri: Uri, number: Int): File? {
         val inputStream: InputStream = context.contentResolver.openInputStream(imageUri)
             ?: return null
         /*使用 context.contentResolver.openInputStream(imageUri) 打开与 imageUri 关联的输入流。
@@ -30,7 +30,7 @@ object FileBuilder {
         （这实际上是一个错误处理，应该返回一个更有意义的值或抛出异常）。*/
 
         // 创建一个临时文件来保存图片内容
-        val tempFile = File(context.cacheDir, "temp_image.jpg")
+        val tempFile = File(context.cacheDir, "temp_image$number.jpg")
         /*使用 context.cacheDir 获取应用的缓存目录。
         在缓存目录中创建一个名为 temp_image.jpg 的临时文件。*/
         val outputStream: OutputStream = FileOutputStream(tempFile)
@@ -72,7 +72,7 @@ object FileBuilder {
     }
 
     //@RequiresApi(Build.VERSION_CODES.Q)   （这里的注释是个错误）
-    private fun getImageFileFromUriUnderQ(context: Context, imageUri: Uri): File? {
+    private fun getImageFileFromUriUnderQ(context: Context, imageUri: Uri, number: Int): File? {
 
         // 查询图片路径
         val projection = arrayOf(MediaStore.Images.Media.DATA)

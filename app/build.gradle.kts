@@ -1,3 +1,6 @@
+import org.gradle.internal.impldep.bsh.commands.dir
+import org.jetbrains.kotlin.ir.backend.js.compile
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -19,6 +22,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            // 注意：'armeabi' 和 'armeabi-v7a' 在新的应用中已经不推荐使用，建议使用 'arm64-v8a'
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+        }
     }
 
     buildTypes {
@@ -71,6 +80,7 @@ dependencies {
     implementation ("com.guolindev.permissionx:permissionx:1.6.4")
 
     // 高德地图
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation ("com.amap.api:search:5.0.0") // 高德地图搜索 SDK
     //implementation ("com.amap.api:maps:3.3.0") // 高德地图 SDK
     implementation ("com.amap.api:location:3.3.0") // 高德定位 SDK

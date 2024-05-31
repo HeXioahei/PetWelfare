@@ -34,15 +34,15 @@ interface ArticleService {
 
     @Multipart
     @POST("/articles/")
-    @JvmSuppressWildcards
+//    @JvmSuppressWildcards
     fun writeArticle(
         @Query("time") time: String,
         @Query("text") text: String,
         @Header("Authorization") Authorization: String,
 //        @PartMap photo_list: MutableMap<String, RequestBody>
 //        @Part photo_list: MultipartBody.Part
-//        @Part photo_list: MutableList<MultipartBody.Part>
-        @Part("photo_list") photo_list : MultipartBody
+        @Part photo_list: List<MultipartBody.Part>
+//        @Body photo_list : MultipartBody
     ): Call<BaseResponse>
 
     @GET("/articles/{id}/comments/")

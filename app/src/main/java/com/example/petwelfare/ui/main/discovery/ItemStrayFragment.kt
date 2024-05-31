@@ -46,7 +46,7 @@ class ItemStrayFragment : Fragment() {
             }
         }
 
-        viewModel.address.observe(mainActivity) { result->
+        viewModel.addressLiveData.observe(mainActivity) { result->
             address = result
             viewModel.getStray(address)
         }

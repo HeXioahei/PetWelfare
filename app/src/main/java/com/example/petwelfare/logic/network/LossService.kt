@@ -41,7 +41,7 @@ interface LossService {
         @Query("send_time") send_time: String,
         @Query("description") description: String,
         @Header("Authorization") Authorization: String,
-        @Part photo_list: MutableList<MultipartBody.Part>
+        @Part photo_list: List<MultipartBody.Part>
     ): Call<BaseResponse>
 
     @GET("/loss/{id}/comments/")

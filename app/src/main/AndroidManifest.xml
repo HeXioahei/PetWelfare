@@ -57,11 +57,18 @@
             android:name=".ui.main.otheruser.OtherUserDetailActivity"
             android:exported="false" />
 
+
+        <!--            android:name="com.amap.api.v2.apikey"-->
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="371ba8c8f83c3fb86a0426d8640bd0bb" />
+            android:value="371ba8c8f83c3fb86a0426d8640bd0bb" >
 
-        <service android:name="com.amap.api.location.APSService" />
+        </meta-data>
+
+        <service android:name="com.amap.api.location.APSService" >
+
+        </service>
 
         <activity
             android:name=".ui.main.AddActivity"

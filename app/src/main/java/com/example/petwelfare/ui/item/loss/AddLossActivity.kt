@@ -90,11 +90,11 @@ class AddLossActivity : AppCompatActivity() {
                 var minute2: String
                 var second2: String
                 binding.year.text.toString().toInt().apply { year2 = this.toString() }
-                binding.month.text.toString().toInt().apply { month2 = if (this < 9) "0$this}" else this.toString() }
-                binding.day.text.toString().toInt().apply { day2 = if (this < 9) "0$this}" else this.toString() }
-                binding.hour.text.toString().toInt().apply { hour2 = if (this < 9) "0$this}" else this.toString() }
-                binding.minute.text.toString().toInt().apply { minute2 = if (this < 9) "0$this}" else this.toString() }
-                binding.second.text.toString().toInt().apply { second2 = if (this < 9) "0$this}" else this.toString() }
+                binding.month.text.toString().toInt().apply { month2 = if (this < 9) "0$this" else this.toString() }
+                binding.day.text.toString().toInt().apply { day2 = if (this < 9) "0$this" else this.toString() }
+                binding.hour.text.toString().toInt().apply { hour2 = if (this < 9) "0$this" else this.toString() }
+                binding.minute.text.toString().toInt().apply { minute2 = if (this < 9) "0$this" else this.toString() }
+                binding.second.text.toString().toInt().apply { second2 = if (this < 9) "0$this" else this.toString() }
                 val time = "$year2-$month2-$day2    $hour2: $minute2: $second2"
                 binding.lossTime.text = time
                 binding.timeContainer.visibility = View.GONE
@@ -117,8 +117,8 @@ class AddLossActivity : AppCompatActivity() {
 
             val fileList = mutableListOf<MultipartBody.Part>()
             for (i in 0 until photosList.size) {
-                val file = FileBuilder.getImageFileFromUri(this, photosList[i]) as File
-                val requestBody = file.asRequestBody("medias/jpeg".toMediaType())
+                val file = FileBuilder.getImageFileFromUri(this, photosList[i], i+1) as File
+                val requestBody = file.asRequestBody("multipart/form-data".toMediaType())
                 val multipartBody = MultipartBody.Part.createFormData("photo_list", file.name, requestBody)
                 fileList.add(multipartBody)
             }

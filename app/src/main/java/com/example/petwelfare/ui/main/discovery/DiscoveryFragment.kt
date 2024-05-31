@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.main.discovery
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentDiscoveryBinding
 import com.example.petwelfare.ui.adapter.navadapter.DiscoveryNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.DiscoveryFragmentStateAdapter
@@ -32,20 +34,19 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
     private lateinit var binding : FragmentDiscoveryBinding
 
     private val navItemList = listOf("走失", "流浪", "收养", "寄养", "救助站")
-    private val viewPagerList: List<Fragment> = listOf(
-        ItemLossFragment(),
-        ItemStrayFragment(),
-        ItemAdoptionFragment(),
-        ItemFosterFragment(),
-        ItemRescueFragment()
-    )
+//    private val viewPagerList: List<Fragment> = listOf(
+//        ItemLossFragment(),
+//        ItemStrayFragment(),
+//        ItemAdoptionFragment(),
+//        ItemFosterFragment(),
+//        ItemRescueFragment()
+//    )
 
     companion object {
         var viewPagerCurrentPosition = 0
     }
 
     private lateinit var locationClient: AMapLocationClient
-    private var address = "中国"
 
     private val viewModel : DiscoveryViewModel by viewModels()
 
@@ -57,11 +58,11 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
 
         val navAdapter = DiscoveryNavAdapter(navItemList, binding.viewPager)
         binding.navBar.adapter = navAdapter
-        val layoutManager = LinearLayoutManager(mainActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.navBar.layoutManager = layoutManager
 
-        val viewpagerAdapter = DiscoveryFragmentStateAdapter(this, viewPagerList)
+        val viewpagerAdapter = DiscoveryFragmentStateAdapter(this, viewModel.viewPagerList)
         binding.viewPager.adapter = viewpagerAdapter
 
         // ViewPager2 的 item 变化，导航栏跟着变化，导航栏的光标也跟着变化
@@ -77,7 +78,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
 
 
         // 初始化定位客户端
-        locationClient = AMapLocationClient(mainActivity)
+        locationClient = AMapLocationClient(PetWelfareApplication.context)
         locationClient.setLocationListener(this)
 
         // 设置定位参数
@@ -97,10 +98,18 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         }
 
         // 显示地址
-        viewModel.address.observe(mainActivity) { result->
+        viewModel.addressLiveData.observe(viewLifecycleOwner) { result->
             Log.d("address", result)
-            address = result
-            binding.address.text = address
+            viewModel.address = result
+            binding.address.text = viewModel.address
+        }
+
+        // 响应获取默认地址的请求的数据
+        viewModel.addressDefaultLiveData.observe(viewLifecycleOwner) {result->
+            viewModel.address = result.data.address
+            binding.address.text = viewModel.address
+            Toast.makeText(PetWelfareApplication.context,
+                "您未授予定位权限，已为您默认配置地址", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
@@ -109,10 +118,10 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
     private fun getLocation() {
         // 判断是否具有定位权限
         if(ContextCompat.checkSelfPermission(
-                mainActivity,
+                PetWelfareApplication.context,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(mainActivity,
+            ActivityCompat.requestPermissions(activity as Activity,
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
         } else {
             locationClient.startLocation()
@@ -132,8 +141,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locationClient.startLocation()
                 } else {
-                    Toast.makeText(mainActivity,
-                        "您未授予定位权限，已为您默认配置地址", Toast.LENGTH_SHORT).show()
+                    viewModel.getAddressDefault()
                 }
             }
         }
@@ -162,7 +170,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
             }else {
                 Log.d("errorCode", amapLocation.errorCode.toString())
                 when(amapLocation.errorCode) {
-                    3-> Toast.makeText(mainActivity, "请对所连接网络进行全面检查", Toast.LENGTH_SHORT).show()
+                    3-> Toast.makeText(PetWelfareApplication.context, "请对所连接网络进行全面检查", Toast.LENGTH_SHORT).show()
                 }
 
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。

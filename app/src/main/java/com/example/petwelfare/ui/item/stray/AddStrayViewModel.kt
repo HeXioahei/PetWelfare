@@ -21,7 +21,7 @@ class AddStrayViewModel : ViewModel() {
         time: String,
         description: String,
         Authorization: String,
-        photo_list: MutableList<MultipartBody.Part>
+        photo_list: List<MultipartBody.Part>
     ) {
         viewModelScope.launch {
             _addStraysResponse.value = PetWelfareNetwork.sendStray(address, time, description, Authorization, photo_list)
