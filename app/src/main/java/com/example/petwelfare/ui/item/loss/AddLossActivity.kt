@@ -95,7 +95,7 @@ class AddLossActivity : AppCompatActivity() {
                 binding.hour.text.toString().toInt().apply { hour2 = if (this < 9) "0$this" else this.toString() }
                 binding.minute.text.toString().toInt().apply { minute2 = if (this < 9) "0$this" else this.toString() }
                 binding.second.text.toString().toInt().apply { second2 = if (this < 9) "0$this" else this.toString() }
-                val time = "$year2-$month2-$day2    $hour2: $minute2: $second2"
+                val time = "$year2-$month2-$day2   $hour2: $minute2: $second2"
                 binding.lossTime.text = time
                 binding.timeContainer.visibility = View.GONE
             }
@@ -123,9 +123,11 @@ class AddLossActivity : AppCompatActivity() {
                 fileList.add(multipartBody)
             }
 
+            val sex2 = if (binding.sex.text == "雌") 0 else 1
+
             viewModel.sendLoss(
                 binding.name.text.toString(),
-                binding.sex.text.toString(),
+                sex2,
                 binding.type.text.toString(),
                 binding.address.text.toString(),
                 binding.contact.text.toString(),

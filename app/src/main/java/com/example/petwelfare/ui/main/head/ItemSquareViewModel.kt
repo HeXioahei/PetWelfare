@@ -9,6 +9,7 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.delay
@@ -16,23 +17,14 @@ import kotlinx.coroutines.launch
 
 class ItemSquareViewModel : ViewModel() {
 
+    var order = 1
+    var articlesList: MutableList<Article> = mutableListOf(
+        Article(), Article(),
+        Article(), Article()
+    )
+
     private val _articlesResponse = MutableLiveData<GetArticlesResponse>()
     val articlesResponse: LiveData<GetArticlesResponse> = _articlesResponse
-
-//    private val articlesOrder = MutableLiveData(0)
-//    val articlesResponse = articlesOrder.switchMap { data->
-//        Log.d("articlesOrder.value0", "${articlesOrder.value}")
-//        Log.d("toRequest22222", "going")
-//        Repository.getArticles(data, Repository.Authorization)
-////        PetWelfareNetwork.getArticles(data, Repository.Authorization)
-//    }
-
-//    fun setOrder(order: Int) {
-//        Log.d("setOrder", "$order")
-//        Log.d("articlesOrder.value1", "${articlesOrder.value}")
-//        articlesOrder.value = order
-//        Log.d("articlesOrder.value2", "${articlesOrder.value}")
-//    }
 
     fun getArticles(order: Int) {
         viewModelScope.launch {
@@ -46,7 +38,7 @@ class ItemSquareViewModel : ViewModel() {
 
     fun delayAction(action: ()->Unit) {
         viewModelScope.launch {
-            delay(5000)
+            delay(2000)
             action.invoke()
         }
     }

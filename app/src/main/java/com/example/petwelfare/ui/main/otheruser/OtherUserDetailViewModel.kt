@@ -9,10 +9,13 @@ import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetPetsInfoResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
+import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
 class OtherUserDetailViewModel : ViewModel() {
+
+    var otherUserInfo = UserDetail()
 
     private val _mmyArticles = MutableLiveData<GetArticlesResponse>()
     val mmyArticles : LiveData<GetArticlesResponse> = _mmyArticles

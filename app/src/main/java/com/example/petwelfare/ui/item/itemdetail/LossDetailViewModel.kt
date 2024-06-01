@@ -43,7 +43,7 @@ class LossDetailViewModel : ViewModel() {
 
     fun writeComments(id: String, comment: String, time: String, lastCid: Int, level: Int) {
         viewModelScope.launch {
-            _writeCommentsResponse.value = PetWelfareNetwork.writeCommentsInLoss(id, comment, time, lastCid, level)
+            _writeCommentsResponse.value = PetWelfareNetwork.writeCommentsInLoss(id, comment, time, lastCid, level, Repository.Authorization)
         }
     }
 

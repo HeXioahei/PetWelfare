@@ -16,11 +16,10 @@ import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
 
 class ItemLossFragment : Fragment() {
 
-    private val mainActivity = ActivityCollector.mainActivity
-
     private lateinit var binding : FragmentItemLossBinding
 
-    private var address = "福州大学"
+
+    val viewModel : DiscoveryViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -29,32 +28,39 @@ class ItemLossFragment : Fragment() {
     ): View {
         binding = FragmentItemLossBinding.inflate(inflater, container, false)
 
-        val viewModel : DiscoveryViewModel by viewModels()
-
         val lossAdapter = LossAdapter(viewModel.lossList)
         binding.lossList.adapter = lossAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.lossList.layoutManager = layoutManager
 
+        binding.swipeRefresh.isRefreshing = true
+        viewModel.getLoss(DiscoveryViewModel.address)
+
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getLoss(viewModel.address)
+            viewModel.getLoss(DiscoveryViewModel.address)
             viewModel.delayAction {
                 binding.swipeRefresh.isRefreshing = false
             }
         }
 
-        viewModel.addressLiveData.observe(viewLifecycleOwner) { result->
-            viewModel.address = result
-            viewModel.getLoss(viewModel.address)
+        DiscoveryViewModel.addressLiveData.observe(viewLifecycleOwner) { result->
+            DiscoveryViewModel.address = result
+            viewModel.getLoss(DiscoveryViewModel.address)
         }
 
         viewModel.lossResponse.observe(viewLifecycleOwner) { result->
             viewModel.lossList.clear()
             viewModel.lossList.addAll(result.data)
             lossAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getLoss(DiscoveryViewModel.address)
     }
 }

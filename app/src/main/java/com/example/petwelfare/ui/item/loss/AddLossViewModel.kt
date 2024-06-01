@@ -18,7 +18,7 @@ class AddLossViewModel : ViewModel() {
 
     fun sendLoss(
         name: String,
-        sex: String,
+        sex: Int,
         type: String,
         address: String,
         contact: String,

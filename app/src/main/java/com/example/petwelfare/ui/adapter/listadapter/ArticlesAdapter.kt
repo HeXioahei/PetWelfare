@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -53,15 +54,9 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
         val myHeadImageString = item.user.head_image
         val headImageGlideUrl = GlideUrl(myHeadImageString, lazyHeaders)
         holder.headImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
-//        val pictureString1 = item.media[0]
-//        val pictureString2 = item.media[1]
-//        val pictureString3 = item.media[2]
-//        val pictureGlideUrl1 = GlideUrl(pictureString1, lazyHeaders)
-//        val pictureGlideUrl2 = GlideUrl(pictureString2, lazyHeaders)
-//        val pictureGlideUrl3 = GlideUrl(pictureString3, lazyHeaders)
-//        holder.picture1.let { Glide.with(context).load(pictureGlideUrl1).into(it) }
-//        holder.picture2.let { Glide.with(context).load(pictureGlideUrl2).into(it) }
-//        holder.picture3.let { Glide.with(context).load(pictureGlideUrl3).into(it) }
+
+        Log.d("follow_status", item.user.follow_status.toString())
+
         for (i in 0 until item.media.size) {
             val photoGlideUrl = GlideUrl(item.media[i])
             holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }

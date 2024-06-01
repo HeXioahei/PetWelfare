@@ -224,9 +224,9 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeCommentsInArticles(
-        id: String, comment: String, time: String, lastCid: Int, level: Int
+        id: String, comment: String, time: String, lastCid: Int, level: Int, Authorization: String
     ) = articlesService
-        .writeComments(id, comment, time, lastCid, level)
+        .writeComments(id, comment, time, lastCid, level, Authorization)
         .await()
 
     suspend fun hitInArticles(id: String, Authorization: String) = articlesService
@@ -252,7 +252,7 @@ object PetWelfareNetwork {
 
     suspend fun sendLoss(
         name: String,
-        sex: String,
+        sex: Int,
         type: String,
         address: String,
         contact: String,
@@ -272,9 +272,9 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeCommentsInLoss(
-        id: String, comment: String, time: String, lastCid: Int, level: Int
+        id: String, comment: String, time: String, lastCid: Int, level: Int, Authorization: String
     ) = lossService
-        .writeComments(id, comment, time, lastCid, level)
+        .writeComments(id, comment, time, lastCid, level, Authorization)
         .await()
 
     suspend fun collectInLoss(id: String, Authorization: String) = lossService
@@ -311,9 +311,9 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun writeCommentsInStray(
-        id: String, comment: String, time: String, lastCid: Int, level: Int
+        id: String, comment: String, time: String, lastCid: Int, level: Int, Authorization: String
     ) = strayService
-        .writeComments(id, comment, time, lastCid, level)
+        .writeComments(id, comment, time, lastCid, level ,Authorization)
         .await()
 
     suspend fun collectInStray(id: String, Authorization: String) = strayService
@@ -362,6 +362,7 @@ object PetWelfareNetwork {
                         Log.d("response.errorBody()", response.errorBody().toString())
                         Log.d("code", response.code().toString())
                         Log.d("errorResponse.msg", errorResponse.msg)
+                        Log.d("errorResponse.message", errorResponse.message)
                         Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
                         //continuation.resumeWithException(RuntimeException("response body is null"))
                     }

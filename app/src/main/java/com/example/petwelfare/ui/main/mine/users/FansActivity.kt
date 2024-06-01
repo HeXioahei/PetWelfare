@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.main.mine.users
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
@@ -13,8 +14,7 @@ import com.example.petwelfare.ui.adapter.listadapter.UsersAdapter
 class FansActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityFansBinding
-    private var fansList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(),UserBrief())
-    private var friendsList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(),UserBrief())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,24 +28,31 @@ class FansActivity : AppCompatActivity() {
 
         viewModel.getFans()
 
-        viewModel.fansList.observe(this) { result->
-            fansList = result.data
-        }
-
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        val fansAdapter = UsersAdapter(fansList, this)
-        val friendsAdapter = UsersAdapter(friendsList, this)
+        val fansAdapter = UsersAdapter(viewModel.fansList, this, this)
+        val friendsAdapter = UsersAdapter(viewModel.friendsList, this, this)
 
         binding.recyclerView.adapter = fansAdapter
         binding.recyclerView.layoutManager = layoutManager
+        binding.fansCursor.visibility = View.VISIBLE
+        binding.friendsCursor.visibility = View.INVISIBLE
 
         binding.fans.setOnClickListener {
             binding.recyclerView.adapter = fansAdapter
+            binding.fansCursor.visibility = View.VISIBLE
+            binding.friendsCursor.visibility = View.INVISIBLE
         }
 
-        binding.fans.setOnClickListener {
+        binding.friends.setOnClickListener {
             binding.recyclerView.adapter = friendsAdapter
+            binding.fansCursor.visibility = View.INVISIBLE
+            binding.friendsCursor.visibility = View.VISIBLE
+        }
+
+        viewModel.fansListLiveData.observe(this) { result->
+            viewModel.fansList.clear()
+            viewModel.fansList.addAll(result.data.fans)
         }
 
         binding.returnBtn.setOnClickListener {

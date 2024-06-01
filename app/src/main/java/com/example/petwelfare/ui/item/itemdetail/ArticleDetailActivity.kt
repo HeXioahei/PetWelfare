@@ -3,6 +3,7 @@ package com.example.petwelfare.ui.item.itemdetail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
+import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityArticleDetailBinding
 import com.example.petwelfare.logic.Repository
@@ -19,6 +21,8 @@ import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.KidComment
 import com.example.petwelfare.logic.model.TimeBuilder
 import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
+import com.google.android.material.imageview.ShapeableImageView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class ArticleDetailActivity : AppCompatActivity() {
 
@@ -35,6 +39,8 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        ActivityCollector.addActivity(this)
+
         // 将页面数据存进viewModel
         viewModel.article.id = intent.getIntExtra("articleId", -1)
         viewModel.article.user.username = intent.getStringExtra("username").toString()
@@ -42,18 +48,25 @@ class ArticleDetailActivity : AppCompatActivity() {
         viewModel.article.user.id = intent.getLongExtra("userId", -1L)
         viewModel.article.text = intent.getStringExtra("text").toString()
         viewModel.article.time = intent.getStringExtra("time").toString()
+        viewModel.article.user.follow_status = intent.getIntExtra("followStatus", 0)
         viewModel.article.collect_nums = intent.getIntExtra("collectNums", 0)
         viewModel.article.collect_status = intent.getIntExtra("collectStatus", 0)
         viewModel.article.like_nums = intent.getIntExtra("likeNums", 0)
         viewModel.article.like_status = intent.getIntExtra("likeStatus", 0)
         viewModel.article.comment_nums = intent.getIntExtra("commentNums", 0)
+        viewModel.article.media = intent.getStringArrayListExtra("photos") as MutableList<String>
+
+//        val photoList = listOf(binding.picture1, binding.picture2, binding.picture3)
+
+        Log.d("follow_status", viewModel.article.user.follow_status.toString())
 
         // 呈现数据
         binding.username.text = viewModel.article.user.username
+        Log.d("follow_status", viewModel.article.user.follow_status.toString())
         if (viewModel.article.user.follow_status == 0) {
-            binding.collectBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
+            binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
         } else {
-            binding.collectBtn.setBackgroundResource(R.drawable.img_followed)
+            binding.followBtn.setBackgroundResource(R.drawable.img_followed)
         }
         binding.time.text = viewModel.article.time
         val myHeadImageString = viewModel.article.user.head_image
@@ -61,6 +74,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         binding.userHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
 
         binding.articleText.text = viewModel.article.text
+        // 加载图片
         val photosContainer = listOf(binding.picture1, binding.picture2, binding.picture3)
         for (i in 0 until viewModel.article.media.size) {
             val photoGlideUrl = GlideUrl(viewModel.article.media[i])
@@ -87,6 +101,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         // 呈现评论
         viewModel.commentsInArticle.observe(this) { result->
             viewModel.comments = result.data
+            cleanComments()
             onCreateParentCommentsList(viewModel.comments)
         }
 
@@ -148,11 +163,12 @@ class ArticleDetailActivity : AppCompatActivity() {
             viewModel.follow(viewModel.article.user.id.toString())
         }
         viewModel.followResponse.observe(this) {
+            Log.d("follow_status", viewModel.article.user.follow_status.toString())
             viewModel.article.user.follow_status = viewModel.article.user.follow_status xor 1
             if (viewModel.article.user.follow_status == 0) {
                 binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
             } else {
-                binding.collectBtn.setBackgroundResource(R.drawable.img_followed)
+                binding.followBtn.setBackgroundResource(R.drawable.img_followed)
             }
         }
 
@@ -163,15 +179,19 @@ class ArticleDetailActivity : AppCompatActivity() {
 
     }
 
+    private fun cleanComments() {
+        binding.commentsList.removeAllViews()
+    }
+
     // 创建父评论
     private fun onCreateParentCommentsList(list: MutableList<Comments>) {
         for (item in list) {
-            val view = layoutInflater.inflate(R.layout.item_comments_parent, null, false)
+            val view = layoutInflater.inflate(R.layout.item_comments_parent, binding.commentsList, false)
             val respondBtn : ImageView = view.findViewById(R.id.respondBtn)
             respondBtn.setOnClickListener {
                 writeComments(item.cid, 2)
             }
-            val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
+            val headImage = view.findViewById<CircleImageView>(R.id.userHeadImage)
             val glideUrl = GlideUrl(item.head_image, Repository.lazyHeaders)
             headImage.let { Glide.with(this).load(glideUrl).into(it) }
             headImage.setOnClickListener {
@@ -181,6 +201,8 @@ class ArticleDetailActivity : AppCompatActivity() {
             }
             val username : TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time1 : TextView = view.findViewById(R.id.time1)
+            time1.text = item.time
             val content : TextView = view.findViewById(R.id.content)
             content.text = item.comment
             val kidComment = view.findViewById<LinearLayoutCompat>(R.id.childCommentsList)
@@ -226,6 +248,8 @@ class ArticleDetailActivity : AppCompatActivity() {
             }
             val username: TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time2 : TextView = view.findViewById(R.id.time2)
+            time2.text = item.time
             val content: TextView = view.findViewById(R.id.content)
             content.text = item.comment
 
@@ -238,8 +262,8 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         val alertDialogBuilder = AlertDialog.Builder(this)
         val input = EditText(this)
-        input.hint = "请输入评论"
-        input.setBackgroundResource(R.drawable.bg_input)
+        input.hint = if (level == 1) "请输入评论" else "请输入回复"
+//        input.setBackgroundResource(R.drawable.bg_input)
         alertDialogBuilder.setView(input)
 
         alertDialogBuilder.setPositiveButton("发表") { _, _ ->
@@ -254,6 +278,11 @@ class ArticleDetailActivity : AppCompatActivity() {
         }
         // 显示对话框
         alertDialogBuilder.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
     }
 
 }

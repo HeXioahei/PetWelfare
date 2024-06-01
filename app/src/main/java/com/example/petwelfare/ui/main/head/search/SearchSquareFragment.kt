@@ -18,7 +18,8 @@ import com.example.petwelfare.ui.main.head.ItemSquareFragment
 class SearchSquareFragment(private val keywords: String) : Fragment() {
 
     private lateinit var binding : FragmentSearchSquareBinding
-//    private var searchArticlesList : MutableList<Article> = mutableListOf()
+
+    val viewModel : SearchSquareViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -26,8 +27,6 @@ class SearchSquareFragment(private val keywords: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchSquareBinding.inflate(inflater, container, false)
-
-        val viewModel : SearchSquareViewModel by viewModels()
 
         viewModel.searchArticles(keywords)
 
@@ -46,5 +45,10 @@ class SearchSquareFragment(private val keywords: String) : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.searchArticles(keywords)
     }
 }

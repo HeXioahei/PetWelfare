@@ -30,10 +30,6 @@ class MineActivity : AppCompatActivity() {
     private val viewModel: MineViewModel by viewModels()
 
     private val fragmentManager = supportFragmentManager
-//    private val itemMineFragment = ItemMineFragment()
-//    private val itemCollectionFragment = ItemCollectionFragment()
-//    private val itemPetFragment = ItemPetFragment(Repository.myId)
-//    private val itemLikesFragment = ItemLikesFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,6 +112,10 @@ class MineActivity : AppCompatActivity() {
 //                .getUserInfo(Repository.myId, Repository.Authorization)    // 可以确定了，此处有问题，不能这样来调用getUserInfo()，只能通过InfoLiveData的改变
 //        }
 
+        binding.returnBtn.setOnClickListener {
+            finish()
+        }
+
         // 一开始获取信息
         binding.swipeRefresh.isRefreshing = true
         viewModel.getUserDetail(Repository.myId)
@@ -133,22 +133,22 @@ class MineActivity : AppCompatActivity() {
         }
 
         // 显示信息
-        viewModel.userDetailLiveData.observe(this) { result->
+        MineViewModel.userDetailLiveData.observe(this) { result->
 
-            viewModel.userDetail = result
+            MineViewModel.userDetail = result
 
             Log.d("userDetail", result.toString())
-            binding.username.text = viewModel.userDetail.username
-            binding.address.text = viewModel.userDetail.address
-            binding.personality.text = viewModel.userDetail.personality
-            binding.fansNum.text = viewModel.userDetail.fan_nums.toString()
-            binding.followsNum.text = viewModel.userDetail.follow_nums.toString()
-            binding.integralsNum.text = viewModel.userDetail.integral.toString()
-            binding.telephone.text = viewModel.userDetail.telephone
+            binding.username.text = MineViewModel.userDetail.username
+            binding.address.text = MineViewModel.userDetail.address
+            binding.personality.text = MineViewModel.userDetail.personality
+            binding.fansNum.text = MineViewModel.userDetail.fan_nums.toString()
+            binding.followsNum.text = MineViewModel.userDetail.follow_nums.toString()
+            binding.integralsNum.text = MineViewModel.userDetail.integral.toString()
+            binding.telephone.text = MineViewModel.userDetail.telephone
 
             // 设置头像
             val glideUrl = GlideUrl(
-                viewModel.userDetail.head_image,
+                MineViewModel.userDetail.head_image,
                 LazyHeaders.Builder()
                     .addHeader("Authorization", Repository.Authorization)
                     .build()
@@ -163,11 +163,11 @@ class MineActivity : AppCompatActivity() {
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
-            intent.putExtra("headImage", viewModel.userDetail.head_image)
-            intent.putExtra("username", viewModel.userDetail.username)
-            intent.putExtra("address", viewModel.userDetail.address)
-            intent.putExtra("personality", viewModel.userDetail.personality)
-            intent.putExtra("telephone", viewModel.userDetail.telephone)
+//            intent.putExtra("headImage", viewModel.userDetail.head_image)
+//            intent.putExtra("username", viewModel.userDetail.username)
+//            intent.putExtra("address", viewModel.userDetail.address)
+//            intent.putExtra("personality", viewModel.userDetail.personality)
+//            intent.putExtra("telephone", viewModel.userDetail.telephone)
         }
 
         binding.fans.setOnClickListener {

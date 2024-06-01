@@ -74,18 +74,22 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
             intent.putExtra("userId", item.user.id)
             intent.putExtra("headImage", item.user.head_image)
             intent.putExtra("time", item.send_time)
+            intent.putExtra("followStatus", item.user.follow_status)
 
             intent.putExtra("description", item.description)
             intent.putExtra("sex", item.sex)
+            intent.putExtra("type", item.type)
             intent.putExtra("address", item.address)
             intent.putExtra("name", item.name)
             intent.putExtra("lostTime", item.lost_time)
-            intent.putExtra("contract", item.contact)
+            intent.putExtra("description", item.description)
+            intent.putExtra("contact", item.contact)
 
             intent.putExtra("commentNums", item.comment_nums)
             intent.putExtra("collectNums", item.collect_nums)
             intent.putExtra("collectStatus", item.collect_status)
             intent.putExtra("lossId", item.id)
+            intent.putStringArrayListExtra("photos", item.photos as ArrayList<String>)
 
             // 检查context是否是Activity的Context，如果不是，则添加FLAG_ACTIVITY_NEW_TASK标志
             if (PetWelfareApplication.context !is Activity) {

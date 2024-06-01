@@ -6,10 +6,24 @@ data class GetUserDetailResponse(
     val data: UserDetail2
 )
 
-data class GetUserBriefListResponse(
+data class GetFollowsListResponse(
     val code: Int,
     val msg: String,
-    val data: MutableList<UserBrief>
+    var data: Follows
+)
+
+data class GetFansListResponse(
+    val code: Int,
+    val msg: String,
+    var data: Fans
+)
+
+data class Follows (
+    var follows: MutableList<UserBrief>
+)
+
+data class Fans (
+    var fans: MutableList<UserBrief>
 )
 
 data class UserDetail2(
@@ -36,7 +50,7 @@ data class UserDetail(
 
 data class UserBrief(
     var head_image: String,
-    var username: String,
+    var name: String,
     var personality: String,
     var follow_status: Int,
     var id: Long

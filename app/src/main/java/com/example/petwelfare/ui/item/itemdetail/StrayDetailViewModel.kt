@@ -37,7 +37,7 @@ class StrayDetailViewModel : ViewModel() {
 
     fun writeComments(id: String, comment: String, time: String, lastCid: Int, level: Int) {
         viewModelScope.launch {
-            _writeCommentsResponse.value = PetWelfareNetwork.writeCommentsInStray(id, comment, time, lastCid, level)
+            _writeCommentsResponse.value = PetWelfareNetwork.writeCommentsInStray(id, comment, time, lastCid, level, Repository.Authorization)
         }
     }
 

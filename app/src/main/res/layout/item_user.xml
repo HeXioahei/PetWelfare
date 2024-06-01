@@ -5,7 +5,8 @@
     android:layout_height="100dp"
     android:layout_marginHorizontal="30dp"
     android:background="@drawable/bg_item_user"
-    android:id="@+id/user">
+    android:id="@+id/user"
+    android:layout_marginVertical="10dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/userHeadImage"
@@ -49,6 +50,7 @@
         android:id="@+id/isFollowedBtn"
         android:layout_width="60dp"
         android:layout_height="30dp"
+        android:visibility="invisible"
         android:background="@drawable/btn_followed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

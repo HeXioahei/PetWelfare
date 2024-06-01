@@ -6,25 +6,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.GetOrgsResponse
-import com.example.petwelfare.logic.model.GetUserBriefListResponse
+import com.example.petwelfare.logic.model.GetFollowsListResponse
+import com.example.petwelfare.logic.model.Org
+import com.example.petwelfare.logic.model.UserBrief
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.launch
 
 class FollowsViewModel : ViewModel() {
 
-//    lateinit var follows : MutableList<UserBrief>
-//
-//    var followsData = Repository.getFollows(Repository.Authorization)
 
-    private val _followsList = MutableLiveData<GetUserBriefListResponse>()
-    val followsList : LiveData<GetUserBriefListResponse> = _followsList
+    var followsList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(), UserBrief())
+    var orsList : MutableList<Org> = mutableListOf(Org(), Org(), Org())
+
+    private val _followsListLiveData = MutableLiveData<GetFollowsListResponse>()
+    val followsListLiveData : LiveData<GetFollowsListResponse> = _followsListLiveData
 
     private val _collectOrgsList = MutableLiveData<GetOrgsResponse>()
     val collectOrgsList : LiveData<GetOrgsResponse> = _collectOrgsList
 
-    fun getFans() {
+    fun getFollows() {
         viewModelScope.launch {
-            _followsList.value = PetWelfareNetwork.getFollows(Repository.Authorization)
+            _followsListLiveData.value = PetWelfareNetwork.getFollows(Repository.Authorization)
         }
     }
 

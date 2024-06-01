@@ -33,7 +33,7 @@ interface LossService {
     @POST("/loss/")
     fun sendLoss(
         @Query("name") name: String,
-        @Query("sex") sex: String,
+        @Query("sex") sex: Int,
         @Query("type") type: String,
         @Query("address") address: String,
         @Query("contact") contact: String,
@@ -55,7 +55,8 @@ interface LossService {
         @Query("comment") comment: String,
         @Query("time") time: String,
         @Query("last_cid") last_cid: Int,
-        @Query("level") level: Int
+        @Query("level") level: Int,
+        @Header("Authorization") Authorization: String
     ): Call<BaseResponse>
 
     @PUT("/loss/{id}/collections/")

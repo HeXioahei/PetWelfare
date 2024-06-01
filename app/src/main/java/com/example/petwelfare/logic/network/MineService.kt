@@ -2,11 +2,12 @@ package com.example.petwelfare.logic.network
 
 import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetArticlesResponse
+import com.example.petwelfare.logic.model.GetFansListResponse
 import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetOrgsResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
 import com.example.petwelfare.logic.model.GetTalksResponse
-import com.example.petwelfare.logic.model.GetUserBriefListResponse
+import com.example.petwelfare.logic.model.GetFollowsListResponse
 import com.example.petwelfare.logic.model.GetUserDetailResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -37,12 +38,12 @@ interface MineService {
     @GET("/users/follows/")
     fun getFollows(
         @Header("Authorization") Authorization: String
-    ): Call<GetUserBriefListResponse>
+    ): Call<GetFollowsListResponse>
 
     @GET("/users/fans/")
     fun getFans(
         @Header("Authorization") Authorization: String
-    ): Call<GetUserBriefListResponse>
+    ): Call<GetFansListResponse>
 
     @GET("/users/collections/loss/")
     fun getCollectLoss(

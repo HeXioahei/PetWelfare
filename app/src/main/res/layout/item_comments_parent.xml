@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:paddingTop="20dp">
+    android:paddingBottom="20dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userHeadImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -22,9 +22,20 @@
         android:layout_marginStart="5dp"
         android:text="用户名"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/userHeadImage"
         app:layout_constraintStart_toEndOf="@+id/userHeadImage"
         app:layout_constraintTop_toTopOf="@+id/userHeadImage" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/time1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="2024-06-01   11: 22: 33"
+        android:textColor="@color/text_gray"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/userHeadImage"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInParentComment" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/respondBtn"
@@ -40,10 +51,10 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="15dp"
         android:text="评论内容"
-        app:layout_constraintTop_toBottomOf="@+id/userHeadImage"
+        app:layout_constraintTop_toBottomOf="@+id/time1"
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat

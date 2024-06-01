@@ -51,7 +51,8 @@ interface StrayService {
         @Query("comment") comment: String,
         @Query("time") time: String,
         @Query("last_cid") last_cid: Int,
-        @Query("level") level: Int
+        @Query("level") level: Int,
+        @Header("Authorization") Authorization: String
     ): Call<BaseResponse>
 
     @PUT("/stray/{id}/collections/")

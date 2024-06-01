@@ -24,14 +24,7 @@ import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 class LossDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityLossDetailBinding
-//    private var comments : MutableList<Comments> = mutableListOf(
-//        Comments(),
-//        Comments(),
-//        Comments(),
-//        Comments()
-//    )
     private val viewModel : LossDetailViewModel by viewModels()
-//    private var lossId = "-1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +40,14 @@ class LossDetailActivity : AppCompatActivity() {
         viewModel.loss.lost_time = intent.getStringExtra("lostTime").toString()
         viewModel.loss.sex = intent.getIntExtra("sex", 0)
         viewModel.loss.contact = intent.getStringExtra("contact").toString()
+        viewModel.loss.description = intent.getStringExtra("description").toString()
+        viewModel.loss.photos = intent.getStringArrayListExtra("photos") as MutableList<String>
 
         viewModel.loss.user.username = intent.getStringExtra("username").toString()
         viewModel.loss.user.id = intent.getLongExtra("userId", -1L)
         viewModel.loss.user.head_image = intent.getStringExtra("headImage").toString()
         viewModel.loss.send_time = intent.getStringExtra("time").toString()
+        viewModel.loss.user.follow_status = intent.getIntExtra("followStatus", 0)
 
         viewModel.loss.collect_nums = intent.getIntExtra("collectNums", 0)
         viewModel.loss.collect_status = intent.getIntExtra("collectStatus", 0)
@@ -61,6 +57,12 @@ class LossDetailActivity : AppCompatActivity() {
         val userHeadImageGlideUrl = GlideUrl(viewModel.loss.user.head_image, Repository.lazyHeaders)
         binding.headImage.let { Glide.with(PetWelfareApplication.context).load(userHeadImageGlideUrl).into(it) }
         binding.time.text = viewModel.loss.send_time
+
+        if (viewModel.loss.user.follow_status == 0) {
+            binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
+        } else {
+            binding.followBtn.setBackgroundResource(R.drawable.img_followed)
+        }
 
         binding.name.text = viewModel.loss.name
         if (viewModel.loss.sex == 0) {
@@ -75,7 +77,7 @@ class LossDetailActivity : AppCompatActivity() {
         binding.description.text = viewModel.loss.description
 
         if (viewModel.loss.collect_status == 0) {
-            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
+            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected)
         } else {
             binding.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
         }
@@ -93,6 +95,7 @@ class LossDetailActivity : AppCompatActivity() {
         // 响应评论数据并呈现
         viewModel.commentsInLoss.observe(this) { result->
             viewModel.comments = result.data
+            cleanComments()
             onCreateParentCommentsList(viewModel.comments)
         }
 
@@ -142,7 +145,7 @@ class LossDetailActivity : AppCompatActivity() {
             if (viewModel.loss.user.follow_status == 0) {
                 binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
             } else {
-                binding.collectBtn.setBackgroundResource(R.drawable.img_followed)
+                binding.followBtn.setBackgroundResource(R.drawable.img_followed)
             }
         }
 
@@ -151,6 +154,10 @@ class LossDetailActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun cleanComments() {
+        binding.commentsList.removeAllViews()
     }
 
     // 创建父评论
@@ -171,6 +178,8 @@ class LossDetailActivity : AppCompatActivity() {
             }
             val username : TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time1 : TextView = view.findViewById(R.id.time1)
+            time1.text = item.time
             val content : TextView = view.findViewById(R.id.content)
             content.text = item.comment
             val kidComment = view.findViewById<LinearLayoutCompat>(R.id.childCommentsList)
@@ -223,6 +232,8 @@ class LossDetailActivity : AppCompatActivity() {
             }
             val username: TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time2 : TextView = view.findViewById(R.id.time2)
+            time2.text = item.time
             val content: TextView = view.findViewById(R.id.content)
             content.text = item.comment
 

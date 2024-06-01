@@ -57,7 +57,6 @@ class OtherUserDetailActivity : AppCompatActivity() {
                 navAdapter.notifyDataSetChanged()
             }
         })
-
     }
 
     override fun onDestroy() {

@@ -20,14 +20,14 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
 
     private lateinit var binding : FragmentSearchLossBinding
 
+    val viewModel : SearchStrayViewModel by viewModels()
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchLossBinding.inflate(inflater, container, false)
-
-        val viewModel : SearchStrayViewModel by viewModels()
 
         viewModel.searchStray(keywords)
 
@@ -47,4 +47,10 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.searchStray(keywords)
+    }
+
 }

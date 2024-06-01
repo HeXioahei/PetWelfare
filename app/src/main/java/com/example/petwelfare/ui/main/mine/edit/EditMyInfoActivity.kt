@@ -28,7 +28,7 @@ class EditMyInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditMyInfoBinding
 
-    private val viewModel1: EditMyInfoViewModel by viewModels()
+    private val viewModel1: MineViewModel by viewModels()
 //    private val viewModel2: MineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,16 +38,22 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        viewModel1.editInfo.head_image = intent.getStringExtra("headImage").toString()
-        viewModel1.editInfo.username = intent.getStringExtra("username").toString()
-        viewModel1.editInfo.address = intent.getStringExtra("address").toString()
-        viewModel1.editInfo.telephone = intent.getStringExtra("telephone").toString()
-        viewModel1.editInfo.personality = intent.getStringExtra("personality").toString()
+//        viewModel1.editInfo.head_image = intent.getStringExtra("headImage").toString()
+//        viewModel1.editInfo.username = intent.getStringExtra("username").toString()
+//        viewModel1.editInfo.address = intent.getStringExtra("address").toString()
+//        viewModel1.editInfo.telephone = intent.getStringExtra("telephone").toString()
+//        viewModel1.editInfo.personality = intent.getStringExtra("personality").toString()
 
-        binding.username.text = viewModel1.editInfo.username
-        binding.personality.text = viewModel1.editInfo.personality
-        binding.address.text = viewModel1.editInfo.address
-        binding.telephone.text = viewModel1.editInfo.telephone
+//        binding.username.text = viewModel1.editInfo.username
+//        binding.personality.text = viewModel1.editInfo.personality
+//        binding.address.text = viewModel1.editInfo.address
+//        binding.telephone.text = viewModel1.editInfo.telephone
+
+        Log.d("username", MineViewModel.userDetail.username)
+        binding.username.text = MineViewModel.userDetail.username
+        binding.personality.text = MineViewModel.userDetail.personality
+        binding.address.text = MineViewModel.userDetail.address
+        binding.telephone.text = MineViewModel.userDetail.telephone
 
         val glideUrl = GlideUrl(
             viewModel1.editInfo.head_image,
@@ -56,6 +62,28 @@ class EditMyInfoActivity : AppCompatActivity() {
                 .build()
         )
         binding.changeHead.let { Glide.with(this).load(glideUrl).into(it) }
+
+        // 刷新数据
+        MineViewModel.userDetailLiveData.observe(this) { result ->
+
+            MineViewModel.userDetail = result
+
+            Log.d("userDetail", result.toString())
+            binding.username.text = MineViewModel.userDetail.username
+            binding.address.text = MineViewModel.userDetail.address
+            binding.personality.text = MineViewModel.userDetail.personality
+            binding.telephone.text = MineViewModel.userDetail.telephone
+
+            // 设置头像
+            val glideUrl2 = GlideUrl(
+                MineViewModel.userDetail.head_image,
+                LazyHeaders.Builder()
+                    .addHeader("Authorization", Repository.Authorization)
+                    .build()
+            )
+            binding.changeHead.let { Glide.with(this).load(glideUrl2).into(it) }
+
+        }
 
         binding.returnBtn.setOnClickListener {
             finish()
@@ -108,13 +136,14 @@ class EditMyInfoActivity : AppCompatActivity() {
             showAlertDialog(viewModel1.editInfo.personality, "changePersonality")
         }
 
+        // 成功更改
         viewModel1.changeResponse.observe(this) { result->
             if (result.code == 200) {
                 Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
             } else if (result.code != 0) {
                 Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show()
             }
-            // viewModel1.resetChangeResponse(0, "") // 以便下一次再进行修改的网络请求
+            viewModel1.getUserDetail(Repository.myId)
         }
 
 

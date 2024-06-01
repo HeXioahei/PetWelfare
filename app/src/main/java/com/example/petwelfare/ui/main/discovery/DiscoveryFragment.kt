@@ -29,18 +29,9 @@ import com.example.petwelfare.ui.adapter.viewpageradapter.DiscoveryFragmentState
 @Suppress("DEPRECATION")
 class DiscoveryFragment : Fragment(), AMapLocationListener {
 
-    private val mainActivity = ActivityCollector.mainActivity
-
     private lateinit var binding : FragmentDiscoveryBinding
 
     private val navItemList = listOf("走失", "流浪", "收养", "寄养", "救助站")
-//    private val viewPagerList: List<Fragment> = listOf(
-//        ItemLossFragment(),
-//        ItemStrayFragment(),
-//        ItemAdoptionFragment(),
-//        ItemFosterFragment(),
-//        ItemRescueFragment()
-//    )
 
     companion object {
         var viewPagerCurrentPosition = 0
@@ -75,7 +66,9 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
             }
         })
 
+        binding.toSearchBtn.setOnClickListener {
 
+        }
 
         // 初始化定位客户端
         locationClient = AMapLocationClient(PetWelfareApplication.context)
@@ -83,7 +76,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
 
         // 设置定位参数
         val option = AMapLocationClientOption()
-        //option.isOnceLocation = true // 仅定位一次，默认为false
+//        option.isOnceLocation = true // 仅定位一次，默认为false
         option.isNeedAddress = true // 返回定位地址信息
         option.isLocationCacheEnable = true // 是否使用缓存定位，默认为true
         option.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy // 设置定位模式为高精度模式
@@ -100,16 +93,16 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         }
 
         // 显示地址
-        viewModel.addressLiveData.observe(viewLifecycleOwner) { result->
+        DiscoveryViewModel.addressLiveData.observe(viewLifecycleOwner) { result->
             Log.d("address", result)
-            viewModel.address = result
-            binding.address.text = viewModel.address
+            DiscoveryViewModel.address = result
+            binding.address.text = DiscoveryViewModel.address
         }
 
         // 响应获取默认地址的请求的数据
-        viewModel.addressDefaultLiveData.observe(viewLifecycleOwner) {result->
-            viewModel.address = result.data.address
-            binding.address.text = viewModel.address
+        DiscoveryViewModel.addressDefaultLiveData.observe(viewLifecycleOwner) {result->
+            DiscoveryViewModel.address = result.data.address
+            binding.address.text = DiscoveryViewModel.address
             Toast.makeText(PetWelfareApplication.context,
                 "您未授予定位权限，已为您默认配置地址", Toast.LENGTH_SHORT).show()
         }
@@ -125,7 +118,9 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
             ) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity as Activity,
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            Log.d("locationClient.startLocation()1", "locationClient.startLocation()1")
         } else {
+            Log.d("locationClient.startLocation()", "locationClient.startLocation()")
             locationClient.startLocation()
         }
     }
@@ -165,10 +160,12 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
 //                amapLocation.getDistrict();//城区信息
 //                amapLocation.getStreet();//街道信息
 //                amapLocation.getStreetNum();//街道门牌号信息
-                val address = amapLocation.province + amapLocation.city + amapLocation.district +
+                val addressDetail = amapLocation.province + amapLocation.city + amapLocation.district +
                         amapLocation.street + amapLocation.streetNum
+                val address = amapLocation.city
                 Log.d("address", address)
-                viewModel.changeAddress(address)
+                DiscoveryViewModel.changeAddress(address)
+                DiscoveryViewModel.changeAddressDetail(addressDetail)
             }else {
                 Log.d("errorCode", amapLocation.errorCode.toString())
                 when(amapLocation.errorCode) {
@@ -181,7 +178,6 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
                         + amapLocation.errorInfo
                 )
             }
-
             locationClient.stopLocation()
         }
     }
@@ -191,5 +187,10 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         // 销毁定位客户端
         locationClient.stopLocation()
         locationClient.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        locationClient.stopLocation()
     }
 }

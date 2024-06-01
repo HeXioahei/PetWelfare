@@ -73,6 +73,7 @@ class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter
             intent.putExtra("userId", item.user.id)
             intent.putExtra("headImage", item.user.head_image)
             intent.putExtra("time", item.time)
+            intent.putExtra("followStatus", item.user.follow_status)
 
             intent.putExtra("description", item.description)
             intent.putExtra("address", item.address)

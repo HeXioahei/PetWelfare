@@ -25,14 +25,7 @@ import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 class StrayDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityStrayDetailBinding
-//    private var comments : MutableList<Comments> = mutableListOf(
-//        Comments(),
-//        Comments(),
-//        Comments(),
-//        Comments()
-//    )
     private val viewModel : StrayDetailViewModel by viewModels()
-//    private var strayId = "-1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +36,13 @@ class StrayDetailActivity : AppCompatActivity() {
 
         viewModel.stray.id = intent.getIntExtra("strayId", -1)
         viewModel.stray.address = intent.getStringExtra("address").toString()
+        viewModel.stray.photos = intent.getStringArrayListExtra("photos") as MutableList<String>
 
         viewModel.stray.user.username = intent.getStringExtra("username").toString()
         viewModel.stray.user.id = intent.getLongExtra("userId", -1L)
         viewModel.stray.user.head_image = intent.getStringExtra("headImage").toString()
         viewModel.stray.time = intent.getStringExtra("time").toString()
+        viewModel.stray.user.follow_status = intent.getIntExtra("followStatus", 0)
 
         viewModel.stray.comments_nums = intent.getIntExtra("commentNums", 0)
         viewModel.stray.collect_nums = intent.getIntExtra("collectNums", 0)
@@ -60,6 +55,12 @@ class StrayDetailActivity : AppCompatActivity() {
         binding.findTime.text = viewModel.stray.time
         binding.address.text = viewModel.stray.address
         binding.description.text = viewModel.stray.description
+
+        if (viewModel.stray.user.follow_status == 0) {
+            binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
+        } else {
+            binding.followBtn.setBackgroundResource(R.drawable.img_followed)
+        }
 
         if (viewModel.stray.collect_status == 0) {
             binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
@@ -78,6 +79,7 @@ class StrayDetailActivity : AppCompatActivity() {
 
         viewModel.commentsInStray.observe(this) { result->
             viewModel.comments = result.data
+            cleanComments()
             onCreateParentCommentsList(viewModel.comments)
         }
 
@@ -127,7 +129,7 @@ class StrayDetailActivity : AppCompatActivity() {
             if (viewModel.stray.user.follow_status == 0) {
                 binding.followBtn.setBackgroundResource(R.drawable.img_unfollowed_2)
             } else {
-                binding.collectBtn.setBackgroundResource(R.drawable.img_followed)
+                binding.followBtn.setBackgroundResource(R.drawable.img_followed)
             }
         }
 
@@ -136,6 +138,10 @@ class StrayDetailActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun cleanComments() {
+        binding.commentsList.removeAllViews()
     }
 
     // 创建父评论
@@ -153,6 +159,8 @@ class StrayDetailActivity : AppCompatActivity() {
             }
             val username : TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time1 : TextView = view.findViewById(R.id.time1)
+            time1.text = item.time
             val content : TextView = view.findViewById(R.id.content)
             content.text = item.comment
             val kidComment = view.findViewById<LinearLayoutCompat>(R.id.childCommentsList)
@@ -202,6 +210,8 @@ class StrayDetailActivity : AppCompatActivity() {
             }
             val username: TextView = view.findViewById(R.id.usernameInParentComment)
             username.text = item.username
+            val time2 : TextView = view.findViewById(R.id.time2)
+            time2.text = item.time
             val content: TextView = view.findViewById(R.id.content)
             content.text = item.comment
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentItemStrayBinding
 import com.example.petwelfare.logic.model.Stray
 import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
@@ -16,13 +17,9 @@ import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 
 class ItemStrayFragment : Fragment() {
 
-    private val mainActivity = ActivityCollector.mainActivity
-
     private lateinit var binding : FragmentItemStrayBinding
 
-    private var strayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray(), Stray())
-
-    private var address = "福州大学"
+    val viewModel : DiscoveryViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -31,31 +28,40 @@ class ItemStrayFragment : Fragment() {
     ): View {
         binding = FragmentItemStrayBinding.inflate(inflater, container, false)
 
-        val viewModel : DiscoveryViewModel by viewModels()
 
-        val strayAdapter = StrayAdapter(strayList)
+        val strayAdapter = StrayAdapter(viewModel.strayList)
         binding.strayList.adapter = strayAdapter
-        val layoutManager = LinearLayoutManager(mainActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.strayList.layoutManager = layoutManager
 
+
+        binding.swipeRefresh.isRefreshing = true
+        viewModel.getStray(DiscoveryViewModel.address)
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getStray(address)
+            viewModel.getStray(DiscoveryViewModel.address)
             viewModel.delayAction {
                 binding.swipeRefresh.isRefreshing = false
             }
         }
 
-        viewModel.addressLiveData.observe(mainActivity) { result->
-            address = result
-            viewModel.getStray(address)
+        DiscoveryViewModel.addressLiveData.observe(viewLifecycleOwner) { result->
+            DiscoveryViewModel.address = result
+            viewModel.getStray(DiscoveryViewModel.address)
         }
 
-        viewModel.strayResponse.observe(mainActivity) { result->
-            strayList = result.data
+        viewModel.strayResponse.observe(viewLifecycleOwner) { result->
+            viewModel.strayList.clear()
+            viewModel.strayList.addAll(result.data)
             strayAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getStray(DiscoveryViewModel.address)
     }
 }
