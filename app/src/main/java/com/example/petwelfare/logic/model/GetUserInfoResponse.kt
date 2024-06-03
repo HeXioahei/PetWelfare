@@ -41,10 +41,11 @@ data class UserDetail(
     var score: Int,
     var telephone: String,
     var username: String,
-    var follow_status: Int
+    var follow_status: Int,
+    var collect_orgs_nums: Int
 ) {
     constructor() : this(
-        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa", 0
+        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa", 0, 0
     )
 }
 

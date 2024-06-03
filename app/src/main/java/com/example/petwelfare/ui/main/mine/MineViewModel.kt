@@ -10,7 +10,6 @@ import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
-import com.example.petwelfare.ui.main.mine.edit.EditInfo
 import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
 import com.example.petwelfare.ui.main.mine.item.like.ItemLikesFragment
 import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
@@ -20,6 +19,8 @@ import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
 class MineViewModel : ViewModel() {
+
+//    var editInfo = EditInfo()
 
     var cursorList = listOf<AppCompatImageView>()
 
@@ -39,6 +40,7 @@ class MineViewModel : ViewModel() {
         viewModelScope.launch {
             _userDetailLiveData.value =
                 PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data.author
+            Log.d("userDetail", PetWelfareNetwork.getUserInfo(userId, Repository.Authorization).data.author.toString())
         }
     }
 
@@ -49,17 +51,14 @@ class MineViewModel : ViewModel() {
         }
     }
 
-
-    var editInfo = EditInfo()
-
     private val _changeResponse = MutableLiveData<BaseResponse>()
     val changeResponse : LiveData<BaseResponse> = _changeResponse
 
     fun changeHead(headImage: MultipartBody.Part, Authorization: String) {
         viewModelScope.launch {
-            _changeResponse.value = PetWelfareNetwork.changeHead(headImage, Authorization)
-            val code = PetWelfareNetwork.changeHead(headImage, Authorization).code
-            if (code == 200) {
+            val response = PetWelfareNetwork.changeHead(headImage, Authorization)
+            _changeResponse.value = response
+            if (response.code == 200) {
                 Log.d("changeHead", "success")
             } else {
                 Log.d("changeHead", "failure")
@@ -69,9 +68,10 @@ class MineViewModel : ViewModel() {
 
     fun changeUsername(username: String, Authorization: String) {
         viewModelScope.launch {
-            _changeResponse.value = PetWelfareNetwork.changeUsername(username, Authorization)
-            val code = PetWelfareNetwork.changeUsername(username, Authorization).code
-            if (code == 200) {
+            val response = PetWelfareNetwork.changeUsername(username, Authorization)
+            _changeResponse.value = response
+            Log.d("username", username)
+            if (response.code == 200) {
                 Log.d("changeUsername", "success")
             } else {
                 Log.d("changeUsername", "failure")
@@ -81,9 +81,9 @@ class MineViewModel : ViewModel() {
 
     fun changeAddress(address: String, Authorization: String) {
         viewModelScope.launch {
-            _changeResponse.value = PetWelfareNetwork.changeAddress(address, Authorization)
-            val code = PetWelfareNetwork.changeAddress(address, Authorization).code
-            if (code == 200) {
+            val response = PetWelfareNetwork.changeAddress(address, Authorization)
+            _changeResponse.value = response
+            if (response.code == 200) {
                 Log.d("changeAddress", "success")
             } else {
                 Log.d("changeAddress", "failure")
@@ -93,9 +93,9 @@ class MineViewModel : ViewModel() {
 
     fun changeTelephone(telephone: String, Authorization: String) {
         viewModelScope.launch {
-            _changeResponse.value = PetWelfareNetwork.changeTelephone(telephone, Authorization)
-            val code = PetWelfareNetwork.changeTelephone(telephone, Authorization).code
-            if (code == 200) {
+            val response = PetWelfareNetwork.changeTelephone(telephone, Authorization)
+            _changeResponse.value = response
+            if (response.code == 200) {
                 Log.d("changeTelephone", "success")
             } else {
                 Log.d("changeTelephone", "failure")
@@ -105,17 +105,15 @@ class MineViewModel : ViewModel() {
 
     fun changePersonality(personality: String, Authorization: String) {
         viewModelScope.launch {
-            _changeResponse.value = PetWelfareNetwork.changePersonality(personality, Authorization)
-            val code = PetWelfareNetwork.changePersonality(personality, Authorization).code
-            if (code == 200) {
+            val response = PetWelfareNetwork.changePersonality(personality, Authorization)
+            _changeResponse.value = response
+            if (response.code == 200) {
                 Log.d("changePersonality", "success")
             } else {
                 Log.d("changePersonality", "failure")
             }
         }
     }
-
-
 }
 
 

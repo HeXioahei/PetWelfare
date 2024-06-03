@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -138,22 +139,8 @@ class MineActivity : AppCompatActivity() {
             MineViewModel.userDetail = result
 
             Log.d("userDetail", result.toString())
-            binding.username.text = MineViewModel.userDetail.username
-            binding.address.text = MineViewModel.userDetail.address
-            binding.personality.text = MineViewModel.userDetail.personality
-            binding.fansNum.text = MineViewModel.userDetail.fan_nums.toString()
-            binding.followsNum.text = MineViewModel.userDetail.follow_nums.toString()
-            binding.integralsNum.text = MineViewModel.userDetail.integral.toString()
-            binding.telephone.text = MineViewModel.userDetail.telephone
 
-            // 设置头像
-            val glideUrl = GlideUrl(
-                MineViewModel.userDetail.head_image,
-                LazyHeaders.Builder()
-                    .addHeader("Authorization", Repository.Authorization)
-                    .build()
-            )
-            binding.headImage.let { Glide.with(this).load(glideUrl).into(it) }
+            update()
 
             // 结束缓冲
             binding.swipeRefresh.isRefreshing = false
@@ -163,11 +150,6 @@ class MineActivity : AppCompatActivity() {
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditMyInfoActivity::class.java)
             startActivity(intent)
-//            intent.putExtra("headImage", viewModel.userDetail.head_image)
-//            intent.putExtra("username", viewModel.userDetail.username)
-//            intent.putExtra("address", viewModel.userDetail.address)
-//            intent.putExtra("personality", viewModel.userDetail.personality)
-//            intent.putExtra("telephone", viewModel.userDetail.telephone)
         }
 
         binding.fans.setOnClickListener {
@@ -241,5 +223,21 @@ class MineActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.removeActivity(this)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun update() {
+        binding.username.text = MineViewModel.userDetail.username
+        binding.address.text = MineViewModel.userDetail.address
+        binding.personality.text = MineViewModel.userDetail.personality
+        binding.fansNum.text = MineViewModel.userDetail.fan_nums.toString()
+        binding.followsNum.text = "${MineViewModel.userDetail.follow_nums + MineViewModel.userDetail.collect_orgs_nums}"
+        binding.integralsNum.text = MineViewModel.userDetail.integral.toString()
+        binding.telephone.text = MineViewModel.userDetail.telephone
+        binding.headImage.let {
+            Glide.with(this)
+                .load(GlideUrl(MineViewModel.userDetail.head_image, Repository.lazyHeaders))
+                .into(it)
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.pet
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ class PetListActivity : AppCompatActivity() {
 
     val viewModel : PetListViewModel by viewModels()
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPetListBinding.inflate(layoutInflater)
@@ -23,7 +25,7 @@ class PetListActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        val petAdapter = PetsAdapter(viewModel.myPetList, this, 2)
+        val petAdapter = PetsAdapter(viewModel.myPetList, this, 2, Repository.myId)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(this)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
@@ -52,6 +54,7 @@ class PetListActivity : AppCompatActivity() {
             viewModel.myPetList.clear()
             viewModel.myPetList.addAll(result.data.pets)
             Repository.myPetList = viewModel.myPetList
+            petAdapter.notifyDataSetChanged()
             binding.swipeRefresh.isRefreshing = false
         }
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,21 +35,30 @@ open class ItemPetFragment(private val userId : Long) : Fragment() {
 
         val viewModel: ItemPetViewModel by viewModels()
 
-        val petAdapter = PetsAdapter(viewModel.myPetList, activity as LifecycleOwner, 1)
+        if (userId != Repository.myId) {
+            binding.toPetListBtn.visibility = View.GONE
+        }
+
+        val petAdapter = PetsAdapter(viewModel.myPetList, activity as AppCompatActivity, 1, userId)
         binding.petRecyclerView.adapter = petAdapter
         val layoutInflater = LinearLayoutManager(PetWelfareApplication.context)
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
         binding.petRecyclerView.layoutManager = layoutInflater
 
         viewModel.getMyPets(userId)
+        binding.swipeRefresh.isRefreshing = true
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getMyPets(Repository.myId)
+        }
 
         viewModel.myPet.observe(viewLifecycleOwner) { result->
             viewModel.myPetList.clear()
             viewModel.myPetList.addAll(result.data.pets)
             petAdapter.notifyDataSetChanged()
             Repository.myPetList = viewModel.myPetList
+            binding.swipeRefresh.isRefreshing = false
         }
-
 
         binding.toPetListBtn.setOnClickListener {
             val intent = Intent(PetWelfareApplication.context, PetListActivity::class.java)

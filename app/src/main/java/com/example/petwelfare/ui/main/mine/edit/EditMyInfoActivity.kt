@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -56,7 +55,7 @@ class EditMyInfoActivity : AppCompatActivity() {
         binding.telephone.text = MineViewModel.userDetail.telephone
 
         val glideUrl = GlideUrl(
-            viewModel1.editInfo.head_image,
+            MineViewModel.userDetail.head_image,
             LazyHeaders.Builder()
                 .addHeader("Authorization", Repository.Authorization)
                 .build()
@@ -66,23 +65,10 @@ class EditMyInfoActivity : AppCompatActivity() {
         // 刷新数据
         MineViewModel.userDetailLiveData.observe(this) { result ->
 
+            Log.d("userDetail", result.toString())
             MineViewModel.userDetail = result
 
-            Log.d("userDetail", result.toString())
-            binding.username.text = MineViewModel.userDetail.username
-            binding.address.text = MineViewModel.userDetail.address
-            binding.personality.text = MineViewModel.userDetail.personality
-            binding.telephone.text = MineViewModel.userDetail.telephone
-
-            // 设置头像
-            val glideUrl2 = GlideUrl(
-                MineViewModel.userDetail.head_image,
-                LazyHeaders.Builder()
-                    .addHeader("Authorization", Repository.Authorization)
-                    .build()
-            )
-            binding.changeHead.let { Glide.with(this).load(glideUrl2).into(it) }
-
+            update()
         }
 
         binding.returnBtn.setOnClickListener {
@@ -112,7 +98,7 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改用户名
         binding.changeUsername.setOnClickListener {
-            showAlertDialog(viewModel1.editInfo.username, "changeUsername")
+            showAlertDialog(binding.username.text.toString(), "changeUsername")
         }
 
         // 修改密码
@@ -123,27 +109,25 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         // 修改地址
         binding.changeAddress.setOnClickListener {
-            showAlertDialog(viewModel1.editInfo.address, "changeAddress")
+            showAlertDialog(binding.address.text.toString(), "changeAddress")
         }
 
         // 修改电话
         binding.changeTelephone.setOnClickListener {
-            showAlertDialog(viewModel1.editInfo.telephone, "changeTelephone")
+            showAlertDialog(binding.telephone.text.toString(), "changeTelephone")
         }
 
         // 修改个性签名
         binding.changePersonality.setOnClickListener {
-            showAlertDialog(viewModel1.editInfo.personality, "changePersonality")
+            showAlertDialog(binding.personality.text.toString(), "changePersonality")
         }
 
         // 成功更改
         viewModel1.changeResponse.observe(this) { result->
-            if (result.code == 200) {
-                Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
-            } else if (result.code != 0) {
-                Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show()
-            }
+
             viewModel1.getUserDetail(Repository.myId)
+
+            Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -151,25 +135,22 @@ class EditMyInfoActivity : AppCompatActivity() {
     }
 
     private fun showAlertDialog(initText: String, type: String) {
-        val alertDialogBuilder = AlertDialog.Builder(this)
+        val alertDialog = AlertDialog.Builder(this).create()
 
         val binding : DialogEditInfoBinding = DialogEditInfoBinding.inflate(layoutInflater)
-        alertDialogBuilder.setView(binding.root)
+        alertDialog.setView(binding.root)
 
         binding.appCompatEditText.setText(initText)
 
+        alertDialog.setCancelable(true)
+
         binding.changeBtn.setOnClickListener {
-            val inputText = binding.appCompatEditText.toString()
+            val inputText = binding.appCompatEditText.text.toString()
             val Authorization = Repository.Authorization
             when (type) {
                 "changeUsername" -> {
                     viewModel1.changeUsername(inputText, Authorization)
-//                    if (code == 200) {
-//                        Toast.makeText(this,"修改成功", Toast.LENGTH_SHORT).show()
-//                        viewModel2.setUsername(inputText)
-//                    } else {
-//                        Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show()
-//                    }
+                    Log.d("username", inputText)
                 }
 
                 "changeAddress" -> {
@@ -188,16 +169,34 @@ class EditMyInfoActivity : AppCompatActivity() {
                 }
             }
 
-            alertDialogBuilder.setCancelable(true)
+            alertDialog.dismiss()
         }
 
         // 显示对话框
-        alertDialogBuilder.show()
+        alertDialog.show()
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.removeActivity(this)
+    }
+
+    private fun update() {
+
+        binding.username.text = MineViewModel.userDetail.username
+        binding.address.text = MineViewModel.userDetail.address
+        binding.personality.text = MineViewModel.userDetail.personality
+        binding.telephone.text = MineViewModel.userDetail.telephone
+
+        // 设置头像
+        val glideUrl2 = GlideUrl(
+            MineViewModel.userDetail.head_image,
+            LazyHeaders.Builder()
+                .addHeader("Authorization", Repository.Authorization)
+                .build()
+        )
+        binding.changeHead.let { Glide.with(this).load(glideUrl2).into(it) }
     }
 
 }

@@ -39,16 +39,16 @@ class EditPetInfoActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.petName.setText(viewModel.petInfo.name)
-        binding.sex.setText(viewModel.petInfo.sex)
-        binding.type.setText(viewModel.petInfo.type)
-        binding.birthday.setText(viewModel.petInfo.birthday)
-        binding.description.setText(viewModel.petInfo.description)
+        binding.petName.setText(PetViewModel.petInfo.name)
+        binding.sex.setText(PetViewModel.petInfo.sex)
+        binding.type.setText(PetViewModel.petInfo.type)
+        binding.birthday.setText(PetViewModel.petInfo.birthday)
+        binding.description.setText(PetViewModel.petInfo.description)
 
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        val headImageString = viewModel.petInfo.head_image
+        val headImageString = PetViewModel.petInfo.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         binding.petHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
 
@@ -65,7 +65,7 @@ class EditPetInfoActivity : AppCompatActivity() {
                     val requestBody = headImageFile?.asRequestBody("head_image".toMediaTypeOrNull())
                     if (requestBody != null) {
                         val multipartBody = MultipartBody.Part.createFormData("head_image", headImageFile.name, requestBody) // 这里的name（”head_image“）必须和接口文档里定义的参数名字一样
-                        viewModel.changeHead(viewModel.petInfo.pet_id, multipartBody, Repository.Authorization)
+                        viewModel.changeHead(PetViewModel.petInfo.pet_id, multipartBody, Repository.Authorization)
                     }
 
                 } else {
@@ -78,19 +78,19 @@ class EditPetInfoActivity : AppCompatActivity() {
 
         // 修改信息
         binding.petName.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.name, "changePetName")
+            showAlertDialog(PetViewModel.petInfo.name, "changePetName")
         }
         binding.sex.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.sex, "changeSex")
+            showAlertDialog(PetViewModel.petInfo.sex, "changeSex")
         }
         binding.birthday.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.birthday, "changeBirthday")
+            showAlertDialog(PetViewModel.petInfo.birthday, "changeBirthday")
         }
         binding.type.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.type, "changeType")
+            showAlertDialog(PetViewModel.petInfo.type, "changeType")
         }
         binding.description.setOnClickListener {
-            showAlertDialog(viewModel.petInfo.description, "changeDescription")
+            showAlertDialog(PetViewModel.petInfo.description, "changeDescription")
         }
     }
 
@@ -114,27 +114,27 @@ class EditPetInfoActivity : AppCompatActivity() {
             val Authorization = Repository.Authorization
             when (type) {
                 "changePetname" -> {
-                    viewModel.changeInfo("name", Authorization, inputText, viewModel.petInfo.pet_id)
-                    viewModel.petInfo.name = inputText
+                    viewModel.changeInfo("name", Authorization, inputText, PetViewModel.petInfo.pet_id)
+                    PetViewModel.petInfo.name = inputText
                 }
 
                 "changeSex" -> {
-                    viewModel.changeInfo("sex", Authorization, inputText, viewModel.petInfo.pet_id)
-                    viewModel.petInfo.sex = inputText
+                    viewModel.changeInfo("sex", Authorization, inputText, PetViewModel.petInfo.pet_id)
+                    PetViewModel.petInfo.sex = inputText
                 }
 
                 "changeType" -> {
-                    viewModel.changeInfo("type", Authorization, inputText, viewModel.petInfo.pet_id)
-                    viewModel.petInfo.type = inputText
+                    viewModel.changeInfo("type", Authorization, inputText, PetViewModel.petInfo.pet_id)
+                    PetViewModel.petInfo.type = inputText
                 }
 
                 "changeBirthday" -> {
-                    viewModel.changeInfo("birthday", Authorization, inputText, viewModel.petInfo.pet_id)
-                    viewModel.petInfo.birthday = inputText
+                    viewModel.changeInfo("birthday", Authorization, inputText, PetViewModel.petInfo.pet_id)
+                    PetViewModel.petInfo.birthday = inputText
                 }
                 "changeDescription" -> {
-                    viewModel.changeInfo("description", Authorization, inputText, viewModel.petInfo.pet_id)
-                    viewModel.petInfo.description = inputText
+                    viewModel.changeInfo("description", Authorization, inputText, PetViewModel.petInfo.pet_id)
+                    PetViewModel.petInfo.description = inputText
                 }
             }
         }

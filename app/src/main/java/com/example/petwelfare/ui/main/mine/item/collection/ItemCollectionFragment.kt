@@ -15,7 +15,6 @@ import com.example.petwelfare.databinding.FragmentItemCollectionBinding
 import com.example.petwelfare.ui.BlankFragment
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
-import com.example.petwelfare.ui.adapter.listadapter.OrgsAdapter
 import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 import com.example.petwelfare.ui.adapter.navadapter.CollectionNavAdapter
 import com.example.petwelfare.ui.adapter.navadapter.MineNavAdapter

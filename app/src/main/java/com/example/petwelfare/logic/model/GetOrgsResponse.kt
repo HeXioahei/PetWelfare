@@ -3,18 +3,23 @@ package com.example.petwelfare.logic.model
 data class GetOrgsResponse(
     val code: Int,
     val msg: String,
-    val data: MutableList<Org>
+    val data: Orgs
+)
+
+data class Orgs(
+    var org_list: MutableList<Org>
 )
 
 data class Org(
-    val collect_nums: Int,
-    val collect_status: Int,
-    val contact: String,
-    val description: String,
-    val head_image: String,
-    val org_name: String
+    var collect_nums: Int,
+    var collect_status: Int,
+    var id : Int,
+    var contract: String,
+    var description: String,
+    var head_image: String,
+    var org_name: String
 ) {
     constructor() : this(
-        0, 0, "aa", "aa", "aa", "aa"
+        0, 0, -1,  "aa", "aa", "aa", "aa"
     )
 }

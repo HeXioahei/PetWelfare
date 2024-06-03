@@ -158,7 +158,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 关注
+        // 点击进行关注
         binding.followBtn.setOnClickListener {
             viewModel.follow(viewModel.article.user.id.toString())
         }

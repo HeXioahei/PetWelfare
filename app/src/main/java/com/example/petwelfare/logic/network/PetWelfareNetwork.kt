@@ -6,7 +6,6 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.logic.model.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -339,8 +338,8 @@ object PetWelfareNetwork {
         .writeComments(id, comment, time, lastCid, level)
         .await()
 
-    suspend fun collectInOrgs(id: String, Authorization: String) = orgsService
-        .collect(id, Authorization)
+    suspend fun followOrg(id: String, Authorization: String) = orgsService
+        .followOrg(id, Authorization)
         .await()
 
     private suspend fun <T> Call<T>.await(): T {

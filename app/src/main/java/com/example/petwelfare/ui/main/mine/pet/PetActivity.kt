@@ -3,11 +3,13 @@ package com.example.petwelfare.ui.main.mine.pet
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityPetBinding
 import com.example.petwelfare.logic.Repository
 
@@ -24,26 +26,36 @@ class PetActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-        viewModel.petInfo.pet_id = intent.getIntExtra("pet_id", 0)
+        val userId = intent.getLongExtra("userId", -1)
 
-        viewModel.petInfo.name = intent.getStringExtra("name") as String
-        viewModel.petInfo.sex = intent.getStringExtra("sex") as String
-        viewModel.petInfo.birthday = intent.getStringExtra("birthday") as String
-        viewModel.petInfo.type = intent.getStringExtra("type") as String
-        viewModel.petInfo.description = intent.getStringExtra("description") as String
-        viewModel.petInfo.head_image = intent.getStringExtra("head_image") as String
-        viewModel.petInfo.photos = intent.getStringArrayListExtra("photos") as ArrayList<String>
+        if (userId != Repository.myId) {
+            binding.edit.visibility = View.GONE
+        }
 
-        binding.petName.text = viewModel.petInfo.name
-        binding.sex.text = viewModel.petInfo.sex
-        binding.type.text = viewModel.petInfo.type
-        binding.birthday.text = viewModel.petInfo.birthday
-        binding.description.text = viewModel.petInfo.description
+        PetViewModel.petInfo.pet_id = intent.getIntExtra("pet_id", -1)
+
+        PetViewModel.petInfo.name = intent.getStringExtra("name") as String
+        PetViewModel.petInfo.sex = intent.getStringExtra("sex") as String
+        PetViewModel.petInfo.birthday = intent.getStringExtra("birthday") as String
+        PetViewModel.petInfo.type = intent.getStringExtra("type") as String
+        PetViewModel.petInfo.description = intent.getStringExtra("description") as String
+        PetViewModel.petInfo.head_image = intent.getStringExtra("head_image") as String
+        PetViewModel.petInfo.photos = intent.getStringArrayListExtra("photos") as ArrayList<String>
+
+        binding.petName.text = PetViewModel.petInfo.name
+        if (PetViewModel.petInfo.sex == "0") {
+            binding.sex.setBackgroundResource(R.drawable.img_sex_male)
+        } else {
+            binding.sex.setBackgroundResource(R.drawable.img_sex_male)
+        }
+        binding.type.text = PetViewModel.petInfo.type
+        binding.birthday.text = PetViewModel.petInfo.birthday
+        binding.description.text = PetViewModel.petInfo.description
 
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)
             .build()
-        var headImageString = viewModel.petInfo.head_image
+        var headImageString = PetViewModel.petInfo.head_image
         var headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         binding.petHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
 
@@ -58,13 +70,17 @@ class PetActivity : AppCompatActivity() {
 
         // 下拉刷新
         binding.swipeRefresh.setOnRefreshListener {
-            binding.petName.text = viewModel.petInfo.name
-            binding.sex.text = viewModel.petInfo.sex
-            binding.type.text = viewModel.petInfo.type
-            binding.birthday.text = viewModel.petInfo.birthday
-            binding.description.text = viewModel.petInfo.description
+            binding.petName.text = PetViewModel.petInfo.name
+            if (PetViewModel.petInfo.sex == "0") {
+                binding.sex.setBackgroundResource(R.drawable.img_sex_male)
+            } else {
+                binding.sex.setBackgroundResource(R.drawable.img_sex_male)
+            }
+            binding.type.text = PetViewModel.petInfo.type
+            binding.birthday.text = PetViewModel.petInfo.birthday
+            binding.description.text = PetViewModel.petInfo.description
 
-            headImageString = viewModel.petInfo.head_image
+            headImageString = PetViewModel.petInfo.head_image
             headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
             binding.petHeadImage.let { Glide.with(this).load(headImageGlideUrl).into(it) }
 

@@ -30,9 +30,6 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
 
         val viewModel : ItemMineViewModel by viewModels()
 
-//        var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
-
-
         // 获取列表
         binding.swipeRefresh.isRefreshing = true
         viewModel.getMyArticles(userId)

@@ -16,8 +16,6 @@ import okhttp3.MultipartBody
 
 class EditMyInfoViewModel : ViewModel() {
 
-    var editInfo = EditInfo()
-
     private val _changeResponse = MutableLiveData<BaseResponse>()
     val changeResponse : LiveData<BaseResponse> = _changeResponse
 
@@ -84,16 +82,4 @@ class EditMyInfoViewModel : ViewModel() {
     fun resetChangeResponse(code: Int, msg: String) {
         _changeResponse.value = BaseResponse(code, msg)
     }
-}
-
-data class EditInfo(
-    var head_image: String,
-    var username: String,
-    var address: String,
-    var personality: String,
-    var telephone: String
-) {
-    constructor() : this(
-        " ", " ",  " ", " ", " "
-    )
 }

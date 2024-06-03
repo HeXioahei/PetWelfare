@@ -31,7 +31,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
 
     private lateinit var binding : FragmentDiscoveryBinding
 
-    private val navItemList = listOf("走失", "流浪", "收养", "寄养", "救助站")
+    private val navItemList = listOf("走失", "流浪", "救助站", "寄养", "收养")
 
     companion object {
         var viewPagerCurrentPosition = 0

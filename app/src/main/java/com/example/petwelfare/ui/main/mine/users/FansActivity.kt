@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.users
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ class FansActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFansBinding
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,6 +29,11 @@ class FansActivity : AppCompatActivity() {
         val viewModel : FansViewModel by viewModels()
 
         viewModel.getFans()
+        binding.swipeRefresh.isRefreshing = true
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getFans()
+        }
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -53,6 +60,8 @@ class FansActivity : AppCompatActivity() {
         viewModel.fansListLiveData.observe(this) { result->
             viewModel.fansList.clear()
             viewModel.fansList.addAll(result.data.fans)
+            fansAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         binding.returnBtn.setOnClickListener {

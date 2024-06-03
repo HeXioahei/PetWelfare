@@ -132,7 +132,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp">
+                android:layout_marginTop="100dp"
+                android:background="#eeeeee">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView"

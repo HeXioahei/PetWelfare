@@ -31,12 +31,18 @@ class FollowsActivity : AppCompatActivity() {
         val viewModel : FollowsViewModel by viewModels()
 
         viewModel.getFollows()
+        viewModel.getCollectOrgs()
+        binding.swipeRefresh.isRefreshing = true
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getFollows()
+            viewModel.getCollectOrgs()
+        }
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
 
         val followsAdapter = UsersAdapter(viewModel.followsList, this, this)
-        val orgsAdapter = OrgsAdapter(viewModel.orsList, this)
+        val orgsAdapter = OrgsAdapter(viewModel.orsList)
 
         binding.recyclerView.adapter = followsAdapter
         binding.recyclerView.layoutManager = layoutManager
@@ -59,6 +65,14 @@ class FollowsActivity : AppCompatActivity() {
             viewModel.followsList.clear()
             viewModel.followsList.addAll(result.data.follows)
             followsAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
+        viewModel.collectOrgsList.observe(this) { result->
+            viewModel.orsList.clear()
+            viewModel.orsList.addAll(result.data.org_list)
+            followsAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         binding.returnBtn.setOnClickListener {

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentItemRescueBinding
 import com.example.petwelfare.logic.model.Org
 import com.example.petwelfare.ui.adapter.listadapter.OrgsAdapter
@@ -16,11 +17,7 @@ import com.example.petwelfare.ui.adapter.listadapter.OrgsAdapter
 
 class ItemRescueFragment : Fragment() {
 
-    private val mainActivity = ActivityCollector.mainActivity
-
     private lateinit var binding : FragmentItemRescueBinding
-
-    private var orgsList: MutableList<Org> = mutableListOf(Org(), Org(), Org(), Org(), Org())
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -31,13 +28,14 @@ class ItemRescueFragment : Fragment() {
 
         val viewModel : DiscoveryViewModel by viewModels()
 
-        val orgsAdapter = OrgsAdapter(orgsList, mainActivity)
+        val orgsAdapter = OrgsAdapter(viewModel.orgsList)
         binding.orgsList.adapter = orgsAdapter
-        val layoutManager = LinearLayoutManager(mainActivity)
+        val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.orgsList.layoutManager = layoutManager
 
         viewModel.getOrgs()
+        binding.swipeRefresh.isRefreshing = true
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.getOrgs()
@@ -46,9 +44,11 @@ class ItemRescueFragment : Fragment() {
             }
         }
 
-        viewModel.orgsResponse.observe(mainActivity) { result->
-            orgsList = result.data
+        viewModel.orgsResponse.observe(viewLifecycleOwner) { result->
+            viewModel.orgsList.clear()
+            viewModel.orgsList.addAll(result.data.org_list)
             orgsAdapter.notifyDataSetChanged()
+            binding.swipeRefresh.isRefreshing = false
         }
 
         return binding.root

@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDialog
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -28,7 +30,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
-class PetsAdapter (private val list: MutableList<Pet>, private val lifecycleOwner: LifecycleOwner, val type: Int) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
+class PetsAdapter (private val list: MutableList<Pet>, private val activity: AppCompatActivity, val type: Int, val userId : Long) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -52,6 +54,7 @@ class PetsAdapter (private val list: MutableList<Pet>, private val lifecycleOwne
         // 传递给详情页
         holder.petItem.setOnClickListener {
             val intent = Intent(PetWelfareApplication.context, PetActivity::class.java)
+            intent.putExtra("userId", userId)
             intent.putExtra("pet_id", item.pet_id)
             intent.putExtra("birthday", item.birthday)
             intent.putExtra("head_image", item.head_image)
@@ -72,20 +75,33 @@ class PetsAdapter (private val list: MutableList<Pet>, private val lifecycleOwne
 
         // 删除
         holder.deleteBtn.setOnClickListener {
-            val _delPetResponse = MutableLiveData<BaseResponse>()
-            val delPetResponse : LiveData<BaseResponse> = _delPetResponse
-            val a = CoroutineScope(Dispatchers.Main)
-            CoroutineScope(Dispatchers.Main).launch {
-                _delPetResponse.value = PetWelfareNetwork.delPet(item.pet_id.toString(), Repository.Authorization)
-            }
-            delPetResponse.observe(lifecycleOwner) { result->
-                if (result.code == 200) {
-                    Toast.makeText(PetWelfareApplication.context, "删除成功", Toast.LENGTH_SHORT).show()
-                } else if (result.code != 0) {
-                    Toast.makeText(PetWelfareApplication.context, "删除失败", Toast.LENGTH_SHORT).show()
+
+            val alertDialogBuilder = AlertDialog.Builder(activity)
+            alertDialogBuilder.setMessage("确定删除该宠物吗？")
+
+            alertDialogBuilder.setPositiveButton("确定") { dialog, _ ->
+                val _delPetResponse = MutableLiveData<BaseResponse>()
+                val delPetResponse : LiveData<BaseResponse> = _delPetResponse
+                CoroutineScope(Dispatchers.IO).launch {
+                    _delPetResponse.value = PetWelfareNetwork.delPet(item.pet_id.toString(), Repository.Authorization)
                 }
-                _delPetResponse.value = BaseResponse(0, "") // 以便下一次再进行删除的网络请求
+                delPetResponse.observe(activity) { result->
+                    if (result.code == 200) {
+                        Toast.makeText(PetWelfareApplication.context, "删除成功", Toast.LENGTH_SHORT).show()
+                    } else if (result.code != 0) {
+                        Toast.makeText(PetWelfareApplication.context, "删除失败", Toast.LENGTH_SHORT).show()
+                    }
+                    _delPetResponse.value = BaseResponse(0, "") // 以便下一次再进行删除的网络请求
+                }
+
+                dialog.dismiss()
             }
+
+            alertDialogBuilder.setNegativeButton("取消") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+            alertDialogBuilder.create().show()
         }
 
         //...进行数据的处理与呈现

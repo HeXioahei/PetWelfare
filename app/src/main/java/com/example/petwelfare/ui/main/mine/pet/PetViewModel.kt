@@ -15,7 +15,10 @@ import okhttp3.MultipartBody
 
 class PetViewModel : ViewModel() {
 
-    var petInfo : Pet = Pet()
+    companion object {
+        var petInfo : Pet = Pet()
+    }
+
 
     fun changeHead(petId: Int, headImage: MultipartBody.Part, Authorization: String) {
         viewModelScope.launch {

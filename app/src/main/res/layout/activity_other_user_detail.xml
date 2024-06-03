@@ -15,6 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/returnBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_return_black"
+                android:elevation="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/appCompatImageView2"
                 android:layout_width="match_parent"

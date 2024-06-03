@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="20dp"
-    android:background="@drawable/bg_item_user">
+    android:background="@drawable/bg_item_user"
+    android:id="@+id/org">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/headImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -21,12 +23,35 @@
         android:id="@+id/orgName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户名"
+        android:text="组织名"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/headImage"
         app:layout_constraintTop_toTopOf="@+id/headImage"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="5dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/headImage"
+        app:layout_constraintTop_toBottomOf="@+id/orgName">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="粉丝数："
+            android:textColor="@color/text_gray" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/collectNums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200"
+            android:textColor="@color/text_gray"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/isFollowedBtn"
@@ -48,21 +73,47 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headImage">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/OrgDescription"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:layout_marginHorizontal="20dp"
-            android:text="组织简介：" />
+            android:orientation="horizontal">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/OrgContact"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="组织简介："
+                android:textColor="@color/text_gray"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/OrgDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="组织简介" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:text="联系方式：" />
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系方式："
+                android:textColor="@color/text_gray"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/OrgContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="联系方式：" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -11,6 +11,7 @@ import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetOrgsResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
 import com.example.petwelfare.logic.model.Loss
+import com.example.petwelfare.logic.model.Org
 import com.example.petwelfare.logic.model.Stray
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.delay
@@ -21,15 +22,17 @@ class DiscoveryViewModel : ViewModel() {
     val viewPagerList: List<Fragment> = listOf(
         ItemLossFragment(),
         ItemStrayFragment(),
-        ItemAdoptionFragment(),
+        ItemRescueFragment(),
         ItemFosterFragment(),
-        ItemRescueFragment()
+        ItemAdoptionFragment()
     )
 
 
     var lossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss(), Loss())
 
     var strayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray(), Stray())
+
+    var orgsList: MutableList<Org> = mutableListOf(Org(), Org(), Org(), Org(), Org())
 
     companion object {
         var address = "福州市"
