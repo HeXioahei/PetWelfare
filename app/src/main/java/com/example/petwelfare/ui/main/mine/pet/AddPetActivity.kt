@@ -62,7 +62,7 @@ class AddPetActivity : AppCompatActivity() {
         binding.menuContainer.visibility = View.GONE
         binding.timeContainer.visibility = View.GONE
 
-        binding.toMenu.setOnClickListener {
+        binding.sex.setOnClickListener {
             binding.menuContainer.visibility = View.VISIBLE
             binding.female.setOnClickListener {
                 binding.sex.text = binding.female.text.toString()

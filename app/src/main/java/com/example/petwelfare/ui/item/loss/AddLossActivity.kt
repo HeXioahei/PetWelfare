@@ -101,7 +101,7 @@ class AddLossActivity : AppCompatActivity() {
             }
         }
 
-        binding.toMenu.setOnClickListener {
+        binding.sex.setOnClickListener {
             binding.menuContainer.visibility = View.VISIBLE
             binding.female.setOnClickListener {
                 binding.sex.text = binding.female.text.toString()

@@ -27,14 +27,13 @@
         app:layout_constraintStart_toEndOf="@+id/returnBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/begin_search"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:background="#ffffff"
-        android:text="搜索"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_to_search"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

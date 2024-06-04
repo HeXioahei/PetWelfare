@@ -21,6 +21,7 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
         // 数据与视图绑定
         val loss = binding.loss
         val petName = binding.name
+        val sex = binding.sex
         val address = binding.address
         val lossTime = binding.lossTime
         val contact = binding.contact
@@ -58,6 +59,13 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
         holder.lossTime.text = item.lost_time
         holder.contact.text = item.contact
         holder.sendTime.text = item.send_time
+
+        if (item.sex == 0) {
+            holder.sex.setBackgroundResource(R.drawable.img_sex_female)
+        } else {
+            holder.sex.setBackgroundResource(R.drawable.img_sex_male)
+        }
+
         if (item.collect_status == 0) {
             holder.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
         } else {

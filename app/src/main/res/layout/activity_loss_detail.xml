@@ -302,6 +302,7 @@
             android:layout_marginStart="5dp"
             android:background="@drawable/bg_input_comments"
             android:text="发表评论"
+            android:fontFamily="@font/source_regular"
             android:textColor="@color/gray"
             android:gravity="center_vertical"
             android:paddingHorizontal="20dp"

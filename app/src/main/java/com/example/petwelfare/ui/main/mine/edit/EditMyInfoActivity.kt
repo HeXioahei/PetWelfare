@@ -37,17 +37,6 @@ class EditMyInfoActivity : AppCompatActivity() {
 
         ActivityCollector.addActivity(this)
 
-//        viewModel1.editInfo.head_image = intent.getStringExtra("headImage").toString()
-//        viewModel1.editInfo.username = intent.getStringExtra("username").toString()
-//        viewModel1.editInfo.address = intent.getStringExtra("address").toString()
-//        viewModel1.editInfo.telephone = intent.getStringExtra("telephone").toString()
-//        viewModel1.editInfo.personality = intent.getStringExtra("personality").toString()
-
-//        binding.username.text = viewModel1.editInfo.username
-//        binding.personality.text = viewModel1.editInfo.personality
-//        binding.address.text = viewModel1.editInfo.address
-//        binding.telephone.text = viewModel1.editInfo.telephone
-
         Log.d("username", MineViewModel.userDetail.username)
         binding.username.text = MineViewModel.userDetail.username
         binding.personality.text = MineViewModel.userDetail.personality
@@ -123,7 +112,7 @@ class EditMyInfoActivity : AppCompatActivity() {
         }
 
         // 成功更改
-        viewModel1.changeResponse.observe(this) { result->
+        viewModel1.changeResponse.observe(this) {
 
             viewModel1.getUserDetail(Repository.myId)
 

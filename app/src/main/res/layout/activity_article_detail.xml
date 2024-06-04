@@ -140,9 +140,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="评论区"
+                    android:fontFamily="@font/source_medium"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/commentsHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还没有任何评论~"
+                    android:textColor="@color/text_gray"
+                    android:fontFamily="@font/source_regular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/commentsList"
@@ -172,6 +184,7 @@
             android:layout_marginStart="5dp"
             android:background="@drawable/bg_input_comments"
             android:text="发表评论"
+            android:fontFamily="@font/source_regular"
             android:textColor="@color/gray"
             android:gravity="center_vertical"
             android:paddingHorizontal="20dp"

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -185,6 +186,9 @@ class ArticleDetailActivity : AppCompatActivity() {
 
     // 创建父评论
     private fun onCreateParentCommentsList(list: MutableList<Comments>) {
+        if (list.isNotEmpty()) {
+            binding.commentsHint.visibility = View.INVISIBLE
+        }
         for (item in list) {
             val view = layoutInflater.inflate(R.layout.item_comments_parent, binding.commentsList, false)
             val respondBtn : ImageView = view.findViewById(R.id.respondBtn)

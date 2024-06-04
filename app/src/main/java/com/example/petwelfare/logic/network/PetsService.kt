@@ -37,42 +37,42 @@ interface PetsService {
     fun changeHead(
         @Query("pet_id") pet_id: Int,
         @Part head_image: MultipartBody.Part,
-        @Header("Authorizaiton") Aurhorization: String
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @PUT("/pets/changes/name/")
     fun changeName(
         @Query("pet_id") pet_id: Int,
         @Query("name") name: String,
-        @Header("Authorizaiton") Aurhorization: String
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @PUT("/pets/changes/sex/")
     fun changeSex(
         @Query("pet_id") pet_id: Int,
-        @Query("sex") sex: String,
-        @Header("Authorizaiton") Aurhorization: String
+        @Query("sex") sex: Int,
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @PUT("/pets/changes/type/")
     fun changeType(
         @Query("pet_id") pet_id: Int,
         @Query("type") type: String,
-        @Header("Authorizaiton") Aurhorization: String
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @PUT("/pets/changes/birthday/")
     fun changeBirthday(
         @Query("pet_id") pet_id: Int,
         @Query("birthday") birthday: String,
-        @Header("Authorizaiton") Aurhorization: String
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @PUT("/pets/changes/description/")
     fun changeDescription(
         @Query("pet_id") pet_id: Int,
         @Query("description") description: String,
-        @Header("Authorizaiton") Aurhorization: String
+        @Header("Authorization") Aurhorization: String
     ): Call<BaseResponse>
 
     @DELETE("/pets/information/{pet_id}")
@@ -80,4 +80,12 @@ interface PetsService {
         @Path("pet_id") pet_id: String,
         @Header("Authorization") Authorization: String
     ): Call<BaseResponse>
+
+    @Multipart
+    @PUT("/pets/photos/")
+    fun addPicture(
+        @Query("pet_id") pet_id: Int,
+        @Part photos : List<MultipartBody.Part>,
+        @Header("Authorization") Aurhorization: String
+    ) : Call<BaseResponse>
 }

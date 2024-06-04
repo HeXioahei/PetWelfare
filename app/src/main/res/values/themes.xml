@@ -19,8 +19,15 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item> <!-- 这将确保角落的半径为宽度的50%，从而形成圆形 -->
     </style>
-    
 
+    <style name="selector_active">
+        <item name="android:textColor">#815339</item>
+        <item name="font">@font/mf</item>
+    </style>
 
+    <style name="selector_inactive">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="font">@font/source_regular</item>
+    </style>
 
 </resources>

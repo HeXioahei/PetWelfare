@@ -176,7 +176,7 @@ object PetWelfareNetwork {
         .await()
 
     suspend fun changePetSex(
-        petId: Int, sex: String, Authorization: String
+        petId: Int, sex: Int, Authorization: String
     ) = petsService
         .changeSex(petId, sex, Authorization)
         .await()
@@ -201,6 +201,10 @@ object PetWelfareNetwork {
 
     suspend fun delPet(petId: String, Authorization: String) = petsService
         .delPet(petId, Authorization)
+        .await()
+
+    suspend fun addPicture(petId: Int, photos: List<MultipartBody.Part>, Authorization: String) = petsService
+        .addPicture(petId, photos, Authorization)
         .await()
 
     // 日常推文页

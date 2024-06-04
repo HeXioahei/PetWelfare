@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="2dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="370dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="100dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="年" />
+                android:text="年"
+                android:fontFamily="@font/source_regular" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/month"
@@ -88,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="月" />
+                android:text="月"
+                android:fontFamily="@font/source_regular" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/day"
@@ -100,7 +102,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="日" />
+                android:text="日"
+                android:fontFamily="@font/source_regular"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -120,7 +123,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="时" />
+                android:text="时"
+                android:fontFamily="@font/source_regular" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/minute"
@@ -132,7 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="分" />
+                android:text="分"
+                android:fontFamily="@font/source_regular" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/second"
@@ -144,7 +149,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="秒" />
+                android:text="秒"
+                android:fontFamily="@font/source_regular" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -180,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="宠物名称："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -205,6 +212,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="性别："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -245,6 +253,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="品种："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -269,6 +278,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="失散地点："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -293,6 +303,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="失散时间："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -318,6 +329,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="联系电话："
+                android:fontFamily="@font/source_regular"
                 android:textColor="@color/text_gray" />
 
             <androidx.appcompat.widget.AppCompatEditText

@@ -1,11 +1,14 @@
 package com.example.petwelfare.ui.main.mine.pet
 
+import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.Pet
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.coroutineScope
@@ -17,45 +20,48 @@ class PetViewModel : ViewModel() {
 
     companion object {
         var petInfo : Pet = Pet()
+        var petTempInfo : Pet = Pet()
+        var photosUri = mutableListOf<Uri>()
+        var tempPhotosUri = mutableListOf<Uri>()
+
+        private val _changeResponse = MutableLiveData<BaseResponse>()
+        val changeResponse : LiveData<BaseResponse> = _changeResponse
     }
+
 
 
     fun changeHead(petId: Int, headImage: MultipartBody.Part, Authorization: String) {
         viewModelScope.launch {
-            val code = PetWelfareNetwork.changePetHead(petId, headImage, Authorization).code
-            if (code == 200) {
-                Log.d("changeHead", "success")
-            } else {
-                Log.d("changeHead", "failure")
-            }
+            _changeResponse.value = PetWelfareNetwork.changePetHead(petId, headImage, Authorization)
         }
     }
 
     fun changeInfo(type: String, Authorization: String, newInfo: String, petId: Int) {
-        var code : Int = 0
         viewModelScope.launch {
             when (type) {
                 "name"-> {
-                    code = PetWelfareNetwork.changePetName(petId, newInfo, Authorization).code
+                    _changeResponse.value = PetWelfareNetwork.changePetName(petId, newInfo, Authorization)
                 }
                 "type"-> {
-                    code = PetWelfareNetwork.changePetType(petId, newInfo, Authorization).code
+                    _changeResponse.value = PetWelfareNetwork.changePetType(petId, newInfo, Authorization)
                 }
                 "sex"-> {
-                    code = PetWelfareNetwork.changePetSex(petId, newInfo, Authorization).code
+                    _changeResponse.value = PetWelfareNetwork.changePetSex(petId, newInfo.toInt(), Authorization)
                 }
                 "birthday"-> {
-                    code = PetWelfareNetwork.changePetBirthday(petId, newInfo, Authorization).code
+                    _changeResponse.value = PetWelfareNetwork.changePetBirthday(petId, newInfo, Authorization)
                 }
                 "description"-> {
-                    code = PetWelfareNetwork.changePetDescription(petId, newInfo, Authorization).code
+                    _changeResponse.value = PetWelfareNetwork.changePetDescription(petId, newInfo, Authorization)
                 }
             }
         }
-        if (code == 200) {
-            Log.d("changePetInfo", "success")
-        } else {
-            Log.d("changePetInfo", "failure")
+
+    }
+
+    fun addPicture(petId: Int, photos: List<MultipartBody.Part>) {
+        viewModelScope.launch {
+            _changeResponse.value = PetWelfareNetwork.addPicture(petId, photos, Repository.Authorization)
         }
     }
 
