@@ -3,12 +3,14 @@ package com.example.petwelfare
 import android.app.Activity
 import com.example.petwelfare.ui.main.MainActivity
 import com.example.petwelfare.ui.begin.LoginActivity
+import com.example.petwelfare.ui.begin.load.LoadingActivity
 import com.example.petwelfare.ui.main.mine.MineActivity
 import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 object ActivityCollector {
     private val activities = ArrayList<Activity> ()
 
+    var loadingActivity = LoadingActivity()
     var mainActivity = MainActivity()
     var mineActivity = MineActivity()
     var otherUserActivity = OtherUserDetailActivity()
@@ -37,4 +39,9 @@ object ActivityCollector {
             }
         }
     }
+
+    fun exit() {
+
+    }
+
 }

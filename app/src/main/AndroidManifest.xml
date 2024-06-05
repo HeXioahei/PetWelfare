@@ -40,8 +40,11 @@
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
         <activity
-            android:name=".ui.main.discovery.search.SearchRescueActivity"
+            android:name=".ui.main.mine.SettingActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.begin.BeginActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.main.discovery.search.DiscoverySearchActivity"
             android:exported="false" />
@@ -131,7 +134,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.begin.LoginActivity"
-            android:exported="true">
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".ui.begin.BeginActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,7 @@
 package com.example.petwelfare.logic.dao
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
@@ -10,7 +11,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.Token
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.UserDetail
+import kotlinx.coroutines.flow.map
 
 // dao 即 data access object , 数据访问对象
 
@@ -54,5 +57,69 @@ object MineDao {
             it[keyAccessToken] = accessToken
             it[keyRefreshToken] = refreshToken
         }
+    }
+
+//    suspend fun getMailbox() : String {
+//        var mailbox : String = ""
+//        PetWelfareApplication.context.dataStore3.data.map {
+//            it[keyMailbox]
+//        }.collect { mailbox2->
+//            mailbox = mailbox2.toString()
+//        }
+//        return mailbox
+//    }
+
+    suspend fun getMailbox() {
+        PetWelfareApplication.context.dataStore3.data.map {
+            it[keyMailbox]
+        }.collect { mailbox2->
+            Log.d("mailbox2", "mailbox2")
+
+            Repository.mailbox = mailbox2.toString()
+        }
+    }
+
+//    suspend fun getAuthorization() : Token {
+//        Log.d("au", "au")
+//        var accessToken : String = ""
+//        var refreshToken : String = ""
+//        PetWelfareApplication.context.dataStore2.data.map {
+//            it[keyAccessToken]
+//        }.collect {accessToken2->
+//            Log.d("au1", "au1")
+//            accessToken = accessToken2.toString()
+//            Log.d("accessToken2.toString()", accessToken2.toString())
+//        }
+////        PetWelfareApplication.context.dataStore2.data.map {
+////            it[keyRefreshToken]
+////        }.collect {refreshToken2->
+////            Log.d("au2", "au2")
+////            refreshToken = refreshToken2.toString()
+////            Log.d("refreshToken2.toString()", refreshToken2.toString())
+////        }
+//        Log.d("token", accessToken)
+//        return Token(accessToken, refreshToken)  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsI  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxN
+//    }  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc   Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhd
+
+    suspend fun getAuthorization() {
+        Log.d("au", "au")
+        PetWelfareApplication.context.dataStore2.data.map {
+            it[keyAccessToken]
+        }.collect {accessToken2->
+            Log.d("au1", "au1")
+            Repository.Authorization = accessToken2.toString()
+            Log.d("accessToken2.toString()", accessToken2.toString())
+            Log.d("Authorization", Repository.Authorization)
+            return@collect
+        }
+        PetWelfareApplication.context.dataStore2.data.map {
+            it[keyRefreshToken]
+        }.collect {refreshToken2->
+            Log.d("au2", "au2")
+            Repository.refreshToken = refreshToken2.toString()
+            Log.d("refreshToken2.toString()", refreshToken2.toString())
+            return@collect
+        }
+        Log.d("token", Repository.Authorization)
     }
 }

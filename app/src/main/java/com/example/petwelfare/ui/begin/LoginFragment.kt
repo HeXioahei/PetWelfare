@@ -36,6 +36,8 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
 
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
+        binding.loginMailbox.setText(Repository.mailbox)
+
         // 登录
         binding.loginBtn.setOnClickListener {
             val mailbox = binding.loginMailbox.text.toString()

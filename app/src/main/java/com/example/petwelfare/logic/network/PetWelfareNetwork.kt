@@ -366,8 +366,9 @@ object PetWelfareNetwork {
                         Log.d("code", response.code().toString())
                         Log.d("errorResponse.msg", errorResponse.msg)
                         Log.d("errorResponse.message", errorResponse.message)
+
                         Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
-                        //continuation.resumeWithException(RuntimeException("response body is null"))
+                        continuation.resumeWithException(RuntimeException("response body is null"))
                     }
                 }
 
