@@ -12,11 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
 import com.example.petwelfare.databinding.DialogEditInfoBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.FileBuilder
+import com.example.petwelfare.utils.FileBuilder
 import com.example.petwelfare.ui.begin.RestorePsdActivity
 import com.example.petwelfare.ui.main.mine.MineViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

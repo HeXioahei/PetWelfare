@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.main.mine
 
 import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,6 +24,7 @@ class MineViewModel : ViewModel() {
 //    var editInfo = EditInfo()
 
     var cursorList = listOf<AppCompatImageView>()
+    var textList = listOf<AppCompatTextView>()
 
     val itemMineFragment = ItemMineFragment()
     val itemCollectionFragment = ItemCollectionFragment()

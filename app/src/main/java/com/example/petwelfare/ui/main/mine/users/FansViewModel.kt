@@ -13,14 +13,8 @@ import kotlinx.coroutines.launch
 
 class FansViewModel : ViewModel() {
 
-    var fansList : MutableList<UserBrief> = mutableListOf(
-        UserBrief(), UserBrief(),
-        UserBrief()
-    )
-    var friendsList : MutableList<UserBrief> = mutableListOf(
-        UserBrief(), UserBrief(),
-        UserBrief()
-    )
+    var fansList : MutableList<UserBrief> = mutableListOf()
+    var friendsList : MutableList<UserBrief> = mutableListOf()
 
     private val _fansListLiveData = MutableLiveData<GetFansListResponse>()
     val fansListLiveData : LiveData<GetFansListResponse> = _fansListLiveData

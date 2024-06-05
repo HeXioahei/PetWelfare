@@ -66,12 +66,14 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="100dp"
+                    android:layout_marginStart="110dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
                     android:text="用户名"
                     android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/followBtn"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="3dp"
-                        android:text="粉丝" />
+                        android:text="粉丝"
+                        android:textColor="@color/text_gray"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/followsNum"
@@ -109,40 +112,78 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="3dp"
-                        android:text="关注" />
+                        android:text="关注"
+                        android:textColor="@color/text_gray"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="90dp"
-                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
                     android:elevation="1dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView10"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-                    android:layout_marginTop="10dp">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/personality"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:text="个性签名：" />
+                        android:layout_height="wrap_content">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/address"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:text="个性签名："
+                            android:textColor="@color/text_gray" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/personality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还没有个性签名哦" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:text="地址：" />
+                        android:layout_height="wrap_content">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/telephone"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="地址："
+                            android:textColor="@color/text_gray" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="地址：" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:text="电话：" />
+                        android:layout_height="wrap_content">
 
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="电话：" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/telephone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:text="11223344556" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -159,9 +200,11 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/integralsNum"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:text="720"
+                        android:textColor="#FFA96C"
+                        android:fontFamily="@font/source_medium"
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -184,6 +227,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView10"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"

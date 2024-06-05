@@ -9,14 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentMyStrayBinding
-import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.Article
-import com.example.petwelfare.logic.model.Stray
-import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 
 
@@ -58,6 +53,8 @@ open class MyStrayFragment(private val userId: Long) : Fragment() {
         binding.myStray.layoutManager = layoutManager
 
         viewModel.myStray.observe(viewLifecycleOwner) { result->
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             Log.d("myStray2", "myStray2")
             viewModel.myStrayList.clear()
             viewModel.myStrayList.addAll(result.data)

@@ -19,7 +19,6 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentDiscoveryBinding
 import com.example.petwelfare.ui.adapter.navadapter.DiscoveryNavAdapter

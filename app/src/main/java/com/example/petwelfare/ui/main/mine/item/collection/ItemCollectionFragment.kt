@@ -9,21 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentItemCollectionBinding
-import com.example.petwelfare.ui.BlankFragment
-import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
-import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
-import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 import com.example.petwelfare.ui.adapter.navadapter.CollectionNavAdapter
-import com.example.petwelfare.ui.adapter.navadapter.MineNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.CollectionFragmentStateAdapter
-import com.example.petwelfare.ui.adapter.viewpageradapter.MineFragmentStateAdapter
-import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
-import com.example.petwelfare.ui.main.mine.item.mine.MyArticlesFragment
-import com.example.petwelfare.ui.main.mine.item.mine.MyLossFragment
-import com.example.petwelfare.ui.main.mine.item.mine.MyStrayFragment
 
 class ItemCollectionFragment : Fragment() {
 

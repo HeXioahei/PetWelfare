@@ -1,8 +1,6 @@
-package com.example.petwelfare.ui.item.loss
+package com.example.petwelfare.ui.main.add.loss
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +12,8 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityLossBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 
 // （妙啊）高德开放平台关于获取定位信息的官方文档：https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation
 

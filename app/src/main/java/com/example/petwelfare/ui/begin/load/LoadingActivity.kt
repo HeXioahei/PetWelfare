@@ -2,11 +2,8 @@ package com.example.petwelfare.ui.begin.load
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityLoadingBinding
-import com.example.petwelfare.databinding.ActivityLoginBinding
-import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.viewpageradapter.CommonFragmentStateAdapter
 
 class LoadingActivity : AppCompatActivity() {
@@ -35,5 +32,10 @@ class LoadingActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.removeActivity(this)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        finish()
     }
 }

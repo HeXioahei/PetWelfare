@@ -17,7 +17,7 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentLoginBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.MailboxList
+import com.example.petwelfare.utils.MailboxList
 import com.example.petwelfare.ui.adapter.listadapter.MailboxAdapter
 
 @Suppress("DEPRECATION")
@@ -57,7 +57,7 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
                     .build()
                 Repository.myId = result.data.id
                 Repository.refreshToken = result.data.refresh_token
-                Repository.mailbox = binding.loginMailbox.toString()
+                Repository.mailbox = binding.loginMailbox.text.toString()
                 activity.toMainActivity()
             } else {
                 Log.d("login", "failure")

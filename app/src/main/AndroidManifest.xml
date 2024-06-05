@@ -40,6 +40,9 @@
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
         <activity
+            android:name=".ui.begin.load.LoadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.mine.SettingActivity"
             android:exported="false" />
 <!--        <activity-->
@@ -61,19 +64,19 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".ui.main.AddActivity"
+            android:name=".ui.main.add.AddActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.mine.pet.PetListActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.articles.AddArticlesActivity"
+            android:name=".ui.main.add.articles.AddArticlesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.loss.AddLossActivity"
+            android:name=".ui.main.add.loss.AddLossActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.stray.AddStrayActivity"
+            android:name=".ui.main.add.stray.AddStrayActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.mine.pet.AddPetActivity"

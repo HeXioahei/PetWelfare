@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentSearchLossBinding
+import com.example.petwelfare.databinding.FragmentSearchStrayBinding
 import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
 import com.example.petwelfare.ui.adapter.listadapter.StrayAdapter
 
 
 class SearchStrayFragment(val keywords: String) : Fragment() {
 
-    private lateinit var binding : FragmentSearchLossBinding
+    private lateinit var binding : FragmentSearchStrayBinding
 
     val viewModel : SearchStrayViewModel by viewModels()
 
@@ -27,7 +28,7 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchLossBinding.inflate(inflater, container, false)
+        binding = FragmentSearchStrayBinding.inflate(inflater, container, false)
 
         viewModel.searchStray(keywords)
 
@@ -38,6 +39,8 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
         binding.list.layoutManager = layoutManager
 
         viewModel.searchStrayResponse.observe(this.viewLifecycleOwner) { result->
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             Log.d("searchLossResponse", result.toString())
             viewModel.searchStrayList.clear()
             viewModel.searchStrayList.addAll(result.data)

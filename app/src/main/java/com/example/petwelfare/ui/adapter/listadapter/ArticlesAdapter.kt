@@ -57,7 +57,9 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
 
         Log.d("follow_status", item.user.follow_status.toString())
 
-        for (i in 0 until item.media.size) {
+        val size = if(item.media.size > 3) 3 else item.media.size
+
+        for (i in 0 until size) {
             val photoGlideUrl = GlideUrl(item.media[i])
             holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
         }

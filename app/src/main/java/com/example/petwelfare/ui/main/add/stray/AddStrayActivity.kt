@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.item.stray
+package com.example.petwelfare.ui.main.add.stray
 
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -16,19 +15,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
 import com.bumptech.glide.Glide
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityAddStrayBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.FileBuilder
-import com.example.petwelfare.logic.model.TimeBuilder
+import com.example.petwelfare.utils.FileBuilder
+import com.example.petwelfare.utils.TimeBuilder
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -40,8 +36,6 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
     private lateinit var locationClient: AMapLocationClient
 
     private lateinit var binding : ActivityAddStrayBinding
-
-    //private val viewModel : AddStrayViewModel by viewModels()
 
     private var address = ""
 

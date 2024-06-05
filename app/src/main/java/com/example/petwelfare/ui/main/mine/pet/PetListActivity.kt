@@ -3,10 +3,11 @@ package com.example.petwelfare.ui.main.mine.pet
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityPetListBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.listadapter.PetsAdapter
@@ -51,6 +52,8 @@ class PetListActivity : AppCompatActivity() {
 
         // 更新宠物列表
         viewModel.myPetListLiveData.observe(this) { result->
+            if (result.data.pets.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             viewModel.myPetList.clear()
             viewModel.myPetList.addAll(result.data.pets)
             Repository.myPetList = viewModel.myPetList

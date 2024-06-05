@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityPetBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.listadapter.PhotosAdapter
-import okhttp3.internal.notify
 
 class PetActivity : AppCompatActivity() {
 
@@ -110,5 +109,6 @@ class PetActivity : AppCompatActivity() {
         // 照片墙
         adapter.notifyDataSetChanged()
 
+        binding.swipeRefresh.isRefreshing = false
     }
 }

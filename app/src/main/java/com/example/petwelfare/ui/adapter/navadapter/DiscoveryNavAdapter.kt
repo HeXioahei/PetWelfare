@@ -3,10 +3,13 @@ package com.example.petwelfare.ui.adapter.navadapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemNavCommonBinding
 import com.example.petwelfare.ui.main.discovery.DiscoveryFragment
 
@@ -29,7 +32,7 @@ class DiscoveryNavAdapter(private val list: List<String>, private val viewPager:
 
     override fun getItemCount(): Int = list.size
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "ResourceAsColor")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list[position]
         holder.itemText.text = item
@@ -42,11 +45,13 @@ class DiscoveryNavAdapter(private val list: List<String>, private val viewPager:
         // 设置光标和背景的变化
         val currentPosition = DiscoveryFragment.viewPagerCurrentPosition
         if (currentPosition == position) {
-            holder.itemText.paint.isFakeBoldText = true
             holder.itemText.setTextColor(Color.BLACK)
+            holder.itemText.paint.isFakeBoldText = true
+            holder.itemCursor.visibility = View.VISIBLE
         } else {
             holder.itemText.setTextColor(Color.GRAY)
             holder.itemText.paint.isFakeBoldText = false
+            holder.itemCursor.visibility = View.INVISIBLE
         }
     }
 

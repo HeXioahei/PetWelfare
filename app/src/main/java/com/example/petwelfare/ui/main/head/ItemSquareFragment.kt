@@ -11,16 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.FragmentItemSquareBinding
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 
 open class ItemSquareFragment : Fragment() {
 
@@ -58,6 +51,8 @@ open class ItemSquareFragment : Fragment() {
         viewModel.articlesResponse.observe(this.viewLifecycleOwner) { result->
             Log.d("articlesResponse", "articlesResponse")
             Log.d("articlesListLength", result.data.size.toString())
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             binding.swipeRefresh.isRefreshing = false
             if (viewModel.order == 1) {
                 viewModel.articlesList.clear()
@@ -68,6 +63,7 @@ open class ItemSquareFragment : Fragment() {
                 viewModel.articlesList.addAll(result.data)
                 articlesAdapter.notifyDataSetChanged()
             }
+            binding.swipeRefresh.isRefreshing = false
         }
 
         var flag = true

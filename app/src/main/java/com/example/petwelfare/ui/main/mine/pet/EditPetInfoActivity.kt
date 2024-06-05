@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,17 +13,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityEditPetInfoBinding
 import com.example.petwelfare.databinding.DialogEditInfoBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.FileBuilder
+import com.example.petwelfare.utils.FileBuilder
 import com.example.petwelfare.ui.adapter.listadapter.PhotosAdapter
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.internal.notify
 import java.io.File
 
 class EditPetInfoActivity : AppCompatActivity() {

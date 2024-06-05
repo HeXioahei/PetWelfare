@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.item.loss.AddLossActivity">
+    tools:context=".ui.main.add.loss.AddLossActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -226,6 +226,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:paddingHorizontal="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/materialTextView6"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -286,6 +287,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:singleLine="true"
+                android:hint="请输入省市即可~"
                 android:background="@drawable/bg_add_edit"
                 android:gravity="center_vertical"
                 android:maxLines="1"
@@ -401,6 +403,16 @@
         android:background="@color/gray"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat10" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/source_regular"
+        android:text="长按图片可删除哦"
+        android:textColor="@color/text_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/photosContainer"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/photosContainer"

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.FragmentRegisterBinding
-import com.example.petwelfare.logic.model.MailboxList
+import com.example.petwelfare.utils.MailboxList
 import com.example.petwelfare.ui.adapter.listadapter.MailboxAdapter
 
 class RegisterFragment(private val activity: LoginActivity) : Fragment() {

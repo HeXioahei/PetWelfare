@@ -1,4 +1,4 @@
-package com.example.petwelfare
+package com.example.petwelfare.logic.model
 
 data class Token(
     val access_token: String,

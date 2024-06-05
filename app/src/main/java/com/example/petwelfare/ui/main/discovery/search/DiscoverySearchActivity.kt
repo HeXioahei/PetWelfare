@@ -1,22 +1,16 @@
 package com.example.petwelfare.ui.main.discovery.search
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityDiscoverySearchBinding
-import com.example.petwelfare.databinding.ActivityHeadSearchBinding
 import com.example.petwelfare.ui.BlankFragment
 import com.example.petwelfare.ui.adapter.navadapter.HeadNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.CommonFragmentStateAdapter
 import com.example.petwelfare.ui.main.head.search.HeadSearchViewModel
-import com.example.petwelfare.ui.main.head.search.SearchSquareFragment
 
 class DiscoverySearchActivity : AppCompatActivity() {
 

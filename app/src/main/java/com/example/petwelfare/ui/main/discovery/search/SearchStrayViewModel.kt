@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SearchStrayViewModel: ViewModel() {
 
-    var searchStrayList : MutableList<Stray> = mutableListOf(Stray(), Stray())
+    var searchStrayList : MutableList<Stray> = mutableListOf()
 
     private val _searchStrayResponse = MutableLiveData<GetStrayResponse>()
     val searchStrayResponse: LiveData<GetStrayResponse> = _searchStrayResponse

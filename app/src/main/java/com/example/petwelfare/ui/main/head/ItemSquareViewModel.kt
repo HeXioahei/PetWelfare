@@ -18,10 +18,7 @@ import kotlinx.coroutines.launch
 class ItemSquareViewModel : ViewModel() {
 
     var order = 1
-    var articlesList: MutableList<Article> = mutableListOf(
-        Article(), Article(),
-        Article(), Article()
-    )
+    var articlesList: MutableList<Article> = mutableListOf()
 
     private val _articlesResponse = MutableLiveData<GetArticlesResponse>()
     val articlesResponse: LiveData<GetArticlesResponse> = _articlesResponse

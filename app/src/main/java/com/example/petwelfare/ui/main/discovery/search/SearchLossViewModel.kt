@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SearchLossViewModel: ViewModel() {
 
-    var searchLossList : MutableList<Loss> = mutableListOf(Loss(), Loss())
+    var searchLossList : MutableList<Loss> = mutableListOf()
 
     private val _searchLossResponse = MutableLiveData<GetLossResponse>()
     val searchLossResponse: LiveData<GetLossResponse> = _searchLossResponse

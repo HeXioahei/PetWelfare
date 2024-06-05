@@ -1,17 +1,13 @@
-package com.example.petwelfare.ui.main
+package com.example.petwelfare.ui.main.add
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityAddBinding
-import com.example.petwelfare.ui.item.articles.AddArticlesActivity
-import com.example.petwelfare.ui.item.loss.AddLossActivity
-import com.example.petwelfare.ui.item.stray.AddStrayActivity
+import com.example.petwelfare.ui.main.add.articles.AddArticlesActivity
+import com.example.petwelfare.ui.main.add.loss.AddLossActivity
+import com.example.petwelfare.ui.main.add.stray.AddStrayActivity
 
 class AddActivity : AppCompatActivity() {
 

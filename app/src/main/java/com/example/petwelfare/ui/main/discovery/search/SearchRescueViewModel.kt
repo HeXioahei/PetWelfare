@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SearchRescueViewModel : ViewModel() {
 
-    var searchOrgsList : MutableList<Org> = mutableListOf(Org(), Org())
+    var searchOrgsList : MutableList<Org> = mutableListOf()
 
     private val _searchOrgsResponse = MutableLiveData<GetOrgsResponse>()
     val searchOrgsResponse: LiveData<GetOrgsResponse> = _searchOrgsResponse

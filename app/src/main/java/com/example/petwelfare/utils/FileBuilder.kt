@@ -1,4 +1,4 @@
-package com.example.petwelfare.logic.model
+package com.example.petwelfare.utils
 
 import android.content.Context
 import android.net.Uri

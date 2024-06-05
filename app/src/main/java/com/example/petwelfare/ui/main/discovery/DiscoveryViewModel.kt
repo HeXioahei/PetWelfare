@@ -28,11 +28,11 @@ class DiscoveryViewModel : ViewModel() {
     )
 
 
-    var lossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss(), Loss())
+    var lossList: MutableList<Loss> = mutableListOf()
 
-    var strayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray(), Stray())
+    var strayList: MutableList<Stray> = mutableListOf()
 
-    var orgsList: MutableList<Org> = mutableListOf(Org(), Org(), Org(), Org(), Org())
+    var orgsList: MutableList<Org> = mutableListOf()
 
     companion object {
         var address = "福州市"

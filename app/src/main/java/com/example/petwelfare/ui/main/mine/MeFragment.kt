@@ -10,8 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.FragmentMeBinding
 import com.example.petwelfare.logic.Repository
 
@@ -31,6 +30,11 @@ class MeFragment : Fragment() {
 
         binding.go.setOnClickListener {
             val intent = Intent(mainActivity, MineActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.setting.setOnClickListener {
+            val intent = Intent(mainActivity, SettingActivity::class.java)
             startActivity(intent)
         }
 

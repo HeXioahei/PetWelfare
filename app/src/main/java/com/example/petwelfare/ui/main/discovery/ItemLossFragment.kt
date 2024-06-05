@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentItemLossBinding
-import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.ui.adapter.listadapter.LossAdapter
 
 class ItemLossFragment : Fragment() {
@@ -50,6 +48,8 @@ class ItemLossFragment : Fragment() {
         }
 
         viewModel.lossResponse.observe(viewLifecycleOwner) { result->
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             viewModel.lossList.clear()
             viewModel.lossList.addAll(result.data)
             lossAdapter.notifyDataSetChanged()

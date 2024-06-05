@@ -18,14 +18,14 @@ import com.example.petwelfare.databinding.ActivityStrayDetailBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Comments
 import com.example.petwelfare.logic.model.KidComment
-import com.example.petwelfare.logic.model.TimeBuilder
+import com.example.petwelfare.utils.TimeBuilder
 import com.example.petwelfare.ui.adapter.viewpageradapter.ViewPagerAdapter
-import com.example.petwelfare.ui.main.mine.MineActivity
 import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
 
 class StrayDetailActivity : AppCompatActivity() {
     private lateinit var binding : ActivityStrayDetailBinding
     private val viewModel : StrayDetailViewModel by viewModels()
+    private var respondIndex : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,7 +146,8 @@ class StrayDetailActivity : AppCompatActivity() {
 
     // 创建父评论
     private fun onCreateParentCommentsList(list: MutableList<Comments>) {
-        for (item in list) {
+        for (i in list.indices) {
+            val item = list[i]
             val view = layoutInflater.inflate(R.layout.item_comments_parent, null, false)
             val respondBtn : ImageView = view.findViewById(R.id.respondBtn)
             respondBtn.setOnClickListener {
@@ -168,6 +169,12 @@ class StrayDetailActivity : AppCompatActivity() {
             username.text = item.username
 
             var index = 0
+
+            if (respondIndex == i) {
+                index = item.kid_comments.size
+                addKidCommentsAll(kidComment, item.kid_comments)
+                respondIndex = 0
+            }
 
             val expendBtn = view.findViewById<TextView>(R.id.expendBtn)
             expendBtn.setOnClickListener {
@@ -193,6 +200,29 @@ class StrayDetailActivity : AppCompatActivity() {
 
     private fun cleanKidComments(viewGroup: LinearLayoutCompat) {
         viewGroup.removeAllViews()
+    }
+
+    private fun addKidCommentsAll(viewGroup: LinearLayoutCompat,list: MutableList<KidComment>) {
+        for (item in list) {
+            val view = layoutInflater.inflate(R.layout.item_comments_kid, null, false)
+            val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
+            val glideUrl = GlideUrl(item.head_image, Repository.lazyHeaders)
+            headImage.let { Glide.with(this).load(glideUrl).into(it) }
+            headImage.setOnClickListener {
+                val intent = Intent(this, OtherUserDetailActivity::class.java)
+                intent.putExtra("userId", item.aid)
+                startActivity(intent)
+            }
+            val username: TextView = view.findViewById(R.id.usernameInParentComment)
+            username.text = item.username
+            val time2 : TextView = view.findViewById(R.id.time2)
+            time2.text = item.time
+            val content: TextView = view.findViewById(R.id.content)
+            content.text = item.comment
+
+            username.text = item.username
+            viewGroup.addView(view)
+        }
     }
 
     private fun addKidComment(viewGroup: LinearLayoutCompat, list: MutableList<KidComment>, index: Int) {

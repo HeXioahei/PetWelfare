@@ -1,7 +1,6 @@
 package com.example.petwelfare.ui.main.otheruser
 
 import android.annotation.SuppressLint
-import android.content.ClipData.Item
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -11,13 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityOtherUserDetailBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.adapter.navadapter.MineNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.CommonFragmentStateAdapter
-import com.example.petwelfare.ui.adapter.viewpageradapter.ViewPagerAdapter
 import com.example.petwelfare.ui.main.mine.MineViewModel
 import com.example.petwelfare.ui.main.mine.item.mine.MyArticlesFragment
 import com.example.petwelfare.ui.main.mine.item.mine.MyLossFragment

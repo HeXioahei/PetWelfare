@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.item.articles
+package com.example.petwelfare.ui.main.add.articles
 
 import android.net.Uri
 import android.util.Log

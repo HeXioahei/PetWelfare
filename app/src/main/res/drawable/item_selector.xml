@@ -3,4 +3,8 @@
 
     <item android:state_selected="true" android:color="@color/active2"/>
     <item android:state_selected="false" android:color="@color/text_gray"/>
+
+<!--    <item android:state_selected="false" android:color="@color/text_gray" android:fontFamily="@font/source_regular"/>-->
+<!--    <item android:state_selected="true" android:color="@color/active2" android:fontFamily="@font/mf"/>-->
+
 </selector>

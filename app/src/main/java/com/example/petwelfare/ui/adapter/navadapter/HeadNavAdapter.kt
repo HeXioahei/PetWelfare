@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemNavHeadBinding
 import com.example.petwelfare.ui.main.head.HeadFragment
+import org.w3c.dom.Text
 
 class HeadNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<HeadNavAdapter.MyViewHolder>() {
 
@@ -46,9 +49,13 @@ class HeadNavAdapter(private val list: List<String>, private val viewPager: View
         if (currentPosition == position) {
             holder.itemCursor.visibility = View.VISIBLE
             holder.itemText.paint.isFakeBoldText = true
+            holder.itemText.typeface = ResourcesCompat.getFont(PetWelfareApplication.context, R.font.mf)
+            holder.itemText.textSize = (20).toFloat()
         } else {
             holder.itemCursor.visibility = View.INVISIBLE
             holder.itemText.paint.isFakeBoldText = false
+            holder.itemText.typeface = ResourcesCompat.getFont(PetWelfareApplication.context, R.font.source_regular)
+            holder.itemText.textSize = (15).toFloat()
         }
     }
 

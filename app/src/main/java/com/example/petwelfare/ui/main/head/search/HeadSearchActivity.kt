@@ -1,14 +1,12 @@
 package com.example.petwelfare.ui.main.head.search
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ActivityHeadSearchBinding
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.BlankFragment
 import com.example.petwelfare.ui.adapter.navadapter.HeadNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.CommonFragmentStateAdapter

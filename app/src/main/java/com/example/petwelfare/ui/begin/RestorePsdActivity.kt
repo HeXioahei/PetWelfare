@@ -9,11 +9,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityRestorePsdBinding
-import com.example.petwelfare.logic.model.MailboxList
+import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.utils.MailboxList
 import com.example.petwelfare.ui.adapter.listadapter.MailboxAdapter
 
 class RestorePsdActivity : AppCompatActivity() {
@@ -53,11 +54,18 @@ class RestorePsdActivity : AppCompatActivity() {
 
 
         // 显示密码
+//        binding.showPsdBtn1.setOnClickListener {
+//            if (binding.psdInReset.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+//                binding.psdInReset.inputType = InputType.TYPE_NULL
+//            } else {
+//                binding.psdInReset.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+//            }
+//        }
         binding.showPsdBtn1.setOnClickListener {
-            if (binding.psdInReset.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                binding.psdInReset.inputType = InputType.TYPE_NULL
+            if (binding.psdInReset.transformationMethod == PasswordTransformationMethod.getInstance()) {
+                binding.psdInReset.transformationMethod = null
             } else {
-                binding.psdInReset.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.psdInReset.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         }
         binding.showPsdBtn2.setOnClickListener {
@@ -104,7 +112,7 @@ class RestorePsdActivity : AppCompatActivity() {
                 200 -> {
                     Log.d("resetPsd", "success")
                     Toast.makeText(PetWelfareApplication.context, "修改密码成功", Toast.LENGTH_SHORT).show()
-                    ActivityCollector.removeActivityUntilLogin()
+                    Repository.exit()
                 }
                 else -> {
                     Log.d("resetPsd", "failure")

@@ -27,6 +27,7 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             val loginResponse = PetWelfareNetwork.login(mailbox, psd)
             _loginResult.value = loginResponse
+            MineDao.saveUserId(loginResponse.data.id)
             MineDao.saveMailbox(mailbox)
             MineDao.saveToken(loginResponse.data.access_token, loginResponse.data.refresh_token)
         }

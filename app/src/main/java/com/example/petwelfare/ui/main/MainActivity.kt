@@ -6,9 +6,10 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMainBinding
+import com.example.petwelfare.ui.main.add.AddActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +39,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        ActivityCollector.removeActivity(this)
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ActivityCollector.removeAll()
     }
 }

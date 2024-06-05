@@ -7,20 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.LazyHeaders
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.main.mine.edit.EditMyInfoActivity
-import com.example.petwelfare.ui.main.mine.item.like.ItemLikesFragment
-import com.example.petwelfare.ui.main.mine.item.pet.ItemPetFragment
-import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
-import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
 import com.example.petwelfare.ui.main.mine.users.FansActivity
 import com.example.petwelfare.ui.main.mine.users.FollowsActivity
 
@@ -42,11 +37,18 @@ class MineActivity : AppCompatActivity() {
         ActivityCollector.mineActivity = this
 
         viewModel.cursorList = listOf(
-            binding.itemMineCursor as AppCompatImageView,
-            binding.itemPetCursor as AppCompatImageView,
-            binding.itemCollectionCursor as AppCompatImageView,
-            binding.itemLikeCursor as AppCompatImageView
+            binding.itemMineCursor,
+            binding.itemPetCursor,
+            binding.itemCollectionCursor,
+            binding.itemLikeCursor
         )
+        viewModel.textList = listOf(
+            binding.itemMine,
+            binding.itemPet,
+            binding.itemCollection,
+            binding.itemLike
+        )
+
 
         binding.returnBtn.setOnClickListener {
             finish()
@@ -122,22 +124,22 @@ class MineActivity : AppCompatActivity() {
         // 添加fragment
         when (type) {
             "mine" -> {
-                setCursorVisibility(0)
+                setCursor(0)
                 transaction.replace(R.id.fragment_container_me, viewModel.itemMineFragment)
             }
 
             "pet" -> {
-                setCursorVisibility(1)
+                setCursor(1)
                 transaction.replace(R.id.fragment_container_me, viewModel.itemPetFragment)
             }
 
             "collection" -> {
-                setCursorVisibility(2)
+                setCursor(2)
                 transaction.replace(R.id.fragment_container_me, viewModel.itemCollectionFragment)
             }
 
             "like" -> {
-                setCursorVisibility(3)
+                setCursor(3)
                 transaction.replace(R.id.fragment_container_me, viewModel.itemLikesFragment)
             }
         }
@@ -145,11 +147,15 @@ class MineActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun setCursorVisibility(index: Int) {
+    private fun setCursor(index: Int) {
         for (i in 0 until  viewModel.cursorList.size) {
             if (index == i) {
+                viewModel.textList[i].typeface = ResourcesCompat.getFont(this, R.font.mf)
+                viewModel.textList[i].textSize = (20).toFloat()
                 viewModel.cursorList[i].visibility = View.VISIBLE
             } else {
+                viewModel.textList[i].typeface = ResourcesCompat.getFont(this, R.font.source_regular)
+                viewModel.textList[i].textSize = (15).toFloat()
                 viewModel.cursorList[i].visibility = View.INVISIBLE
             }
         }

@@ -6,6 +6,13 @@
     android:layout_marginHorizontal="20dp"
     tools:context=".ui.main.discovery.ItemRescueFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@drawable/img_nothing"
+        android:layout_gravity="center"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"

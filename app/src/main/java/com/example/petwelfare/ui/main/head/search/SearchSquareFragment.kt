@@ -38,6 +38,8 @@ class SearchSquareFragment(private val keywords: String) : Fragment() {
 
         viewModel.searchArticlesResponse.observe(this.viewLifecycleOwner) { result->
             Log.d("searchArticlesResponse", result.toString())
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             viewModel.searchArticlesList.clear()
             viewModel.searchArticlesList.addAll(result.data)
             articlesAdapter.notifyDataSetChanged()

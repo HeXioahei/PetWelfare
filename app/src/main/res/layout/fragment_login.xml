@@ -12,24 +12,26 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:elevation="1dp"
+        android:layout_marginBottom="9dp"
         android:layout_marginStart="12dp"
         android:background="@drawable/img_mailbox"
         app:layout_constraintBottom_toBottomOf="@+id/loginMailbox"
         app:layout_constraintStart_toStartOf="@+id/loginMailbox"
         app:layout_constraintTop_toTopOf="@+id/loginMailbox" />
 
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/loginMailbox"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/bg_input"
-        android:hint="邮箱"
         android:fontFamily="@font/source_regular"
+        android:hint="邮箱"
+        android:paddingBottom="8dp"
         android:inputType="textEmailAddress"
         android:paddingHorizontal="40dp"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:layout_editor_absoluteX="20dp" />
-
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/showMenuBtn"
@@ -67,6 +69,7 @@
         android:layout_height="24dp"
         android:elevation="1dp"
         android:layout_marginStart="12dp"
+        android:layout_marginBottom="9dp"
         android:background="@drawable/img_psd"
         app:layout_constraintBottom_toBottomOf="@+id/loginPassword"
         app:layout_constraintStart_toStartOf="@+id/loginPassword"
@@ -76,13 +79,15 @@
         android:id="@+id/loginPassword"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:shadowColor="@color/myShadow"
         android:background="@drawable/bg_input"
-        android:paddingHorizontal="40dp"
-        android:hint="密码"
         android:fontFamily="@font/source_regular"
+        android:hint="密码"
         android:inputType="textPassword"
+        android:paddingHorizontal="40dp"
+        android:paddingBottom="8dp"
+        android:shadowColor="@color/myShadow"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -90,6 +95,7 @@
         android:id="@+id/showPsdBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/btn_show_psd"
         android:elevation="5dp"
         android:layout_marginEnd="20dp"

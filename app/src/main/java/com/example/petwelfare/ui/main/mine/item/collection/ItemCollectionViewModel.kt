@@ -23,9 +23,9 @@ class ItemCollectionViewModel : ViewModel() {
         CollectStrayFragment()
     )
 
-    var collectArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
-    var collectLossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss())
-    var collectStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
+    var collectArticlesList: MutableList<Article> = mutableListOf()
+    var collectLossList: MutableList<Loss> = mutableListOf()
+    var collectStrayList: MutableList<Stray> = mutableListOf()
 
     private val _collectArticles = MutableLiveData<GetArticlesResponse>()
     val collectArticles : LiveData<GetArticlesResponse> = _collectArticles

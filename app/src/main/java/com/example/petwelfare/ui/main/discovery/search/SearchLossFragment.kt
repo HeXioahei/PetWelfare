@@ -39,6 +39,8 @@ class SearchLossFragment(val keywords: String) : Fragment() {
         binding.list.layoutManager = layoutManager
 
         viewModel.searchLossResponse.observe(this.viewLifecycleOwner) { result->
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             Log.d("searchLossResponse", result.toString())
             viewModel.searchLossList.clear()
             viewModel.searchLossList.addAll(result.data)

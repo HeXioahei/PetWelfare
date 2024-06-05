@@ -1,14 +1,36 @@
 package com.example.petwelfare.logic
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.bumptech.glide.load.model.LazyHeaders
+import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.logic.dao.MineDao
 import com.example.petwelfare.logic.model.Pet
 import com.example.petwelfare.logic.model.UserDetail
 import com.example.petwelfare.logic.network.PetWelfareNetwork
+import com.example.petwelfare.utils.ActivityCollector
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 object Repository {
+
+    val _tokenLiveData = MutableLiveData<String>()
+    val tokenLiveData : LiveData<String> = _tokenLiveData
+
+    fun exit() {
+        CoroutineScope(Dispatchers.IO).launch {
+            MineDao.saveUserId(0L)
+            MineDao.saveToken("", "")
+            PetWelfareNetwork.exit(Authorization)
+            Authorization = ""
+            refreshToken = ""
+            myId = -1
+            ActivityCollector.removeActivityUntilBegin()
+        }
+    }
 
     var Authorization : String = ""
     var myId: Long = 0

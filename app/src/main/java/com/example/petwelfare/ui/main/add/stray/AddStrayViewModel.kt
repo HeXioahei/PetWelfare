@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.item.stray
+package com.example.petwelfare.ui.main.add.stray
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

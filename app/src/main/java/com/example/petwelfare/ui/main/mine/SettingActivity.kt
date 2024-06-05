@@ -1,17 +1,12 @@
 package com.example.petwelfare.ui.main.mine
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.petwelfare.ActivityCollector
-import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivitySettingBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.dao.MineDao
-import com.example.petwelfare.logic.dao.MineDao.dataStore1
+import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,13 +27,7 @@ class SettingActivity : AppCompatActivity() {
         }
 
         binding.exit.setOnClickListener {
-            Repository.Authorization = ""
-            Repository.refreshToken = ""
-            Repository.myId = -1
-            CoroutineScope(Dispatchers.IO).launch {
-                MineDao.saveToken("", "")
-            }
-            ActivityCollector.removeActivityUntilLogin()
+            Repository.exit()
         }
     }
 

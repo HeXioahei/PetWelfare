@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.databinding.ActivityTalkBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Msg
-import com.example.petwelfare.logic.model.TimeBuilder
+import com.example.petwelfare.utils.TimeBuilder
 
 class TalkActivity : AppCompatActivity() {
 

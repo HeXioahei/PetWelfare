@@ -24,7 +24,8 @@
         app:elevation="0dp"
         app:compatShadowEnabled="false"
         android:background="@drawable/bg_bottom_navigation"
-        app:itemTextAppearanceActive="@drawable/item_selector"
+        app:itemTextAppearanceActive="@style/selector_active"
+        app:itemTextAppearanceInactive="@style/selector_inactive"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_main" />

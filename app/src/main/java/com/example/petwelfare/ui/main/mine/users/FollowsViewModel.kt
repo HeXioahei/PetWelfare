@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 class FollowsViewModel : ViewModel() {
 
 
-    var followsList : MutableList<UserBrief> = mutableListOf(UserBrief(), UserBrief(), UserBrief())
-    var orsList : MutableList<Org> = mutableListOf(Org(), Org(), Org())
+    var followsList : MutableList<UserBrief> = mutableListOf()
+    var orsList : MutableList<Org> = mutableListOf()
 
     private val _followsListLiveData = MutableLiveData<GetFollowsListResponse>()
     val followsListLiveData : LiveData<GetFollowsListResponse> = _followsListLiveData

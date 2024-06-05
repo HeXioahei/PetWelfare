@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SearchSquareViewModel : ViewModel() {
 
-    var searchArticlesList : MutableList<Article> = mutableListOf(Article(), Article())
+    var searchArticlesList : MutableList<Article> = mutableListOf()
 
     private val _searchArticlesResponse = MutableLiveData<GetArticlesResponse>()
     val searchArticlesResponse: LiveData<GetArticlesResponse> = _searchArticlesResponse

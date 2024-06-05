@@ -29,9 +29,9 @@ class ItemMineViewModel : ViewModel() {
         BlankFragment()
     )
 
-    var myArticlesList: MutableList<Article> = mutableListOf(Article(), Article(),Article(),Article())
-    var myLossList: MutableList<Loss> = mutableListOf(Loss(), Loss(), Loss(), Loss())
-    var myStrayList: MutableList<Stray> = mutableListOf(Stray(), Stray(), Stray(), Stray())
+    var myArticlesList: MutableList<Article> = mutableListOf()
+    var myLossList: MutableList<Loss> = mutableListOf()
+    var myStrayList: MutableList<Stray> = mutableListOf()
 
     private val _myArticles = MutableLiveData<GetArticlesResponse>()
     val myArticles : LiveData<GetArticlesResponse> = _myArticles

@@ -3,8 +3,14 @@ package com.example.petwelfare.logic.network
 import android.util.Log
 import android.widget.Toast
 import com.example.petwelfare.PetWelfareApplication
+import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.dao.MineDao
 import com.example.petwelfare.logic.model.ErrorResponse
+import com.example.petwelfare.utils.ActivityCollector
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -352,15 +358,34 @@ object PetWelfareNetwork {
             Log.d("enterCoroutine","yes")
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
+
                     Log.d("response", "success")
+
                     val body = response.body()
+
                     Log.d("body", body.toString())
+
                     val errorBody = response.errorBody()
+
+//                    if (response.code() == 403) {
+//                        CoroutineScope(Dispatchers.IO).launch {
+//                            Repository._tokenLiveData.value = refreshToken(Repository.refreshToken).data.access_token
+//                            if (Repository.Authorization!="") {
+//                                MineDao.saveToken(Repository.Authorization, "")
+//                            }
+//                        }
+//                    }
+                    if (response.code() == 500) {
+                        Toast.makeText(PetWelfareApplication.context, "登陆已过期，请重新登录", Toast.LENGTH_SHORT).show()
+                        ActivityCollector.removeActivityUntilBegin()
+                    }
+
                     if (body != null) {
                         continuation.resume(body)
                     } else {
                         val errorBodyString = errorBody?.string()   // 是string()，而不是toString()
                         val errorResponse = Gson().fromJson(errorBodyString, ErrorResponse::class.java)
+
                         Log.d("response.body()", response.body().toString())
                         Log.d("response.errorBody()", response.errorBody().toString())
                         Log.d("code", response.code().toString())
@@ -368,7 +393,7 @@ object PetWelfareNetwork {
                         Log.d("errorResponse.message", errorResponse.message)
 
                         Toast.makeText(PetWelfareApplication.context, errorResponse.msg, Toast.LENGTH_SHORT).show()
-                        continuation.resumeWithException(RuntimeException("response body is null"))
+//                        continuation.resumeWithException(RuntimeException("response body is null"))
                     }
                 }
 

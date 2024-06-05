@@ -1,25 +1,29 @@
 package com.example.petwelfare.ui.main.mine.item.like
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
+import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.logic.model.Stray
 import com.example.petwelfare.logic.model.UserMostBrief
+import com.example.petwelfare.logic.network.PetWelfareNetwork
+import kotlinx.coroutines.launch
 
 class ItemLikesViewModel : ViewModel() {
 
-    private val listLiveData = MutableLiveData<UserMostBrief>()
+    var likeArticlesList: MutableList<Article> = mutableListOf()
 
-    var likesArticle : MutableList<Article>  = mutableListOf(Article())
+    private val _likeArticles = MutableLiveData<GetArticlesResponse>()
+    val likeArticles : LiveData<GetArticlesResponse> = _likeArticles
 
-//    var likesArticleData = listLiveData.switchMap { data->
-//        Repository.getMyStray(data.id, Repository.Authorization)
-//    }
-
-    fun setId (id2 : Long) {
-        listLiveData.value?.id = id2
+    fun getCollectArticles() {
+        viewModelScope.launch {
+            _likeArticles.value = PetWelfareNetwork.getCollectArticles(Repository.Authorization)
+        }
     }
 }

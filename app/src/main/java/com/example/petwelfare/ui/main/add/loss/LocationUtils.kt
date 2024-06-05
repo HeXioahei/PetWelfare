@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.item.loss
+package com.example.petwelfare.ui.main.add.loss
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -9,11 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.petwelfare.ActivityCollector
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentMyArticlesBinding
-import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.ui.adapter.listadapter.ArticlesAdapter
 
 
@@ -52,6 +49,8 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
         binding.myArticles.layoutManager = layoutManager
 
         viewModel.myArticles.observe(viewLifecycleOwner) { result->
+            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            else binding.image.visibility = View.VISIBLE
             Log.d("getMyArticles2", "getMyArticles2")
             viewModel.myArticlesList.clear()
             viewModel.myArticlesList.addAll(result.data)

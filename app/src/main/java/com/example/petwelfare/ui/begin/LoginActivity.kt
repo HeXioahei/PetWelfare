@@ -9,11 +9,10 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.petwelfare.ActivityCollector
+import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityLoginBinding
 import com.example.petwelfare.ui.main.MainActivity
-import com.example.petwelfare.ui.main.mine.MineActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -80,8 +79,10 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        ActivityCollector.removeActivity(this)
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ActivityCollector.removeAll()
     }
+
 }

@@ -66,12 +66,13 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="100dp"
+                    android:layout_marginStart="110dp"
                     android:layout_marginTop="10dp"
                     android:text="用户名"
                     android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/edit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +96,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="3dp"
-                        android:text="粉丝" />
+                        android:text="粉丝"
+                        android:textColor="@color/text_gray"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/followsNum"
@@ -109,7 +111,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="3dp"
-                        android:text="关注" />
+                        android:text="关注"
+                        android:textColor="@color/text_gray"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -200,16 +203,18 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/integralsNum"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:text="720"
+                        android:textColor="#FFA96C"
+                        android:fontFamily="@font/source_medium"
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/integrals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="center_vertical"
                         android:text="积分"
                         android:textSize="15sp" />
 
@@ -247,6 +252,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="我的"
+                    android:fontFamily="@font/source_regular"
                     app:layout_constraintEnd_toStartOf="@+id/item_pet"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -254,6 +260,7 @@
                     android:id="@+id/item_mine_cursor"
                     android:layout_width="35dp"
                     android:layout_height="5dp"
+                    android:elevation="3dp"
                     android:background="@drawable/img_cursor"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/item_mine"
@@ -266,6 +273,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="宠物屋"
+                    android:fontFamily="@font/source_regular"
                     app:layout_constraintEnd_toStartOf="@+id/item_collection"
                     app:layout_constraintStart_toEndOf="@+id/item_mine" />
 
@@ -273,6 +281,7 @@
                     android:id="@+id/item_pet_cursor"
                     android:layout_width="35dp"
                     android:layout_height="5dp"
+                    android:elevation="3dp"
                     android:background="@drawable/img_cursor"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/item_pet"
@@ -285,6 +294,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="收藏"
+                    android:fontFamily="@font/source_regular"
                     app:layout_constraintEnd_toStartOf="@+id/item_like"
                     app:layout_constraintStart_toEndOf="@+id/item_pet" />
 
@@ -292,6 +302,7 @@
                     android:id="@+id/item_collection_cursor"
                     android:layout_width="35dp"
                     android:layout_height="5dp"
+                    android:elevation="3dp"
                     android:background="@drawable/img_cursor"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/item_collection"
@@ -304,6 +315,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="点赞"
+                    android:fontFamily="@font/source_regular"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/item_collection" />
 
@@ -311,6 +323,7 @@
                     android:id="@+id/item_like_cursor"
                     android:layout_width="35dp"
                     android:layout_height="5dp"
+                    android:elevation="3dp"
                     android:background="@drawable/img_cursor"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/item_like"

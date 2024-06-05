@@ -1,4 +1,4 @@
-package com.example.petwelfare.ui.item.loss
+package com.example.petwelfare.ui.main.add.loss
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
