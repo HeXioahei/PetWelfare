@@ -56,6 +56,7 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
         }
         holder.address.text = item.address
         holder.petName.text = item.name
+        holder.type.text = item.type
         holder.lossTime.text = item.lost_time
         holder.contact.text = item.contact
         holder.sendTime.text = item.send_time

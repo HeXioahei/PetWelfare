@@ -119,7 +119,11 @@ class EditMyInfoActivity : AppCompatActivity() {
             Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show()
         }
 
-
+        // 成功更改用户名需要重新登录
+        viewModel1.changeUsernameResponse.observe(this) {
+            Toast.makeText(this, "改名成功，去重新登陆星球", Toast.LENGTH_SHORT).show()
+            ActivityCollector.removeActivityUntilBegin()
+        }
 
     }
 

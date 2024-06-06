@@ -20,6 +20,6 @@ data class Article(
     var time: String
 ) {
     constructor() : this(
-        UserMostBrief(), 0,0,0,0,0,0,0, mutableListOf("aa", "aa", "aa"), "aa", "aa"
+        UserMostBrief(), 0,0,0,0,0,0,0, mutableListOf("", "", ""), "", ""
     )
 }

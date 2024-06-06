@@ -100,6 +100,7 @@ class RestorePsdActivity : AppCompatActivity() {
             if (psd != psdConfirm) {
                 Toast.makeText(PetWelfareApplication.context, "密码不一致，请重新确认密码", Toast.LENGTH_SHORT).show()
             } else {
+                Log.d("psd1", binding.psdInReset.text.toString())
                 viewModel.resetPsd(
                     binding.mailboxInReset.text.toString(),
                     binding.verification.text.toString(),
@@ -112,6 +113,7 @@ class RestorePsdActivity : AppCompatActivity() {
                 200 -> {
                     Log.d("resetPsd", "success")
                     Toast.makeText(PetWelfareApplication.context, "修改密码成功", Toast.LENGTH_SHORT).show()
+                    Log.d("psd2", binding.psdInReset.text.toString())
                     Repository.exit()
                 }
                 else -> {

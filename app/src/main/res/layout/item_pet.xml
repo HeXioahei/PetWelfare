@@ -30,10 +30,13 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/petName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/mf"
         android:text="名字"
+        android:paddingHorizontal="20dp"
+        android:gravity="center"
+        android:ellipsize="end"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

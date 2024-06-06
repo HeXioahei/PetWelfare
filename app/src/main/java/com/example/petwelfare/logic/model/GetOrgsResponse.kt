@@ -20,6 +20,6 @@ data class Org(
     var org_name: String
 ) {
     constructor() : this(
-        0, 0, -1,  "aa", "aa", "aa", "aa"
+        0, 0, -1,  "", "", "", ""
     )
 }

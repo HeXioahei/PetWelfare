@@ -6,6 +6,16 @@ data class GetStrayResponse(
     val data: MutableList<Stray>
 )
 
+data class GetStraySearchResponse(
+    val code: Int,
+    val msg: String,
+    val data: StraySearch
+)
+
+data class StraySearch (
+    var stray_list: MutableList<Stray>
+)
+
 data class Stray(
     // 发现地址
     var address: String,
@@ -23,7 +33,7 @@ data class Stray(
     var user: UserMostBrief
 ) {
     constructor() : this(
-        "aa", 0, 0, 0, 0,
-        "aa", mutableListOf(), "aa", UserMostBrief()
+        "福建省 福州市", 0, 0, 0, 0,
+        "", mutableListOf(), "", UserMostBrief()
     )
 }

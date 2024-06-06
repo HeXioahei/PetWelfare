@@ -42,6 +42,6 @@ data class KidComment(
     val aid: Long
 ) {
     constructor():this(
-        0,"aa","aa","aa","aa", -1L
+        0,"","","","", -1L
     )
 }

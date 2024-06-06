@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_whole">
+    android:background="@color/background">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/returnBtn"
@@ -26,28 +26,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/returnBtn" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/source_regular"
+        android:paddingHorizontal="50dp"
+        android:layout_marginTop="40dp"
+        android:text="以新的身份出现需要重新登陆星球哦~"
+        android:textColor="@color/text_gray"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat15" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/changeHead"
-        android:layout_marginTop="40dp"
         android:layout_marginHorizontal="20dp"
-        android:orientation="vertical">
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/changeHead"
+        tools:layout_editor_absoluteX="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/changeUsername"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/bg_edit_my_info">
+            android:background="@drawable/bg_edit_my_info"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="昵称："
                 android:fontFamily="@font/source_regular"
+                android:text="昵称："
                 android:textColor="@color/text_gray"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -75,25 +89,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/changePersonality"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/bg_edit_my_info">
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_edit_my_info"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="个性签名："
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/source_regular"
+                android:text="个性签名："
                 android:textColor="@color/text_gray"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/personality"
@@ -108,11 +124,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="7dp"
                 android:layout_height="13dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/btn_goto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -120,22 +136,22 @@
             android:id="@+id/changeAddress"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingBottom="10dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/bg_edit_my_info">
+            android:background="@drawable/bg_edit_my_info"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地址："
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/source_regular"
+                android:text="地址："
                 android:textColor="@color/text_gray"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/address"
@@ -150,11 +166,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="7dp"
                 android:layout_height="13dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/btn_goto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -162,21 +178,21 @@
             android:id="@+id/changeTelephone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/bg_edit_my_info">
+            android:background="@drawable/bg_edit_my_info"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="电话："
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/source_regular"
+                android:text="电话："
                 android:textColor="@color/text_gray"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/telephone"
@@ -191,11 +207,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="7dp"
                 android:layout_height="13dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/btn_goto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -203,22 +219,22 @@
             android:id="@+id/changePsd"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingBottom="10dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/bg_edit_my_info">
+            android:background="@drawable/bg_edit_my_info"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密码："
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/source_regular"
+                android:text="密码："
                 android:textColor="@color/text_gray"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/password"
@@ -235,11 +251,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="7dp"
                 android:layout_height="13dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/btn_goto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

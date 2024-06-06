@@ -39,11 +39,11 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
         binding.list.layoutManager = layoutManager
 
         viewModel.searchStrayResponse.observe(this.viewLifecycleOwner) { result->
-            if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+            if (result.data.stray_list.isNotEmpty()) binding.image.visibility = View.INVISIBLE
             else binding.image.visibility = View.VISIBLE
             Log.d("searchLossResponse", result.toString())
             viewModel.searchStrayList.clear()
-            viewModel.searchStrayList.addAll(result.data)
+            viewModel.searchStrayList.addAll(result.data.stray_list)
             strayAdapter.notifyDataSetChanged()
             binding.progressBar.visibility = View.INVISIBLE
         }

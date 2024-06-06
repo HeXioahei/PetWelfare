@@ -45,7 +45,7 @@ data class UserDetail(
     var collect_orgs_nums: Int
 ) {
     constructor() : this(
-        "aa", 0, 0, "aa", 0L, 0, "aa", 0, "aa", "aa", 0, 0
+        "", 0, 0, "", 0L, 0, "", 0, "", "", 0, 0
     )
 }
 
@@ -56,7 +56,7 @@ data class UserBrief(
     var follow_status: Int,
     var id: Long
 ) {
-    constructor() : this("aa", "aa", "aa", 0, 0L)
+    constructor() : this("", "", "", 0, 0L)
 }
 
 data class UserMostBrief(
@@ -65,6 +65,6 @@ data class UserMostBrief(
     var follow_status: Int,
     var id: Long
 ) {
-    constructor() : this("aa", "aa", 0, 0L)
+    constructor() : this("", "", 0, 0L)
 }
 

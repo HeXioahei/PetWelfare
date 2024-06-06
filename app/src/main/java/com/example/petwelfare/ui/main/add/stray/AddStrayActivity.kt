@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.add.stray
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -45,6 +46,7 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
 
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
@@ -89,7 +91,18 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
         }
 
+
+        binding.addressContainer.visibility = View.GONE
         binding.timeContainer.visibility = View.GONE
+        binding.address.setOnClickListener {
+            binding.addressContainer.visibility = View.VISIBLE
+            val province = binding.province.text.toString()
+            val city = binding.city.text.toString()
+            binding.confirmButton2.setOnClickListener {
+                binding.address.text = "${province}省 ${city}市"
+                binding.addressContainer.visibility = View.GONE
+            }
+        }
         binding.findTime.setOnClickListener {
             binding.timeContainer.visibility = View.VISIBLE
             var year = LocalDateTime.now().year

@@ -32,8 +32,8 @@ data class Loss(
     var user: UserMostBrief
 ) {
     constructor() : this(
-        "aa", 0, 0, 0, "aa", "aa", 0,
-        "aa", "aa", listOf(" ", " ", " "), "aa", 0, "aa", UserMostBrief()
+        "福建省 福州市", 0, 0, 0, "", "", 0,
+        "", "", listOf(" ", " ", " "), "", 0, "", UserMostBrief()
     )
 }
 

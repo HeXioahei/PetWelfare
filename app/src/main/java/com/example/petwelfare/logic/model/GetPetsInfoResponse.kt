@@ -42,7 +42,7 @@ data class Pet(
 ) : Serializable {
 
     constructor() : this(
-        "aa", "aa", "aa", "aa",
-        0, arrayListOf(), "aa", "aa"
+        "", "", "", "",
+        0, arrayListOf(), "", ""
     )
 }

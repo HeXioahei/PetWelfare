@@ -1,6 +1,7 @@
 package com.example.petwelfare.logic
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -19,6 +20,17 @@ object Repository {
 
     val _tokenLiveData = MutableLiveData<String>()
     val tokenLiveData : LiveData<String> = _tokenLiveData
+
+    fun refreshToken() {
+        if (refreshToken != "") {
+            CoroutineScope(Dispatchers.IO).launch {
+                _tokenLiveData.value = PetWelfareNetwork.refreshToken(refreshToken).data.access_token
+            }
+        } else {
+            Toast.makeText(PetWelfareApplication.context, "登陆已过期，请重新登录", Toast.LENGTH_SHORT).show()
+            ActivityCollector.removeActivityUntilBegin()
+        }
+    }
 
     fun exit() {
         CoroutineScope(Dispatchers.IO).launch {

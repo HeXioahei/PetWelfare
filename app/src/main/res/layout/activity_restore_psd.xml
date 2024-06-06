@@ -5,103 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.begin.RestorePsdActivity"
-    android:background="@drawable/bg_whole">
+    android:background="@color/background">
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout14"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/img_bar_restore_psd"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/returnBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/returnBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_return_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.google.android.material.textfield.TextInputEditText-->
-<!--        android:id="@+id/mailboxInReset"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:hint="请输入邮箱"-->
-<!--        android:background="@drawable/bg_input"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline13" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mf"
+            android:text="修改密码"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.google.android.material.textfield.TextInputEditText-->
-<!--        android:id="@+id/verificationInReset"-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:hint="   请输入验证码"-->
-<!--        android:background="@drawable/bg_input"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline14"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/mailboxInReset"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline15" />-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/getVerificationBtn"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:background="@drawable/bg_get_veri"-->
-<!--        android:text="获取验证码"-->
-<!--        android:gravity="center"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/verificationInReset"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/mailboxInReset"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/verificationInReset"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline15" />-->
-
-<!--    <com.google.android.material.textview.MaterialTextView-->
-<!--        android:id="@+id/toPsdBtn"-->
-<!--        android:layout_width="130dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@drawable/bg_btn"-->
-<!--        android:text="确   定"-->
-<!--        android:textColor="#ffffff"-->
-<!--        android:textSize="20sp"-->
-<!--        android:gravity="center"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline17" />-->
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline13"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintGuide_begin="160dp" />-->
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline14"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.5" />-->
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline15"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintGuide_begin="240dp" />-->
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guideline17"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintGuide_begin="325dp" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout14"
+        tools:layout_editor_absoluteX="20dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="24dp"
@@ -120,11 +69,11 @@
             android:layout_height="55dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/bg_input"
-            android:hint="邮箱"
-            android:paddingBottom="8dp"
             android:fontFamily="@font/source_regular"
+            android:hint="邮箱"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="40dp"
+            android:paddingBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -135,8 +84,8 @@
             android:layout_height="30dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_menu"
-            android:visibility="gone"
             android:elevation="1dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/mailboxInReset"
             app:layout_constraintEnd_toEndOf="@+id/mailboxInReset"
             app:layout_constraintTop_toTopOf="@+id/mailboxInReset" />
@@ -163,10 +112,10 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:elevation="1dp"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/img_psd"
+            android:elevation="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/psdInReset"
             app:layout_constraintStart_toStartOf="@+id/psdInReset"
             app:layout_constraintTop_toTopOf="@+id/psdInReset" />
@@ -176,11 +125,11 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/bg_input"
-            android:paddingHorizontal="40dp"
+            android:fontFamily="@font/source_regular"
             android:hint="密码"
             android:inputType="textPassword"
+            android:paddingHorizontal="40dp"
             android:paddingBottom="8dp"
-            android:fontFamily="@font/source_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mailboxInReset" />
@@ -189,10 +138,10 @@
             android:id="@+id/showPsdBtn1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/btn_show_psd"
-            android:elevation="5dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="9dp"
+            android:background="@drawable/btn_show_psd"
+            android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/psdInReset"
             app:layout_constraintEnd_toEndOf="@+id/psdInReset"
             app:layout_constraintTop_toTopOf="@+id/psdInReset" />
@@ -200,10 +149,10 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:elevation="1dp"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="9dp"
             android:background="@drawable/img_confirm_psd"
+            android:elevation="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/psdConfirmInReset"
             app:layout_constraintStart_toStartOf="@+id/psdConfirmInReset"
             app:layout_constraintTop_toTopOf="@+id/psdConfirmInReset" />
@@ -213,11 +162,11 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/bg_input"
-            android:paddingHorizontal="40dp"
-            android:hint="确认密码"
-            android:paddingBottom="8dp"
             android:fontFamily="@font/source_regular"
+            android:hint="确认密码"
             android:inputType="textPassword"
+            android:paddingHorizontal="40dp"
+            android:paddingBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/psdInReset" />
@@ -226,10 +175,10 @@
             android:id="@+id/showPsdBtn2"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/btn_show_psd"
-            android:elevation="5dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="9dp"
+            android:background="@drawable/btn_show_psd"
+            android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/psdConfirmInReset"
             app:layout_constraintEnd_toEndOf="@+id/psdConfirmInReset"
             app:layout_constraintTop_toTopOf="@+id/psdConfirmInReset" />
@@ -238,13 +187,13 @@
             android:id="@+id/verification"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:shadowColor="@color/myShadow"
             android:background="@drawable/bg_input_verification"
-            android:paddingHorizontal="20dp"
-            android:hint="验证码"
-            android:paddingBottom="8dp"
             android:fontFamily="@font/source_regular"
+            android:hint="验证码"
             android:inputType="number"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="8dp"
+            android:shadowColor="@color/myShadow"
             app:layout_constraintEnd_toStartOf="@+id/guideline8"
             app:layout_constraintStart_toStartOf="@+id/psdConfirmInReset"
             app:layout_constraintTop_toBottomOf="@+id/psdConfirmInReset" />
@@ -254,10 +203,10 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:background="@drawable/bg_get_veri"
-            android:text="获取验证码"
             android:fontFamily="@font/source_regular"
-            android:textSize="19sp"
             android:gravity="center"
+            android:text="获取验证码"
+            android:textSize="19sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline9"
             app:layout_constraintTop_toBottomOf="@+id/psdConfirmInReset" />
@@ -281,8 +230,8 @@
             android:layout_width="180dp"
             android:layout_height="60dp"
             android:layout_marginTop="40dp"
-            android:foreground="@drawable/ripple"
             android:background="@drawable/btn_restore_psd"
+            android:foreground="@drawable/ripple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/verification" />

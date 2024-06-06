@@ -56,6 +56,9 @@ class MineViewModel : ViewModel() {
     private val _changeResponse = MutableLiveData<BaseResponse>()
     val changeResponse : LiveData<BaseResponse> = _changeResponse
 
+    private val _changeUsernameResponse = MutableLiveData<BaseResponse>()
+    val changeUsernameResponse : LiveData<BaseResponse> = _changeUsernameResponse
+
     fun changeHead(headImage: MultipartBody.Part, Authorization: String) {
         viewModelScope.launch {
             val response = PetWelfareNetwork.changeHead(headImage, Authorization)
@@ -71,7 +74,7 @@ class MineViewModel : ViewModel() {
     fun changeUsername(username: String, Authorization: String) {
         viewModelScope.launch {
             val response = PetWelfareNetwork.changeUsername(username, Authorization)
-            _changeResponse.value = response
+            _changeUsernameResponse.value = response
             Log.d("username", username)
             if (response.code == 200) {
                 Log.d("changeUsername", "success")

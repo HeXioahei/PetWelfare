@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.add.loss
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +33,7 @@ class AddLossActivity : AppCompatActivity() {
 
     private var photosContainerList = mutableListOf<AppCompatImageView>()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
@@ -61,7 +63,17 @@ class AddLossActivity : AppCompatActivity() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
         }
 
+        binding.addressContainer.visibility = View.GONE
         binding.timeContainer.visibility = View.GONE
+        binding.address.setOnClickListener {
+            binding.addressContainer.visibility = View.VISIBLE
+            binding.confirmButton2.setOnClickListener {
+                val province = binding.province.text.toString()
+                val city = binding.city.text.toString()
+                binding.address.text = "${province}省 ${city}市"
+                binding.addressContainer.visibility = View.GONE
+            }
+        }
         binding.lossTime.setOnClickListener {
             binding.timeContainer.visibility = View.VISIBLE
             val year = LocalDateTime.now().year

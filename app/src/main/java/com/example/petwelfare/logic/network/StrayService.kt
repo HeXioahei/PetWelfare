@@ -4,6 +4,7 @@ import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetCommentsResponse
 import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
+import com.example.petwelfare.logic.model.GetStraySearchResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.DELETE
@@ -28,7 +29,7 @@ interface StrayService {
     fun searchStray(
         @Query("keywords") keywords: String,
         @Header("Authorization") Authorization: String
-    ): Call<GetStrayResponse>
+    ): Call<GetStraySearchResponse>
 
     @Multipart
     @POST("/stray/")

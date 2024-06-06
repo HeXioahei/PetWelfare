@@ -3,6 +3,7 @@ package com.example.petwelfare
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LifecycleOwner
 
 class PetWelfareApplication : Application() {
     companion object {

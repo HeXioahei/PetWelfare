@@ -9,7 +9,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMainBinding
+import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.dao.MineDao
 import com.example.petwelfare.ui.main.add.AddActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +41,15 @@ class MainActivity : AppCompatActivity() {
         binding.toWriteBtn.setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
+        }
+
+        // 刷新token
+        Repository.tokenLiveData.observe(this) {token->
+            Repository.Authorization = token
+            Repository.refreshToken = ""
+            CoroutineScope(Dispatchers.IO).launch {
+                MineDao.saveToken(Repository.Authorization, Repository.refreshToken)
+            }
         }
     }
 

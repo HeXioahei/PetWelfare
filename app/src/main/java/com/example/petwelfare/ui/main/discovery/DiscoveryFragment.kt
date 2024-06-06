@@ -2,6 +2,7 @@ package com.example.petwelfare.ui.main.discovery
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.FragmentDiscoveryBinding
 import com.example.petwelfare.ui.adapter.navadapter.DiscoveryNavAdapter
 import com.example.petwelfare.ui.adapter.viewpageradapter.DiscoveryFragmentStateAdapter
+import com.example.petwelfare.ui.main.discovery.search.DiscoverySearchActivity
 
 
 @Suppress("DEPRECATION")
@@ -66,7 +68,11 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         })
 
         binding.toSearchBtn.setOnClickListener {
-
+            val intent = Intent(PetWelfareApplication.context, DiscoverySearchActivity::class.java)
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(intent)
         }
 
         // 初始化定位客户端
@@ -80,7 +86,7 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
         option.isLocationCacheEnable = true // 是否使用缓存定位，默认为true
         option.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy // 设置定位模式为高精度模式
         option.isNeedAddress = true  //设置是否返回地址信息（默认返回地址信息
-        option.interval = 5000
+        option.interval = 50000
         locationClient.setLocationOption(option)
 
         // 一开始进入页面就获取地址
@@ -168,7 +174,10 @@ class DiscoveryFragment : Fragment(), AMapLocationListener {
             }else {
                 Log.d("errorCode", amapLocation.errorCode.toString())
                 when(amapLocation.errorCode) {
-                    3-> Toast.makeText(PetWelfareApplication.context, "请对所连接网络进行全面检查", Toast.LENGTH_SHORT).show()
+                    3-> {
+                        Toast.makeText(PetWelfareApplication.context, "请对所连接网络进行全面检查", Toast.LENGTH_SHORT).show()
+                        locationClient.stopLocation()
+                    }
                 }
 
                 //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。

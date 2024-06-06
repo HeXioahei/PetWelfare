@@ -367,17 +367,8 @@ object PetWelfareNetwork {
 
                     val errorBody = response.errorBody()
 
-//                    if (response.code() == 403) {
-//                        CoroutineScope(Dispatchers.IO).launch {
-//                            Repository._tokenLiveData.value = refreshToken(Repository.refreshToken).data.access_token
-//                            if (Repository.Authorization!="") {
-//                                MineDao.saveToken(Repository.Authorization, "")
-//                            }
-//                        }
-//                    }
-                    if (response.code() == 500) {
-                        Toast.makeText(PetWelfareApplication.context, "登陆已过期，请重新登录", Toast.LENGTH_SHORT).show()
-                        ActivityCollector.removeActivityUntilBegin()
+                    if (response.code() == 403) {
+                        Repository.refreshToken()
                     }
 
                     if (body != null) {

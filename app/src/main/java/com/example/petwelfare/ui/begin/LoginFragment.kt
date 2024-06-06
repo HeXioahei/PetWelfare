@@ -42,6 +42,7 @@ class LoginFragment(private val activity: LoginActivity) : Fragment() {
         binding.loginBtn.setOnClickListener {
             val mailbox = binding.loginMailbox.text.toString()
             val psd = binding.loginPassword.text.toString()
+            Log.d("psd3", psd)
             viewModel.login(mailbox, psd)
         }
 
