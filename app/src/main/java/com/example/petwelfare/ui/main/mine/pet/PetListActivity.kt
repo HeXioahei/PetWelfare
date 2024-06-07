@@ -34,6 +34,9 @@ class PetListActivity : AppCompatActivity() {
         layoutInflater.orientation = LinearLayoutManager.VERTICAL
         binding.petRecyclerView.layoutManager = layoutInflater
 
+        if (viewModel.myPetList.isNotEmpty()) binding.image.visibility = View.INVISIBLE
+        else binding.image.visibility = View.VISIBLE
+
         binding.returnBtn.setOnClickListener {
             finish()
         }

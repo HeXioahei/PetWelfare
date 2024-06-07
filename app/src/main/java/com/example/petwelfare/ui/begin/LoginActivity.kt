@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityLoginBinding
+import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -76,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
     // 成功登录，跳转页面
     fun toMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        Repository.advertiseFlag = true
         startActivity(intent)
     }
 

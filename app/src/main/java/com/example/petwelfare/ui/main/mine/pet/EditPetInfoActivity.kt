@@ -111,7 +111,7 @@ class EditPetInfoActivity : AppCompatActivity() {
             }
             if (PetViewModel.petInfo.sex != sex2) {
                 viewModel.changeInfo("sex", Repository.Authorization, sex2, PetViewModel.petInfo.pet_id)
-                PetViewModel.petTempInfo.sex = binding.sex.text.toString()
+                PetViewModel.petTempInfo.sex = sex2
             }
         }
 

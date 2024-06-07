@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.utils.ActivityCollector
@@ -46,7 +47,7 @@ open class MyStrayFragment(private val userId: Long) : Fragment() {
             }
         }
 
-        val myStrayAdapter = StrayAdapter(viewModel.myStrayList)
+        val myStrayAdapter = StrayAdapter(viewModel.myStrayList, "me")
         binding.myStray.adapter = myStrayAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -60,6 +61,12 @@ open class MyStrayFragment(private val userId: Long) : Fragment() {
             viewModel.myStrayList.addAll(result.data)
             myStrayAdapter.notifyDataSetChanged()
             binding.swipeRefresh.isRefreshing = false
+        }
+
+        // 响应删除流浪
+        ItemMineViewModel.delMyStray.observe(viewLifecycleOwner) {
+            Toast.makeText(PetWelfareApplication.context, "成功删除", Toast.LENGTH_SHORT).show()
+            viewModel.getMyStray(userId)
         }
 
         return binding.root

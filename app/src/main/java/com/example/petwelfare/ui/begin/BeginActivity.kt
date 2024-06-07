@@ -83,4 +83,9 @@ class BeginActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
 }

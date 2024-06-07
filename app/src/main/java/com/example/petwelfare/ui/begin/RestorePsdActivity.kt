@@ -101,10 +101,11 @@ class RestorePsdActivity : AppCompatActivity() {
                 Toast.makeText(PetWelfareApplication.context, "密码不一致，请重新确认密码", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("psd1", binding.psdInReset.text.toString())
+                Log.d("verification", binding.verification.text.toString())
                 viewModel.resetPsd(
                     binding.mailboxInReset.text.toString(),
-                    binding.verification.text.toString(),
-                    psd
+                    psd,
+                    binding.verification.text.toString()
                 )
             }
         }

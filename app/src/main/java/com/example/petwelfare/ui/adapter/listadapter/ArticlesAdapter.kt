@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,14 +15,18 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemArticleBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
+import com.example.petwelfare.logic.network.PetWelfareNetwork
 import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
+import com.example.petwelfare.ui.main.mine.item.mine.ItemMineViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
-class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
+class ArticlesAdapter(private val list: MutableList<Article>, val type: String) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
-        val followIron = binding.followBtn
         val headImage = binding.headImage
         val username = binding.username
         val time = binding.time
@@ -33,6 +38,9 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
         val likeIron = binding.likeIron
         val commentsCount = binding.commentsNums
         val article = binding.article
+
+        val toMenuBtn = binding.toMenu
+        val delBtn = binding.delBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,6 +53,29 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+
+        if (type == "me") {
+            holder.toMenuBtn.visibility = View.VISIBLE
+            holder.delBtn.visibility = View.GONE
+
+            holder.toMenuBtn.setOnClickListener {
+                if (holder.delBtn.visibility == View.GONE) {
+                    holder.delBtn.visibility = View.VISIBLE
+                    holder.delBtn.setOnClickListener {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            ItemMineViewModel._delMyArticle.value =
+                                PetWelfareNetwork.delMyArticles(item.id.toString(), Repository.Authorization)
+                        }
+                    }
+                } else {
+                    holder.delBtn.visibility = View.GONE
+                }
+            }
+        } else {
+            holder.toMenuBtn.visibility = View.GONE
+            holder.delBtn.visibility = View.GONE
+        }
+
         //...进行数据的处理与呈现
         // 呈现头像
         // 设置头像和图片
@@ -64,11 +95,11 @@ class ArticlesAdapter(private val list: MutableList<Article>) : RecyclerView.Ada
             holder.photosContainer[i].let { Glide.with(PetWelfareApplication.context).load(photoGlideUrl).into(it) }
         }
         // 设置其他
-        if (item.user.follow_status == 0) {
-            holder.followIron.setBackgroundResource(R.drawable.img_unfollowed_2)
-        } else {
-            holder.followIron.setBackgroundResource(R.drawable.img_followed)
-        }
+//        if (item.user.follow_status == 0) {
+//            holder.followIron.setBackgroundResource(R.drawable.img_unfollowed_2)
+//        } else {
+//            holder.followIron.setBackgroundResource(R.drawable.img_followed)
+//        }
         holder.username.text = item.user.username
         holder.time.text = item.time
         holder.articleText.text = item.text

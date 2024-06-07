@@ -31,7 +31,7 @@ class LoadingActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        ActivityCollector.removeActivity(this)
+        ActivityCollector.removeAll()
     }
 
     override fun onRestart() {

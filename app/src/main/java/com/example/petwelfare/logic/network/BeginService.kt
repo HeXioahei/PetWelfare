@@ -1,5 +1,6 @@
 package com.example.petwelfare.logic.network
 
+import android.util.Log
 import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetNewAccessTokenResponse
 import com.example.petwelfare.logic.model.LoginResponse
@@ -38,6 +39,7 @@ interface BeginService {
         @Query("password") password: String,
         @Query("verification") verification: String
     ): Call<BaseResponse>
+
 
     @GET("/users/refreshtoken")
     fun refreshToken(

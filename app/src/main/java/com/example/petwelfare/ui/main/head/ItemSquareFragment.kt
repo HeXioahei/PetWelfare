@@ -28,7 +28,7 @@ open class ItemSquareFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         binding = FragmentItemSquareBinding.inflate(inflater, container, false)
 
-        val articlesAdapter = ArticlesAdapter(viewModel.articlesList)
+        val articlesAdapter = ArticlesAdapter(viewModel.articlesList, "other")
         binding.articlesList.adapter = articlesAdapter
         val layoutManager = LinearLayoutManager(mainActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

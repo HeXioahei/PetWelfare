@@ -9,6 +9,26 @@
     android:background="#ffffff"
     android:id="@+id/loss">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/delBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="删除"
+        android:gravity="center"
+        android:fontFamily="@font/source_regular"
+        android:background="#FFF8EC"
+        app:layout_constraintEnd_toEndOf="@+id/to_menu"
+        app:layout_constraintTop_toBottomOf="@+id/to_menu" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/to_menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_menu_down"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat9"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutCompat9" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/photoContainer"
         android:layout_width="match_parent"
@@ -32,6 +52,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp">
 
             <androidx.appcompat.widget.AppCompatTextView

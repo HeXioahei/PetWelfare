@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
@@ -37,6 +38,7 @@ class StrayDetailActivity : AppCompatActivity() {
         viewModel.stray.id = intent.getIntExtra("strayId", -1)
         viewModel.stray.address = intent.getStringExtra("address").toString()
         viewModel.stray.photos = intent.getStringArrayListExtra("photos") as MutableList<String>
+        viewModel.stray.description = intent.getStringExtra("description").toString()
 
         viewModel.stray.user.username = intent.getStringExtra("username").toString()
         viewModel.stray.user.id = intent.getLongExtra("userId", -1L)
@@ -63,7 +65,7 @@ class StrayDetailActivity : AppCompatActivity() {
         }
 
         if (viewModel.stray.collect_status == 0) {
-            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected_3)
+            binding.collectBtn.setBackgroundResource(R.drawable.img_uncollected)
         } else {
             binding.collectBtn.setBackgroundResource(R.drawable.img_collected_3)
         }
@@ -149,11 +151,18 @@ class StrayDetailActivity : AppCompatActivity() {
         for (i in list.indices) {
             val item = list[i]
             val view = layoutInflater.inflate(R.layout.item_comments_parent, null, false)
-            val respondBtn : ImageView = view.findViewById(R.id.respondBtn)
+            val respondBtn : AppCompatTextView = view.findViewById(R.id.respondBtn)
             respondBtn.setOnClickListener {
                 writeComments(item.cid, 2)
             }
             val headImage = view.findViewById<ImageView>(R.id.userHeadImage)
+            val glideUrl = GlideUrl(item.head_image, Repository.lazyHeaders)
+            headImage.let { Glide.with(this).load(glideUrl).into(it) }
+            headImage.setOnClickListener {
+                val intent = Intent(this, OtherUserDetailActivity::class.java)
+                intent.putExtra("userId", item.id)
+                startActivity(intent)
+            }
             headImage.setOnClickListener {
                 val intent = Intent(this, OtherUserDetailActivity::class.java)
                 startActivity(intent)

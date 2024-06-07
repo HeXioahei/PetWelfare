@@ -220,7 +220,7 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/to_write_comments"
             android:layout_width="200dp"
             android:layout_height="36dp"

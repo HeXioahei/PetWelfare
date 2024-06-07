@@ -50,7 +50,7 @@ class AddPetActivity : AppCompatActivity() {
                 }
             }
         binding.headImage.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
         binding.menuContainer.visibility = View.GONE

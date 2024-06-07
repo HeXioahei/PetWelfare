@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.utils.ActivityCollector
@@ -47,7 +48,7 @@ open class MyLossFragment(private val userId: Long) : Fragment() {
             }
         }
 
-        val myLossAdapter = LossAdapter(viewModel.myLossList)
+        val myLossAdapter = LossAdapter(viewModel.myLossList, "me")
         binding.myLoss.adapter = myLossAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -61,6 +62,12 @@ open class MyLossFragment(private val userId: Long) : Fragment() {
             viewModel.myLossList.addAll(result.data)
             myLossAdapter.notifyDataSetChanged()
             binding.swipeRefresh.isRefreshing = false
+        }
+
+        // 响应删除走失
+        ItemMineViewModel.delMyLoss.observe(viewLifecycleOwner) {
+            Toast.makeText(PetWelfareApplication.context, "成功删除", Toast.LENGTH_SHORT).show()
+            viewModel.getMyLoss(userId)
         }
 
         return binding.root

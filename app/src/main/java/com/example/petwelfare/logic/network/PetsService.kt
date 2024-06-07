@@ -33,6 +33,7 @@ interface PetsService {
         @Part head_image: MultipartBody.Part
     ): Call<BaseResponse>
 
+    @Multipart
     @PUT("/pets/changes/head/")
     fun changeHead(
         @Query("pet_id") pet_id: Int,

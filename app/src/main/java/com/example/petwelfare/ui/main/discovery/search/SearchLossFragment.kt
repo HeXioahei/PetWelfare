@@ -32,7 +32,7 @@ class SearchLossFragment(val keywords: String) : Fragment() {
 
         viewModel.searchLoss(keywords)
 
-        val lossAdapter = LossAdapter(viewModel.searchLossList)
+        val lossAdapter = LossAdapter(viewModel.searchLossList, "other")
         binding.list.adapter = lossAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

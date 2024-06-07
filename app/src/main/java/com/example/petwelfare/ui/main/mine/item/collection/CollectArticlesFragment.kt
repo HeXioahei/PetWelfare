@@ -29,7 +29,7 @@ class CollectArticlesFragment : Fragment() {
         // 获取列表
         viewModel.getCollectArticles()
 
-        val collectArticlesAdapter = ArticlesAdapter(viewModel.collectArticlesList)
+        val collectArticlesAdapter = ArticlesAdapter(viewModel.collectArticlesList, "other")
         binding.collectArticles.adapter = collectArticlesAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

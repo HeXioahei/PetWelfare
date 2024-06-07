@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
@@ -167,7 +168,7 @@ class LossDetailActivity : AppCompatActivity() {
         for (i in list.indices) {
             val item = list[i]
             val view = layoutInflater.inflate(R.layout.item_comments_parent, null, false)
-            val respondBtn : ImageView = view.findViewById(R.id.respondBtn)
+            val respondBtn : AppCompatTextView = view.findViewById(R.id.respondBtn)
             respondBtn.setOnClickListener {
                 writeComments(item.cid, 2)
             }

@@ -29,7 +29,7 @@ class CollectStrayFragment : Fragment() {
         // 获取列表
         viewModel.getCollectStray()
 
-        val collectStrayAdapter = StrayAdapter(viewModel.collectStrayList)
+        val collectStrayAdapter = StrayAdapter(viewModel.collectStrayList, "other")
         binding.collectStray.adapter = collectStrayAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

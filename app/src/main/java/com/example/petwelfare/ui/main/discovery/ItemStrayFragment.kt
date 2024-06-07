@@ -27,7 +27,7 @@ class ItemStrayFragment : Fragment() {
         binding = FragmentItemStrayBinding.inflate(inflater, container, false)
 
 
-        val strayAdapter = StrayAdapter(viewModel.strayList)
+        val strayAdapter = StrayAdapter(viewModel.strayList, "other")
         binding.strayList.adapter = strayAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

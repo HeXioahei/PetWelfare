@@ -56,7 +56,7 @@ class AddArticlesActivity : AppCompatActivity() {
                 }
             }
         binding.toPhotoPickerBtn.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
 

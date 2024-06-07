@@ -9,6 +9,7 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
+import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetArticlesResponse
 import com.example.petwelfare.logic.model.GetLossResponse
 import com.example.petwelfare.logic.model.GetStrayResponse
@@ -21,6 +22,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ItemMineViewModel : ViewModel() {
+
+    companion object {
+        val _delMyArticle = MutableLiveData<BaseResponse>()
+        val delMyArticle : LiveData<BaseResponse> = _delMyArticle
+
+        val _delMyLoss = MutableLiveData<BaseResponse>()
+        val delMyLoss : LiveData<BaseResponse> = _delMyLoss
+
+        val _delMyStray = MutableLiveData<BaseResponse>()
+        val delMyStray : LiveData<BaseResponse> = _delMyStray
+    }
 
     var viewPagerList: List<Fragment> = listOf(
         MyArticlesFragment(Repository.myId),

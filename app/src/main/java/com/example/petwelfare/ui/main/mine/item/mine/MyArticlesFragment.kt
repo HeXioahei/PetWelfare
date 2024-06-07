@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.petwelfare.PetWelfareApplication
@@ -42,12 +43,13 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
             }
         }
 
-        val myArticlesAdapter = ArticlesAdapter(viewModel.myArticlesList)
+        val myArticlesAdapter = ArticlesAdapter(viewModel.myArticlesList, "me")
         binding.myArticles.adapter = myArticlesAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.myArticles.layoutManager = layoutManager
 
+        // 响应获取推文
         viewModel.myArticles.observe(viewLifecycleOwner) { result->
             if (result.data.isNotEmpty()) binding.image.visibility = View.INVISIBLE
             else binding.image.visibility = View.VISIBLE
@@ -56,6 +58,12 @@ open class MyArticlesFragment(private val userId: Long) : Fragment() {
             viewModel.myArticlesList.addAll(result.data)
             myArticlesAdapter.notifyDataSetChanged()
             binding.swipeRefresh.isRefreshing = false
+        }
+
+        // 响应删除推文
+        ItemMineViewModel.delMyArticle.observe(viewLifecycleOwner) {
+            Toast.makeText(PetWelfareApplication.context, "成功删除", Toast.LENGTH_SHORT).show()
+            viewModel.getMyArticles(userId)
         }
 
         return binding.root

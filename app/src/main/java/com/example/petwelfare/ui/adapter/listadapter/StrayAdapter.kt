@@ -2,7 +2,9 @@ package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,10 +15,15 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemStrayBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Stray
+import com.example.petwelfare.logic.network.PetWelfareNetwork
 import com.example.petwelfare.ui.item.itemdetail.StrayDetailActivity
+import com.example.petwelfare.ui.main.mine.item.mine.ItemMineViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
-class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter<StrayAdapter.ViewHolder>() {
+class StrayAdapter (private val list: MutableList<Stray>, val type: String) : RecyclerView.Adapter<StrayAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemStrayBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -30,6 +37,9 @@ class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter
         val collectBtn = binding.collectBtn
         val collectCount = binding.collectCount
         val commentsCount = binding.commentsCount
+
+        val toMenuBtn = binding.toMenu
+        val delBtn = binding.delBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,6 +52,30 @@ class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+
+        if (type == "me") {
+            holder.toMenuBtn.visibility = View.VISIBLE
+            holder.delBtn.visibility = View.GONE
+
+            holder.toMenuBtn.setOnClickListener {
+                if (holder.delBtn.visibility == View.GONE) {
+                    holder.delBtn.visibility = View.VISIBLE
+                    holder.delBtn.setOnClickListener {
+                        Log.d("id", item.id.toString())
+                        CoroutineScope(Dispatchers.Main).launch {
+                            ItemMineViewModel._delMyArticle.value =
+                                PetWelfareNetwork.delMyStray(item.id.toString(), Repository.Authorization)
+                        }
+                    }
+                } else {
+                    holder.delBtn.visibility = View.GONE
+                }
+            }
+        } else {
+            holder.toMenuBtn.visibility = View.GONE
+            holder.delBtn.visibility = View.GONE
+        }
+
         //...进行数据的处理与呈现
         // 设置头像
         val lazyHeaders = LazyHeaders.Builder()
@@ -50,6 +84,7 @@ class StrayAdapter (private val list: MutableList<Stray>) : RecyclerView.Adapter
         val headImageString = item.user.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
         holder.userHeadImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
+        holder.username.text = item.user.username
         // 设置其他
         if (item.photos.size!=0) {
             val photoGlideUrl = GlideUrl(item.photos[0], Repository.lazyHeaders)

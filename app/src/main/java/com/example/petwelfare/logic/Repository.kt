@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 object Repository {
 
     var networkFailedCount = 0
+    var advertiseFlag = true
 
     val _tokenLiveData = MutableLiveData<String>()
     val tokenLiveData : LiveData<String> = _tokenLiveData

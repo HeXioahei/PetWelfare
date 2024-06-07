@@ -30,7 +30,7 @@ class SearchSquareFragment(private val keywords: String) : Fragment() {
 
         viewModel.searchArticles(keywords)
 
-        val articlesAdapter = ArticlesAdapter(viewModel.searchArticlesList)
+        val articlesAdapter = ArticlesAdapter(viewModel.searchArticlesList, "other")
         binding.articlesList.adapter = articlesAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

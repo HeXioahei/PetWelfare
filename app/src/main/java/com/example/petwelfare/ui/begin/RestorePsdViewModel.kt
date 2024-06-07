@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.begin
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,9 +25,10 @@ class RestorePsdViewModel : ViewModel() {
         }
     }
 
-    fun resetPsd(mailbox2: String, verification: String, psd: String) {
+    fun resetPsd(mailbox2: String, psd: String, verification: String) {
         viewModelScope.launch {
-            _resetPsdResponse.value = PetWelfareNetwork.resetPassword(mailbox2, verification, psd)
+            Log.d("verification", verification)
+            _resetPsdResponse.value = PetWelfareNetwork.resetPassword(mailbox2, psd, verification)
         }
     }
 }

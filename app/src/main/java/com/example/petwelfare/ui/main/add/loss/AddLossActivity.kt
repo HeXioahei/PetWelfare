@@ -60,7 +60,7 @@ class AddLossActivity : AppCompatActivity() {
                 }
             }
         binding.toPhotoPickerBtn.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
         binding.addressContainer.visibility = View.GONE

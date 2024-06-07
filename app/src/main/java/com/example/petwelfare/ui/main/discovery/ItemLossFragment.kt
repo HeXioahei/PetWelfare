@@ -26,7 +26,7 @@ class ItemLossFragment : Fragment() {
     ): View {
         binding = FragmentItemLossBinding.inflate(inflater, container, false)
 
-        val lossAdapter = LossAdapter(viewModel.lossList)
+        val lossAdapter = LossAdapter(viewModel.lossList, "other")
         binding.lossList.adapter = lossAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

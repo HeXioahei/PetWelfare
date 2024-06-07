@@ -32,7 +32,7 @@ class SearchStrayFragment(val keywords: String) : Fragment() {
 
         viewModel.searchStray(keywords)
 
-        val strayAdapter = StrayAdapter(viewModel.searchStrayList)
+        val strayAdapter = StrayAdapter(viewModel.searchStrayList, "other")
         binding.list.adapter = strayAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL

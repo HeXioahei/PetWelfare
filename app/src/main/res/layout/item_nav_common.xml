@@ -2,28 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_item"
-    android:layout_width="60dp"
+    android:layout_width="wrap_content"
     android:layout_height="45dp"
     android:layout_marginHorizontal="10dp">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nav_item_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="nav"
         android:fontFamily="@font/source_regular"
-        android:textColor="@color/text_gray"
         android:gravity="center"
+        android:text="nav"
+        android:textColor="@color/text_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/nav_item_cursor"
-        android:layout_width="match_parent"
+        android:layout_width="40dp"
         android:layout_height="5dp"
         android:layout_marginHorizontal="10dp"
+        android:background="@drawable/img_cursor"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/img_cursor"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

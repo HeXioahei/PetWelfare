@@ -2,7 +2,9 @@ package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,10 +14,15 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemLossBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Loss
+import com.example.petwelfare.logic.network.PetWelfareNetwork
 import com.example.petwelfare.ui.item.itemdetail.LossDetailActivity
+import com.example.petwelfare.ui.main.mine.item.mine.ItemMineViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
-class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<LossAdapter.ViewHolder>() {
+class LossAdapter(private val list: MutableList<Loss>, val type : String) : RecyclerView.Adapter<LossAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemLossBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -33,6 +40,9 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
         val collectBtn = binding.collectBtn
         val collectCount = binding.collectCount
         val commentsCount = binding.commentsCount
+
+        val toMenuBtn = binding.toMenu
+        val delBtn = binding.delBtn
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,6 +55,30 @@ class LossAdapter(private val list: MutableList<Loss>) : RecyclerView.Adapter<Lo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+
+        if (type == "me") {
+            holder.toMenuBtn.visibility = View.VISIBLE
+            holder.delBtn.visibility = View.GONE
+
+            holder.toMenuBtn.setOnClickListener {
+                if (holder.delBtn.visibility == View.GONE) {
+                    holder.delBtn.visibility = View.VISIBLE
+                    holder.delBtn.setOnClickListener {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            Log.d("id", item.id.toString())
+                            ItemMineViewModel._delMyArticle.value =
+                                PetWelfareNetwork.delMyLoss(item.id.toString(), Repository.Authorization)
+                        }
+                    }
+                } else {
+                    holder.delBtn.visibility = View.GONE
+                }
+            }
+        } else {
+            holder.toMenuBtn.visibility = View.GONE
+            holder.delBtn.visibility = View.GONE
+        }
+
         //...进行数据的处理与呈现
         holder.username.text = item.user.username
         val userHeadImageGlideUrl = GlideUrl(item.user.head_image, Repository.lazyHeaders)

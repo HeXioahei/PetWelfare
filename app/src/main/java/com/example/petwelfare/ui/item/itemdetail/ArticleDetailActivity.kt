@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
@@ -56,7 +57,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         viewModel.article.collect_status = intent.getIntExtra("collectStatus", 0)
         viewModel.article.like_nums = intent.getIntExtra("likeNums", 0)
         viewModel.article.like_status = intent.getIntExtra("likeStatus", 0)
-        viewModel.article.comment_nums = intent.getIntExtra("commentNums", 0)
+        viewModel.article.comment_nums = intent.getIntExtra("commentsNums", 0)
         viewModel.article.media = intent.getStringArrayListExtra("photos") as MutableList<String>
 
 //        val photoList = listOf(binding.picture1, binding.picture2, binding.picture3)
@@ -197,7 +198,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         for (i in list.indices) {
             val item = list[i]
             val view = layoutInflater.inflate(R.layout.item_comments_parent, binding.commentsList, false)
-            val respondBtn : ImageView = view.findViewById(R.id.respondBtn)
+            val respondBtn : AppCompatTextView = view.findViewById(R.id.respondBtn)
             respondBtn.setOnClickListener {
                 writeComments(item.cid, 2)
                 respondIndex = i

@@ -29,7 +29,7 @@ class CollectLossFragment : Fragment() {
         // 获取列表
         viewModel.getCollectLoss()
 
-        val collectLossAdapter = LossAdapter(viewModel.collectLossList)
+        val collectLossAdapter = LossAdapter(viewModel.collectLossList, "other")
         binding.collectLoss.adapter = collectLossAdapter
         val layoutManager = LinearLayoutManager(PetWelfareApplication.context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
