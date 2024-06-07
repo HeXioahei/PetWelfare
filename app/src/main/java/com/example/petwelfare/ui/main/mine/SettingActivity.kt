@@ -1,6 +1,7 @@
 package com.example.petwelfare.ui.main.mine
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivitySettingBinding
@@ -27,7 +28,15 @@ class SettingActivity : AppCompatActivity() {
         }
 
         binding.exit.setOnClickListener {
-            Repository.exit()
+            val dialogBuilder = AlertDialog.Builder(this)
+            dialogBuilder.setMessage("确定要退出登录吗？")
+            dialogBuilder.setPositiveButton("确定") {_,_->
+                Repository.exit()
+            }
+            dialogBuilder.setNegativeButton("取消") { dialog,_->
+                dialog.dismiss()
+            }
+            dialogBuilder.show()
         }
     }
 

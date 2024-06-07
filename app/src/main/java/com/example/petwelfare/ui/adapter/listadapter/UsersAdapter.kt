@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -24,7 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UsersAdapter (private val list: MutableList<UserBrief>, private val lifecycleOwner: LifecycleOwner, private val context: Context) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
+class UsersAdapter (private val list: MutableList<UserBrief>) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         // 数据与视图绑定
@@ -51,7 +52,7 @@ class UsersAdapter (private val list: MutableList<UserBrief>, private val lifecy
             .build()
         val headImageString = item.head_image
         val headImageGlideUrl = GlideUrl(headImageString, lazyHeaders)
-        holder.headImage.let { Glide.with(context).load(headImageGlideUrl).into(it) }
+        holder.headImage.let { Glide.with(PetWelfareApplication.context).load(headImageGlideUrl).into(it) }
         holder.personality.text = item.personality
         holder.name.text = item.name
 
@@ -83,9 +84,12 @@ class UsersAdapter (private val list: MutableList<UserBrief>, private val lifecy
 //        }
 
         holder.user.setOnClickListener {
-            val intent = Intent(context, OtherUserDetailActivity::class.java)
+            val intent = Intent(PetWelfareApplication.context, OtherUserDetailActivity::class.java)
             intent.putExtra("userId", item.id)
-            context.startActivity(intent)
+            if (PetWelfareApplication.context !is Activity) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            PetWelfareApplication.context.startActivity(intent)
         }
     }
 }

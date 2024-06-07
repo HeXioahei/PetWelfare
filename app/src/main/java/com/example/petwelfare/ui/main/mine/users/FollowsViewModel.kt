@@ -1,5 +1,6 @@
 package com.example.petwelfare.ui.main.mine.users
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,10 @@ import kotlinx.coroutines.launch
 
 class FollowsViewModel : ViewModel() {
 
+    var fragmentList = listOf(
+        FollowsFragment(),
+        CollectOrgsFragment()
+    )
 
     var followsList : MutableList<UserBrief> = mutableListOf()
     var orsList : MutableList<Org> = mutableListOf()

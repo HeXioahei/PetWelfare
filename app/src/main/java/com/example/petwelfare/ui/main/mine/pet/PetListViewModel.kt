@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.petwelfare.logic.Repository
+import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.GetPetsInfoResponse
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import kotlinx.coroutines.delay
@@ -17,6 +19,11 @@ class PetListViewModel : ViewModel() {
 
     private val _myPetListLiveData = MutableLiveData<GetPetsInfoResponse>()
     val myPetListLiveData : LiveData<GetPetsInfoResponse> = _myPetListLiveData
+
+    companion object {
+        val _delPetResponse = MutableLiveData<BaseResponse>()
+        val delPetResponse : LiveData<BaseResponse> = _delPetResponse
+    }
 
     fun getMyPetList() {
         viewModelScope.launch {

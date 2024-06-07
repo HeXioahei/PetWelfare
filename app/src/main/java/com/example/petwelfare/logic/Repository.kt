@@ -18,12 +18,14 @@ import kotlinx.coroutines.launch
 
 object Repository {
 
+    var networkFailedCount = 0
+
     val _tokenLiveData = MutableLiveData<String>()
     val tokenLiveData : LiveData<String> = _tokenLiveData
 
     fun refreshToken() {
         if (refreshToken != "") {
-            CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.Main).launch {
                 _tokenLiveData.value = PetWelfareNetwork.refreshToken(refreshToken).data.access_token
             }
         } else {

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.utils.ActivityCollector
 import com.example.petwelfare.databinding.ActivityPetListBinding
 import com.example.petwelfare.logic.Repository
@@ -40,6 +42,16 @@ class PetListActivity : AppCompatActivity() {
         binding.addPetBtn.setOnClickListener {
             val intent = Intent(this, AddPetActivity::class.java)
             startActivity(intent)
+        }
+
+        // 删除动物
+        PetListViewModel.delPetResponse.observe(this) { result->
+            if (result.code == 200) {
+                Toast.makeText(PetWelfareApplication.context, "删除成功", Toast.LENGTH_SHORT).show()
+                viewModel.getMyPetList()
+            } else if (result.code != 0) {
+                Toast.makeText(PetWelfareApplication.context, "删除失败", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // 手动刷新

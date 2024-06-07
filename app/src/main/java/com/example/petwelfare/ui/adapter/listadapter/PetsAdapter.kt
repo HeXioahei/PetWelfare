@@ -24,9 +24,11 @@ import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.Pet
 import com.example.petwelfare.logic.network.PetWelfareNetwork
 import com.example.petwelfare.ui.main.mine.pet.PetActivity
+import com.example.petwelfare.ui.main.mine.pet.PetListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
@@ -80,19 +82,11 @@ class PetsAdapter (private val list: MutableList<Pet>, private val activity: App
             alertDialogBuilder.setMessage("确定删除该宠物吗？")
 
             alertDialogBuilder.setPositiveButton("确定") { dialog, _ ->
-                val _delPetResponse = MutableLiveData<BaseResponse>()
-                val delPetResponse : LiveData<BaseResponse> = _delPetResponse
-                CoroutineScope(Dispatchers.IO).launch {
-                    _delPetResponse.value = PetWelfareNetwork.delPet(item.pet_id.toString(), Repository.Authorization)
+                CoroutineScope(Dispatchers.Main).launch {
+                    PetListViewModel._delPetResponse.value =
+                        PetWelfareNetwork.delPet(item.pet_id.toString(), Repository.Authorization)
                 }
-                delPetResponse.observe(activity) { result->
-                    if (result.code == 200) {
-                        Toast.makeText(PetWelfareApplication.context, "删除成功", Toast.LENGTH_SHORT).show()
-                    } else if (result.code != 0) {
-                        Toast.makeText(PetWelfareApplication.context, "删除失败", Toast.LENGTH_SHORT).show()
-                    }
-                    _delPetResponse.value = BaseResponse(0, "") // 以便下一次再进行删除的网络请求
-                }
+
 
                 dialog.dismiss()
             }

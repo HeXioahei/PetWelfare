@@ -371,6 +371,13 @@ object PetWelfareNetwork {
                         Repository.refreshToken()
                     }
 
+                    if (response.code() == 500) {
+                        if ((++Repository.networkFailedCount) == 5) {
+                            Toast.makeText(PetWelfareApplication.context, "登陆已过期，请重新登录", Toast.LENGTH_SHORT).show()
+                            Repository.exit()
+                        }
+                    }
+
                     if (body != null) {
                         continuation.resume(body)
                     } else {
