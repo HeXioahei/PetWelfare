@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemNavCommonBinding
-import com.example.petwelfare.ui.main.discovery.DiscoveryFragment
-import com.example.petwelfare.ui.main.mine.item.collection.ItemCollectionFragment
-import com.example.petwelfare.ui.main.mine.item.mine.ItemMineFragment
+import com.example.petwelfare.ui.main.mine.itemlist.collection.fragment.ItemCollectionFragment
 
 class CollectionNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<CollectionNavAdapter.MyViewHolder>() {
 

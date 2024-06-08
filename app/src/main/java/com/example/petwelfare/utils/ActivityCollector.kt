@@ -3,12 +3,12 @@ package com.example.petwelfare.utils
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
-import com.example.petwelfare.ui.begin.BeginActivity
+import com.example.petwelfare.ui.begin.activity.BeginActivity
 import com.example.petwelfare.ui.main.MainActivity
-import com.example.petwelfare.ui.begin.LoginActivity
-import com.example.petwelfare.ui.begin.load.LoadingActivity
+import com.example.petwelfare.ui.begin.activity.LoginActivity
+import com.example.petwelfare.ui.begin.activity.LoadingActivity
 import com.example.petwelfare.ui.main.mine.MineActivity
-import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
+import com.example.petwelfare.ui.main.otheruser.activity.OtherUserDetailActivity
 
 object ActivityCollector {
     private val activities = ArrayList<Activity> ()

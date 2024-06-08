@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.begin.load.LoadFragment2">
+    tools:context=".ui.begin.fragment.LoadFragment2">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"

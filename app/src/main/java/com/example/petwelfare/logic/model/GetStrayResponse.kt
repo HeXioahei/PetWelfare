@@ -19,6 +19,7 @@ data class StraySearch (
 data class Stray(
     // 发现地址
     var address: String,
+
     var id: Int,
     var collect_status: Int,
     var collect_nums: Int,
@@ -31,6 +32,7 @@ data class Stray(
 
     // 发布者
     var user: UserMostBrief
+
 ) {
     constructor() : this(
         "福建省 福州市", 0, 0, 0, 0,

@@ -11,6 +11,7 @@ data class Talks (
 )
 
 data class Msg (
+
     // 该信息所属者在总用户列表中的id
     val id: Long,
 
@@ -19,6 +20,7 @@ data class Msg (
 
     // 该条信息的时间
     val time: String
+
 ) {
     companion object {
         const val TYPE_RECEIVE = 0

@@ -15,8 +15,8 @@ import com.example.petwelfare.databinding.ItemLossBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Loss
 import com.example.petwelfare.logic.network.PetWelfareNetwork
-import com.example.petwelfare.ui.item.itemdetail.LossDetailActivity
-import com.example.petwelfare.ui.main.mine.item.mine.ItemMineViewModel
+import com.example.petwelfare.ui.itemdetail.activity.LossDetailActivity
+import com.example.petwelfare.ui.main.mine.itemlist.mine.viewmodel.ItemMineViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,6 +60,7 @@ class LossAdapter(private val list: MutableList<Loss>, val type : String) : Recy
             holder.toMenuBtn.visibility = View.VISIBLE
             holder.delBtn.visibility = View.GONE
 
+            // 设置删除按钮
             holder.toMenuBtn.setOnClickListener {
                 if (holder.delBtn.visibility == View.GONE) {
                     holder.delBtn.visibility = View.VISIBLE

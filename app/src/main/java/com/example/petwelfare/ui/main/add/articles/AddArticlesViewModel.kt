@@ -28,20 +28,4 @@ class AddArticlesViewModel : ViewModel() {
         }
     }
 
-    fun resetChangeResponse(code: Int, msg: String) {
-        _addArticlesResponse.value = BaseResponse(code, msg)
-    }
-
-//    fun writeArticle(time: String, text: String, Authorization: String, photo_list: MultipartBody.Part) : Int {
-//        var code = 0
-//        runBlocking {
-//            coroutineScope {
-//                launch {
-//                    code = PetWelfareNetwork.writeArticle(time, text, Authorization, photo_list).code
-//                }
-//            }
-//        }
-//        return code
-//    }
-
 }

@@ -1,7 +1,5 @@
 package com.example.petwelfare.logic.model
 
-import android.view.textclassifier.ConversationActions.Message
-
 class ErrorResponse (
     var code: Int,
     var msg: String,

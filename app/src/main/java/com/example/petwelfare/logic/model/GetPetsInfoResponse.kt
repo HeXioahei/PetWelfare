@@ -19,26 +19,21 @@ data class Pets(
 data class Pet(
     var birthday: String,
 
-    /**
-     * 其他描述
-     */
+    // 其他描述
     var description: String,
-    var head_image: String,
 
+    var head_image: String,
     var name: String,
 
-    /**
-     * 在该用户的宠物列表中的id
-     */
+    // 在宠物列表中的id
     var pet_id: Int,
 
-    /**
-     * 照片墙照片
-     */
+    // 照片墙照片
     var photos: ArrayList<String>,
 
     var sex: String,
     var type: String
+
 ) : Serializable {
 
     constructor() : this(

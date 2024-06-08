@@ -36,7 +36,6 @@ class AddLossActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
 
         ActivityCollector.addActivity(this)
 
@@ -198,7 +197,6 @@ class AddLossActivity : AppCompatActivity() {
             photosList.removeAt(index)
         }
         alertDialog.setNegativeButton("取消") { dialog, _ ->
-            // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑
             dialog.dismiss()
         }
 

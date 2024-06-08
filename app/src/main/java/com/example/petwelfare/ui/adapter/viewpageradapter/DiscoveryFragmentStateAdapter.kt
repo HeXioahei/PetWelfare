@@ -2,7 +2,7 @@ package com.example.petwelfare.ui.adapter.viewpageradapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.petwelfare.ui.main.discovery.DiscoveryFragment
+import com.example.petwelfare.ui.main.discovery.fragment.DiscoveryFragment
 
 class DiscoveryFragmentStateAdapter(val fragment: DiscoveryFragment, val list: List<Fragment>) : FragmentStateAdapter(fragment) {
 

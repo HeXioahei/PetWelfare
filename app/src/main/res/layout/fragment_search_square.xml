@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.head.search.SearchSquareFragment">
+    tools:context=".ui.main.head.search.fragment.SearchSquareFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"

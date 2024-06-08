@@ -1,18 +1,12 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDialog
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
@@ -20,17 +14,13 @@ import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.databinding.ItemPetBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.Pet
 import com.example.petwelfare.logic.network.PetWelfareNetwork
-import com.example.petwelfare.ui.main.mine.pet.PetActivity
-import com.example.petwelfare.ui.main.mine.pet.PetListViewModel
+import com.example.petwelfare.ui.main.mine.pet.activity.PetActivity
+import com.example.petwelfare.ui.main.mine.pet.viewmodel.PetListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
 
 class PetsAdapter (private val list: MutableList<Pet>, private val activity: AppCompatActivity, val type: Int, val userId : Long) : RecyclerView.Adapter<PetsAdapter.ViewHolder>() {
 

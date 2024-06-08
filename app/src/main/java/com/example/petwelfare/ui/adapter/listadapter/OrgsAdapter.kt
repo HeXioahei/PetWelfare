@@ -13,7 +13,7 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemOrgBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Org
-import com.example.petwelfare.ui.item.itemdetail.OrgDetailActivity
+import com.example.petwelfare.ui.itemdetail.activity.OrgDetailActivity
 
 class OrgsAdapter (private val list: MutableList<Org>) : RecyclerView.Adapter<OrgsAdapter.ViewHolder>() {
 

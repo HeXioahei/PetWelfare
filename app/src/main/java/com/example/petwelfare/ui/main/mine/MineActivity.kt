@@ -16,8 +16,8 @@ import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ActivityMineBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.ui.main.mine.edit.EditMyInfoActivity
-import com.example.petwelfare.ui.main.mine.users.FansActivity
-import com.example.petwelfare.ui.main.mine.users.FollowsActivity
+import com.example.petwelfare.ui.main.mine.users.activity.FansActivity
+import com.example.petwelfare.ui.main.mine.users.activity.FollowsActivity
 
 class MineActivity : AppCompatActivity() {
 

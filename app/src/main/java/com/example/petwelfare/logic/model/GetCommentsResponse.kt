@@ -7,14 +7,11 @@ data class GetCommentsResponse(
 )
 
 data class Comments(
-    /**
-     * 用户在总用户列表中的id
-     */
+
+    // 用户在总用户列表中的id
     val id: Long,
 
-    /**
-     * 评论在父评论中的id
-     */
+    // 评论在父评论中的id
     val cid: Int,
 
     val comment: String,

@@ -11,8 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
 import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemNavHeadBinding
-import com.example.petwelfare.ui.main.head.HeadFragment
-import org.w3c.dom.Text
+import com.example.petwelfare.ui.main.head.fragment.HeadFragment
 
 class HeadNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<HeadNavAdapter.MyViewHolder>() {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.item.itemdetail.LossDetailActivity">
+    tools:context=".ui.itemdetail.activity.LossDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -248,39 +248,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/description" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--                android:id="@+id/linearLayoutCompat2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/articleText">-->
-
-<!--                <com.google.android.material.imageview.ShapeableImageView-->
-<!--                    android:id="@+id/picture1"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:background="@drawable/img_photo" />-->
-
-<!--                <com.google.android.material.imageview.ShapeableImageView-->
-<!--                    android:id="@+id/picture2"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    android:background="@drawable/img_photo" />-->
-
-<!--                <com.google.android.material.imageview.ShapeableImageView-->
-<!--                    android:id="@+id/picture3"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    android:background="@drawable/img_photo" />-->
-
-<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

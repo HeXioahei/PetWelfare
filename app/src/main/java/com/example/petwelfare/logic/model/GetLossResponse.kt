@@ -9,6 +9,7 @@ data class GetLossResponse(
 data class Loss(
     // 走失地点
     var address: String,
+
     var collect_nums: Int,
     var collect_status: Int,
     var comment_nums: Int,

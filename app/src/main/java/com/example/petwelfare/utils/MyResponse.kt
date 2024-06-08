@@ -8,10 +8,6 @@ import java.util.Objects
 
 class MyResponse<T>(private var rawResponse: Response, private var body: T?, private var errorBody: ResponseBody?) {
 
-//    private val rawResponse: Response? = null
-//    private val body: T? = null
-//    private val errorBody: ResponseBody? = null
-
     fun raw(): Response {
         return rawResponse
     }

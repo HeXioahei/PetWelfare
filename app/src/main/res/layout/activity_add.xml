@@ -90,35 +90,4 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/article"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:text="article"-->
-<!--            android:textSize="30sp"-->
-<!--            android:gravity="center"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/loss"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:text="loss"-->
-<!--            android:textSize="30sp"-->
-<!--            android:gravity="center"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/stray"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:text="stray"-->
-<!--            android:textSize="30sp"-->
-<!--            android:gravity="center"/>-->
-
-<!--    </LinearLayout>-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

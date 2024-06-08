@@ -44,12 +44,9 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
 
     private var photosContainerList = mutableListOf<AppCompatImageView>()
 
-
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         ActivityCollector.addActivity(this)
 
         binding = ActivityAddStrayBinding.inflate(layoutInflater)
@@ -197,17 +194,12 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
     override fun onLocationChanged(amapLocation: AMapLocation?) {
         if (amapLocation != null) {
             if (amapLocation.errorCode == 0) {
-                //可在其中解析amapLocation获取相应内容。
-//                amapLocation.getProvince();//省信息
-//                amapLocation.getCity();//城市信息
-//                amapLocation.getDistrict();//城区信息
-//                amapLocation.getStreet();//街道信息
-//                amapLocation.getStreetNum();//街道门牌号信息
+                // 解析amapLocation获取相应内容
                 address = amapLocation.province + amapLocation.city + amapLocation.district +
                         amapLocation.street + amapLocation.streetNum
                 binding.address.setText(address)
             }else {
-                //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                //定位失败时，通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError","location Error, ErrCode:"
                         + amapLocation.errorCode + ", errInfo:"
                         + amapLocation.errorInfo
@@ -217,7 +209,6 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
     }
 
     private fun addPicture(uris: List<@JvmSuppressWildcards Uri>) {
-//        val length = binding.photosContainer.horizontalFadingEdgeLength
         for (uri in uris) {
             if(photosList.size == 3) {
                 Toast.makeText(this,"最多只能选择三个图像哦", Toast.LENGTH_SHORT).show()
@@ -256,7 +247,6 @@ class AddStrayActivity : AppCompatActivity(), AMapLocationListener {
             photosList.removeAt(index)
         }
         alertDialog.setNegativeButton("取消") { dialog, _ ->
-            // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑
             dialog.dismiss()
         }
 

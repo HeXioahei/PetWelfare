@@ -1,29 +1,19 @@
 package com.example.petwelfare.ui.adapter.listadapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemUserBinding
 import com.example.petwelfare.logic.Repository
-import com.example.petwelfare.logic.model.BaseResponse
 import com.example.petwelfare.logic.model.UserBrief
-import com.example.petwelfare.logic.network.PetWelfareNetwork
-import com.example.petwelfare.ui.main.otheruser.OtherUserDetailActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.petwelfare.ui.main.otheruser.activity.OtherUserDetailActivity
 
 class UsersAdapter (private val list: MutableList<UserBrief>) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 

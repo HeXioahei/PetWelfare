@@ -16,8 +16,8 @@ import com.example.petwelfare.databinding.ItemArticleBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.logic.model.Article
 import com.example.petwelfare.logic.network.PetWelfareNetwork
-import com.example.petwelfare.ui.item.itemdetail.ArticleDetailActivity
-import com.example.petwelfare.ui.main.mine.item.mine.ItemMineViewModel
+import com.example.petwelfare.ui.itemdetail.activity.ArticleDetailActivity
+import com.example.petwelfare.ui.main.mine.itemlist.mine.viewmodel.ItemMineViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,6 +54,7 @@ class ArticlesAdapter(private val list: MutableList<Article>, val type: String) 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
+        // 设置删除按钮
         if (type == "me") {
             holder.toMenuBtn.visibility = View.VISIBLE
             holder.delBtn.visibility = View.GONE
@@ -76,8 +77,7 @@ class ArticlesAdapter(private val list: MutableList<Article>, val type: String) 
             holder.delBtn.visibility = View.GONE
         }
 
-        //...进行数据的处理与呈现
-        // 呈现头像
+        // 进行数据的处理与呈现
         // 设置头像和图片
         val lazyHeaders = LazyHeaders.Builder()
             .addHeader("Authorization", Repository.Authorization)

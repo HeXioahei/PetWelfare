@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.begin.BeginActivity"
+    tools:context=".ui.begin.activity.BeginActivity"
     android:background="@color/background">
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -40,22 +40,22 @@
         android:theme="@style/Theme.PetWelfare"
         tools:targetApi="31">
         <activity
-            android:name=".ui.begin.load.LoadingActivity"
+            android:name=".ui.begin.activity.LoadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.SettingActivity"
+            android:name=".ui.main.me.SettingActivity"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".ui.begin.BeginActivity"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".ui.main.discovery.search.DiscoverySearchActivity"
+            android:name=".ui.main.discovery.search.activity.DiscoverySearchActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.head.search.HeadSearchActivity"
+            android:name=".ui.main.head.search.activity.HeadSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.otheruser.OtherUserDetailActivity"
+            android:name=".ui.main.otheruser.activity.OtherUserDetailActivity"
             android:exported="false" /> <!-- android:name="com.amap.api.v2.apikey" -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -67,7 +67,7 @@
             android:name=".ui.main.add.AddActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.pet.PetListActivity"
+            android:name=".ui.main.mine.pet.activity.PetListActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.add.articles.AddArticlesActivity"
@@ -79,31 +79,31 @@
             android:name=".ui.main.add.stray.AddStrayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.pet.AddPetActivity"
+            android:name=".ui.main.mine.pet.activity.AddPetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.itemdetail.OrgDetailActivity"
+            android:name=".ui.itemdetail.activity.OrgDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.itemdetail.StrayDetailActivity"
+            android:name=".ui.itemdetail.activity.StrayDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.itemdetail.LossDetailActivity"
+            android:name=".ui.itemdetail.activity.LossDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.item.itemdetail.ArticleDetailActivity"
+            android:name=".ui.itemdetail.activity.ArticleDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.pet.EditPetInfoActivity"
+            android:name=".ui.main.mine.pet.activity.EditPetInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.pet.PetActivity"
+            android:name=".ui.main.mine.pet.activity.PetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.users.FollowsActivity"
+            android:name=".ui.main.mine.users.activity.FollowsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.mine.users.FansActivity"
+            android:name=".ui.main.mine.users.activity.FansActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.mine.talk.TalkActivity"
@@ -130,18 +130,18 @@
             android:name=".ui.main.mine.MineActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.begin.RestorePsdActivity"
+            android:name=".ui.begin.activity.RestorePsdActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.begin.LoginActivity"
+            android:name=".ui.begin.activity.LoginActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".ui.begin.BeginActivity"
+            android:name=".ui.begin.activity.BeginActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

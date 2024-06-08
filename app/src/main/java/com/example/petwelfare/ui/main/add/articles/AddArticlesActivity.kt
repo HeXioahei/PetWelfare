@@ -32,7 +32,6 @@ class AddArticlesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()   // 使其紧贴着手机最上面
 
         ActivityCollector.addActivity(this)
 
@@ -42,8 +41,6 @@ class AddArticlesActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-//        val fileMap = mutableMapOf<String, MultipartBody.Part>()
-//        val requestBodyList = mutableListOf<RequestBody>()
         val fileList = mutableListOf<MultipartBody.Part>()
 
         val pickMedia =
@@ -150,7 +147,6 @@ class AddArticlesActivity : AppCompatActivity() {
             photosList.removeAt(index)
         }
         alertDialog.setNegativeButton("取消") { dialog, _ ->
-            // 用户点击了取消按钮，这里可以不做处理或者执行相应的逻辑
             dialog.dismiss()
         }
 

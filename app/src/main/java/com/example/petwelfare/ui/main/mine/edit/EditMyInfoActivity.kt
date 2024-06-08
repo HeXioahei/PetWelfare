@@ -17,7 +17,7 @@ import com.example.petwelfare.databinding.ActivityEditMyInfoBinding
 import com.example.petwelfare.databinding.DialogEditInfoBinding
 import com.example.petwelfare.logic.Repository
 import com.example.petwelfare.utils.FileBuilder
-import com.example.petwelfare.ui.begin.RestorePsdActivity
+import com.example.petwelfare.ui.begin.activity.RestorePsdActivity
 import com.example.petwelfare.ui.main.mine.MineViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -28,7 +28,6 @@ class EditMyInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditMyInfoBinding
 
     private val viewModel1: MineViewModel by viewModels()
-//    private val viewModel2: MineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,17 +147,14 @@ class EditMyInfoActivity : AppCompatActivity() {
 
                 "changeAddress" -> {
                     viewModel1.changeAddress(inputText, Authorization)
-//                    viewModel2.setAddress(inputText)
                 }
 
                 "changeTelephone" -> {
                     viewModel1.changeTelephone(inputText, Authorization)
-//                    viewModel2.setTelephone(inputText)
                 }
 
                 "changePersonality" -> {
                     viewModel1.changePersonality(inputText, Authorization)
-//                    viewModel2.setPersonality(inputText)
                 }
             }
 

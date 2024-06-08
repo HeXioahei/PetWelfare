@@ -5,14 +5,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.petwelfare.PetWelfareApplication
-import com.example.petwelfare.R
 import com.example.petwelfare.databinding.ItemNavCommonBinding
-import com.example.petwelfare.ui.main.discovery.DiscoveryFragment
-import com.example.petwelfare.ui.main.discovery.search.DiscoverySearchActivity
+import com.example.petwelfare.ui.main.discovery.search.activity.DiscoverySearchActivity
 
 class DiscoverySearchNavAdapter(private val list: List<String>, private val viewPager: ViewPager2) : RecyclerView.Adapter<DiscoverySearchNavAdapter.MyViewHolder>() {
 
